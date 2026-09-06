@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Hardware & Perakitan — BZ</title>
+    
+    
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #eef7ff, #e9fffb);
+            color: #102542;
+        }
+
+        .hardware-page {
+            width: min(1100px, 90%);
+            margin: 40px auto;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-bottom: 25px;
+            padding: 12px 18px;
+            border-radius: 12px;
+            background: white;
+            color: #1677ff;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 8px 25px rgba(20, 100, 180, .10);
+        }
+
+        .back-button:hover {
+            transform: translateY(-2px);
+        }
+
+        .hardware-header {
+            padding: 45px;
+            border-radius: 28px;
+            background: linear-gradient(135deg, #1677ff, #12c7b5);
+            color: white;
+            box-shadow: 0 20px 50px rgba(22, 119, 255, .20);
+            margin-bottom: 30px;
+        }
+
+        .hardware-header .icon {
+            width: 65px;
+            height: 65px;
+            display: grid;
+            place-items: center;
+            background: rgba(255,255,255,.2);
+            border-radius: 18px;
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+
+        .hardware-header h1 {
+            margin: 0 0 12px;
+            font-size: 42px;
+        }
+
+        .hardware-header p {
+            margin: 0;
+            font-size: 16px;
+            line-height: 1.7;
+            opacity: .9;
+        }
+
+        .materi-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .materi-card {
+            background: rgba(255,255,255,.85);
+            border: 1px solid rgba(255,255,255,.9);
+            border-radius: 22px;
+            padding: 28px;
+            box-shadow: 0 12px 35px rgba(20,100,160,.08);
+            transition: .3s;
+        }
+
+        .materi-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 18px 40px rgba(20,100,160,.14);
+        }
+
+        .materi-number {
+            color: #1677ff;
+            font-weight: 900;
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+
+        .materi-card h2 {
+            margin: 0 0 10px;
+            font-size: 22px;
+        }
+
+        .materi-card p {
+            color: #647892;
+            line-height: 1.7;
+        }
+
+        .learn-button {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 11px 18px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #1677ff, #12c7b5);
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        @media (max-width: 700px) {
+            .materi-container {
+                grid-template-columns: 1fr;
+            }
+
+            .hardware-header {
+                padding: 30px;
+            }
+
+            .hardware-header h1 {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="hardware-page">
+
+        <!-- KEMBALI -->
+        <a href="index.html#materi" class="back-button">
+            ← Kembali ke Materi
+        </a>
+
+
+        <!-- HEADER -->
+        <section class="hardware-header">
+
+            <div class="icon">
+                🖥️
+            </div>
+
+            <h1>
+                Hardware & Perakitan
+            </h1>
+
+            <p>
+                Pelajari dasar-dasar hardware komputer,
+                perakitan PC, BIOS, dan troubleshooting
+                secara bertahap.
+            </p>
+
+        </section>
+
+
+        <!-- DAFTAR MATERI -->
+        <section class="materi-container">
+
+            <article class="materi-card">
+
+                <div class="materi-number">
+                    MATERI 01
+                </div>
+
+                <h2>
+                    Pengenalan Hardware
+                </h2>
+
+                <p>
+                    Mengenal komponen-komponen utama
+                    komputer dan fungsi masing-masing.
+                </p>
+
+                <a href="#" class="learn-button">
+                    Mulai Belajar →
+                </a>
+
+            </article>
+
+
+            <article class="materi-card">
+
+                <div class="materi-number">
+                    MATERI 02
+                </div>
+
+                <h2>
+                    Perakitan PC
+                </h2>
+
+                <p>
+                    Pelajari langkah-langkah dasar
+                    merakit komputer dengan benar.
+                </p>
+
+                <a href="#" class="learn-button">
+                    Mulai Belajar →
+                </a>
+
+            </article>
+
+
+            <article class="materi-card">
+
+                <div class="materi-number">
+                    MATERI 03
+                </div>
+
+                <h2>
+                    BIOS
+                </h2>
+
+                <p>
+                    Mengenal BIOS dan pengaturan dasar
+                    yang terdapat pada komputer.
+                </p>
+
+                <a href="#" class="learn-button">
+                    Mulai Belajar →
+                </a>
+
+            </article>
+
+
+            <article class="materi-card">
+
+                <div class="materi-number">
+                    MATERI 04
+                </div>
+
+                <h2>
+                    Troubleshooting
+                </h2>
+
+                <p>
+                    Pelajari cara menemukan dan mengatasi
+                    masalah dasar pada hardware komputer.
+                </p>
+
+                <a href="#" class="learn-button">
+                    Mulai Belajar →
+                </a>
+
+            </article>
+
+        </section>
+
+    </main>
+
+</body>
+</html>

@@ -1,0 +1,1834 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Modul Pembelajaran — BZ</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        /* =========================================
+           RESET
+        ========================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+
+            min-height: 100vh;
+
+            font-family:
+                "Inter",
+                system-ui,
+                sans-serif;
+
+            color: #102542;
+
+            background:
+
+                radial-gradient(
+                    circle at 8% 10%,
+                    rgba(22,119,255,.15),
+                    transparent 28%
+                ),
+
+                radial-gradient(
+                    circle at 92% 20%,
+                    rgba(18,199,181,.14),
+                    transparent 28%
+                ),
+
+                linear-gradient(
+                    135deg,
+                    #f6fbff,
+                    #ecfffc
+                );
+
+            overflow-x: hidden;
+        }
+
+
+        /* =========================================
+           BACKGROUND
+        ========================================= */
+
+        body::before {
+
+            content: "";
+
+            position: fixed;
+
+            width: 350px;
+            height: 350px;
+
+            left: -170px;
+            bottom: -130px;
+
+            border-radius: 50%;
+
+            background: #1677ff;
+
+            filter: blur(130px);
+
+            opacity: .10;
+
+            pointer-events: none;
+        }
+
+
+        body::after {
+
+            content: "";
+
+            position: fixed;
+
+            width: 350px;
+            height: 350px;
+
+            right: -170px;
+            top: 100px;
+
+            border-radius: 50%;
+
+            background: #12c7b5;
+
+            filter: blur(130px);
+
+            opacity: .10;
+
+            pointer-events: none;
+        }
+
+
+        /* =========================================
+           PAGE
+        ========================================= */
+
+        .page {
+
+            width: min(1180px, 92%);
+
+            margin: 35px auto 80px;
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+        /* =========================================
+           BACK
+        ========================================= */
+
+        .back-button {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            padding: 12px 18px;
+
+            margin-bottom: 25px;
+
+            border-radius: 14px;
+
+            background:
+                rgba(255,255,255,.82);
+
+            border:
+                1px solid rgba(255,255,255,.95);
+
+            color: #1677ff;
+
+            text-decoration: none;
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+            backdrop-filter: blur(15px);
+
+            box-shadow:
+                0 10px 30px rgba(20,100,160,.08);
+
+            transition: .3s ease;
+        }
+
+
+        .back-button:hover {
+
+            transform:
+                translateX(-4px);
+
+            background: white;
+        }
+
+
+        /* =========================================
+           HERO
+        ========================================= */
+
+        .hero {
+
+            position: relative;
+
+            overflow: hidden;
+
+            padding: 55px 50px;
+
+            margin-bottom: 40px;
+
+            border-radius: 32px;
+
+            color: white;
+
+            text-align: center;
+
+            background:
+
+                radial-gradient(
+                    circle at 20% 10%,
+                    rgba(255,255,255,.18),
+                    transparent 22%
+                ),
+
+                radial-gradient(
+                    circle at 85% 85%,
+                    rgba(18,199,181,.25),
+                    transparent 25%
+                ),
+
+                linear-gradient(
+                    135deg,
+                    #0757d5 0%,
+                    #167cf1 45%,
+                    #7150ee 72%,
+                    #0db9a7 100%
+                );
+
+            box-shadow:
+                0 25px 65px rgba(55,75,190,.23);
+        }
+
+
+        .hero::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 250px;
+            height: 250px;
+
+            top: -120px;
+            right: -70px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(255,255,255,.08);
+
+            border:
+                1px solid rgba(255,255,255,.12);
+        }
+
+
+        .hero::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 180px;
+            height: 180px;
+
+            left: -80px;
+            bottom: -80px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(255,255,255,.07);
+        }
+
+
+        .hero-content {
+
+            position: relative;
+
+            z-index: 3;
+        }
+
+
+        .hero-icon {
+
+            width: 74px;
+            height: 74px;
+
+            display: grid;
+
+            place-items: center;
+
+            margin: 0 auto 22px;
+
+            border-radius: 21px;
+
+            background:
+                rgba(255,255,255,.16);
+
+            border:
+                1px solid rgba(255,255,255,.22);
+
+            backdrop-filter:
+                blur(10px);
+
+            font-size: 32px;
+
+            box-shadow:
+                inset 0 1px 1px rgba(255,255,255,.25);
+        }
+
+
+        .hero h1 {
+
+            margin-bottom: 14px;
+
+            font-size:
+                clamp(34px, 5vw, 52px);
+
+            line-height: 1.05;
+
+            letter-spacing:
+                -1.8px;
+
+            font-weight: 900;
+        }
+
+
+        .hero p {
+
+            max-width: 680px;
+
+            margin:
+                0 auto;
+
+            color:
+                rgba(255,255,255,.90);
+
+            font-size: 15px;
+
+            line-height: 1.8;
+        }
+
+
+        /* =========================================
+           SECTION HEADING
+        ========================================= */
+
+        .section-heading {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: end;
+
+            gap: 20px;
+
+            margin-bottom: 25px;
+        }
+
+
+        .section-heading h2 {
+
+            font-size: 29px;
+
+            letter-spacing:
+                -.8px;
+        }
+
+
+        .section-heading p {
+
+            margin-top: 6px;
+
+            color: #71839b;
+
+            font-size: 13px;
+        }
+
+
+        .price-note {
+
+            padding:
+                10px 15px;
+
+            border-radius: 12px;
+
+            background: white;
+
+            border:
+                1px solid #dfedf3;
+
+            color: #1677ff;
+
+            font-size: 12px;
+
+            font-weight: 900;
+
+            white-space: nowrap;
+        }
+
+
+        /* =========================================
+           MODULE GRID
+        ========================================= */
+
+        .module-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 20px;
+        }
+
+
+        /* =========================================
+           MODULE CARD
+        ========================================= */
+
+        .module-card {
+
+            position: relative;
+
+            overflow: hidden;
+
+            padding: 27px;
+
+            min-height: 330px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            border-radius: 24px;
+
+            background:
+                rgba(255,255,255,.86);
+
+            border:
+                1px solid rgba(255,255,255,.95);
+
+            backdrop-filter: blur(16px);
+
+            box-shadow:
+                0 12px 35px rgba(20,100,160,.07);
+
+            transition:
+                transform .3s ease,
+                box-shadow .3s ease;
+        }
+
+
+        .module-card:hover {
+
+            transform:
+                translateY(-8px);
+
+            box-shadow:
+                0 24px 48px rgba(20,100,160,.15);
+        }
+
+
+        /* =========================================
+           CARD DECORATIONS
+        ========================================= */
+
+        .module-card::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 150px;
+            height: 150px;
+
+            right: -60px;
+            top: -70px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(22,119,255,.07);
+        }
+
+
+        .module-card::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 110px;
+            height: 110px;
+
+            left: -55px;
+            bottom: -50px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(18,199,181,.07);
+        }
+
+
+        /* =========================================
+           CARD TOP
+        ========================================= */
+
+        .module-top {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            margin-bottom: 22px;
+
+            position: relative;
+
+            z-index: 3;
+        }
+
+
+        .module-number {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            width: 43px;
+            height: 29px;
+
+            border-radius: 9px;
+
+            background:
+                #edf6ff;
+
+            color:
+                #1677ff;
+
+            font-size: 10px;
+
+            font-weight: 900;
+        }
+
+
+        .module-icon {
+
+            width: 52px;
+            height: 52px;
+
+            display: grid;
+
+            place-items: center;
+
+            border-radius: 15px;
+
+            background:
+
+                linear-gradient(
+                    135deg,
+                    #eaf6ff,
+                    #e5fffa
+                );
+
+            font-size: 24px;
+
+            box-shadow:
+                0 8px 18px rgba(20,100,160,.07);
+        }
+
+
+        /* =========================================
+           CARD CONTENT
+        ========================================= */
+
+        .module-content {
+
+            position: relative;
+
+            z-index: 3;
+
+            flex: 1;
+        }
+
+
+        .module-content .tag {
+
+            display: inline-block;
+
+            margin-bottom: 8px;
+
+            color: #0b9d91;
+
+            font-size: 9px;
+
+            font-weight: 900;
+
+            text-transform: uppercase;
+
+            letter-spacing:
+                1px;
+        }
+
+
+        .module-content h3 {
+
+            margin-bottom: 10px;
+
+            color: #102a49;
+
+            font-size: 20px;
+
+            font-weight: 900;
+        }
+
+
+        .module-content p {
+
+            color: #71839b;
+
+            font-size: 13px;
+
+            line-height: 1.75;
+        }
+
+
+        /* =========================================
+           PRICE
+        ========================================= */
+
+        .price-box {
+
+            margin-top: 20px;
+
+            padding-top: 18px;
+
+            border-top:
+                1px solid #edf2f5;
+
+            position: relative;
+
+            z-index: 4;
+        }
+
+
+        .price-label {
+
+            display: block;
+
+            margin-bottom: 4px;
+
+            color: #8a97a8;
+
+            font-size: 10px;
+
+            font-weight: 700;
+        }
+
+
+        .price {
+
+            display: flex;
+
+            align-items: baseline;
+
+            gap: 3px;
+
+            color: #102a49;
+
+            font-size: 28px;
+
+            font-weight: 900;
+
+            letter-spacing:
+                -1px;
+        }
+
+
+        .price small {
+
+            color: #8492a4;
+
+            font-size: 11px;
+
+            font-weight: 700;
+        }
+
+
+        /* =========================================
+           BUTTON
+        ========================================= */
+
+        .select-button {
+
+            width: 100%;
+
+            margin-top: 16px;
+
+            min-height: 46px;
+
+            border-radius: 13px;
+
+            color: white;
+
+            background:
+
+                linear-gradient(
+                    135deg,
+                    #1677ff,
+                    #12b8aa
+                );
+
+            font-size: 12px;
+
+            font-weight: 900;
+
+            box-shadow:
+                0 8px 20px rgba(22,119,255,.18);
+
+            transition: .3s ease;
+        }
+
+
+        .select-button:hover {
+
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 12px 28px rgba(22,119,255,.26);
+        }
+
+
+        .select-button.selected {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0b9d91,
+                    #075f78
+                );
+        }
+
+
+        /* =========================================
+           ORDER BOX
+        ========================================= */
+
+        .order-box {
+
+            margin-top: 30px;
+
+            padding: 30px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 25px;
+
+            border-radius: 25px;
+
+            color: white;
+
+            background:
+
+                linear-gradient(
+                    135deg,
+                    #071f52,
+                    #1256bf,
+                    #0da998
+                );
+
+            box-shadow:
+                0 20px 50px rgba(20,70,160,.18);
+        }
+
+
+        .order-title {
+
+            margin-bottom: 6px;
+
+            font-size: 21px;
+
+            font-weight: 900;
+        }
+
+
+        .order-desc {
+
+            color:
+                rgba(255,255,255,.78);
+
+            font-size: 12px;
+        }
+
+
+        .order-total {
+
+            text-align: right;
+
+            flex-shrink: 0;
+        }
+
+
+        .order-total span {
+
+            display: block;
+
+            margin-bottom: 3px;
+
+            color:
+                rgba(255,255,255,.70);
+
+            font-size: 10px;
+        }
+
+
+        .total-price {
+
+            font-size: 31px;
+
+            font-weight: 900;
+
+            letter-spacing:
+                -1px;
+        }
+
+
+        .pay-button {
+
+            margin-top: 9px;
+
+            padding: 11px 18px;
+
+            border-radius: 11px;
+
+            color: #0875d8;
+
+            background: white;
+
+            font-size: 11px;
+
+            font-weight: 900;
+
+            cursor: pointer;
+
+            transition: .3s;
+        }
+
+
+        .pay-button:hover {
+
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 8px 20px rgba(0,0,0,.15);
+        }
+
+
+        /* =========================================
+           RESPONSIVE
+        ========================================= */
+
+        @media (max-width: 900px) {
+
+            .module-grid {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+        }
+
+
+        @media (max-width: 650px) {
+
+            .page {
+
+                width: 94%;
+
+                margin-top: 20px;
+            }
+
+
+            .hero {
+
+                padding:
+                    35px 25px;
+
+                border-radius: 25px;
+            }
+
+
+            .module-grid {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .section-heading {
+
+                flex-direction: column;
+
+                align-items: flex-start;
+            }
+
+
+            .order-box {
+
+                flex-direction:
+                    column;
+
+                align-items:
+                    flex-start;
+            }
+
+
+            .order-total {
+
+                text-align:
+                    left;
+            }
+
+        }
+
+
+        @media (max-width: 480px) {
+
+            .hero h1 {
+
+                font-size:
+                    31px;
+            }
+
+
+            .module-card {
+
+                padding: 22px;
+            }
+
+
+            .order-box {
+
+                padding: 24px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <main class="page">
+
+
+        <!-- ======================================
+             KEMBALI
+        ======================================= -->
+
+        <a
+            href="index.html#beranda"
+            class="back-button"
+        >
+            ← Kembali ke Beranda
+        </a>
+
+
+        <!-- ======================================
+             HERO
+        ======================================= -->
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <div class="hero-icon">
+                    📚
+                </div>
+
+
+                <h1>
+                    Pilih Modul Pembelajaran
+                </h1>
+
+
+                <p>
+                    Tingkatkan kemampuanmu dengan modul
+                    pembelajaran BZ. Setiap modul hanya
+                    <strong>Rp100.000</strong> dan bisa
+                    dipilih sesuai kebutuhanmu.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- ======================================
+             HEADING
+        ======================================= -->
+
+        <div class="section-heading">
+
+            <div>
+
+                <h2>
+                    Modul Pembelajaran
+                </h2>
+
+                <p>
+                    Pilih modul yang ingin kamu pelajari.
+                </p>
+
+            </div>
+
+
+            <div class="price-note">
+                💳 Rp100.000 / Modul
+            </div>
+
+        </div>
+
+
+        <!-- ======================================
+             MODULES
+        ======================================= -->
+
+        <section class="module-grid">
+
+
+            <!-- MODULE 01 -->
+
+            <article class="module-card">
+
+                <div class="module-top">
+
+                    <span class="module-number">
+                        01
+                    </span>
+
+                    <div class="module-icon">
+                        🖥️
+                    </div>
+
+                </div>
+
+
+                <div class="module-content">
+
+                    <span class="tag">
+                        Networking
+                    </span>
+
+                    <h3>
+                        Hardware & Perakitan
+                    </h3>
+
+                    <p>
+                        Pelajari komponen komputer,
+                        perakitan PC, BIOS, dan
+                        troubleshooting hardware.
+                    </p>
+
+                </div>
+
+
+                <div class="price-box">
+
+                    <span class="price-label">
+                        Harga Modul
+                    </span>
+
+                    <div class="price">
+                        Rp100.000
+                        <small>/modul</small>
+                    </div>
+
+                    <button
+                        class="select-button"
+                        onclick="pilihModul(this, 'Hardware & Perakitan')"
+                    >
+                        Pilih Modul
+                    </button>
+
+                </div>
+
+            </article>
+
+
+            <!-- MODULE 02 -->
+
+            <article class="module-card">
+
+                <div class="module-top">
+
+                    <span class="module-number">
+                        02
+                    </span>
+
+                    <div class="module-icon">
+                        💿
+                    </div>
+
+                </div>
+
+
+                <div class="module-content">
+
+                    <span class="tag">
+                        Operating System
+                    </span>
+
+                    <h3>
+                        Sistem Operasi
+                    </h3>
+
+                    <p>
+                        Pelajari Windows, Linux,
+                        Debian, VirtualBox,
+                        instalasi, dan manajemen sistem.
+                    </p>
+
+                </div>
+
+
+                <div class="price-box">
+
+                    <span class="price-label">
+                        Harga Modul
+                    </span>
+
+                    <div class="price">
+                        Rp100.000
+                        <small>/modul</small>
+                    </div>
+
+                    <button
+                        class="select-button"
+                        onclick="pilihModul(this, 'Sistem Operasi')"
+                    >
+                        Pilih Modul
+                    </button>
+
+                </div>
+
+            </article>
+
+
+            <!-- MODULE 03 -->
+
+            <article class="module-card">
+
+                <div class="module-top">
+
+                    <span class="module-number">
+                        03
+                    </span>
+
+                    <div class="module-icon">
+                        🌐
+                    </div>
+
+                </div>
+
+
+                <div class="module-content">
+
+                    <span class="tag">
+                        Networking Basic
+                    </span>
+
+                    <h3>
+                        Jaringan Dasar
+                    </h3>
+
+                    <p>
+                        Pelajari topologi jaringan,
+                        OSI Layer, TCP/IP,
+                        serta pengkabelan jaringan.
+                    </p>
+
+                </div>
+
+
+                <div class="price-box">
+
+                    <span class="price-label">
+                        Harga Modul
+                    </span>
+
+                    <div class="price">
+                        Rp100.000
+                        <small>/modul</small>
+                    </div>
+
+                    <button
+                        class="select-button"
+                        onclick="pilihModul(this, 'Jaringan Dasar')"
+                    >
+                        Pilih Modul
+                    </button>
+
+                </div>
+
+            </article>
+
+
+            <!-- MODULE 04 -->
+
+            <article class="module-card">
+
+                <div class="module-top">
+
+                    <span class="module-number">
+                        04
+                    </span>
+
+                    <div class="module-icon">
+                        🔢
+                    </div>
+
+                </div>
+
+
+                <div class="module-content">
+
+                    <span class="tag">
+                        Addressing
+                    </span>
+
+                    <h3>
+                        IP Addressing
+                    </h3>
+
+                    <p>
+                        Pelajari IP Address,
+                        IPv4, IPv6, subnet mask,
+                        dan subnetting dasar.
+                    </p>
+
+                </div>
+
+
+                <div class="price-box">
+
+                    <span class="price-label">
+                        Harga Modul
+                    </span>
+
+                    <div class="price">
+                        Rp100.000
+                        <small>/modul</small>
+                    </div>
+
+                    <button
+                        class="select-button"
+                        onclick="pilihModul(this, 'IP Addressing')"
+                    >
+                        Pilih Modul
+                    </button>
+
+                </div>
+
+            </article>
+
+
+            <!-- MODULE 05 -->
+
+            <article class="module-card">
+
+                <div class="module-top">
+
+                    <span class="module-number">
+                        05
+                    </span>
+
+                    <div class="module-icon">
+                        🔀
+                    </div>
+
+                </div>
+
+
+                <div class="module-content">
+
+                    <span class="tag">
+                        Network Device
+                    </span>
+
+                    <h3>
+                        Perangkat Jaringan
+                    </h3>
+
+                    <p>
+                        Kenali Switch, Router,
+                        Access Point, Bridge,
+                        dan fungsi masing-masing.
+                    </p>
+
+                </div>
+
+
+                <div class="price-box">
+
+                    <span class="price-label">
+                        Harga Modul
+                    </span>
+
+                    <div class="price">
+                        Rp100.000
+                        <small>/modul</small>
+                    </div>
+
+                    <button
+                        class="select-button"
+                        onclick="pilihModul(this, 'Perangkat Jaringan')"
+                    >
+                        Pilih Modul
+                    </button>
+
+                </div>
+
+            </article>
+
+
+            <!-- MODULE 06 -->
+
+            <article class="module-card">
+
+                <div class="module-top">
+
+                    <span class="module-number">
+                        06
+                    </span>
+
+                    <div class="module-icon">
+                        🛣️
+                    </div>
+
+                </div>
+
+
+                <div class="module-content">
+
+                    <span class="tag">
+                        Routing
+                    </span>
+
+                    <h3>
+                        Routing
+                    </h3>
+
+                    <p>
+                        Pelajari routing dasar,
+                        static routing, dynamic routing,
+                        OSPF, dan EIGRP.
+                    </p>
+
+                </div>
+
+
+                <div class="price-box">
+
+                    <span class="price-label">
+                        Harga Modul
+                    </span>
+
+                    <div class="price">
+                        Rp100.000
+                        <small>/modul</small>
+                    </div>
+
+                    <button
+                        class="select-button"
+                        onclick="pilihModul(this, 'Routing')"
+                    >
+                        Pilih Modul
+                    </button>
+
+                </div>
+
+            </article>
+
+
+            <!-- MODULE 07 -->
+
+            <article class="module-card">
+
+                <div class="module-top">
+
+                    <span class="module-number">
+                        07
+                    </span>
+
+                    <div class="module-icon">
+                        🗄️
+                    </div>
+
+                </div>
+
+
+                <div class="module-content">
+
+                    <span class="tag">
+                        Server
+                    </span>
+
+                    <h3>
+                        Administrasi Server
+                    </h3>
+
+                    <p>
+                        Pelajari DHCP, DNS,
+                        Web Server, FTP,
+                        Mail Server, dan Proxy.
+                    </p>
+
+                </div>
+
+
+                <div class="price-box">
+
+                    <span class="price-label">
+                        Harga Modul
+                    </span>
+
+                    <div class="price">
+                        Rp100.000
+                        <small>/modul</small>
+                    </div>
+
+                    <button
+                        class="select-button"
+                        onclick="pilihModul(this, 'Administrasi Server')"
+                    >
+                        Pilih Modul
+                    </button>
+
+                </div>
+
+            </article>
+
+
+            <!-- MODULE 08 -->
+
+            <article class="module-card">
+
+                <div class="module-top">
+
+                    <span class="module-number">
+                        08
+                    </span>
+
+                    <div class="module-icon">
+                        🔐
+                    </div>
+
+                </div>
+
+
+                <div class="module-content">
+
+                    <span class="tag">
+                        Cyber Security
+                    </span>
+
+                    <h3>
+                        Keamanan Jaringan
+                    </h3>
+
+                    <p>
+                        Pelajari Firewall,
+                        NAT, VPN, IDS,
+                        dan IPS.
+                    </p>
+
+                </div>
+
+
+                <div class="price-box">
+
+                    <span class="price-label">
+                        Harga Modul
+                    </span>
+
+                    <div class="price">
+                        Rp100.000
+                        <small>/modul</small>
+                    </div>
+
+                    <button
+                        class="select-button"
+                        onclick="pilihModul(this, 'Keamanan Jaringan')"
+                    >
+                        Pilih Modul
+                    </button>
+
+                </div>
+
+            </article>
+
+
+            <!-- MODULE 09 -->
+
+            <article class="module-card">
+
+                <div class="module-top">
+
+                    <span class="module-number">
+                        09
+                    </span>
+
+                    <div class="module-icon">
+                        💡
+                    </div>
+
+                </div>
+
+
+                <div class="module-content">
+
+                    <span class="tag">
+                        Fiber Optic
+                    </span>
+
+                    <h3>
+                        Fiber Optic
+                    </h3>
+
+                    <p>
+                        Pelajari fiber optic,
+                        struktur kabel, splicing,
+                        OTDR, OLT, ONU, dan ONT.
+                    </p>
+
+                </div>
+
+
+                <div class="price-box">
+
+                    <span class="price-label">
+                        Harga Modul
+                    </span>
+
+                    <div class="price">
+                        Rp100.000
+                        <small>/modul</small>
+                    </div>
+
+                    <button
+                        class="select-button"
+                        onclick="pilihModul(this, 'Fiber Optic')"
+                    >
+                        Pilih Modul
+                    </button>
+
+                </div>
+
+            </article>
+
+
+            <!-- MODULE 10 -->
+
+            <article class="module-card">
+
+                <div class="module-top">
+
+                    <span class="module-number">
+                        10
+                    </span>
+
+                    <div class="module-icon">
+                        📡
+                    </div>
+
+                </div>
+
+
+                <div class="module-content">
+
+                    <span class="tag">
+                        Wireless
+                    </span>
+
+                    <h3>
+                        Wireless Network
+                    </h3>
+
+                    <p>
+                        Pelajari Wi-Fi,
+                        Access Point,
+                        MikroTik, VLAN,
+                        dan Hotspot.
+                    </p>
+
+                </div>
+
+
+                <div class="price-box">
+
+                    <span class="price-label">
+                        Harga Modul
+                    </span>
+
+                    <div class="price">
+                        Rp100.000
+                        <small>/modul</small>
+                    </div>
+
+                    <button
+                        class="select-button"
+                        onclick="pilihModul(this, 'Wireless Network')"
+                    >
+                        Pilih Modul
+                    </button>
+
+                </div>
+
+            </article>
+
+
+        </section>
+
+
+        <!-- ======================================
+             ORDER SUMMARY
+        ======================================= -->
+
+        <section class="order-box">
+
+            <div>
+
+                <div class="order-title">
+                    Modul yang dipilih
+                </div>
+
+                <div
+                    class="order-desc"
+                    id="selectedModules"
+                >
+                    Belum ada modul yang dipilih.
+                </div>
+
+            </div>
+
+
+            <div class="order-total">
+
+                <span>
+                    Total Pembayaran
+                </span>
+
+                <div
+                    class="total-price"
+                    id="totalPrice"
+                >
+                    Rp0
+                </div>
+
+                <button
+                    class="pay-button"
+                    onclick="lanjutPembayaran()"
+                >
+                    Lanjut Pembayaran →
+                </button>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <script>
+
+        /* =========================================
+           DATA
+        ========================================= */
+
+        const hargaModul = 100000;
+
+        let modulDipilih = [];
+
+
+        /* =========================================
+           PILIH MODUL
+        ========================================= */
+
+        function pilihModul(button, nama) {
+
+            const posisi =
+                modulDipilih.indexOf(nama);
+
+
+            if (posisi === -1) {
+
+                modulDipilih.push(nama);
+
+                button.classList.add("selected");
+
+                button.textContent =
+                    "✓ Dipilih";
+
+            } else {
+
+                modulDipilih.splice(posisi, 1);
+
+                button.classList.remove("selected");
+
+                button.textContent =
+                    "Pilih Modul";
+            }
+
+
+            updateTotal();
+        }
+
+
+        /* =========================================
+           UPDATE TOTAL
+        ========================================= */
+
+        function updateTotal() {
+
+            const jumlah =
+                modulDipilih.length;
+
+
+            const total =
+                jumlah * hargaModul;
+
+
+            document.getElementById(
+                "totalPrice"
+            ).textContent =
+                formatRupiah(total);
+
+
+            const selected =
+                document.getElementById(
+                    "selectedModules"
+                );
+
+
+            if (jumlah === 0) {
+
+                selected.textContent =
+                    "Belum ada modul yang dipilih.";
+
+                return;
+            }
+
+
+            selected.textContent =
+                modulDipilih.join(" • ")
+                +
+                " (" +
+                jumlah +
+                " modul)";
+        }
+
+
+        /* =========================================
+           FORMAT RUPIAH
+        ========================================= */
+
+        function formatRupiah(angka) {
+
+            return new Intl.NumberFormat(
+                "id-ID",
+                {
+                    style: "currency",
+                    currency: "IDR",
+                    minimumFractionDigits: 0
+                }
+            ).format(angka);
+        }
+
+
+        /* =========================================
+           PEMBAYARAN
+        ========================================= */
+
+        function lanjutPembayaran() {
+
+            if (
+                modulDipilih.length === 0
+            ) {
+
+                alert(
+                    "Silakan pilih minimal 1 modul terlebih dahulu."
+                );
+
+                return;
+            }
+
+
+            const total =
+                modulDipilih.length
+                *
+                hargaModul;
+
+
+            alert(
+                "Modul dipilih:\n\n" +
+                modulDipilih.join("\n") +
+                "\n\nTotal: " +
+                formatRupiah(total)
+            );
+        }
+
+    </script>
+
+
+</body>
+
+</html>

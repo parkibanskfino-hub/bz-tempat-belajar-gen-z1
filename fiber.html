@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Fiber Optic — BZ</title>
+
+    <!-- FONT -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        /* =========================================
+           RESET
+        ========================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+
+            font-family:
+                "Inter",
+                system-ui,
+                sans-serif;
+
+            color: #102542;
+
+            background:
+                radial-gradient(
+                    circle at 8% 10%,
+                    rgba(22,119,255,.15),
+                    transparent 28%
+                ),
+                radial-gradient(
+                    circle at 92% 20%,
+                    rgba(18,199,181,.14),
+                    transparent 28%
+                ),
+                linear-gradient(
+                    135deg,
+                    #f6fbff,
+                    #ecfffc
+                );
+
+            overflow-x: hidden;
+        }
+
+
+        /* =========================================
+           BACKGROUND
+        ========================================= */
+
+        body::before {
+            content: "";
+
+            position: fixed;
+
+            width: 300px;
+            height: 300px;
+
+            left: -140px;
+            bottom: -100px;
+
+            border-radius: 50%;
+
+            background: #1677ff;
+
+            filter: blur(120px);
+
+            opacity: .10;
+
+            pointer-events: none;
+        }
+
+        body::after {
+            content: "";
+
+            position: fixed;
+
+            width: 300px;
+            height: 300px;
+
+            right: -130px;
+            top: 120px;
+
+            border-radius: 50%;
+
+            background: #12c7b5;
+
+            filter: blur(120px);
+
+            opacity: .10;
+
+            pointer-events: none;
+        }
+
+
+        /* =========================================
+           PAGE
+        ========================================= */
+
+        .fiber-page {
+            width: min(1150px, 92%);
+
+            margin: 35px auto 70px;
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+        /* =========================================
+           BACK BUTTON
+        ========================================= */
+
+        .back-button {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            padding: 12px 18px;
+
+            margin-bottom: 24px;
+
+            border-radius: 14px;
+
+            background:
+                rgba(255,255,255,.80);
+
+            border:
+                1px solid rgba(255,255,255,.95);
+
+            color: #1677ff;
+
+            text-decoration: none;
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+            backdrop-filter: blur(15px);
+
+            box-shadow:
+                0 10px 30px rgba(20,100,160,.08);
+
+            transition: .3s ease;
+        }
+
+        .back-button:hover {
+            transform: translateX(-4px);
+
+            background: white;
+        }
+
+
+        /* =========================================
+           HERO
+        ========================================= */
+
+        .fiber-header {
+            position: relative;
+
+            overflow: hidden;
+
+            padding: 48px;
+
+            margin-bottom: 35px;
+
+            border-radius: 32px;
+
+            color: white;
+
+            background:
+
+                radial-gradient(
+                    circle at 85% 15%,
+                    rgba(255,255,255,.20),
+                    transparent 22%
+                ),
+
+                radial-gradient(
+                    circle at 14% 88%,
+                    rgba(18,199,181,.24),
+                    transparent 28%
+                ),
+
+                linear-gradient(
+                    135deg,
+                    #0757d5 0%,
+                    #167af0 42%,
+                    #5361ec 72%,
+                    #0db9a7 100%
+                );
+
+            box-shadow:
+                0 25px 65px rgba(44,83,190,.22);
+        }
+
+        .fiber-header::before {
+            content: "";
+
+            position: absolute;
+
+            width: 270px;
+            height: 270px;
+
+            right: -85px;
+            top: -125px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(255,255,255,.08);
+
+            border:
+                1px solid rgba(255,255,255,.12);
+        }
+
+        .fiber-header::after {
+            content: "";
+
+            position: absolute;
+
+            width: 180px;
+            height: 180px;
+
+            left: -80px;
+            bottom: -90px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(255,255,255,.07);
+        }
+
+        .fiber-header-content {
+            position: relative;
+
+            z-index: 3;
+        }
+
+
+        /* =========================================
+           MAIN ICON
+        ========================================= */
+
+        .fiber-main-icon {
+            width: 70px;
+            height: 70px;
+
+            display: grid;
+
+            place-items: center;
+
+            margin-bottom: 22px;
+
+            border-radius: 20px;
+
+            background:
+                rgba(255,255,255,.16);
+
+            border:
+                1px solid rgba(255,255,255,.22);
+
+            backdrop-filter: blur(10px);
+
+            font-size: 31px;
+
+            box-shadow:
+                inset 0 1px 1px rgba(255,255,255,.25);
+        }
+
+
+        /* =========================================
+           TITLE
+        ========================================= */
+
+        .fiber-header h1 {
+            margin-bottom: 14px;
+
+            font-size:
+                clamp(34px, 5vw, 52px);
+
+            line-height: 1.05;
+
+            letter-spacing: -1.8px;
+
+            font-weight: 900;
+        }
+
+        .fiber-header p {
+            max-width: 720px;
+
+            color:
+                rgba(255,255,255,.90);
+
+            font-size: 15px;
+
+            line-height: 1.8;
+        }
+
+
+        /* =========================================
+           INFO
+        ========================================= */
+
+        .info-bar {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 10px;
+
+            margin-top: 25px;
+        }
+
+        .info-item {
+            padding: 9px 13px;
+
+            border-radius: 11px;
+
+            background:
+                rgba(255,255,255,.14);
+
+            border:
+                1px solid rgba(255,255,255,.18);
+
+            font-size: 11px;
+
+            font-weight: 800;
+        }
+
+
+        /* =========================================
+           SECTION HEADING
+        ========================================= */
+
+        .section-heading {
+            display: flex;
+
+            align-items: end;
+
+            justify-content: space-between;
+
+            gap: 20px;
+
+            margin-bottom: 22px;
+        }
+
+        .section-heading h2 {
+            font-size: 28px;
+
+            letter-spacing: -.7px;
+        }
+
+        .section-heading p {
+            margin-top: 6px;
+
+            color: #71839b;
+
+            font-size: 13px;
+        }
+
+        .materi-total {
+            padding: 9px 14px;
+
+            border-radius: 12px;
+
+            background: white;
+
+            border:
+                1px solid #dfedf3;
+
+            color: #1677ff;
+
+            font-size: 11px;
+
+            font-weight: 900;
+
+            white-space: nowrap;
+        }
+
+
+        /* =========================================
+           GRID
+        ========================================= */
+
+        .fiber-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
+            gap: 20px;
+        }
+
+
+        /* =========================================
+           CARD
+        ========================================= */
+
+        .fiber-card {
+            position: relative;
+
+            overflow: hidden;
+
+            min-height: 290px;
+
+            padding: 28px;
+
+            border-radius: 24px;
+
+            background:
+                rgba(255,255,255,.85);
+
+            border:
+                1px solid rgba(255,255,255,.95);
+
+            backdrop-filter: blur(16px);
+
+            box-shadow:
+                0 12px 35px rgba(20,100,160,.07);
+
+            transition:
+                transform .3s ease,
+                box-shadow .3s ease;
+        }
+
+        .fiber-card:hover {
+            transform: translateY(-7px);
+
+            box-shadow:
+                0 22px 45px rgba(20,100,160,.15);
+        }
+
+
+        /* =========================================
+           CARD DECORATION
+        ========================================= */
+
+        .fiber-card::before {
+            content: "";
+
+            position: absolute;
+
+            width: 150px;
+            height: 150px;
+
+            right: -60px;
+            top: -70px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(22,119,255,.07);
+        }
+
+        .fiber-card::after {
+            content: "";
+
+            position: absolute;
+
+            width: 110px;
+            height: 110px;
+
+            left: -55px;
+            bottom: -50px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(18,199,181,.07);
+        }
+
+
+        /* =========================================
+           TOP
+        ========================================= */
+
+        .card-top {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            margin-bottom: 23px;
+
+            position: relative;
+
+            z-index: 3;
+        }
+
+        .materi-number {
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            min-width: 44px;
+
+            height: 29px;
+
+            padding: 0 10px;
+
+            border-radius: 9px;
+
+            background:
+                #edf6ff;
+
+            color:
+                #1677ff;
+
+            font-size: 10px;
+
+            font-weight: 900;
+        }
+
+        .fiber-icon {
+            width: 52px;
+            height: 52px;
+
+            display: grid;
+
+            place-items: center;
+
+            border-radius: 15px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #eaf6ff,
+                    #e5fffa
+                );
+
+            font-size: 24px;
+
+            box-shadow:
+                0 8px 18px rgba(20,100,160,.07);
+        }
+
+
+        /* =========================================
+           CONTENT
+        ========================================= */
+
+        .fiber-content {
+            position: relative;
+
+            z-index: 3;
+        }
+
+        .fiber-content span {
+            display: inline-block;
+
+            margin-bottom: 7px;
+
+            color: #0b9d91;
+
+            font-size: 9px;
+
+            font-weight: 900;
+
+            letter-spacing: 1px;
+
+            text-transform: uppercase;
+        }
+
+        .fiber-content h3 {
+            margin-bottom: 10px;
+
+            color: #102a49;
+
+            font-size: 21px;
+
+            font-weight: 900;
+        }
+
+        .fiber-content p {
+            min-height: 72px;
+
+            color: #71839b;
+
+            font-size: 13px;
+
+            line-height: 1.75;
+        }
+
+
+        /* =========================================
+           FOOTER
+        ========================================= */
+
+        .card-footer {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 12px;
+
+            margin-top: 20px;
+
+            padding-top: 17px;
+
+            border-top:
+                1px solid #edf2f5;
+
+            position: relative;
+
+            z-index: 4;
+        }
+
+        .level {
+            color: #7e8da1;
+
+            font-size: 10px;
+
+            font-weight: 800;
+        }
+
+        .learn-button {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            padding: 10px 15px;
+
+            border-radius: 11px;
+
+            color: white;
+
+            text-decoration: none;
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #1677ff,
+                    #12b8aa
+                );
+
+            box-shadow:
+                0 7px 18px rgba(22,119,255,.18);
+
+            transition: .3s ease;
+        }
+
+        .learn-button:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 11px 25px rgba(22,119,255,.25);
+        }
+
+
+        /* =========================================
+           WARNA NOMOR
+        ========================================= */
+
+        .splicing .materi-number {
+            color: #0b9d91;
+            background: #e9fffb;
+        }
+
+        .otdr .materi-number {
+            color: #7046dc;
+            background: #f0ebff;
+        }
+
+        .olt .materi-number {
+            color: #d34f7d;
+            background: #ffedf4;
+        }
+
+
+        /* =========================================
+           RESPONSIVE
+        ========================================= */
+
+        @media (max-width: 750px) {
+
+            .fiber-page {
+                width: 94%;
+
+                margin-top: 20px;
+            }
+
+            .fiber-header {
+                padding: 32px 25px;
+
+                border-radius: 25px;
+            }
+
+            .fiber-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-heading {
+                flex-direction: column;
+
+                align-items: flex-start;
+            }
+
+        }
+
+
+        @media (max-width: 480px) {
+
+            .fiber-header {
+                padding: 27px 20px;
+            }
+
+            .fiber-main-icon {
+                width: 58px;
+                height: 58px;
+
+                font-size: 26px;
+            }
+
+            .fiber-header h1 {
+                font-size: 31px;
+            }
+
+            .fiber-card {
+                padding: 22px;
+            }
+
+            .fiber-content h3 {
+                font-size: 18px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <main class="fiber-page">
+
+
+        <!-- ======================================
+             KEMBALI
+        ======================================= -->
+
+        <a
+            href="index.html#materi"
+            class="back-button"
+        >
+            ← Kembali ke Materi
+        </a>
+
+
+        <!-- ======================================
+             HEADER
+        ======================================= -->
+
+        <section class="fiber-header">
+
+            <div class="fiber-header-content">
+
+                <div class="fiber-main-icon">
+                    💡
+                </div>
+
+
+                <h1>
+                    Fiber Optic
+                </h1>
+
+
+                <p>
+                    Pelajari teknologi jaringan berbasis
+                    serat optik, mulai dari konsep dasar,
+                    struktur kabel, penyambungan fiber,
+                    pengukuran OTDR, hingga perangkat
+                    OLT, ONU, dan ONT.
+                </p>
+
+
+                <div class="info-bar">
+
+                    <div class="info-item">
+                        📚 4 Materi
+                    </div>
+
+                    <div class="info-item">
+                        💡 Fiber Optic
+                    </div>
+
+                    <div class="info-item">
+                        🌐 Networking
+                    </div>
+
+                    <div class="info-item">
+                        🛠️ Praktik
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ======================================
+             SECTION
+        ======================================= -->
+
+        <div class="section-heading">
+
+            <div>
+
+                <h2>
+                    Materi Fiber Optic
+                </h2>
+
+                <p>
+                    Pelajari fiber optic secara bertahap.
+                </p>
+
+            </div>
+
+
+            <div class="materi-total">
+                4 Materi
+            </div>
+
+        </div>
+
+
+        <!-- ======================================
+             GRID
+        ======================================= -->
+
+        <section class="fiber-grid">
+
+
+            <!-- ==================================
+                 01 PENGENALAN
+            =================================== -->
+
+            <article class="fiber-card">
+
+                <div class="card-top">
+
+                    <span class="materi-number">
+                        01
+                    </span>
+
+                    <div class="fiber-icon">
+                        💡
+                    </div>
+
+                </div>
+
+
+                <div class="fiber-content">
+
+                    <span>
+                        Fiber Basic
+                    </span>
+
+                    <h3>
+                        Pengenalan Fiber Optic
+                    </h3>
+
+                    <p>
+                        Mengenal pengertian fiber optic,
+                        prinsip kerja transmisi cahaya,
+                        kelebihan, kekurangan, dan
+                        penggunaannya pada jaringan.
+                    </p>
+
+                </div>
+
+
+                <div class="card-footer">
+
+                    <span class="level">
+                        ● Pemula
+                    </span>
+
+                    <a
+                        href="#"
+                        class="learn-button"
+                    >
+                        Mulai Belajar →
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- ==================================
+                 02 JENIS & STRUKTUR
+            =================================== -->
+
+            <article class="fiber-card">
+
+                <div class="card-top">
+
+                    <span class="materi-number">
+                        02
+                    </span>
+
+                    <div class="fiber-icon">
+                        🧵
+                    </div>
+
+                </div>
+
+
+                <div class="fiber-content">
+
+                    <span>
+                        Fiber Structure
+                    </span>
+
+                    <h3>
+                        Jenis & Struktur Fiber
+                    </h3>
+
+                    <p>
+                        Mempelajari Single Mode,
+                        Multi Mode, core, cladding,
+                        coating, serta struktur
+                        kabel fiber optic.
+                    </p>
+
+                </div>
+
+
+                <div class="card-footer">
+
+                    <span class="level">
+                        ● Pemula
+                    </span>
+
+                    <a
+                        href="#"
+                        class="learn-button"
+                    >
+                        Mulai Belajar →
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- ==================================
+                 03 SPLICING & OTDR
+            =================================== -->
+
+            <article class="fiber-card splicing">
+
+                <div class="card-top">
+
+                    <span class="materi-number">
+                        03
+                    </span>
+
+                    <div class="fiber-icon">
+                        🔧
+                    </div>
+
+                </div>
+
+
+                <div class="fiber-content">
+
+                    <span>
+                        Fiber Practice
+                    </span>
+
+                    <h3>
+                        Splicing & OTDR
+                    </h3>
+
+                    <p>
+                        Belajar dasar penyambungan fiber,
+                        penggunaan fusion splicer,
+                        serta pengukuran kualitas kabel
+                        menggunakan OTDR.
+                    </p>
+
+                </div>
+
+
+                <div class="card-footer">
+
+                    <span class="level">
+                        ● Menengah
+                    </span>
+
+                    <a
+                        href="#"
+                        class="learn-button"
+                    >
+                        Mulai Belajar →
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- ==================================
+                 04 OLT ONU ONT
+            =================================== -->
+
+            <article class="fiber-card otdr">
+
+                <div class="card-top">
+
+                    <span class="materi-number">
+                        04
+                    </span>
+
+                    <div class="fiber-icon">
+                        📡
+                    </div>
+
+                </div>
+
+
+                <div class="fiber-content">
+
+                    <span>
+                        Fiber Network
+                    </span>
+
+                    <h3>
+                        OLT, ONU & ONT
+                    </h3>
+
+                    <p>
+                        Mengenal fungsi OLT, ONU,
+                        dan ONT serta bagaimana
+                        perangkat tersebut digunakan
+                        dalam jaringan berbasis fiber.
+                    </p>
+
+                </div>
+
+
+                <div class="card-footer">
+
+                    <span class="level">
+                        ● Menengah
+                    </span>
+
+                    <a
+                        href="#"
+                        class="learn-button"
+                    >
+                        Mulai Belajar →
+                    </a>
+
+                </div>
+
+            </article>
+
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>

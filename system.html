@@ -1,0 +1,1442 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sistem Operasi — BZ</title>
+
+    <!-- FONT -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+<a href="hardware.html" class="network-card transparent font-size 100px"></a>
+<a href="sistem-operasi.html" class="network-card teal-network"></a>
+
+    <style>
+
+        /* ==============================
+           RESET
+        ============================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+            font-family: "Inter", sans-serif;
+
+            min-height: 100vh;
+
+            background:
+                radial-gradient(
+                    circle at 10% 10%,
+                    rgba(22, 119, 255, .12),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 90% 20%,
+                    rgba(18, 199, 181, .13),
+                    transparent 30%
+                ),
+                linear-gradient(
+                    135deg,
+                    #f5fbff,
+                    #ecfffc
+                );
+
+            color: #102542;
+        }
+
+
+        /* ==============================
+           BACKGROUND DECORATION
+        ============================== */
+
+        body::before {
+            content: "";
+
+            position: fixed;
+
+            width: 300px;
+            height: 300px;
+
+            left: -150px;
+            bottom: -120px;
+
+            background: #1677ff;
+
+            filter: blur(120px);
+
+            opacity: .12;
+
+            border-radius: 50%;
+
+            pointer-events: none;
+        }
+
+
+        body::after {
+            content: "";
+
+            position: fixed;
+
+            width: 300px;
+            height: 300px;
+
+            right: -150px;
+            top: 150px;
+
+            background: #12c7b5;
+
+            filter: blur(120px);
+
+            opacity: .12;
+
+            border-radius: 50%;
+
+            pointer-events: none;
+        }
+
+
+        /* ==============================
+           MAIN
+        ============================== */
+
+        .os-page {
+            width: min(1150px, 92%);
+
+            margin: 35px auto 70px;
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+        /* ==============================
+           BACK BUTTON
+        ============================== */
+
+        .back-button {
+            display: inline-flex;
+
+            align-items: center;
+            gap: 8px;
+
+            padding: 12px 18px;
+
+            margin-bottom: 22px;
+
+            background: rgba(255,255,255,.75);
+
+            border: 1px solid rgba(255,255,255,.9);
+
+            border-radius: 14px;
+
+            color: #1677ff;
+
+            text-decoration: none;
+
+            font-size: 13px;
+            font-weight: 800;
+
+            backdrop-filter: blur(15px);
+
+            box-shadow:
+                0 10px 30px rgba(20,100,160,.08);
+
+            transition: .3s ease;
+        }
+
+
+        .back-button:hover {
+            transform: translateX(-4px);
+
+            background: white;
+
+            box-shadow:
+                0 14px 35px rgba(20,100,160,.13);
+        }
+
+
+        /* ==============================
+           HERO HEADER
+        ============================== */
+
+        .os-header {
+            position: relative;
+
+            overflow: hidden;
+
+            padding: 48px;
+
+            border-radius: 30px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #1677ff 0%,
+                    #159eff 45%,
+                    #12c7b5 100%
+                );
+
+            color: white;
+
+            box-shadow:
+                0 25px 60px rgba(22,119,255,.20);
+
+            margin-bottom: 35px;
+        }
+
+
+        .os-header::before {
+            content: "";
+
+            position: absolute;
+
+            width: 230px;
+            height: 230px;
+
+            right: -70px;
+            top: -100px;
+
+            border-radius: 50%;
+
+            background: rgba(255,255,255,.12);
+        }
+
+
+        .os-header::after {
+            content: "";
+
+            position: absolute;
+
+            width: 160px;
+            height: 160px;
+
+            right: 130px;
+            bottom: -100px;
+
+            border-radius: 50%;
+
+            background: rgba(255,255,255,.08);
+        }
+
+
+        .os-header-content {
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+        .os-icon {
+            width: 68px;
+            height: 68px;
+
+            display: grid;
+            place-items: center;
+
+            background: rgba(255,255,255,.18);
+
+            border: 1px solid rgba(255,255,255,.25);
+
+            border-radius: 20px;
+
+            font-size: 31px;
+
+            margin-bottom: 22px;
+
+            backdrop-filter: blur(10px);
+
+            box-shadow:
+                inset 0 1px 1px rgba(255,255,255,.3);
+        }
+
+
+        .os-header h1 {
+            font-size: clamp(32px, 5vw, 50px);
+
+            line-height: 1.05;
+
+            margin-bottom: 15px;
+
+            font-weight: 900;
+
+            letter-spacing: -1.5px;
+        }
+
+
+        .os-header p {
+            max-width: 680px;
+
+            font-size: 15px;
+
+            line-height: 1.8;
+
+            color: rgba(255,255,255,.9);
+        }
+
+
+        /* ==============================
+           INFO BAR
+        ============================== */
+
+        .info-bar {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 12px;
+
+            margin-top: 25px;
+        }
+
+
+        .info-item {
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            padding: 9px 13px;
+
+            border-radius: 11px;
+
+            background: rgba(255,255,255,.14);
+
+            border: 1px solid rgba(255,255,255,.18);
+
+            font-size: 12px;
+
+            font-weight: 700;
+        }
+
+
+        /* ==============================
+           SECTION TITLE
+        ============================== */
+
+        .section-heading {
+            display: flex;
+
+            align-items: end;
+
+            justify-content: space-between;
+
+            gap: 20px;
+
+            margin-bottom: 20px;
+        }
+
+
+        .section-heading h2 {
+            font-size: 25px;
+
+            font-weight: 900;
+
+            letter-spacing: -.5px;
+        }
+
+
+        .section-heading p {
+            color: #71839b;
+
+            font-size: 13px;
+
+            margin-top: 6px;
+        }
+
+
+        .total-materi {
+            padding: 9px 13px;
+
+            background: white;
+
+            border: 1px solid #e1edf2;
+
+            border-radius: 12px;
+
+            color: #1677ff;
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            white-space: nowrap;
+        }
+
+
+        /* ==============================
+           MATERI GRID
+        ============================== */
+
+        .materi-container {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
+            gap: 20px;
+        }
+
+
+        /* ==============================
+           MATERI CARD
+        ============================== */
+
+        .materi-card {
+            position: relative;
+
+            overflow: hidden;
+
+            padding: 27px;
+
+            background:
+                rgba(255,255,255,.78);
+
+            border: 1px solid rgba(255,255,255,.95);
+
+            border-radius: 23px;
+
+            box-shadow:
+                0 12px 35px rgba(20,100,160,.07);
+
+            backdrop-filter: blur(18px);
+
+            transition:
+                transform .3s ease,
+                box-shadow .3s ease,
+                border-color .3s ease;
+        }
+
+
+        .materi-card:hover {
+            transform: translateY(-7px);
+
+            border-color: rgba(22,119,255,.15);
+
+            box-shadow:
+                0 20px 45px rgba(20,100,160,.13);
+        }
+
+
+        .materi-card::before {
+            content: "";
+
+            position: absolute;
+
+            width: 100px;
+            height: 100px;
+
+            right: -45px;
+            top: -45px;
+
+            border-radius: 50%;
+
+            background: rgba(18,199,181,.08);
+        }
+
+
+        /* ==============================
+           CARD TOP
+        ============================== */
+
+        .card-top {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            margin-bottom: 22px;
+        }
+
+
+        .materi-number {
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            min-width: 42px;
+            height: 28px;
+
+            padding: 0 10px;
+
+            border-radius: 9px;
+
+            background: #edf6ff;
+
+            color: #1677ff;
+
+            font-size: 10px;
+
+            font-weight: 900;
+
+            letter-spacing: .5px;
+        }
+
+
+        .materi-icon {
+            width: 45px;
+            height: 45px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 13px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #edf7ff,
+                    #e5fffa
+                );
+
+            font-size: 21px;
+
+            box-shadow:
+                0 7px 18px rgba(20,100,160,.07);
+        }
+
+
+        /* ==============================
+           CARD CONTENT
+        ============================== */
+
+        .materi-card h2 {
+            font-size: 20px;
+
+            margin-bottom: 10px;
+
+            font-weight: 900;
+
+            color: #122a48;
+        }
+
+
+        .materi-card p {
+            color: #71839b;
+
+            font-size: 13px;
+
+            line-height: 1.75;
+
+            min-height: 68px;
+        }
+
+
+        /* ==============================
+           CARD FOOTER
+        ============================== */
+
+        .card-footer {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            margin-top: 22px;
+
+            padding-top: 17px;
+
+            border-top: 1px solid #edf2f5;
+        }
+
+
+        .level {
+            font-size: 11px;
+
+            font-weight: 800;
+
+            color: #8090a5;
+        }
+
+
+        .learn-button {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            padding: 10px 15px;
+
+            border-radius: 11px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #1677ff,
+                    #12b8aa
+                );
+
+            color: white;
+
+            text-decoration: none;
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            box-shadow:
+                0 7px 18px rgba(22,119,255,.18);
+
+            transition: .3s ease;
+        }
+
+
+        .learn-button:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 11px 25px rgba(22,119,255,.25);
+        }
+
+
+        /* ==============================
+           RESPONSIVE
+        ============================== */
+
+        @media (max-width: 750px) {
+
+            .os-page {
+                width: 94%;
+
+                margin-top: 20px;
+            }
+
+
+            .os-header {
+                padding: 32px 25px;
+
+                border-radius: 24px;
+            }
+
+
+            .materi-container {
+                grid-template-columns: 1fr;
+            }
+
+
+            .section-heading {
+                align-items: start;
+
+                flex-direction: column;
+            }
+
+
+            .os-header h1 {
+                font-size: 34px;
+            }
+
+        }
+
+
+        @media (max-width: 480px) {
+
+            .os-header {
+                padding: 27px 20px;
+            }
+
+
+            .os-icon {
+                width: 58px;
+                height: 58px;
+
+                font-size: 26px;
+            }
+
+
+            .os-header h1 {
+                font-size: 29px;
+            }
+
+
+            .materi-card {
+                padding: 22px;
+            }
+
+
+            .materi-card h2 {
+                font-size: 18px;
+            }
+
+
+            .info-item {
+                font-size: 10px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <main class="os-page">
+
+
+        <!-- =========================
+             BACK
+        ========================== -->
+
+        <a href="index.html#materi" class="back-button">
+            ←
+            Kembali ke Materi
+        </a>
+
+
+        <!-- =========================
+             HERO
+        ========================== -->
+
+        <section class="os-header">
+
+            <div class="os-header-content">
+
+                <div class="os-icon">
+                    💿
+                </div>
+
+                <h1>
+                    Sistem Operasi
+                </h1>
+
+                <p>
+                    Pelajari sistem operasi dari dasar
+                    hingga tingkat lanjutan. Mulai dari
+                    Windows, Linux, Debian, VirtualBox,
+                    instalasi, sampai pengelolaan sistem.
+                </p>
+
+
+                <div class="info-bar">
+
+                    <div class="info-item">
+                        📚 16 Materi
+                    </div>
+
+                    <div class="info-item">
+                        💻 Praktik
+                    </div>
+
+                    <div class="info-item">
+                        🚀 Pemula → Lanjutan
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             TITLE
+        ========================== -->
+
+        <div class="section-heading">
+
+            <div>
+
+                <h2>
+                    Daftar Materi
+                </h2>
+
+                <p>
+                    Pilih materi yang ingin kamu pelajari.
+                </p>
+
+            </div>
+
+            <div class="total-materi">
+                16 Materi
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             MATERI
+        ========================== -->
+
+        <section class="materi-container">
+
+
+            <!-- 01 -->
+
+            <article class="materi-card">
+
+                <div class="card-top">
+
+                    <span class="materi-number">
+                        01
+                    </span>
+
+                    <div class="materi-icon">
+                        💻
+                    </div>
+
+                </div>
+
+                <h2>
+                    Pengenalan Sistem Operasi
+                </h2>
+
+                <p>
+                    Mengenal pengertian sistem operasi,
+                    fungsi, komponen, dan perannya
+                    pada komputer.
+                </p>
+
+                <div class="card-footer">
+
+                    <span class="level">
+                        ● Pemula
+                    </span>
+
+                    <a href="#" class="learn-button">
+                        Mulai Belajar →
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- 02 -->
+
+            <article class="materi-card">
+
+                <div class="card-top">
+
+                    <span class="materi-number">
+                        02
+                    </span>
+
+                    <div class="materi-icon">
+                        🪟
+                    </div>
+
+                </div>
+
+                <h2>
+                    Windows
+                </h2>
+
+                <p>
+                    Mengenal Windows, fitur dasar,
+                    pengaturan sistem, serta
+                    penggunaan sehari-hari.
+                </p>
+
+                <div class="card-footer">
+
+                    <span class="level">
+                        ● Pemula
+                    </span>
+
+                    <a href="#" class="learn-button">
+                        Mulai Belajar →
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- 03 -->
+
+            <article class="materi-card">
+
+                <div class="card-top">
+
+                    <span class="materi-number">
+                        03
+                    </span>
+
+                    <div class="materi-icon">
+                        🐧
+                    </div>
+
+                </div>
+
+                <h2>
+                    Linux Client
+                </h2>
+
+                <p>
+                    Mengenal Linux sebagai sistem operasi
+                    client dan mempelajari perintah
+                    dasar Linux.
+                </p>
+
+                <div class="card-footer">
+
+                    <span class="level">
+                        ● Pemula
+                    </span>
+
+                    <a href="#" class="learn-button">
+                        Mulai Belajar →
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- 04 -->
+
+            <article class="materi-card">
+
+                <div class="card-top">
+
+                    <span class="materi-number">
+                        04
+                    </span>
+
+                    <div class="materi-icon">
+                        🖥️
+                    </div>
+
+                </div>
+
+                <h2>
+                    Linux Server
+                </h2>
+
+                <p>
+                    Mengenal Linux Server dan berbagai
+                    layanan yang dapat digunakan
+                    dalam jaringan.
+                </p>
+
+                <div class="card-footer">
+
+                    <span class="level">
+                        ● Menengah
+                    </span>
+
+                    <a href="#" class="learn-button">
+                        Mulai Belajar →
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- 05 -->
+
+            <article class="materi-card">
+
+                <div class="card-top">
+
+                    <span class="materi-number">
+                        05
+                    </span>
+
+                    <div class="materi-icon">
+                        🔴
+                    </div>
+
+                </div>
+
+                <h2>
+                    Debian
+                </h2>
+
+                <p>
+                    Mempelajari Debian sebagai distribusi
+                    Linux serta instalasi dan
+                    konfigurasi dasarnya.
+                </p>
+
+                <div class="card-footer">
+
+                    <span class="level">
+                        ● Menengah
+                    </span>
+
+                    <a href="#" class="learn-button">
+                        Mulai Belajar →
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- 06 -->
+
+            <article class="materi-card">
+
+                <div class="card-top">
+
+                    <span class="materi-number">
+                        06
+                    </span>
+
+                    <div class="materi-icon">
+                        📦
+                    </div>
+
+                </div>
+
+                <h2>
+                    VirtualBox
+                </h2>
+
+                <p>
+                    Mengenal VirtualBox dan cara membuat
+                    mesin virtual untuk menjalankan
+                    sistem operasi.
+                </p>
+
+                <div class="card-footer">
+
+                    <span class="level">
+                        ● Menengah
+                    </span>
+
+                    <a href="#" class="learn-button">
+                        Mulai Belajar →
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- 07 -->
+
+            <article class="materi-card">
+
+                <div class="card-top">
+
+                    <span class="materi-number">
+                        07
+                    </span>
+
+                    <div class="materi-icon">
+                        ⚙️
+                    </div>
+
+                </div>
+
+                <h2>
+                    Instalasi Sistem Operasi
+                </h2>
+
+                <p>
+                    Mempelajari proses instalasi sistem
+                    operasi pada komputer dan mesin
+                    virtual.
+                </p>
+
+                <div class="card-footer">
+
+                    <span class="level">
+                        ● Menengah
+                    </span>
+
+                    <a href="#" class="learn-button">
+                        Mulai Belajar →
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- 08 -->
+
+            <article class="materi-card">
+
+                <div class="card-top">
+
+                    <span class="materi-number">
+                        08
+                    </span>
+
+                    <div class="materi-icon">
+                        📁
+                    </div>
+
+                </div>
+
+                <h2>
+                    Manajemen User & File
+                </h2>
+
+                <p>
+                    Belajar membuat user, mengatur
+                    permission, serta mengelola file
+                    dan folder pada Linux.
+                </p>
+
+                <div class="card-footer">
+
+                    <span class="level">
+                        ● Menengah
+                    </span>
+
+                    <a href="#" class="learn-button">
+                        Mulai Belajar →
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- 09 -->
+
+            <article class="materi-card">
+
+                <div class="card-top">
+
+                    <span class="materi-number">
+                        09
+                    </span>
+
+                    <div class="materi-icon">
+                        ⌨️
+                    </div>
+
+                </div>
+
+                <h2>
+                    Command Line Linux
+                </h2>
+
+                <p>
+                    Mengenal terminal Linux dan berbagai
+                    command penting untuk mengelola
+                    sistem.
+                </p>
+
+                <div class="card-footer">
+
+                    <span class="level">
+                        ● Menengah
+                    </span>
+
+                    <a href="#" class="learn-button">
+                        Mulai Belajar →
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- 10 -->
+
+            <article class="materi-card">
+
+                <div class="card-top">
+
+                    <span class="materi-number">
+                        10
+                    </span>
+
+                    <div class="materi-icon">
+                        👤
+                    </div>
+
+                </div>
+
+                <h2>
+                    Manajemen User
+                </h2>
+
+                <p>
+                    Mempelajari pembuatan user, group,
+                    password, dan pengaturan hak akses.
+                </p>
+
+                <div class="card-footer">
+
+                    <span class="level">
+                        ● Menengah
+                    </span>
+
+                    <a href="#" class="learn-button">
+                        Mulai Belajar →
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- 11 -->
+
+            <article class="materi-card">
+
+                <div class="card-top">
+
+                    <span class="materi-number">
+                        11
+                    </span>
+
+                    <div class="materi-icon">
+                        🔐
+                    </div>
+
+                </div>
+
+                <h2>
+                    Permission Linux
+                </h2>
+
+                <p>
+                    Memahami permission file Linux seperti
+                    read, write, execute serta
+                    penggunaannya.
+                </p>
+
+                <div class="card-footer">
+
+                    <span class="level">
+                        ● Menengah
+                    </span>
+
+                    <a href="#" class="learn-button">
+                        Mulai Belajar →
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- 12 -->
+
+            <article class="materi-card">
+
+                <div class="card-top">
+
+                    <span class="materi-number">
+                        12
+                    </span>
+
+                    <div class="materi-icon">
+                        📦
+                    </div>
+
+                </div>
+
+                <h2>
+                    Package Management
+                </h2>
+
+                <p>
+                    Mengenal package manager Linux
+                    untuk melakukan instalasi dan
+                    pengelolaan software.
+                </p>
+
+                <div class="card-footer">
+
+                    <span class="level">
+                        ● Lanjutan
+                    </span>
+
+                    <a href="#" class="learn-button">
+                        Mulai Belajar →
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- 13 -->
+
+            <article class="materi-card">
+
+                <div class="card-top">
+
+                    <span class="materi-number">
+                        13
+                    </span>
+
+                    <div class="materi-icon">
+                        🌐
+                    </div>
+
+                </div>
+
+                <h2>
+                    Network Linux
+                </h2>
+
+                <p>
+                    Mempelajari konfigurasi jaringan
+                    dasar pada sistem operasi Linux.
+                </p>
+
+                <div class="card-footer">
+
+                    <span class="level">
+                        ● Lanjutan
+                    </span>
+
+                    <a href="#" class="learn-button">
+                        Mulai Belajar →
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- 14 -->
+
+            <article class="materi-card">
+
+                <div class="card-top">
+
+                    <span class="materi-number">
+                        14
+                    </span>
+
+                    <div class="materi-icon">
+                        🔑
+                    </div>
+
+                </div>
+
+                <h2>
+                    SSH
+                </h2>
+
+                <p>
+                    Mengenal SSH dan penggunaannya
+                    untuk mengakses komputer atau
+                    server secara remote.
+                </p>
+
+                <div class="card-footer">
+
+                    <span class="level">
+                        ● Lanjutan
+                    </span>
+
+                    <a href="#" class="learn-button">
+                        Mulai Belajar →
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- 15 -->
+
+            <article class="materi-card">
+
+                <div class="card-top">
+
+                    <span class="materi-number">
+                        15
+                    </span>
+
+                    <div class="materi-icon">
+                        🛠️
+                    </div>
+
+                </div>
+
+                <h2>
+                    Konfigurasi Server
+                </h2>
+
+                <p>
+                    Mempelajari konfigurasi dasar
+                    server Linux dan layanan
+                    yang berjalan di dalamnya.
+                </p>
+
+                <div class="card-footer">
+
+                    <span class="level">
+                        ● Lanjutan
+                    </span>
+
+                    <a href="#" class="learn-button">
+                        Mulai Belajar →
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- 16 -->
+
+            <article class="materi-card">
+
+                <div class="card-top">
+
+                    <span class="materi-number">
+                        16
+                    </span>
+
+                    <div class="materi-icon">
+                        🚀
+                    </div>
+
+                </div>
+
+                <h2>
+                    Praktik Linux Server
+                </h2>
+
+                <p>
+                    Menggabungkan materi sebelumnya
+                    melalui praktik pengelolaan
+                    Linux Server.
+                </p>
+
+                <div class="card-footer">
+
+                    <span class="level">
+                        ● Lanjutan
+                    </span>
+
+                    <a href="#" class="learn-button">
+                        Mulai Belajar →
+                    </a>
+
+                </div>
+
+            </article>
+
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>
