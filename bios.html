@@ -1,0 +1,1468 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>BIOS - BZ</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #102642;
+            line-height: 1.7;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #eef8ff 0%,
+                    #ffffff 45%,
+                    #e4fffa 100%
+                );
+
+            min-height: 100vh;
+        }
+
+
+        /* HEADER */
+
+        .header {
+            width: min(1050px, 92%);
+            margin: 25px auto 0;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .back {
+            display: inline-block;
+
+            padding: 11px 18px;
+
+            background: white;
+            color: #087cff;
+
+            border-radius: 13px;
+
+            text-decoration: none;
+
+            font-size: 14px;
+            font-weight: 700;
+
+            box-shadow:
+                0 8px 25px rgba(20, 100, 160, .10);
+
+            transition: .25s;
+        }
+
+        .back:hover {
+            transform: translateY(-3px);
+        }
+
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .brand-logo {
+            width: 45px;
+            height: 45px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 14px;
+
+            color: white;
+            font-weight: 900;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #167cff,
+                    #12c5b4
+                );
+        }
+
+        .brand-text strong {
+            display: block;
+            font-size: 14px;
+        }
+
+        .brand-text span {
+            display: block;
+
+            color: #0aa99d;
+
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+
+        /* HERO */
+
+        .hero {
+            width: min(1050px, 92%);
+            margin: 25px auto;
+
+            padding: 55px 50px;
+
+            position: relative;
+            overflow: hidden;
+
+            border-radius: 30px;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    120deg,
+                    #1678ff 0%,
+                    #129ee6 50%,
+                    #10c5b4 100%
+                );
+
+            box-shadow:
+                0 25px 60px rgba(20, 120, 220, .22);
+        }
+
+        .hero::before {
+            content: "";
+
+            position: absolute;
+
+            width: 320px;
+            height: 320px;
+
+            right: -100px;
+            top: -150px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(255,255,255,.10);
+        }
+
+        .hero::after {
+            content: "";
+
+            position: absolute;
+
+            width: 180px;
+            height: 180px;
+
+            right: 100px;
+            bottom: -120px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(255,255,255,.08);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .label {
+            display: inline-block;
+
+            padding: 7px 13px;
+
+            margin-bottom: 15px;
+
+            border-radius: 20px;
+
+            background:
+                rgba(255,255,255,.16);
+
+            font-size: 11px;
+            font-weight: 800;
+
+            letter-spacing: 1px;
+        }
+
+        .hero-icon {
+            font-size: 45px;
+            margin-bottom: 5px;
+        }
+
+        .hero h1 {
+            font-size:
+                clamp(38px, 6vw, 55px);
+
+            line-height: 1.1;
+
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            max-width: 760px;
+
+            color:
+                rgba(255,255,255,.90);
+
+            font-size: 15px;
+        }
+
+
+        /* CONTAINER */
+
+        .container {
+            width: min(1050px, 92%);
+            margin: auto;
+
+            padding-bottom: 60px;
+        }
+
+
+        /* CARD UMUM */
+
+        .card {
+            margin-bottom: 25px;
+
+            padding: 32px;
+
+            border-radius: 22px;
+
+            background:
+                rgba(255,255,255,.92);
+
+            border:
+                1px solid #dceef3;
+
+            box-shadow:
+                0 12px 35px
+                rgba(20, 80, 120, .06);
+        }
+
+
+        /* TUJUAN */
+
+        .info {
+            display: flex;
+            gap: 20px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ffffff,
+                    #effdff
+                );
+        }
+
+        .info-icon {
+            width: 58px;
+            height: 58px;
+
+            flex-shrink: 0;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 17px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #e5f2ff,
+                    #dffbf7
+                );
+
+            font-size: 27px;
+        }
+
+        .info h2 {
+            margin-bottom: 8px;
+        }
+
+        .info p,
+        .info li {
+            color: #61768c;
+            font-size: 14px;
+        }
+
+        .info ul {
+            padding-left: 20px;
+            margin-top: 8px;
+        }
+
+
+        /* SECTION */
+
+        .section-label {
+            color: #087df1;
+
+            font-size: 11px;
+
+            font-weight: 900;
+
+            letter-spacing: 1px;
+        }
+
+        .card h2 {
+            margin-top: 7px;
+            margin-bottom: 12px;
+
+            font-size: 28px;
+
+            line-height: 1.2;
+        }
+
+        .card > p {
+            color: #61768c;
+            font-size: 14px;
+        }
+
+
+        /* BIOS CARDS */
+
+        .bios-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 16px;
+
+            margin-top: 25px;
+        }
+
+        .bios-item {
+            padding: 24px;
+
+            border-radius: 18px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #f8fdff,
+                    #ffffff
+                );
+
+            border:
+                1px solid #dceef4;
+
+            transition: .25s;
+        }
+
+        .bios-item:hover {
+            transform: translateY(-5px);
+
+            box-shadow:
+                0 15px 30px
+                rgba(20, 100, 150, .09);
+        }
+
+        .bios-icon {
+            width: 50px;
+            height: 50px;
+
+            display: grid;
+            place-items: center;
+
+            margin-bottom: 13px;
+
+            border-radius: 15px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #e6f2ff,
+                    #e0fbf7
+                );
+
+            font-size: 25px;
+        }
+
+        .bios-item h3 {
+            margin-bottom: 6px;
+
+            font-size: 17px;
+        }
+
+        .bios-item p {
+            color: #61768c;
+
+            font-size: 13px;
+        }
+
+
+        /* FUNGSI */
+
+        .functions {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 15px;
+
+            margin-top: 22px;
+        }
+
+        .function {
+            padding: 20px;
+
+            border-radius: 16px;
+
+            background: #f5fbff;
+
+            border:
+                1px solid #dceef4;
+        }
+
+        .function h3 {
+            color: #087cff;
+
+            margin-bottom: 5px;
+
+            font-size: 16px;
+        }
+
+        .function p {
+            color: #61768c;
+
+            font-size: 13px;
+        }
+
+
+        /* BIOS SETTINGS */
+
+        .settings {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 15px;
+
+            margin-top: 22px;
+        }
+
+        .setting {
+            padding: 22px;
+
+            border-radius: 17px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f7fcff,
+                    #effffc
+                );
+
+            border:
+                1px solid #d7edef;
+        }
+
+        .setting-number {
+            width: 36px;
+            height: 36px;
+
+            display: grid;
+            place-items: center;
+
+            margin-bottom: 10px;
+
+            border-radius: 10px;
+
+            color: white;
+
+            font-weight: 900;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #167cff,
+                    #11c4b3
+                );
+        }
+
+        .setting h3 {
+            margin-bottom: 5px;
+        }
+
+        .setting p {
+            color: #61768c;
+
+            font-size: 13px;
+        }
+
+
+        /* CARA MASUK BIOS */
+
+        .steps {
+            margin-top: 25px;
+        }
+
+        .step {
+            display: flex;
+
+            gap: 18px;
+
+            padding: 20px;
+
+            margin-bottom: 12px;
+
+            border-radius: 16px;
+
+            background: #f8fcff;
+
+            border:
+                1px solid #dceef4;
+        }
+
+        .step-number {
+            width: 42px;
+            height: 42px;
+
+            flex-shrink: 0;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 50%;
+
+            color: white;
+
+            font-weight: 900;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #167cff,
+                    #11c4b3
+                );
+        }
+
+        .step h3 {
+            margin-bottom: 4px;
+
+            font-size: 17px;
+        }
+
+        .step p {
+            color: #61768c;
+
+            font-size: 13px;
+        }
+
+
+        /* CATATAN */
+
+        .note {
+            display: flex;
+
+            gap: 18px;
+
+            align-items: flex-start;
+
+            padding: 28px;
+
+            margin-bottom: 25px;
+
+            border-radius: 22px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #edf8ff,
+                    #e7fffb
+                );
+
+            border:
+                1px solid #cdece9;
+        }
+
+        .note-icon {
+            font-size: 34px;
+        }
+
+        .note h2 {
+            margin-bottom: 6px;
+        }
+
+        .note p {
+            color: #60758c;
+
+            font-size: 14px;
+        }
+
+
+        /* RANGKUMAN */
+
+        .summary {
+            color: white;
+
+            background:
+                linear-gradient(
+                    120deg,
+                    #087cff,
+                    #11bfb3
+                );
+
+            box-shadow:
+                0 20px 45px
+                rgba(10, 130, 210, .18);
+        }
+
+        .summary .section-label {
+            color:
+                rgba(255,255,255,.8);
+        }
+
+        .summary h2 {
+            margin-top: 7px;
+            margin-bottom: 18px;
+        }
+
+        .summary-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 10px;
+        }
+
+        .summary-item {
+            padding: 13px;
+
+            border-radius: 12px;
+
+            background:
+                rgba(255,255,255,.14);
+
+            font-size: 13px;
+        }
+
+
+        /* NAVIGASI */
+
+        .navigation {
+            display: flex;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            margin-top: 25px;
+        }
+
+        .next {
+            display: inline-block;
+
+            padding: 12px 20px;
+
+            border-radius: 12px;
+
+            color: white;
+
+            text-decoration: none;
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+            background:
+                linear-gradient(
+                    110deg,
+                    #167cff,
+                    #11c4b3
+                );
+
+            transition: .25s;
+        }
+
+        .next:hover {
+            transform: translateY(-3px);
+        }
+
+
+        /* MOBILE */
+
+        @media (max-width: 750px) {
+
+            .header {
+                flex-direction: column;
+
+                align-items: flex-start;
+            }
+
+            .hero {
+                padding: 40px 25px;
+            }
+
+            .card,
+            .note {
+                padding: 24px;
+            }
+
+            .bios-grid,
+            .functions,
+            .settings,
+            .summary-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .info,
+            .note {
+                flex-direction: column;
+            }
+
+            .navigation {
+                flex-direction: column;
+            }
+
+            .navigation a {
+                text-align: center;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <a href="hardware.html" class="back">
+            ← Kembali ke Hardware
+        </a>
+
+
+        <div class="brand">
+
+            <div class="brand-logo">
+                BZ
+            </div>
+
+            <div class="brand-text">
+
+                <strong>
+                    Tempat Belajar
+                </strong>
+
+                <span>
+                    Gen Z
+                </span>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <span class="label">
+                MATERI 03 • HARDWARE
+            </span>
+
+            <div class="hero-icon">
+                ⚙️
+            </div>
+
+            <h1>
+                BIOS
+            </h1>
+
+            <p>
+                Pelajari pengertian BIOS, fungsi BIOS,
+                pengaturan dasar, proses booting, serta
+                cara mengenali menu BIOS pada komputer.
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <main class="container">
+
+
+        <!-- TUJUAN -->
+
+        <section class="card info">
+
+            <div class="info-icon">
+                🎯
+            </div>
+
+            <div>
+
+                <h2>
+                    Tujuan Pembelajaran
+                </h2>
+
+                <p>
+                    Setelah mempelajari materi BIOS,
+                    kamu diharapkan dapat:
+                </p>
+
+                <ul>
+
+                    <li>
+                        Menjelaskan pengertian BIOS.
+                    </li>
+
+                    <li>
+                        Mengetahui fungsi BIOS pada komputer.
+                    </li>
+
+                    <li>
+                        Mengenali menu-menu dasar BIOS.
+                    </li>
+
+                    <li>
+                        Memahami proses booting komputer.
+                    </li>
+
+                    <li>
+                        Mengetahui pengaturan dasar BIOS.
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- PENGERTIAN -->
+
+        <section class="card">
+
+            <span class="section-label">
+                01 — PENGENALAN
+            </span>
+
+            <h2>
+                Apa Itu BIOS?
+            </h2>
+
+            <p>
+                BIOS merupakan singkatan dari
+                <strong>Basic Input/Output System</strong>.
+                BIOS adalah firmware yang digunakan komputer
+                untuk melakukan proses awal ketika komputer
+                dinyalakan.
+            </p>
+
+            <p style="margin-top:12px;">
+                BIOS membantu melakukan pemeriksaan awal
+                terhadap perangkat keras dan kemudian
+                menjalankan proses untuk menemukan perangkat
+                yang digunakan untuk melakukan booting.
+            </p>
+
+
+            <div class="bios-grid">
+
+
+                <div class="bios-item">
+
+                    <div class="bios-icon">
+                        ⚡
+                    </div>
+
+                    <h3>
+                        Startup
+                    </h3>
+
+                    <p>
+                        BIOS bekerja ketika komputer mulai
+                        dinyalakan untuk memulai proses awal.
+                    </p>
+
+                </div>
+
+
+                <div class="bios-item">
+
+                    <div class="bios-icon">
+                        🔍
+                    </div>
+
+                    <h3>
+                        Pemeriksaan Hardware
+                    </h3>
+
+                    <p>
+                        BIOS melakukan pemeriksaan awal
+                        terhadap perangkat keras komputer.
+                    </p>
+
+                </div>
+
+
+                <div class="bios-item">
+
+                    <div class="bios-icon">
+                        💿
+                    </div>
+
+                    <h3>
+                        Booting
+                    </h3>
+
+                    <p>
+                        BIOS membantu menentukan perangkat
+                        yang digunakan untuk proses booting.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- FUNGSI -->
+
+        <section class="card">
+
+            <span class="section-label">
+                02 — FUNGSI BIOS
+            </span>
+
+            <h2>
+                Fungsi Utama BIOS
+            </h2>
+
+            <p>
+                BIOS memiliki beberapa fungsi penting
+                sebelum sistem operasi mulai berjalan.
+            </p>
+
+
+            <div class="functions">
+
+
+                <div class="function">
+
+                    <h3>
+                        🔎 POST
+                    </h3>
+
+                    <p>
+                        Melakukan pemeriksaan awal terhadap
+                        komponen perangkat keras ketika
+                        komputer dinyalakan.
+                    </p>
+
+                </div>
+
+
+                <div class="function">
+
+                    <h3>
+                        💻 Booting
+                    </h3>
+
+                    <p>
+                        Membantu proses awal untuk menemukan
+                        perangkat penyimpanan yang berisi
+                        sistem operasi.
+                    </p>
+
+                </div>
+
+
+                <div class="function">
+
+                    <h3>
+                        ⚙️ Konfigurasi Hardware
+                    </h3>
+
+                    <p>
+                        Menyediakan pengaturan dasar untuk
+                        berbagai perangkat keras komputer.
+                    </p>
+
+                </div>
+
+
+                <div class="function">
+
+                    <h3>
+                        🔐 Keamanan
+                    </h3>
+
+                    <p>
+                        Pada sistem tertentu, firmware dapat
+                        menyediakan pengaturan keamanan seperti
+                        password firmware.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- POST -->
+
+        <section class="card">
+
+            <span class="section-label">
+                03 — POST
+            </span>
+
+            <h2>
+                Apa Itu POST?
+            </h2>
+
+            <p>
+                POST atau
+                <strong>Power-On Self-Test</strong>
+                adalah proses pemeriksaan awal yang dilakukan
+                ketika komputer mulai menyala.
+            </p>
+
+
+            <div class="steps">
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        1
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Komputer Dinyalakan
+                        </h3>
+
+                        <p>
+                            Ketika tombol power ditekan,
+                            sistem mulai melakukan proses
+                            inisialisasi.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        2
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Hardware Diperiksa
+                        </h3>
+
+                        <p>
+                            Firmware melakukan pemeriksaan
+                            awal terhadap komponen tertentu
+                            yang tersedia.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        3
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Proses Boot Berlanjut
+                        </h3>
+
+                        <p>
+                            Setelah proses awal selesai,
+                            komputer melanjutkan proses boot
+                            menuju sistem operasi.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- MENU BIOS -->
+
+        <section class="card">
+
+            <span class="section-label">
+                04 — MENU BIOS
+            </span>
+
+            <h2>
+                Pengaturan Dasar BIOS
+            </h2>
+
+            <p>
+                Tampilan dan nama menu dapat berbeda
+                tergantung motherboard atau firmware yang
+                digunakan.
+            </p>
+
+
+            <div class="settings">
+
+
+                <div class="setting">
+
+                    <div class="setting-number">
+                        1
+                    </div>
+
+                    <h3>
+                        Boot Order
+                    </h3>
+
+                    <p>
+                        Mengatur urutan perangkat yang
+                        digunakan komputer ketika mencari
+                        media untuk melakukan booting.
+                    </p>
+
+                </div>
+
+
+                <div class="setting">
+
+                    <div class="setting-number">
+                        2
+                    </div>
+
+                    <h3>
+                        System Information
+                    </h3>
+
+                    <p>
+                        Menampilkan informasi dasar seperti
+                        processor, memori, dan versi firmware.
+                    </p>
+
+                </div>
+
+
+                <div class="setting">
+
+                    <div class="setting-number">
+                        3
+                    </div>
+
+                    <h3>
+                        Date & Time
+                    </h3>
+
+                    <p>
+                        Digunakan untuk mengatur tanggal
+                        dan waktu sistem.
+                    </p>
+
+                </div>
+
+
+                <div class="setting">
+
+                    <div class="setting-number">
+                        4
+                    </div>
+
+                    <h3>
+                        Security
+                    </h3>
+
+                    <p>
+                        Pada perangkat tertentu terdapat
+                        pengaturan keamanan seperti password
+                        firmware.
+                    </p>
+
+                </div>
+
+
+                <div class="setting">
+
+                    <div class="setting-number">
+                        5
+                    </div>
+
+                    <h3>
+                        Hardware Configuration
+                    </h3>
+
+                    <p>
+                        Menyediakan berbagai konfigurasi
+                        perangkat keras yang didukung sistem.
+                    </p>
+
+                </div>
+
+
+                <div class="setting">
+
+                    <div class="setting-number">
+                        6
+                    </div>
+
+                    <h3>
+                        Save & Exit
+                    </h3>
+
+                    <p>
+                        Digunakan untuk menyimpan perubahan
+                        pengaturan atau keluar dari menu BIOS.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- CARA MASUK -->
+
+        <section class="card">
+
+            <span class="section-label">
+                05 — AKSES BIOS
+            </span>
+
+            <h2>
+                Cara Masuk ke BIOS
+            </h2>
+
+            <p>
+                Tombol untuk membuka BIOS dapat berbeda
+                tergantung produsen motherboard atau komputer.
+                Tombol yang umum digunakan antara lain
+                <strong>Delete, F2, F10,</strong> atau
+                <strong>Esc</strong>.
+            </p>
+
+
+            <div class="steps">
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        1
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Matikan atau Restart PC
+                        </h3>
+
+                        <p>
+                            Pastikan komputer melakukan proses
+                            restart atau mulai dinyalakan.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        2
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Perhatikan Layar Awal
+                        </h3>
+
+                        <p>
+                            Pada beberapa perangkat terdapat
+                            petunjuk tombol yang digunakan
+                            untuk masuk ke firmware setup.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        3
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Tekan Tombol yang Sesuai
+                        </h3>
+
+                        <p>
+                            Tekan tombol sesuai petunjuk
+                            perangkat, misalnya Delete atau F2.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- CATATAN -->
+
+        <section class="note">
+
+            <div class="note-icon">
+                ⚠️
+            </div>
+
+            <div>
+
+                <h2>
+                    Hati-Hati Mengubah Pengaturan
+                </h2>
+
+                <p>
+                    Jangan mengubah pengaturan BIOS secara
+                    sembarangan. Beberapa pengaturan dapat
+                    memengaruhi proses booting atau cara
+                    perangkat keras bekerja. Jika belum
+                    memahami suatu opsi, sebaiknya periksa
+                    dokumentasi motherboard terlebih dahulu.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- RANGKUMAN -->
+
+        <section class="card summary">
+
+            <span class="section-label">
+                RANGKUMAN
+            </span>
+
+            <h2>
+                Yang Perlu Kamu Ingat
+            </h2>
+
+
+            <div class="summary-grid">
+
+                <div class="summary-item">
+                    ✓ BIOS adalah firmware yang bekerja
+                    pada tahap awal komputer dinyalakan.
+                </div>
+
+                <div class="summary-item">
+                    ✓ BIOS melakukan proses pemeriksaan
+                    awal terhadap hardware.
+                </div>
+
+                <div class="summary-item">
+                    ✓ BIOS berhubungan dengan proses booting.
+                </div>
+
+                <div class="summary-item">
+                    ✓ Boot Order menentukan urutan perangkat
+                    yang diperiksa untuk booting.
+                </div>
+
+                <div class="summary-item">
+                    ✓ Menu BIOS dapat berbeda pada setiap
+                    perangkat.
+                </div>
+
+                <div class="summary-item">
+                    ✓ Jangan mengubah pengaturan yang belum
+                    kamu pahami.
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- NAVIGASI -->
+
+        <div class="navigation">
+
+            <a href="hardware.html" class="back">
+                ← Kembali ke Hardware
+            </a>
+
+            <a href="troubleshooting.html" class="next">
+                Materi Berikutnya →
+            </a>
+
+        </div>
+
+
+    </main>
+
+
+</body>
+
+</html>

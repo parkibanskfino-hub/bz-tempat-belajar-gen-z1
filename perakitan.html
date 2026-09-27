@@ -1,0 +1,1471 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Perakitan PC - BZ</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #102642;
+            line-height: 1.7;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #eef8ff 0%,
+                    #ffffff 45%,
+                    #e4fffa 100%
+                );
+
+            min-height: 100vh;
+        }
+
+        /* HEADER */
+
+        .header {
+            width: min(1050px, 92%);
+            margin: 25px auto 0;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .back {
+            display: inline-block;
+            padding: 11px 18px;
+
+            background: white;
+            color: #087cff;
+
+            border-radius: 13px;
+            text-decoration: none;
+
+            font-size: 14px;
+            font-weight: 700;
+
+            box-shadow:
+                0 8px 25px rgba(20, 100, 160, .10);
+
+            transition: .25s;
+        }
+
+        .back:hover {
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 12px 30px rgba(20, 100, 160, .16);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .brand-logo {
+            width: 45px;
+            height: 45px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 14px;
+
+            color: white;
+            font-weight: 900;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #167cff,
+                    #12c5b4
+                );
+        }
+
+        .brand-text strong {
+            display: block;
+            color: #102642;
+            font-size: 14px;
+        }
+
+        .brand-text span {
+            display: block;
+            color: #0aa99d;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+
+        /* HERO */
+
+        .hero {
+            width: min(1050px, 92%);
+            margin: 25px auto;
+
+            padding: 55px 50px;
+
+            position: relative;
+            overflow: hidden;
+
+            border-radius: 30px;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    120deg,
+                    #1678ff 0%,
+                    #129ee6 50%,
+                    #10c5b4 100%
+                );
+
+            box-shadow:
+                0 25px 60px rgba(20, 120, 220, .22);
+        }
+
+        .hero::before {
+            content: "";
+
+            position: absolute;
+
+            width: 300px;
+            height: 300px;
+
+            right: -100px;
+            top: -130px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(255,255,255,.10);
+        }
+
+        .hero::after {
+            content: "";
+
+            position: absolute;
+
+            width: 180px;
+            height: 180px;
+
+            right: 120px;
+            bottom: -120px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(255,255,255,.08);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .label {
+            display: inline-block;
+
+            padding: 7px 13px;
+
+            margin-bottom: 15px;
+
+            border-radius: 20px;
+
+            background:
+                rgba(255,255,255,.16);
+
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .hero-icon {
+            font-size: 42px;
+            margin-bottom: 5px;
+        }
+
+        .hero h1 {
+            font-size:
+                clamp(34px, 5vw, 52px);
+
+            line-height: 1.1;
+
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            max-width: 760px;
+
+            color:
+                rgba(255,255,255,.90);
+
+            font-size: 15px;
+        }
+
+
+        /* CONTENT */
+
+        .container {
+            width: min(1050px, 92%);
+            margin: auto;
+
+            padding-bottom: 60px;
+        }
+
+        .info,
+        .section,
+        .tips,
+        .summary {
+            margin-bottom: 25px;
+
+            border-radius: 22px;
+
+            background:
+                rgba(255,255,255,.90);
+
+            border:
+                1px solid #dceef3;
+
+            box-shadow:
+                0 12px 35px
+                rgba(20, 80, 120, .06);
+        }
+
+
+        /* TUJUAN */
+
+        .info {
+            display: flex;
+            gap: 20px;
+
+            padding: 30px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ffffff,
+                    #effdff
+                );
+        }
+
+        .info-icon {
+            width: 58px;
+            height: 58px;
+
+            flex-shrink: 0;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 17px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #e5f2ff,
+                    #dffbf7
+                );
+
+            font-size: 27px;
+        }
+
+        .info h2 {
+            color: #0b2745;
+            margin-bottom: 8px;
+        }
+
+        .info p,
+        .info li {
+            color: #61768c;
+            font-size: 14px;
+        }
+
+        .info ul {
+            padding-left: 20px;
+            margin-top: 8px;
+        }
+
+
+        /* SECTION */
+
+        .section {
+            padding: 32px;
+        }
+
+        .section-label {
+            color: #087df1;
+
+            font-size: 11px;
+
+            font-weight: 900;
+
+            letter-spacing: 1px;
+        }
+
+        .section h2 {
+            margin-top: 7px;
+            margin-bottom: 12px;
+
+            color: #0a2442;
+
+            font-size: 28px;
+
+            line-height: 1.2;
+        }
+
+        .section > p {
+            color: #61768c;
+            font-size: 14px;
+
+            margin-bottom: 12px;
+        }
+
+
+        /* ALAT */
+
+        .tools {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 15px;
+
+            margin-top: 22px;
+        }
+
+        .tool {
+            padding: 22px;
+
+            border-radius: 18px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #f8fdff,
+                    #ffffff
+                );
+
+            border:
+                1px solid #dceef4;
+
+            transition: .25s;
+        }
+
+        .tool:hover {
+            transform: translateY(-5px);
+
+            box-shadow:
+                0 15px 30px
+                rgba(20, 100, 150, .09);
+        }
+
+        .tool-icon {
+            width: 48px;
+            height: 48px;
+
+            display: grid;
+            place-items: center;
+
+            margin-bottom: 12px;
+
+            border-radius: 14px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #e6f2ff,
+                    #e0fbf7
+                );
+
+            font-size: 24px;
+        }
+
+        .tool h3 {
+            color: #122d4a;
+            font-size: 17px;
+            margin-bottom: 5px;
+        }
+
+        .tool p {
+            color: #61768c;
+            font-size: 12px;
+        }
+
+
+        /* LANGKAH */
+
+        .steps {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 16px;
+
+            margin-top: 25px;
+        }
+
+        .step {
+            padding: 25px;
+
+            border-radius: 19px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #f8fdff,
+                    #ffffff
+                );
+
+            border:
+                1px solid #dceef4;
+
+            position: relative;
+        }
+
+        .step-number {
+            width: 42px;
+            height: 42px;
+
+            display: grid;
+            place-items: center;
+
+            margin-bottom: 13px;
+
+            border-radius: 50%;
+
+            color: white;
+            font-weight: 900;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #167cff,
+                    #11c4b3
+                );
+        }
+
+        .step h3 {
+            color: #122d4a;
+
+            margin-bottom: 7px;
+
+            font-size: 18px;
+        }
+
+        .step p,
+        .step li {
+            color: #61768c;
+            font-size: 13px;
+        }
+
+        .step ul {
+            padding-left: 20px;
+            margin-top: 8px;
+        }
+
+
+        /* URUTAN */
+
+        .assembly-flow {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 12px;
+
+            flex-wrap: wrap;
+
+            margin-top: 25px;
+        }
+
+        .flow-item {
+            padding: 14px 18px;
+
+            border-radius: 13px;
+
+            color: #17415f;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #edf7ff,
+                    #e8fffb
+                );
+
+            border:
+                1px solid #cfe8ef;
+
+            font-size: 13px;
+
+            font-weight: 800;
+        }
+
+        .flow-arrow {
+            color: #118be5;
+
+            font-size: 22px;
+
+            font-weight: 900;
+        }
+
+
+        /* CHECKLIST */
+
+        .checklist {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 10px;
+
+            margin-top: 20px;
+        }
+
+        .check {
+            padding: 13px 15px;
+
+            border-radius: 12px;
+
+            background: #f3fbff;
+
+            color: #526b83;
+
+            border:
+                1px solid #dceef3;
+
+            font-size: 13px;
+        }
+
+        .check span {
+            color: #0db3a5;
+
+            font-weight: 900;
+
+            margin-right: 7px;
+        }
+
+
+        /* TIPS */
+
+        .tips {
+            display: flex;
+
+            gap: 18px;
+
+            align-items: flex-start;
+
+            padding: 30px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #edf8ff,
+                    #e7fffb
+                );
+
+            border:
+                1px solid #cdece9;
+        }
+
+        .tips-icon {
+            font-size: 35px;
+        }
+
+        .tips h2 {
+            margin-bottom: 6px;
+        }
+
+        .tips p {
+            color: #60758c;
+            font-size: 14px;
+        }
+
+
+        /* SUMMARY */
+
+        .summary {
+            padding: 32px;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    120deg,
+                    #087cff,
+                    #11bfb3
+                );
+
+            box-shadow:
+                0 20px 45px
+                rgba(10, 130, 210, .18);
+        }
+
+        .summary .section-label {
+            color:
+                rgba(255,255,255,.8);
+        }
+
+        .summary h2 {
+            margin-top: 7px;
+            margin-bottom: 18px;
+        }
+
+        .summary-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 10px;
+        }
+
+        .summary-item {
+            padding: 13px;
+
+            border-radius: 12px;
+
+            background:
+                rgba(255,255,255,.14);
+
+            font-size: 13px;
+        }
+
+
+        /* NAVIGASI */
+
+        .navigation {
+            display: flex;
+
+            justify-content: space-between;
+
+            gap: 15px;
+        }
+
+        .next {
+            display: inline-block;
+
+            padding:
+                12px 20px;
+
+            border-radius: 12px;
+
+            color: white;
+
+            text-decoration: none;
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+            background:
+                linear-gradient(
+                    110deg,
+                    #167cff,
+                    #11c4b3
+                );
+
+            transition: .25s;
+        }
+
+        .next:hover {
+            transform: translateY(-3px);
+        }
+
+
+        /* MOBILE */
+
+        @media (max-width: 750px) {
+
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .hero {
+                padding: 38px 25px;
+            }
+
+            .section,
+            .info,
+            .tips,
+            .summary {
+                padding: 24px;
+            }
+
+            .tools,
+            .steps,
+            .checklist,
+            .summary-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .info,
+            .tips {
+                flex-direction: column;
+            }
+
+            .navigation {
+                flex-direction: column;
+            }
+
+            .navigation a {
+                text-align: center;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <a href="hardware.html" class="back">
+            ← Kembali ke Hardware
+        </a>
+
+
+        <div class="brand">
+
+            <div class="brand-logo">
+                BZ
+            </div>
+
+            <div class="brand-text">
+
+                <strong>
+                    Tempat Belajar
+                </strong>
+
+                <span>
+                    Gen Z
+                </span>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <span class="label">
+                MATERI 02 • HARDWARE
+            </span>
+
+            <div class="hero-icon">
+                🛠️
+            </div>
+
+            <h1>
+                Perakitan PC
+            </h1>
+
+            <p>
+                Pelajari langkah dasar merakit komputer,
+                mengenali posisi komponen, memasang
+                perangkat dengan benar, dan melakukan
+                pengecekan setelah perakitan.
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <main class="container">
+
+
+        <!-- TUJUAN -->
+
+        <section class="info">
+
+            <div class="info-icon">
+                🎯
+            </div>
+
+            <div>
+
+                <h2>
+                    Tujuan Pembelajaran
+                </h2>
+
+                <p>
+                    Setelah mempelajari materi ini,
+                    kamu diharapkan dapat:
+                </p>
+
+                <ul>
+
+                    <li>
+                        Mengetahui komponen yang diperlukan
+                        untuk merakit PC.
+                    </li>
+
+                    <li>
+                        Mengetahui urutan dasar perakitan PC.
+                    </li>
+
+                    <li>
+                        Memahami fungsi setiap komponen
+                        dalam proses perakitan.
+                    </li>
+
+                    <li>
+                        Melakukan pengecekan dasar setelah
+                        komputer selesai dirakit.
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- KOMPONEN -->
+
+        <section class="section">
+
+            <span class="section-label">
+                01 — PERSIAPAN
+            </span>
+
+            <h2>
+                Komponen yang Dibutuhkan
+            </h2>
+
+            <p>
+                Sebelum merakit PC, siapkan komponen utama
+                dan pastikan komponen yang digunakan
+                kompatibel satu sama lain.
+            </p>
+
+
+            <div class="tools">
+
+
+                <div class="tool">
+
+                    <div class="tool-icon">
+                        🧠
+                    </div>
+
+                    <h3>
+                        Processor
+                    </h3>
+
+                    <p>
+                        Komponen utama yang menjalankan
+                        instruksi dan memproses data.
+                    </p>
+
+                </div>
+
+
+                <div class="tool">
+
+                    <div class="tool-icon">
+                        🔌
+                    </div>
+
+                    <h3>
+                        Motherboard
+                    </h3>
+
+                    <p>
+                        Papan utama tempat komponen
+                        komputer terhubung.
+                    </p>
+
+                </div>
+
+
+                <div class="tool">
+
+                    <div class="tool-icon">
+                        🧩
+                    </div>
+
+                    <h3>
+                        RAM
+                    </h3>
+
+                    <p>
+                        Memori sementara untuk membantu
+                        komputer menjalankan program.
+                    </p>
+
+                </div>
+
+
+                <div class="tool">
+
+                    <div class="tool-icon">
+                        💾
+                    </div>
+
+                    <h3>
+                        Storage
+                    </h3>
+
+                    <p>
+                        Digunakan untuk menyimpan sistem
+                        operasi dan berbagai data.
+                    </p>
+
+                </div>
+
+
+                <div class="tool">
+
+                    <div class="tool-icon">
+                        ⚡
+                    </div>
+
+                    <h3>
+                        Power Supply
+                    </h3>
+
+                    <p>
+                        Menyediakan daya listrik untuk
+                        komponen komputer.
+                    </p>
+
+                </div>
+
+
+                <div class="tool">
+
+                    <div class="tool-icon">
+                        🖥️
+                    </div>
+
+                    <h3>
+                        Casing
+                    </h3>
+
+                    <p>
+                        Tempat untuk memasang dan melindungi
+                        komponen komputer.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- URUTAN -->
+
+        <section class="section">
+
+            <span class="section-label">
+                02 — URUTAN
+            </span>
+
+            <h2>
+                Urutan Dasar Perakitan PC
+            </h2>
+
+            <p>
+                Perakitan dilakukan secara bertahap.
+                Pastikan komputer dalam kondisi mati
+                dan tidak terhubung ke sumber listrik
+                saat memasang komponen.
+            </p>
+
+
+            <div class="assembly-flow">
+
+                <div class="flow-item">
+                    Persiapan
+                </div>
+
+                <div class="flow-arrow">
+                    →
+                </div>
+
+                <div class="flow-item">
+                    Processor
+                </div>
+
+                <div class="flow-arrow">
+                    →
+                </div>
+
+                <div class="flow-item">
+                    RAM
+                </div>
+
+                <div class="flow-arrow">
+                    →
+                </div>
+
+                <div class="flow-item">
+                    Motherboard
+                </div>
+
+                <div class="flow-arrow">
+                    →
+                </div>
+
+                <div class="flow-item">
+                    Storage
+                </div>
+
+                <div class="flow-arrow">
+                    →
+                </div>
+
+                <div class="flow-item">
+                    PSU
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- LANGKAH -->
+
+        <section class="section">
+
+            <span class="section-label">
+                03 — PRAKTIK
+            </span>
+
+            <h2>
+                Langkah-Langkah Perakitan
+            </h2>
+
+            <p>
+                Berikut gambaran umum tahapan perakitan PC.
+                Detail pemasangan dapat berbeda tergantung
+                jenis komponen dan motherboard yang digunakan.
+            </p>
+
+
+            <div class="steps">
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        1
+                    </div>
+
+                    <h3>
+                        Siapkan Area Kerja
+                    </h3>
+
+                    <p>
+                        Gunakan meja yang bersih, kering,
+                        cukup luas, dan memiliki pencahayaan
+                        yang baik.
+                    </p>
+
+                    <ul>
+
+                        <li>
+                            Siapkan komponen.
+                        </li>
+
+                        <li>
+                            Siapkan obeng yang sesuai.
+                        </li>
+
+                        <li>
+                            Baca manual motherboard dan casing.
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        2
+                    </div>
+
+                    <h3>
+                        Pasang Processor
+                    </h3>
+
+                    <p>
+                        Pasang processor pada socket
+                        motherboard sesuai tanda orientasi
+                        yang tersedia.
+                    </p>
+
+                    <ul>
+
+                        <li>
+                            Perhatikan posisi processor.
+                        </li>
+
+                        <li>
+                            Jangan memasang dengan paksa.
+                        </li>
+
+                        <li>
+                            Kunci processor sesuai mekanisme socket.
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        3
+                    </div>
+
+                    <h3>
+                        Pasang RAM
+                    </h3>
+
+                    <p>
+                        Masukkan modul RAM ke slot yang
+                        sesuai sampai pengunci slot
+                        terpasang.
+                    </p>
+
+                    <ul>
+
+                        <li>
+                            Perhatikan posisi notch RAM.
+                        </li>
+
+                        <li>
+                            Gunakan slot sesuai panduan motherboard.
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        4
+                    </div>
+
+                    <h3>
+                        Pasang Motherboard
+                    </h3>
+
+                    <p>
+                        Tempatkan motherboard di dalam
+                        casing pada posisi yang sesuai
+                        dengan dudukan motherboard.
+                    </p>
+
+                    <ul>
+
+                        <li>
+                            Pastikan posisi lubang baut sesuai.
+                        </li>
+
+                        <li>
+                            Pastikan motherboard terpasang stabil.
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        5
+                    </div>
+
+                    <h3>
+                        Pasang Storage
+                    </h3>
+
+                    <p>
+                        Pasang SSD atau HDD pada tempat
+                        yang sesuai kemudian hubungkan
+                        kabel yang diperlukan.
+                    </p>
+
+                </div>
+
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        6
+                    </div>
+
+                    <h3>
+                        Pasang Power Supply
+                    </h3>
+
+                    <p>
+                        Tempatkan PSU pada posisi yang
+                        disediakan casing dan sambungkan
+                        kabel daya ke komponen yang sesuai.
+                    </p>
+
+                </div>
+
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        7
+                    </div>
+
+                    <h3>
+                        Hubungkan Kabel
+                    </h3>
+
+                    <p>
+                        Hubungkan kabel motherboard,
+                        storage, CPU, dan komponen lainnya
+                        sesuai petunjuk manual.
+                    </p>
+
+                </div>
+
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        8
+                    </div>
+
+                    <h3>
+                        Lakukan Pengecekan
+                    </h3>
+
+                    <p>
+                        Periksa kembali pemasangan komponen
+                        dan kabel sebelum menyalakan PC.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- CHECKLIST -->
+
+        <section class="section">
+
+            <span class="section-label">
+                04 — CHECKLIST
+            </span>
+
+            <h2>
+                Checklist Sebelum Menyalakan PC
+            </h2>
+
+            <p>
+                Jangan terburu-buru menyalakan komputer.
+                Lakukan pemeriksaan dasar terlebih dahulu.
+            </p>
+
+
+            <div class="checklist">
+
+                <div class="check">
+                    <span>✓</span>
+                    RAM sudah terpasang dengan benar.
+                </div>
+
+                <div class="check">
+                    <span>✓</span>
+                    Processor dan pendinginnya sudah terpasang.
+                </div>
+
+                <div class="check">
+                    <span>✓</span>
+                    Motherboard terpasang dengan stabil.
+                </div>
+
+                <div class="check">
+                    <span>✓</span>
+                    Kabel power sudah terhubung dengan benar.
+                </div>
+
+                <div class="check">
+                    <span>✓</span>
+                    Storage sudah terhubung.
+                </div>
+
+                <div class="check">
+                    <span>✓</span>
+                    Tidak ada benda atau kabel yang mengganggu kipas.
+                </div>
+
+                <div class="check">
+                    <span>✓</span>
+                    Kabel front panel sudah diperiksa.
+                </div>
+
+                <div class="check">
+                    <span>✓</span>
+                    Semua komponen sudah dicek kembali.
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- TIPS -->
+
+        <section class="tips">
+
+            <div class="tips-icon">
+                💡
+            </div>
+
+            <div>
+
+                <h2>
+                    Tips Saat Merakit PC
+                </h2>
+
+                <p>
+                    Jangan terburu-buru saat memasang komponen.
+                    Gunakan manual motherboard dan komponen
+                    sebagai panduan. Jika sebuah komponen tidak
+                    masuk dengan posisi yang benar, jangan
+                    dipaksa. Periksa kembali orientasi dan
+                    posisi slotnya.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- RANGKUMAN -->
+
+        <section class="summary">
+
+            <span class="section-label">
+                RANGKUMAN
+            </span>
+
+            <h2>
+                Yang Perlu Kamu Ingat
+            </h2>
+
+
+            <div class="summary-grid">
+
+                <div class="summary-item">
+                    ✓ Persiapkan komponen dan area kerja
+                    sebelum mulai merakit.
+                </div>
+
+                <div class="summary-item">
+                    ✓ Pastikan komponen kompatibel satu sama lain.
+                </div>
+
+                <div class="summary-item">
+                    ✓ Perhatikan posisi dan orientasi setiap komponen.
+                </div>
+
+                <div class="summary-item">
+                    ✓ Hubungkan kabel sesuai petunjuk motherboard
+                    dan perangkat.
+                </div>
+
+                <div class="summary-item">
+                    ✓ Periksa kembali semua komponen sebelum
+                    menyalakan PC.
+                </div>
+
+                <div class="summary-item">
+                    ✓ Jika ragu, gunakan manual resmi komponen
+                    sebagai panduan.
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- NAVIGASI -->
+
+        <div class="navigation">
+
+            <a href="hardware.html" class="back">
+                ← Kembali ke Hardware
+            </a>
+
+            <a href="bios.html" class="next">
+                Materi Berikutnya →
+            </a>
+
+        </div>
+
+
+    </main>
+
+</body>
+
+</html>
