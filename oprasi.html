@@ -1,0 +1,1717 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Pengenalan Sistem Operasi - BZ</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #102642;
+            line-height: 1.7;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #eef8ff 0%,
+                    #ffffff 45%,
+                    #e4fffa 100%
+                );
+
+            min-height: 100vh;
+        }
+
+        /* HEADER */
+
+        .header {
+            width: min(1050px, 92%);
+            margin: 25px auto 0;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .back {
+            display: inline-block;
+
+            padding: 11px 18px;
+
+            background: white;
+            color: #087cff;
+
+            border-radius: 13px;
+
+            text-decoration: none;
+
+            font-size: 14px;
+            font-weight: 700;
+
+            box-shadow:
+                0 8px 25px rgba(20, 100, 160, .10);
+
+            transition: .25s;
+        }
+
+        .back:hover {
+            transform: translateY(-3px);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .brand-logo {
+            width: 45px;
+            height: 45px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 14px;
+
+            color: white;
+            font-weight: 900;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #167cff,
+                    #12c5b4
+                );
+        }
+
+        .brand-text strong {
+            display: block;
+            font-size: 14px;
+        }
+
+        .brand-text span {
+            display: block;
+            color: #0aa99d;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+
+        /* HERO */
+
+        .hero {
+            width: min(1050px, 92%);
+            margin: 25px auto;
+
+            padding: 55px 50px;
+
+            position: relative;
+            overflow: hidden;
+
+            border-radius: 30px;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    120deg,
+                    #1678ff 0%,
+                    #129ee6 50%,
+                    #10c5b4 100%
+                );
+
+            box-shadow:
+                0 25px 60px rgba(20, 120, 220, .22);
+        }
+
+        .hero::before {
+            content: "";
+
+            position: absolute;
+
+            width: 320px;
+            height: 320px;
+
+            right: -100px;
+            top: -150px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(255,255,255,.10);
+        }
+
+        .hero::after {
+            content: "";
+
+            position: absolute;
+
+            width: 180px;
+            height: 180px;
+
+            right: 100px;
+            bottom: -120px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(255,255,255,.08);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .label {
+            display: inline-block;
+
+            padding: 7px 13px;
+
+            margin-bottom: 15px;
+
+            border-radius: 20px;
+
+            background:
+                rgba(255,255,255,.16);
+
+            font-size: 11px;
+            font-weight: 800;
+
+            letter-spacing: 1px;
+        }
+
+        .hero-icon {
+            font-size: 45px;
+            margin-bottom: 5px;
+        }
+
+        .hero h1 {
+            font-size:
+                clamp(34px, 5vw, 52px);
+
+            line-height: 1.1;
+
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            max-width: 760px;
+
+            color:
+                rgba(255,255,255,.90);
+
+            font-size: 15px;
+        }
+
+
+        /* CONTAINER */
+
+        .container {
+            width: min(1050px, 92%);
+            margin: auto;
+
+            padding-bottom: 60px;
+        }
+
+
+        /* CARD */
+
+        .card {
+            margin-bottom: 25px;
+
+            padding: 32px;
+
+            border-radius: 22px;
+
+            background:
+                rgba(255,255,255,.92);
+
+            border:
+                1px solid #dceef3;
+
+            box-shadow:
+                0 12px 35px
+                rgba(20, 80, 120, .06);
+        }
+
+
+        /* TUJUAN */
+
+        .info {
+            display: flex;
+            gap: 20px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ffffff,
+                    #effdff
+                );
+        }
+
+        .info-icon {
+            width: 58px;
+            height: 58px;
+
+            flex-shrink: 0;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 17px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #e5f2ff,
+                    #dffbf7
+                );
+
+            font-size: 27px;
+        }
+
+        .info h2 {
+            margin-bottom: 8px;
+        }
+
+        .info p,
+        .info li {
+            color: #61768c;
+            font-size: 14px;
+        }
+
+        .info ul {
+            padding-left: 20px;
+            margin-top: 8px;
+        }
+
+
+        /* SECTION */
+
+        .section-label {
+            color: #087df1;
+
+            font-size: 11px;
+
+            font-weight: 900;
+
+            letter-spacing: 1px;
+        }
+
+        .card h2 {
+            margin-top: 7px;
+            margin-bottom: 12px;
+
+            font-size: 28px;
+
+            line-height: 1.2;
+        }
+
+        .card > p {
+            color: #61768c;
+            font-size: 14px;
+        }
+
+
+        /* OS CARDS */
+
+        .os-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 16px;
+
+            margin-top: 25px;
+        }
+
+        .os-item {
+            padding: 24px;
+
+            border-radius: 18px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #f8fdff,
+                    #ffffff
+                );
+
+            border:
+                1px solid #dceef4;
+
+            transition: .25s;
+        }
+
+        .os-item:hover {
+            transform: translateY(-5px);
+
+            box-shadow:
+                0 15px 30px
+                rgba(20, 100, 150, .09);
+        }
+
+        .os-icon {
+            width: 50px;
+            height: 50px;
+
+            display: grid;
+            place-items: center;
+
+            margin-bottom: 13px;
+
+            border-radius: 15px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #e6f2ff,
+                    #e0fbf7
+                );
+
+            font-size: 25px;
+        }
+
+        .os-item h3 {
+            margin-bottom: 6px;
+            font-size: 17px;
+        }
+
+        .os-item p {
+            color: #61768c;
+            font-size: 13px;
+        }
+
+
+        /* FUNGSI */
+
+        .functions {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 15px;
+
+            margin-top: 22px;
+        }
+
+        .function {
+            padding: 21px;
+
+            border-radius: 17px;
+
+            background: #f5fbff;
+
+            border:
+                1px solid #dceef4;
+        }
+
+        .function h3 {
+            color: #087cff;
+
+            margin-bottom: 5px;
+
+            font-size: 16px;
+        }
+
+        .function p {
+            color: #61768c;
+
+            font-size: 13px;
+        }
+
+
+        /* JENIS OS */
+
+        .types {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 16px;
+
+            margin-top: 25px;
+        }
+
+        .type {
+            padding: 23px;
+
+            border-radius: 18px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f8fdff,
+                    #effffc
+                );
+
+            border:
+                1px solid #d7edef;
+        }
+
+        .type-title {
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            margin-bottom: 10px;
+        }
+
+        .type-icon {
+            width: 44px;
+            height: 44px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 12px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #e6f2ff,
+                    #e0fbf7
+                );
+
+            font-size: 22px;
+        }
+
+        .type h3 {
+            font-size: 17px;
+        }
+
+        .type p {
+            color: #61768c;
+            font-size: 13px;
+        }
+
+
+        /* KOMPONEN */
+
+        .components {
+            margin-top: 25px;
+        }
+
+        .component {
+            display: flex;
+
+            gap: 17px;
+
+            padding: 19px;
+
+            margin-bottom: 12px;
+
+            border-radius: 16px;
+
+            background: #f8fcff;
+
+            border:
+                1px solid #dceef4;
+        }
+
+        .component-number {
+            width: 40px;
+            height: 40px;
+
+            flex-shrink: 0;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 12px;
+
+            color: white;
+
+            font-weight: 900;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #167cff,
+                    #11c4b3
+                );
+        }
+
+        .component h3 {
+            margin-bottom: 3px;
+
+            font-size: 16px;
+        }
+
+        .component p {
+            color: #61768c;
+
+            font-size: 13px;
+        }
+
+
+        /* CONTOH */
+
+        .examples {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 13px;
+
+            margin-top: 23px;
+        }
+
+        .example {
+            padding: 18px;
+
+            text-align: center;
+
+            border-radius: 16px;
+
+            background: #f7fcff;
+
+            border:
+                1px solid #dceef4;
+        }
+
+        .example-icon {
+            font-size: 30px;
+            margin-bottom: 7px;
+        }
+
+        .example strong {
+            display: block;
+            font-size: 14px;
+        }
+
+        .example span {
+            color: #71859a;
+            font-size: 11px;
+        }
+
+
+        /* PROSES */
+
+        .steps {
+            margin-top: 25px;
+        }
+
+        .step {
+            display: flex;
+
+            gap: 18px;
+
+            padding: 20px;
+
+            margin-bottom: 12px;
+
+            border-radius: 16px;
+
+            background: #f8fcff;
+
+            border:
+                1px solid #dceef4;
+        }
+
+        .step-number {
+            width: 42px;
+            height: 42px;
+
+            flex-shrink: 0;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 50%;
+
+            color: white;
+
+            font-weight: 900;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #167cff,
+                    #11c4b3
+                );
+        }
+
+        .step h3 {
+            margin-bottom: 4px;
+            font-size: 17px;
+        }
+
+        .step p {
+            color: #61768c;
+            font-size: 13px;
+        }
+
+
+        /* NOTE */
+
+        .note {
+            display: flex;
+
+            gap: 18px;
+
+            align-items: flex-start;
+
+            padding: 28px;
+
+            margin-bottom: 25px;
+
+            border-radius: 22px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #edf8ff,
+                    #e7fffb
+                );
+
+            border:
+                1px solid #cdece9;
+        }
+
+        .note-icon {
+            font-size: 34px;
+        }
+
+        .note h2 {
+            margin-bottom: 6px;
+        }
+
+        .note p {
+            color: #60758c;
+            font-size: 14px;
+        }
+
+
+        /* RANGKUMAN */
+
+        .summary {
+            color: white;
+
+            background:
+                linear-gradient(
+                    120deg,
+                    #087cff,
+                    #11bfb3
+                );
+
+            box-shadow:
+                0 20px 45px
+                rgba(10, 130, 210, .18);
+        }
+
+        .summary .section-label {
+            color:
+                rgba(255,255,255,.8);
+        }
+
+        .summary h2 {
+            margin-top: 7px;
+            margin-bottom: 18px;
+        }
+
+        .summary-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 10px;
+        }
+
+        .summary-item {
+            padding: 13px;
+
+            border-radius: 12px;
+
+            background:
+                rgba(255,255,255,.14);
+
+            font-size: 13px;
+        }
+
+
+        /* NAVIGASI */
+
+        .navigation {
+            display: flex;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            margin-top: 25px;
+        }
+
+        .next {
+            display: inline-block;
+
+            padding: 12px 20px;
+
+            border-radius: 12px;
+
+            color: white;
+
+            text-decoration: none;
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+            background:
+                linear-gradient(
+                    110deg,
+                    #167cff,
+                    #11c4b3
+                );
+
+            transition: .25s;
+        }
+
+        .next:hover {
+            transform: translateY(-3px);
+        }
+
+
+        /* MOBILE */
+
+        @media (max-width: 750px) {
+
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .hero {
+                padding: 40px 25px;
+            }
+
+            .card,
+            .note {
+                padding: 24px;
+            }
+
+            .os-grid,
+            .functions,
+            .types,
+            .examples,
+            .summary-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .info,
+            .note {
+                flex-direction: column;
+            }
+
+            .navigation {
+                flex-direction: column;
+            }
+
+            .navigation a {
+                text-align: center;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <a href="index.html" class="back">
+            ← Kembali ke Beranda
+        </a>
+
+
+        <div class="brand">
+
+            <div class="brand-logo">
+                BZ
+            </div>
+
+            <div class="brand-text">
+
+                <strong>
+                    Tempat Belajar
+                </strong>
+
+                <span>
+                    Gen Z
+                </span>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <span class="label">
+                MATERI 01 • SISTEM OPERASI
+            </span>
+
+            <div class="hero-icon">
+                💻
+            </div>
+
+            <h1>
+                Pengenalan Sistem Operasi
+            </h1>
+
+            <p>
+                Kenali pengertian sistem operasi, fungsi,
+                jenis-jenis sistem operasi, komponen dasar,
+                dan perannya dalam mengatur komputer.
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <main class="container">
+
+
+        <!-- TUJUAN -->
+
+        <section class="card info">
+
+            <div class="info-icon">
+                🎯
+            </div>
+
+            <div>
+
+                <h2>
+                    Tujuan Pembelajaran
+                </h2>
+
+                <p>
+                    Setelah mempelajari materi ini,
+                    kamu diharapkan dapat:
+                </p>
+
+                <ul>
+
+                    <li>
+                        Menjelaskan pengertian sistem operasi.
+                    </li>
+
+                    <li>
+                        Mengetahui fungsi utama sistem operasi.
+                    </li>
+
+                    <li>
+                        Mengenali jenis-jenis sistem operasi.
+                    </li>
+
+                    <li>
+                        Mengetahui contoh sistem operasi.
+                    </li>
+
+                    <li>
+                        Memahami peran sistem operasi dalam
+                        komputer.
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- PENGERTIAN -->
+
+        <section class="card">
+
+            <span class="section-label">
+                01 — PENGENALAN
+            </span>
+
+            <h2>
+                Apa Itu Sistem Operasi?
+            </h2>
+
+            <p>
+                Sistem operasi atau <strong>Operating System
+                (OS)</strong> adalah perangkat lunak utama
+                yang mengatur dan mengelola sumber daya
+                komputer serta menyediakan layanan agar
+                aplikasi dapat berjalan.
+            </p>
+
+            <p style="margin-top:12px;">
+                Sistem operasi menjadi penghubung antara
+                pengguna, aplikasi, dan perangkat keras.
+                Tanpa sistem operasi, penggunaan komputer
+                secara umum akan menjadi jauh lebih sulit.
+            </p>
+
+
+            <div class="os-grid">
+
+
+                <div class="os-item">
+
+                    <div class="os-icon">
+                        ⚙️
+                    </div>
+
+                    <h3>
+                        Pengelola Hardware
+                    </h3>
+
+                    <p>
+                        OS membantu mengatur penggunaan
+                        processor, memori, penyimpanan,
+                        dan perangkat lainnya.
+                    </p>
+
+                </div>
+
+
+                <div class="os-item">
+
+                    <div class="os-icon">
+                        🧩
+                    </div>
+
+                    <h3>
+                        Menjalankan Aplikasi
+                    </h3>
+
+                    <p>
+                        Sistem operasi menyediakan lingkungan
+                        agar berbagai aplikasi dapat digunakan.
+                    </p>
+
+                </div>
+
+
+                <div class="os-item">
+
+                    <div class="os-icon">
+                        👤
+                    </div>
+
+                    <h3>
+                        Penghubung Pengguna
+                    </h3>
+
+                    <p>
+                        OS menyediakan antarmuka agar pengguna
+                        dapat berinteraksi dengan komputer.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- FUNGSI -->
+
+        <section class="card">
+
+            <span class="section-label">
+                02 — FUNGSI
+            </span>
+
+            <h2>
+                Fungsi Sistem Operasi
+            </h2>
+
+            <p>
+                Sistem operasi memiliki banyak fungsi penting
+                dalam menjalankan komputer.
+            </p>
+
+
+            <div class="functions">
+
+
+                <div class="function">
+
+                    <h3>
+                        🧠 Manajemen Proses
+                    </h3>
+
+                    <p>
+                        Mengatur proses yang sedang dijalankan
+                        oleh komputer dan membantu membagi
+                        penggunaan sumber daya processor.
+                    </p>
+
+                </div>
+
+
+                <div class="function">
+
+                    <h3>
+                        💾 Manajemen Memori
+                    </h3>
+
+                    <p>
+                        Mengatur penggunaan memori agar program
+                        dapat berjalan dengan baik.
+                    </p>
+
+                </div>
+
+
+                <div class="function">
+
+                    <h3>
+                        📁 Manajemen File
+                    </h3>
+
+                    <p>
+                        Mengatur file dan folder yang tersimpan
+                        pada perangkat penyimpanan.
+                    </p>
+
+                </div>
+
+
+                <div class="function">
+
+                    <h3>
+                        🖥️ Antarmuka Pengguna
+                    </h3>
+
+                    <p>
+                        Menyediakan cara bagi pengguna untuk
+                        berinteraksi dengan komputer.
+                    </p>
+
+                </div>
+
+
+                <div class="function">
+
+                    <h3>
+                        🔌 Manajemen Perangkat
+                    </h3>
+
+                    <p>
+                        Membantu sistem berkomunikasi dengan
+                        perangkat keras melalui driver dan
+                        mekanisme sistem operasi.
+                    </p>
+
+                </div>
+
+
+                <div class="function">
+
+                    <h3>
+                        🔐 Keamanan
+                    </h3>
+
+                    <p>
+                        Menyediakan mekanisme untuk mengatur
+                        akun, hak akses, dan keamanan sistem.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- JENIS OS -->
+
+        <section class="card">
+
+            <span class="section-label">
+                03 — JENIS
+            </span>
+
+            <h2>
+                Jenis-Jenis Sistem Operasi
+            </h2>
+
+            <p>
+                Sistem operasi dapat digunakan pada berbagai
+                jenis perangkat dan memiliki karakteristik
+                yang berbeda.
+            </p>
+
+
+            <div class="types">
+
+
+                <div class="type">
+
+                    <div class="type-title">
+
+                        <div class="type-icon">
+                            🖥️
+                        </div>
+
+                        <h3>
+                            Desktop
+                        </h3>
+
+                    </div>
+
+                    <p>
+                        Digunakan pada komputer desktop dan
+                        laptop. Contohnya Windows, Linux,
+                        dan macOS.
+                    </p>
+
+                </div>
+
+
+                <div class="type">
+
+                    <div class="type-title">
+
+                        <div class="type-icon">
+                            📱
+                        </div>
+
+                        <h3>
+                            Mobile
+                        </h3>
+
+                    </div>
+
+                    <p>
+                        Dirancang untuk perangkat mobile
+                        seperti smartphone dan tablet.
+                        Contohnya Android dan iOS.
+                    </p>
+
+                </div>
+
+
+                <div class="type">
+
+                    <div class="type-title">
+
+                        <div class="type-icon">
+                            🖧
+                        </div>
+
+                        <h3>
+                            Server
+                        </h3>
+
+                    </div>
+
+                    <p>
+                        Digunakan untuk menjalankan layanan
+                        dan mengelola sumber daya jaringan.
+                        Contohnya Windows Server dan berbagai
+                        distribusi Linux.
+                    </p>
+
+                </div>
+
+
+                <div class="type">
+
+                    <div class="type-title">
+
+                        <div class="type-icon">
+                            ⚡
+                        </div>
+
+                        <h3>
+                            Embedded
+                        </h3>
+
+                    </div>
+
+                    <p>
+                        Digunakan pada perangkat khusus seperti
+                        perangkat elektronik, mesin, dan sistem
+                        dengan fungsi tertentu.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- CONTOH -->
+
+        <section class="card">
+
+            <span class="section-label">
+                04 — CONTOH
+            </span>
+
+            <h2>
+                Contoh Sistem Operasi
+            </h2>
+
+            <p>
+                Beberapa sistem operasi yang banyak digunakan
+                antara lain:
+            </p>
+
+
+            <div class="examples">
+
+
+                <div class="example">
+
+                    <div class="example-icon">
+                        🪟
+                    </div>
+
+                    <strong>
+                        Windows
+                    </strong>
+
+                    <span>
+                        Desktop & Laptop
+                    </span>
+
+                </div>
+
+
+                <div class="example">
+
+                    <div class="example-icon">
+                        🐧
+                    </div>
+
+                    <strong>
+                        Linux
+                    </strong>
+
+                    <span>
+                        Desktop & Server
+                    </span>
+
+                </div>
+
+
+                <div class="example">
+
+                    <div class="example-icon">
+                        🍎
+                    </div>
+
+                    <strong>
+                        macOS
+                    </strong>
+
+                    <span>
+                        Komputer Mac
+                    </span>
+
+                </div>
+
+
+                <div class="example">
+
+                    <div class="example-icon">
+                        🤖
+                    </div>
+
+                    <strong>
+                        Android
+                    </strong>
+
+                    <span>
+                        Smartphone & Tablet
+                    </span>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- KOMPONEN -->
+
+        <section class="card">
+
+            <span class="section-label">
+                05 — KOMPONEN DASAR
+            </span>
+
+            <h2>
+                Bagian Penting dalam Sistem Operasi
+            </h2>
+
+            <p>
+                Sistem operasi terdiri dari berbagai bagian
+                yang bekerja bersama untuk mengelola komputer.
+            </p>
+
+
+            <div class="components">
+
+
+                <div class="component">
+
+                    <div class="component-number">
+                        1
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Kernel
+                        </h3>
+
+                        <p>
+                            Bagian inti sistem operasi yang
+                            menangani komunikasi antara software
+                            dan hardware serta pengelolaan sumber
+                            daya sistem.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="component">
+
+                    <div class="component-number">
+                        2
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            User Interface
+                        </h3>
+
+                        <p>
+                            Bagian yang memungkinkan pengguna
+                            berinteraksi dengan sistem operasi,
+                            misalnya melalui GUI atau CLI.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="component">
+
+                    <div class="component-number">
+                        3
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            File System
+                        </h3>
+
+                        <p>
+                            Mekanisme yang digunakan sistem
+                            operasi untuk mengatur dan menyimpan
+                            file serta folder.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="component">
+
+                    <div class="component-number">
+                        4
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Device Driver
+                        </h3>
+
+                        <p>
+                            Perangkat lunak yang membantu sistem
+                            operasi berkomunikasi dengan perangkat
+                            keras tertentu.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- PROSES KERJA -->
+
+        <section class="card">
+
+            <span class="section-label">
+                06 — CARA KERJA
+            </span>
+
+            <h2>
+                Bagaimana Sistem Operasi Bekerja?
+            </h2>
+
+            <p>
+                Secara sederhana, hubungan pengguna, aplikasi,
+                sistem operasi, dan hardware dapat dipahami
+                melalui alur berikut.
+            </p>
+
+
+            <div class="steps">
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        1
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Pengguna Memberikan Perintah
+                        </h3>
+
+                        <p>
+                            Pengguna melakukan tindakan seperti
+                            membuka aplikasi, membuat file,
+                            atau menjalankan program.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        2
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Aplikasi Meminta Sumber Daya
+                        </h3>
+
+                        <p>
+                            Aplikasi membutuhkan sumber daya
+                            komputer untuk menjalankan tugasnya.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        3
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Sistem Operasi Mengatur
+                        </h3>
+
+                        <p>
+                            Sistem operasi mengatur akses
+                            aplikasi terhadap processor, memori,
+                            penyimpanan, dan perangkat lainnya.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        4
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Hardware Menjalankan Perintah
+                        </h3>
+
+                        <p>
+                            Perangkat keras menjalankan operasi
+                            sesuai instruksi yang telah dikelola
+                            oleh sistem.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- CATATAN -->
+
+        <section class="note">
+
+            <div class="note-icon">
+                💡
+            </div>
+
+            <div>
+
+                <h2>
+                    Contoh Sederhana
+                </h2>
+
+                <p>
+                    Ketika kamu membuka aplikasi browser,
+                    aplikasi tersebut membutuhkan RAM,
+                    processor, penyimpanan, jaringan, dan
+                    perangkat input/output. Sistem operasi
+                    membantu mengatur penggunaan sumber daya
+                    tersebut sehingga browser dapat berjalan.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- RANGKUMAN -->
+
+        <section class="card summary">
+
+            <span class="section-label">
+                RANGKUMAN
+            </span>
+
+            <h2>
+                Yang Perlu Kamu Ingat
+            </h2>
+
+
+            <div class="summary-grid">
+
+                <div class="summary-item">
+                    ✓ Sistem operasi adalah perangkat lunak
+                    utama yang mengelola sistem komputer.
+                </div>
+
+                <div class="summary-item">
+                    ✓ OS menjadi penghubung antara pengguna,
+                    aplikasi, dan hardware.
+                </div>
+
+                <div class="summary-item">
+                    ✓ OS mengatur processor, memori,
+                    penyimpanan, dan perangkat.
+                </div>
+
+                <div class="summary-item">
+                    ✓ OS menyediakan antarmuka untuk pengguna.
+                </div>
+
+                <div class="summary-item">
+                    ✓ Contohnya Windows, Linux, macOS,
+                    Android, dan iOS.
+                </div>
+
+                <div class="summary-item">
+                    ✓ Kernel merupakan bagian inti dari
+                    sistem operasi.
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- NAVIGASI -->
+
+        <div class="navigation">
+
+            <a href="system.html" class="back">
+                ← Kembali ke Beranda
+            </a>
+
+            <a href="windows.html" class="next">
+                Materi Berikutnya →
+            </a>
+
+        </div>
+
+
+    </main>
+
+
+</body>
+
+</html>
