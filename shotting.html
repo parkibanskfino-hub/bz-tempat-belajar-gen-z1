@@ -1,0 +1,1570 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Troubleshooting PC - BZ</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #102642;
+            line-height: 1.7;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #eef8ff 0%,
+                    #ffffff 45%,
+                    #e4fffa 100%
+                );
+
+            min-height: 100vh;
+        }
+
+        /* HEADER */
+
+        .header {
+            width: min(1050px, 92%);
+            margin: 25px auto 0;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .back {
+            display: inline-block;
+            padding: 11px 18px;
+
+            background: white;
+            color: #087cff;
+
+            border-radius: 13px;
+            text-decoration: none;
+
+            font-size: 14px;
+            font-weight: 700;
+
+            box-shadow:
+                0 8px 25px rgba(20, 100, 160, .10);
+
+            transition: .25s;
+        }
+
+        .back:hover {
+            transform: translateY(-3px);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .brand-logo {
+            width: 45px;
+            height: 45px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 14px;
+
+            color: white;
+            font-weight: 900;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #167cff,
+                    #12c5b4
+                );
+        }
+
+        .brand-text strong {
+            display: block;
+            font-size: 14px;
+        }
+
+        .brand-text span {
+            display: block;
+            color: #0aa99d;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+
+        /* HERO */
+
+        .hero {
+            width: min(1050px, 92%);
+            margin: 25px auto;
+
+            padding: 55px 50px;
+
+            position: relative;
+            overflow: hidden;
+
+            border-radius: 30px;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    120deg,
+                    #1678ff 0%,
+                    #129ee6 50%,
+                    #10c5b4 100%
+                );
+
+            box-shadow:
+                0 25px 60px rgba(20, 120, 220, .22);
+        }
+
+        .hero::before {
+            content: "";
+
+            position: absolute;
+
+            width: 320px;
+            height: 320px;
+
+            right: -100px;
+            top: -150px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(255,255,255,.10);
+        }
+
+        .hero::after {
+            content: "";
+
+            position: absolute;
+
+            width: 180px;
+            height: 180px;
+
+            right: 100px;
+            bottom: -120px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(255,255,255,.08);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .label {
+            display: inline-block;
+
+            padding: 7px 13px;
+            margin-bottom: 15px;
+
+            border-radius: 20px;
+
+            background:
+                rgba(255,255,255,.16);
+
+            font-size: 11px;
+            font-weight: 800;
+
+            letter-spacing: 1px;
+        }
+
+        .hero-icon {
+            font-size: 45px;
+            margin-bottom: 5px;
+        }
+
+        .hero h1 {
+            font-size:
+                clamp(35px, 5vw, 52px);
+
+            line-height: 1.1;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            max-width: 760px;
+
+            color:
+                rgba(255,255,255,.90);
+
+            font-size: 15px;
+        }
+
+
+        /* CONTAINER */
+
+        .container {
+            width: min(1050px, 92%);
+            margin: auto;
+
+            padding-bottom: 60px;
+        }
+
+
+        /* CARD */
+
+        .card {
+            margin-bottom: 25px;
+
+            padding: 32px;
+
+            border-radius: 22px;
+
+            background:
+                rgba(255,255,255,.92);
+
+            border:
+                1px solid #dceef3;
+
+            box-shadow:
+                0 12px 35px
+                rgba(20, 80, 120, .06);
+        }
+
+
+        /* TUJUAN */
+
+        .info {
+            display: flex;
+            gap: 20px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ffffff,
+                    #effdff
+                );
+        }
+
+        .info-icon {
+            width: 58px;
+            height: 58px;
+
+            flex-shrink: 0;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 17px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #e5f2ff,
+                    #dffbf7
+                );
+
+            font-size: 27px;
+        }
+
+        .info h2 {
+            margin-bottom: 8px;
+        }
+
+        .info p,
+        .info li {
+            color: #61768c;
+            font-size: 14px;
+        }
+
+        .info ul {
+            padding-left: 20px;
+            margin-top: 8px;
+        }
+
+
+        /* SECTION */
+
+        .section-label {
+            color: #087df1;
+
+            font-size: 11px;
+
+            font-weight: 900;
+
+            letter-spacing: 1px;
+        }
+
+        .card h2 {
+            margin-top: 7px;
+            margin-bottom: 12px;
+
+            font-size: 28px;
+
+            line-height: 1.2;
+        }
+
+        .card > p {
+            color: #61768c;
+            font-size: 14px;
+        }
+
+
+        /* KONSEP */
+
+        .concept-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 16px;
+
+            margin-top: 25px;
+        }
+
+        .concept {
+            padding: 23px;
+
+            border-radius: 18px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #f8fdff,
+                    #ffffff
+                );
+
+            border:
+                1px solid #dceef4;
+
+            transition: .25s;
+        }
+
+        .concept:hover {
+            transform: translateY(-5px);
+
+            box-shadow:
+                0 15px 30px
+                rgba(20, 100, 150, .09);
+        }
+
+        .concept-icon {
+            width: 50px;
+            height: 50px;
+
+            display: grid;
+            place-items: center;
+
+            margin-bottom: 12px;
+
+            border-radius: 15px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #e6f2ff,
+                    #e0fbf7
+                );
+
+            font-size: 25px;
+        }
+
+        .concept h3 {
+            margin-bottom: 5px;
+            font-size: 17px;
+        }
+
+        .concept p {
+            color: #61768c;
+            font-size: 13px;
+        }
+
+
+        /* MASALAH */
+
+        .problem {
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 18px;
+
+            margin-top: 25px;
+        }
+
+        .problem-box {
+            padding: 23px;
+
+            border-radius: 18px;
+
+            border:
+                1px solid #dceef4;
+        }
+
+        .problem-box h3 {
+            margin-bottom: 10px;
+
+            font-size: 18px;
+        }
+
+        .problem-box p,
+        .problem-box li {
+            color: #61768c;
+            font-size: 13px;
+        }
+
+        .problem-box ul {
+            padding-left: 20px;
+        }
+
+        .problem-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            margin-bottom: 10px;
+        }
+
+        .problem-title span {
+            width: 36px;
+            height: 36px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 10px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #e6f2ff,
+                    #e0fbf7
+                );
+        }
+
+
+        /* STEPS */
+
+        .steps {
+            margin-top: 25px;
+        }
+
+        .step {
+            display: flex;
+
+            gap: 18px;
+
+            padding: 20px;
+
+            margin-bottom: 12px;
+
+            border-radius: 16px;
+
+            background: #f8fcff;
+
+            border:
+                1px solid #dceef4;
+        }
+
+        .step-number {
+            width: 42px;
+            height: 42px;
+
+            flex-shrink: 0;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 50%;
+
+            color: white;
+
+            font-weight: 900;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #167cff,
+                    #11c4b3
+                );
+        }
+
+        .step h3 {
+            margin-bottom: 4px;
+            font-size: 17px;
+        }
+
+        .step p {
+            color: #61768c;
+            font-size: 13px;
+        }
+
+
+        /* TROUBLESHOOTING CARD */
+
+        .trouble-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 16px;
+
+            margin-top: 25px;
+        }
+
+        .trouble {
+            padding: 24px;
+
+            border-radius: 18px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f7fcff,
+                    #effffc
+                );
+
+            border:
+                1px solid #d7edef;
+        }
+
+        .trouble h3 {
+            color: #0b4f83;
+
+            margin-bottom: 10px;
+
+            font-size: 18px;
+        }
+
+        .trouble p {
+            color: #61768c;
+
+            font-size: 13px;
+
+            margin-bottom: 10px;
+        }
+
+        .solution {
+            padding: 13px 15px;
+
+            border-radius: 12px;
+
+            background: white;
+
+            border:
+                1px solid #dceef4;
+
+            color: #526b83;
+
+            font-size: 13px;
+        }
+
+        .solution strong {
+            color: #08a899;
+        }
+
+
+        /* CHECKLIST */
+
+        .checklist {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 10px;
+
+            margin-top: 20px;
+        }
+
+        .check {
+            padding: 13px 15px;
+
+            border-radius: 12px;
+
+            background: #f3fbff;
+
+            color: #526b83;
+
+            border:
+                1px solid #dceef3;
+
+            font-size: 13px;
+        }
+
+        .check span {
+            color: #0db3a5;
+
+            font-weight: 900;
+
+            margin-right: 7px;
+        }
+
+
+        /* TIPS */
+
+        .note {
+            display: flex;
+
+            gap: 18px;
+
+            align-items: flex-start;
+
+            padding: 28px;
+
+            margin-bottom: 25px;
+
+            border-radius: 22px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #edf8ff,
+                    #e7fffb
+                );
+
+            border:
+                1px solid #cdece9;
+        }
+
+        .note-icon {
+            font-size: 34px;
+        }
+
+        .note h2 {
+            margin-bottom: 6px;
+        }
+
+        .note p {
+            color: #60758c;
+            font-size: 14px;
+        }
+
+
+        /* RANGKUMAN */
+
+        .summary {
+            color: white;
+
+            background:
+                linear-gradient(
+                    120deg,
+                    #087cff,
+                    #11bfb3
+                );
+
+            box-shadow:
+                0 20px 45px
+                rgba(10, 130, 210, .18);
+        }
+
+        .summary .section-label {
+            color:
+                rgba(255,255,255,.8);
+        }
+
+        .summary h2 {
+            margin-top: 7px;
+            margin-bottom: 18px;
+        }
+
+        .summary-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 10px;
+        }
+
+        .summary-item {
+            padding: 13px;
+
+            border-radius: 12px;
+
+            background:
+                rgba(255,255,255,.14);
+
+            font-size: 13px;
+        }
+
+
+        /* NAVIGASI */
+
+        .navigation {
+            display: flex;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            margin-top: 25px;
+        }
+
+        .next {
+            display: inline-block;
+
+            padding: 12px 20px;
+
+            border-radius: 12px;
+
+            color: white;
+
+            text-decoration: none;
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+            background:
+                linear-gradient(
+                    110deg,
+                    #167cff,
+                    #11c4b3
+                );
+
+            transition: .25s;
+        }
+
+        .next:hover {
+            transform: translateY(-3px);
+        }
+
+
+        /* MOBILE */
+
+        @media (max-width: 750px) {
+
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .hero {
+                padding: 40px 25px;
+            }
+
+            .card,
+            .note {
+                padding: 24px;
+            }
+
+            .concept-grid,
+            .problem,
+            .trouble-grid,
+            .summary-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .checklist {
+                grid-template-columns: 1fr;
+            }
+
+            .info,
+            .note {
+                flex-direction: column;
+            }
+
+            .navigation {
+                flex-direction: column;
+            }
+
+            .navigation a {
+                text-align: center;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <a href="hardware.html" class="back">
+            ← Kembali ke Hardware
+        </a>
+
+        <div class="brand">
+
+            <div class="brand-logo">
+                BZ
+            </div>
+
+            <div class="brand-text">
+
+                <strong>
+                    Tempat Belajar
+                </strong>
+
+                <span>
+                    Gen Z
+                </span>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <span class="label">
+                MATERI 04 • HARDWARE
+            </span>
+
+            <div class="hero-icon">
+                🔧
+            </div>
+
+            <h1>
+                Troubleshooting PC
+            </h1>
+
+            <p>
+                Pelajari cara mengenali masalah komputer,
+                mencari penyebabnya, melakukan pemeriksaan
+                dasar, dan menentukan langkah perbaikan
+                yang tepat.
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <main class="container">
+
+
+        <!-- TUJUAN -->
+
+        <section class="card info">
+
+            <div class="info-icon">
+                🎯
+            </div>
+
+            <div>
+
+                <h2>
+                    Tujuan Pembelajaran
+                </h2>
+
+                <p>
+                    Setelah mempelajari materi ini,
+                    kamu diharapkan dapat:
+                </p>
+
+                <ul>
+
+                    <li>
+                        Memahami pengertian troubleshooting.
+                    </li>
+
+                    <li>
+                        Mengenali gejala masalah komputer.
+                    </li>
+
+                    <li>
+                        Menentukan kemungkinan penyebab masalah.
+                    </li>
+
+                    <li>
+                        Melakukan pemeriksaan dasar hardware
+                        dan software.
+                    </li>
+
+                    <li>
+                        Menentukan solusi berdasarkan hasil
+                        pemeriksaan.
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- PENGERTIAN -->
+
+        <section class="card">
+
+            <span class="section-label">
+                01 — PENGENALAN
+            </span>
+
+            <h2>
+                Apa Itu Troubleshooting?
+            </h2>
+
+            <p>
+                Troubleshooting adalah proses mencari,
+                mengidentifikasi, dan mengatasi penyebab
+                suatu masalah pada komputer atau perangkat
+                lainnya.
+            </p>
+
+            <p style="margin-top:12px;">
+                Dalam troubleshooting, kita tidak hanya
+                mencoba mengganti komponen secara acak.
+                Pemeriksaan dilakukan secara bertahap agar
+                penyebab masalah dapat ditemukan dengan lebih
+                tepat.
+            </p>
+
+
+            <div class="concept-grid">
+
+
+                <div class="concept">
+
+                    <div class="concept-icon">
+                        🔍
+                    </div>
+
+                    <h3>
+                        Identifikasi
+                    </h3>
+
+                    <p>
+                        Kenali gejala atau masalah yang
+                        terjadi pada komputer.
+                    </p>
+
+                </div>
+
+
+                <div class="concept">
+
+                    <div class="concept-icon">
+                        🧠
+                    </div>
+
+                    <h3>
+                        Analisis
+                    </h3>
+
+                    <p>
+                        Cari kemungkinan penyebab berdasarkan
+                        gejala yang ditemukan.
+                    </p>
+
+                </div>
+
+
+                <div class="concept">
+
+                    <div class="concept-icon">
+                        🛠️
+                    </div>
+
+                    <h3>
+                        Perbaikan
+                    </h3>
+
+                    <p>
+                        Lakukan tindakan yang sesuai dan
+                        periksa kembali hasilnya.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- METODE -->
+
+        <section class="card">
+
+            <span class="section-label">
+                02 — METODE
+            </span>
+
+            <h2>
+                Langkah Dasar Troubleshooting
+            </h2>
+
+            <p>
+                Gunakan pendekatan sistematis agar proses
+                pencarian masalah lebih mudah.
+            </p>
+
+
+            <div class="steps">
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        1
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Kenali Gejala
+                        </h3>
+
+                        <p>
+                            Perhatikan apa yang terjadi.
+                            Contohnya komputer tidak menyala,
+                            tidak menampilkan gambar, atau
+                            sistem menjadi lambat.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        2
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Cari Kemungkinan Penyebab
+                        </h3>
+
+                        <p>
+                            Tentukan komponen atau bagian
+                            sistem yang kemungkinan berkaitan
+                            dengan masalah.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        3
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Lakukan Pemeriksaan
+                        </h3>
+
+                        <p>
+                            Periksa kabel, koneksi, komponen,
+                            pengaturan sistem, dan hal lain
+                            yang relevan.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        4
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Lakukan Perbaikan
+                        </h3>
+
+                        <p>
+                            Setelah penyebab ditemukan,
+                            lakukan tindakan perbaikan yang
+                            sesuai.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        5
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Uji Kembali
+                        </h3>
+
+                        <p>
+                            Nyalakan atau gunakan kembali
+                            komputer untuk memastikan masalah
+                            sudah teratasi.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- MASALAH UMUM -->
+
+        <section class="card">
+
+            <span class="section-label">
+                03 — MASALAH UMUM
+            </span>
+
+            <h2>
+                Contoh Masalah pada PC
+            </h2>
+
+            <p>
+                Berikut beberapa contoh masalah yang sering
+                dijumpai saat menggunakan komputer.
+            </p>
+
+
+            <div class="trouble-grid">
+
+
+                <div class="trouble">
+
+                    <h3>
+                        🖥️ Komputer Tidak Menyala
+                    </h3>
+
+                    <p>
+                        PC tidak menunjukkan tanda-tanda
+                        menyala ketika tombol power ditekan.
+                    </p>
+
+                    <div class="solution">
+                        <strong>Periksa:</strong>
+                        kabel power, stop kontak, sakelar PSU,
+                        konektor power motherboard, dan tombol
+                        power casing.
+                    </div>
+
+                </div>
+
+
+                <div class="trouble">
+
+                    <h3>
+                        🖥️ Tidak Ada Tampilan
+                    </h3>
+
+                    <p>
+                        Komputer menyala tetapi monitor
+                        tidak menampilkan gambar.
+                    </p>
+
+                    <div class="solution">
+                        <strong>Periksa:</strong>
+                        kabel monitor, input monitor,
+                        koneksi display, RAM, dan kartu grafis
+                        jika digunakan.
+                    </div>
+
+                </div>
+
+
+                <div class="trouble">
+
+                    <h3>
+                        💻 Komputer Lambat
+                    </h3>
+
+                    <p>
+                        Sistem terasa lambat ketika membuka
+                        program atau menjalankan aktivitas.
+                    </p>
+
+                    <div class="solution">
+                        <strong>Periksa:</strong>
+                        penggunaan RAM dan CPU, aplikasi
+                        yang berjalan, ruang penyimpanan,
+                        dan kondisi sistem operasi.
+                    </div>
+
+                </div>
+
+
+                <div class="trouble">
+
+                    <h3>
+                        🔊 Tidak Ada Suara
+                    </h3>
+
+                    <p>
+                        Komputer menyala tetapi suara tidak
+                        keluar dari speaker atau headset.
+                    </p>
+
+                    <div class="solution">
+                        <strong>Periksa:</strong>
+                        volume, perangkat output audio,
+                        koneksi kabel, dan pengaturan audio
+                        sistem.
+                    </div>
+
+                </div>
+
+
+                <div class="trouble">
+
+                    <h3>
+                        🌐 Tidak Bisa Terhubung Internet
+                    </h3>
+
+                    <p>
+                        Komputer tidak dapat mengakses
+                        jaringan atau internet.
+                    </p>
+
+                    <div class="solution">
+                        <strong>Periksa:</strong>
+                        kabel jaringan atau Wi-Fi, adapter
+                        jaringan, koneksi router, dan
+                        pengaturan jaringan.
+                    </div>
+
+                </div>
+
+
+                <div class="trouble">
+
+                    <h3>
+                        🔄 Komputer Restart Sendiri
+                    </h3>
+
+                    <p>
+                        Komputer melakukan restart tanpa
+                        perintah pengguna.
+                    </p>
+
+                    <div class="solution">
+                        <strong>Periksa:</strong>
+                        suhu perangkat, kestabilan daya,
+                        komponen hardware, dan kondisi
+                        sistem operasi.
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- CHECKLIST -->
+
+        <section class="card">
+
+            <span class="section-label">
+                04 — CHECKLIST
+            </span>
+
+            <h2>
+                Checklist Pemeriksaan
+            </h2>
+
+            <p>
+                Gunakan checklist berikut sebagai langkah
+                awal ketika mencari masalah komputer.
+            </p>
+
+
+            <div class="checklist">
+
+                <div class="check">
+                    <span>✓</span>
+                    Periksa kabel power.
+                </div>
+
+                <div class="check">
+                    <span>✓</span>
+                    Periksa koneksi kabel perangkat.
+                </div>
+
+                <div class="check">
+                    <span>✓</span>
+                    Pastikan monitor mendapat sumber input
+                    yang benar.
+                </div>
+
+                <div class="check">
+                    <span>✓</span>
+                    Periksa posisi dan koneksi RAM.
+                </div>
+
+                <div class="check">
+                    <span>✓</span>
+                    Periksa koneksi storage.
+                </div>
+
+                <div class="check">
+                    <span>✓</span>
+                    Periksa perangkat jaringan.
+                </div>
+
+                <div class="check">
+                    <span>✓</span>
+                    Periksa pengaturan sistem operasi.
+                </div>
+
+                <div class="check">
+                    <span>✓</span>
+                    Catat perubahan yang dilakukan sebelum
+                    masalah muncul.
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- TIPS -->
+
+        <section class="note">
+
+            <div class="note-icon">
+                💡
+            </div>
+
+            <div>
+
+                <h2>
+                    Tips Troubleshooting
+                </h2>
+
+                <p>
+                    Jangan langsung mengganti komponen ketika
+                    menemukan masalah. Mulailah dari pemeriksaan
+                    sederhana seperti kabel, koneksi, sumber
+                    daya, dan pengaturan. Lakukan satu perubahan
+                    pada satu waktu agar kamu dapat mengetahui
+                    tindakan mana yang menyelesaikan masalah.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- KESELAMATAN -->
+
+        <section class="card">
+
+            <span class="section-label">
+                05 — KESELAMATAN
+            </span>
+
+            <h2>
+                Perhatikan Keselamatan
+            </h2>
+
+            <p>
+                Saat melakukan troubleshooting hardware,
+                keselamatan harus menjadi prioritas.
+            </p>
+
+
+            <div class="problem">
+
+
+                <div class="problem-box">
+
+                    <div class="problem-title">
+
+                        <span>
+                            ⚡
+                        </span>
+
+                        <h3>
+                            Sebelum Membuka PC
+                        </h3>
+
+                    </div>
+
+                    <ul>
+
+                        <li>
+                            Matikan komputer.
+                        </li>
+
+                        <li>
+                            Lepaskan kabel listrik.
+                        </li>
+
+                        <li>
+                            Pastikan area kerja kering.
+                        </li>
+
+                        <li>
+                            Pegang komponen dengan hati-hati.
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+                <div class="problem-box">
+
+                    <div class="problem-title">
+
+                        <span>
+                            🛑
+                        </span>
+
+                        <h3>
+                            Jangan Memaksa
+                        </h3>
+
+                    </div>
+
+                    <ul>
+
+                        <li>
+                            Jangan memaksa konektor masuk.
+                        </li>
+
+                        <li>
+                            Jangan mengubah komponen tanpa
+                            memahami fungsinya.
+                        </li>
+
+                        <li>
+                            Gunakan panduan/manual komponen.
+                        </li>
+
+                        <li>
+                            Jika ragu, minta bantuan orang yang
+                            lebih berpengalaman.
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- RANGKUMAN -->
+
+        <section class="card summary">
+
+            <span class="section-label">
+                RANGKUMAN
+            </span>
+
+            <h2>
+                Yang Perlu Kamu Ingat
+            </h2>
+
+
+            <div class="summary-grid">
+
+                <div class="summary-item">
+                    ✓ Troubleshooting adalah proses mencari
+                    dan mengatasi penyebab masalah.
+                </div>
+
+                <div class="summary-item">
+                    ✓ Kenali gejala sebelum menentukan tindakan.
+                </div>
+
+                <div class="summary-item">
+                    ✓ Periksa hal sederhana terlebih dahulu.
+                </div>
+
+                <div class="summary-item">
+                    ✓ Lakukan pemeriksaan secara bertahap.
+                </div>
+
+                <div class="summary-item">
+                    ✓ Setelah melakukan perbaikan, uji kembali
+                    komputer.
+                </div>
+
+                <div class="summary-item">
+                    ✓ Utamakan keselamatan saat memeriksa hardware.
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- NAVIGASI -->
+
+        <div class="navigation">
+
+            <a href="bios.html" class="back">
+                ← Materi BIOS
+            </a>
+
+            <a href="hardware.html" class="next">
+                Kembali ke Hardware →
+            </a>
+
+        </div>
+
+
+    </main>
+
+
+</body>
+
+</html>

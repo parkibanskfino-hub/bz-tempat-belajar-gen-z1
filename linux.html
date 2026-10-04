@@ -1,0 +1,1916 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Materi Linux - BZ</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #102642;
+            line-height: 1.7;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #eef8ff 0%,
+                    #ffffff 45%,
+                    #e4fffa 100%
+                );
+
+            min-height: 100vh;
+        }
+
+        /* HEADER */
+
+        .header {
+            width: min(1050px, 92%);
+            margin: 25px auto 0;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .back {
+            display: inline-block;
+
+            padding: 11px 18px;
+
+            background: white;
+            color: #087cff;
+
+            border-radius: 13px;
+
+            text-decoration: none;
+
+            font-size: 14px;
+            font-weight: 700;
+
+            box-shadow:
+                0 8px 25px rgba(20, 100, 160, .10);
+
+            transition: .25s;
+        }
+
+        .back:hover {
+            transform: translateY(-3px);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .brand-logo {
+            width: 45px;
+            height: 45px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 14px;
+
+            color: white;
+            font-weight: 900;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #167cff,
+                    #12c5b4
+                );
+        }
+
+        .brand-text strong {
+            display: block;
+            font-size: 14px;
+        }
+
+        .brand-text span {
+            display: block;
+            color: #0aa99d;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+
+        /* HERO */
+
+        .hero {
+            width: min(1050px, 92%);
+            margin: 25px auto;
+
+            padding: 55px 50px;
+
+            position: relative;
+            overflow: hidden;
+
+            border-radius: 30px;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    120deg,
+                    #087cff 0%,
+                    #159fe6 50%,
+                    #10c5b4 100%
+                );
+
+            box-shadow:
+                0 25px 60px rgba(20, 120, 220, .22);
+        }
+
+        .hero::before {
+            content: "";
+
+            position: absolute;
+
+            width: 320px;
+            height: 320px;
+
+            right: -100px;
+            top: -150px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(255,255,255,.10);
+        }
+
+        .hero::after {
+            content: "";
+
+            position: absolute;
+
+            width: 180px;
+            height: 180px;
+
+            right: 100px;
+            bottom: -120px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(255,255,255,.08);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .label {
+            display: inline-block;
+
+            padding: 7px 13px;
+
+            margin-bottom: 15px;
+
+            border-radius: 20px;
+
+            background:
+                rgba(255,255,255,.16);
+
+            font-size: 11px;
+            font-weight: 800;
+
+            letter-spacing: 1px;
+        }
+
+        .hero-icon {
+            font-size: 48px;
+            margin-bottom: 5px;
+        }
+
+        .hero h1 {
+            font-size:
+                clamp(36px, 5vw, 55px);
+
+            line-height: 1.1;
+
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            max-width: 760px;
+
+            color:
+                rgba(255,255,255,.92);
+
+            font-size: 15px;
+        }
+
+
+        /* CONTAINER */
+
+        .container {
+            width: min(1050px, 92%);
+            margin: auto;
+
+            padding-bottom: 60px;
+        }
+
+
+        /* CARD */
+
+        .card {
+            margin-bottom: 25px;
+
+            padding: 32px;
+
+            border-radius: 22px;
+
+            background:
+                rgba(255,255,255,.94);
+
+            border:
+                1px solid #dceef3;
+
+            box-shadow:
+                0 12px 35px
+                rgba(20, 80, 120, .06);
+        }
+
+
+        /* TUJUAN */
+
+        .info {
+            display: flex;
+            gap: 20px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ffffff,
+                    #effdff
+                );
+        }
+
+        .info-icon {
+            width: 58px;
+            height: 58px;
+
+            flex-shrink: 0;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 17px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #e5f2ff,
+                    #dffbf7
+                );
+
+            font-size: 27px;
+        }
+
+        .info h2 {
+            margin-bottom: 8px;
+        }
+
+        .info p,
+        .info li {
+            color: #61768c;
+            font-size: 14px;
+        }
+
+        .info ul {
+            padding-left: 20px;
+            margin-top: 8px;
+        }
+
+
+        /* SECTION */
+
+        .section-label {
+            color: #087df1;
+
+            font-size: 11px;
+
+            font-weight: 900;
+
+            letter-spacing: 1px;
+        }
+
+        .card h2 {
+            margin-top: 7px;
+            margin-bottom: 12px;
+
+            font-size: 28px;
+
+            line-height: 1.2;
+        }
+
+        .card > p {
+            color: #61768c;
+            font-size: 14px;
+        }
+
+
+        /* FEATURE GRID */
+
+        .features {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 16px;
+
+            margin-top: 25px;
+        }
+
+        .feature {
+            padding: 23px;
+
+            border-radius: 18px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #f8fdff,
+                    #ffffff
+                );
+
+            border:
+                1px solid #dceef4;
+
+            transition: .25s;
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+
+            box-shadow:
+                0 15px 30px
+                rgba(20, 100, 150, .09);
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+
+            display: grid;
+            place-items: center;
+
+            margin-bottom: 12px;
+
+            border-radius: 15px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #e6f2ff,
+                    #e0fbf7
+                );
+
+            font-size: 25px;
+        }
+
+        .feature h3 {
+            margin-bottom: 6px;
+            font-size: 17px;
+        }
+
+        .feature p {
+            color: #61768c;
+            font-size: 13px;
+        }
+
+
+        /* DISTRO */
+
+        .distro-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 16px;
+
+            margin-top: 25px;
+        }
+
+        .distro {
+            padding: 24px;
+
+            border-radius: 18px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f8fdff,
+                    #effffc
+                );
+
+            border:
+                1px solid #d7edef;
+
+            transition: .25s;
+        }
+
+        .distro:hover {
+            transform: translateY(-4px);
+        }
+
+        .distro-title {
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            margin-bottom: 8px;
+        }
+
+        .distro-icon {
+            width: 48px;
+            height: 48px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 14px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #e6f2ff,
+                    #e0fbf7
+                );
+
+            font-size: 24px;
+        }
+
+        .distro h3 {
+            font-size: 18px;
+        }
+
+        .distro p {
+            color: #61768c;
+            font-size: 13px;
+        }
+
+
+        /* KOMPONEN */
+
+        .components {
+            margin-top: 25px;
+        }
+
+        .component {
+            display: flex;
+
+            gap: 17px;
+
+            padding: 19px;
+
+            margin-bottom: 12px;
+
+            border-radius: 16px;
+
+            background: #f8fcff;
+
+            border:
+                1px solid #dceef4;
+        }
+
+        .component-number {
+            width: 40px;
+            height: 40px;
+
+            flex-shrink: 0;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 12px;
+
+            color: white;
+
+            font-weight: 900;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #167cff,
+                    #11c4b3
+                );
+        }
+
+        .component h3 {
+            margin-bottom: 3px;
+
+            font-size: 16px;
+        }
+
+        .component p {
+            color: #61768c;
+
+            font-size: 13px;
+        }
+
+
+        /* COMMAND */
+
+        .command-box {
+            margin-top: 25px;
+
+            padding: 24px;
+
+            border-radius: 18px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #102642,
+                    #123e58
+                );
+
+            color: white;
+
+            overflow-x: auto;
+        }
+
+        .command-box p {
+            color: #b9d4e3;
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+
+        .command-list {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 10px;
+        }
+
+        .command {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 10px;
+
+            padding: 11px 14px;
+
+            border-radius: 10px;
+
+            background:
+                rgba(255,255,255,.08);
+        }
+
+        .command span {
+            color: #c4dbe6;
+            font-size: 12px;
+        }
+
+        code {
+            color: #ffffff;
+            font-family: monospace;
+            font-weight: bold;
+        }
+
+
+        /* CARA KERJA */
+
+        .steps {
+            margin-top: 25px;
+        }
+
+        .step {
+            display: flex;
+
+            gap: 18px;
+
+            padding: 20px;
+
+            margin-bottom: 12px;
+
+            border-radius: 16px;
+
+            background: #f8fcff;
+
+            border:
+                1px solid #dceef4;
+        }
+
+        .step-number {
+            width: 42px;
+            height: 42px;
+
+            flex-shrink: 0;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 50%;
+
+            color: white;
+
+            font-weight: 900;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #167cff,
+                    #11c4b3
+                );
+        }
+
+        .step h3 {
+            margin-bottom: 4px;
+            font-size: 17px;
+        }
+
+        .step p {
+            color: #61768c;
+            font-size: 13px;
+        }
+
+
+        /* KELEBIHAN */
+
+        .pros-cons {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 16px;
+
+            margin-top: 25px;
+        }
+
+        .pros,
+        .cons {
+            padding: 23px;
+
+            border-radius: 18px;
+
+            background: #f8fcff;
+
+            border:
+                1px solid #dceef4;
+        }
+
+        .pros h3 {
+            color: #079b87;
+            margin-bottom: 12px;
+        }
+
+        .cons h3 {
+            color: #087cff;
+            margin-bottom: 12px;
+        }
+
+        .pros ul,
+        .cons ul {
+            padding-left: 20px;
+        }
+
+        .pros li,
+        .cons li {
+            color: #61768c;
+
+            font-size: 13px;
+
+            margin-bottom: 7px;
+        }
+
+
+        /* NOTE */
+
+        .note {
+            display: flex;
+
+            gap: 18px;
+
+            align-items: flex-start;
+
+            padding: 28px;
+
+            margin-bottom: 25px;
+
+            border-radius: 22px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #edf8ff,
+                    #e7fffb
+                );
+
+            border:
+                1px solid #cdece9;
+        }
+
+        .note-icon {
+            font-size: 34px;
+        }
+
+        .note h2 {
+            margin-bottom: 6px;
+        }
+
+        .note p {
+            color: #60758c;
+            font-size: 14px;
+        }
+
+
+        /* RANGKUMAN */
+
+        .summary {
+            color: white;
+
+            background:
+                linear-gradient(
+                    120deg,
+                    #087cff,
+                    #11bfb3
+                );
+
+            box-shadow:
+                0 20px 45px
+                rgba(10, 130, 210, .18);
+        }
+
+        .summary .section-label {
+            color:
+                rgba(255,255,255,.8);
+        }
+
+        .summary h2 {
+            margin-top: 7px;
+            margin-bottom: 18px;
+        }
+
+        .summary-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 10px;
+        }
+
+        .summary-item {
+            padding: 13px;
+
+            border-radius: 12px;
+
+            background:
+                rgba(255,255,255,.14);
+
+            font-size: 13px;
+        }
+
+
+        /* NAVIGASI */
+
+        .navigation {
+            display: flex;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            margin-top: 25px;
+        }
+
+        .next {
+            display: inline-block;
+
+            padding: 12px 20px;
+
+            border-radius: 12px;
+
+            color: white;
+
+            text-decoration: none;
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+            background:
+                linear-gradient(
+                    110deg,
+                    #167cff,
+                    #11c4b3
+                );
+
+            transition: .25s;
+        }
+
+        .next:hover {
+            transform: translateY(-3px);
+        }
+
+
+        /* MOBILE */
+
+        @media (max-width: 750px) {
+
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .hero {
+                padding: 40px 25px;
+            }
+
+            .card,
+            .note {
+                padding: 24px;
+            }
+
+            .features,
+            .distro-grid,
+            .pros-cons,
+            .command-list,
+            .summary-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .info,
+            .note {
+                flex-direction: column;
+            }
+
+            .navigation {
+                flex-direction: column;
+            }
+
+            .navigation a {
+                text-align: center;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <a href="pengenalan-sistem-operasi.html" class="back">
+            ← Kembali ke Sistem Operasi
+        </a>
+
+
+        <div class="brand">
+
+            <div class="brand-logo">
+                BZ
+            </div>
+
+            <div class="brand-text">
+
+                <strong>
+                    Tempat Belajar
+                </strong>
+
+                <span>
+                    Gen Z
+                </span>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <span class="label">
+                MATERI 03 • SISTEM OPERASI
+            </span>
+
+            <div class="hero-icon">
+                🐧
+            </div>
+
+            <h1>
+                Linux
+            </h1>
+
+            <p>
+                Pelajari pengertian Linux, karakteristik,
+                distribusi Linux, struktur sistem, perintah
+                dasar terminal, kelebihan, dan penggunaan Linux.
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <main class="container">
+
+
+        <!-- TUJUAN -->
+
+        <section class="card info">
+
+            <div class="info-icon">
+                🎯
+            </div>
+
+            <div>
+
+                <h2>
+                    Tujuan Pembelajaran
+                </h2>
+
+                <p>
+                    Setelah mempelajari materi ini,
+                    kamu diharapkan dapat:
+                </p>
+
+                <ul>
+
+                    <li>
+                        Menjelaskan pengertian Linux.
+                    </li>
+
+                    <li>
+                        Mengetahui karakteristik Linux.
+                    </li>
+
+                    <li>
+                        Mengenali berbagai distribusi Linux.
+                    </li>
+
+                    <li>
+                        Memahami struktur dasar Linux.
+                    </li>
+
+                    <li>
+                        Mengenal perintah dasar Linux.
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- PENGERTIAN -->
+
+        <section class="card">
+
+            <span class="section-label">
+                01 — PENGENALAN
+            </span>
+
+            <h2>
+                Apa Itu Linux?
+            </h2>
+
+            <p>
+                <strong>Linux</strong> adalah keluarga sistem
+                operasi berbasis kernel Linux yang banyak
+                digunakan pada komputer, server, perangkat
+                jaringan, dan berbagai perangkat lainnya.
+            </p>
+
+            <p style="margin-top:12px;">
+                Linux dikenal luas karena ekosistemnya yang
+                terbuka. Banyak distribusi Linux dikembangkan
+                menggunakan perangkat lunak open source sehingga
+                pengguna dan pengembang dapat mempelajari,
+                menyesuaikan, dan mengembangkan sistem sesuai
+                kebutuhan dan lisensi yang berlaku.
+            </p>
+
+
+            <div class="features">
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        🔓
+                    </div>
+
+                    <h3>
+                        Open Source
+                    </h3>
+
+                    <p>
+                        Banyak komponen Linux tersedia sebagai
+                        perangkat lunak open source sehingga
+                        kode sumbernya dapat dipelajari sesuai
+                        lisensinya.
+                    </p>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        🛡️
+                    </div>
+
+                    <h3>
+                        Stabil
+                    </h3>
+
+                    <p>
+                        Linux banyak digunakan pada server dan
+                        sistem yang membutuhkan kestabilan.
+                    </p>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        ⚙️
+                    </div>
+
+                    <h3>
+                        Fleksibel
+                    </h3>
+
+                    <p>
+                        Linux tersedia dalam berbagai distribusi
+                        dengan pilihan lingkungan desktop dan
+                        konfigurasi yang beragam.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- DISTRIBUSI -->
+
+        <section class="card">
+
+            <span class="section-label">
+                02 — DISTRIBUSI
+            </span>
+
+            <h2>
+                Distribusi Linux
+            </h2>
+
+            <p>
+                Linux tersedia dalam banyak distribusi atau
+                distro. Setiap distro memiliki tujuan dan
+                karakteristik yang berbeda.
+            </p>
+
+
+            <div class="distro-grid">
+
+
+                <div class="distro">
+
+                    <div class="distro-title">
+
+                        <div class="distro-icon">
+                            🟠
+                        </div>
+
+                        <h3>
+                            Ubuntu
+                        </h3>
+
+                    </div>
+
+                    <p>
+                        Salah satu distro Linux yang populer
+                        dan sering digunakan untuk desktop,
+                        pembelajaran, serta server.
+                    </p>
+
+                </div>
+
+
+                <div class="distro">
+
+                    <div class="distro-title">
+
+                        <div class="distro-icon">
+                            🔴
+                        </div>
+
+                        <h3>
+                            Debian
+                        </h3>
+
+                    </div>
+
+                    <p>
+                        Distribusi Linux yang dikenal memiliki
+                        komunitas besar dan menjadi dasar bagi
+                        beberapa distribusi lainnya.
+                    </p>
+
+                </div>
+
+
+                <div class="distro">
+
+                    <div class="distro-title">
+
+                        <div class="distro-icon">
+                            🔵
+                        </div>
+
+                        <h3>
+                            Fedora
+                        </h3>
+
+                    </div>
+
+                    <p>
+                        Distribusi yang dikembangkan dalam
+                        ekosistem Fedora dan sering digunakan
+                        untuk desktop serta pengembangan.
+                    </p>
+
+                </div>
+
+
+                <div class="distro">
+
+                    <div class="distro-title">
+
+                        <div class="distro-icon">
+                            🟢
+                        </div>
+
+                        <h3>
+                            Linux Mint
+                        </h3>
+
+                    </div>
+
+                    <p>
+                        Distro yang berfokus pada kemudahan
+                        penggunaan desktop dan cocok untuk
+                        pengguna yang baru mengenal Linux.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- FUNGSI -->
+
+        <section class="card">
+
+            <span class="section-label">
+                03 — FUNGSI
+            </span>
+
+            <h2>
+                Fungsi Linux
+            </h2>
+
+            <p>
+                Linux dapat digunakan untuk berbagai kebutuhan
+                komputasi.
+            </p>
+
+
+            <div class="features">
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        🖥️
+                    </div>
+
+                    <h3>
+                        Desktop
+                    </h3>
+
+                    <p>
+                        Digunakan sebagai sistem operasi pada
+                        komputer dan laptop untuk aktivitas
+                        sehari-hari.
+                    </p>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        🖧
+                    </div>
+
+                    <h3>
+                        Server
+                    </h3>
+
+                    <p>
+                        Banyak digunakan untuk menyediakan
+                        berbagai layanan jaringan dan server.
+                    </p>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        🌐
+                    </div>
+
+                    <h3>
+                        Jaringan
+                    </h3>
+
+                    <p>
+                        Dapat digunakan untuk berbagai kebutuhan
+                        administrasi dan pengelolaan jaringan.
+                    </p>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        👨‍💻
+                    </div>
+
+                    <h3>
+                        Pemrograman
+                    </h3>
+
+                    <p>
+                        Menyediakan berbagai tools yang sering
+                        digunakan dalam pengembangan perangkat
+                        lunak.
+                    </p>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        ☁️
+                    </div>
+
+                    <h3>
+                        Cloud
+                    </h3>
+
+                    <p>
+                        Linux banyak digunakan sebagai bagian
+                        dari infrastruktur server dan cloud.
+                    </p>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        📡
+                    </div>
+
+                    <h3>
+                        Perangkat Khusus
+                    </h3>
+
+                    <p>
+                        Linux juga dapat digunakan pada berbagai
+                        perangkat dan sistem dengan kebutuhan
+                        khusus.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- KOMPONEN -->
+
+        <section class="card">
+
+            <span class="section-label">
+                04 — STRUKTUR
+            </span>
+
+            <h2>
+                Komponen Dasar Linux
+            </h2>
+
+            <p>
+                Sistem Linux terdiri dari beberapa bagian yang
+                bekerja bersama.
+            </p>
+
+
+            <div class="components">
+
+
+                <div class="component">
+
+                    <div class="component-number">
+                        1
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Kernel
+                        </h3>
+
+                        <p>
+                            Inti sistem yang berfungsi mengatur
+                            komunikasi antara perangkat keras
+                            dan perangkat lunak.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="component">
+
+                    <div class="component-number">
+                        2
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Shell
+                        </h3>
+
+                        <p>
+                            Antarmuka yang memungkinkan pengguna
+                            memberikan perintah kepada sistem
+                            melalui terminal.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="component">
+
+                    <div class="component-number">
+                        3
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            File System
+                        </h3>
+
+                        <p>
+                            Sistem yang digunakan untuk mengatur
+                            file dan direktori pada penyimpanan.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="component">
+
+                    <div class="component-number">
+                        4
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            User Interface
+                        </h3>
+
+                        <p>
+                            Linux dapat menggunakan antarmuka
+                            grafis atau terminal sesuai kebutuhan
+                            pengguna.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- COMMAND -->
+
+        <section class="card">
+
+            <span class="section-label">
+                05 — TERMINAL
+            </span>
+
+            <h2>
+                Perintah Dasar Linux
+            </h2>
+
+            <p>
+                Terminal merupakan salah satu cara penting
+                untuk berinteraksi dengan sistem Linux.
+                Berikut beberapa perintah dasar yang umum
+                dipelajari.
+            </p>
+
+
+            <div class="command-box">
+
+                <p>
+                    Contoh perintah dasar Linux:
+                </p>
+
+
+                <div class="command-list">
+
+
+                    <div class="command">
+
+                        <span>
+                            Melihat isi folder
+                        </span>
+
+                        <code>
+                            ls
+                        </code>
+
+                    </div>
+
+
+                    <div class="command">
+
+                        <span>
+                            Berpindah direktori
+                        </span>
+
+                        <code>
+                            cd
+                        </code>
+
+                    </div>
+
+
+                    <div class="command">
+
+                        <span>
+                            Mengetahui lokasi
+                        </span>
+
+                        <code>
+                            pwd
+                        </code>
+
+                    </div>
+
+
+                    <div class="command">
+
+                        <span>
+                            Membuat folder
+                        </span>
+
+                        <code>
+                            mkdir
+                        </code>
+
+                    </div>
+
+
+                    <div class="command">
+
+                        <span>
+                            Membuat file kosong
+                        </span>
+
+                        <code>
+                            touch
+                        </code>
+
+                    </div>
+
+
+                    <div class="command">
+
+                        <span>
+                            Menyalin file
+                        </span>
+
+                        <code>
+                            cp
+                        </code>
+
+                    </div>
+
+
+                    <div class="command">
+
+                        <span>
+                            Memindahkan file
+                        </span>
+
+                        <code>
+                            mv
+                        </code>
+
+                    </div>
+
+
+                    <div class="command">
+
+                        <span>
+                            Menghapus file
+                        </span>
+
+                        <code>
+                            rm
+                        </code>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- CARA KERJA -->
+
+        <section class="card">
+
+            <span class="section-label">
+                06 — CARA KERJA
+            </span>
+
+            <h2>
+                Cara Linux Menjalankan Program
+            </h2>
+
+            <p>
+                Saat pengguna menjalankan sebuah program,
+                Linux mengelola berbagai sumber daya agar
+                program dapat bekerja.
+            </p>
+
+
+            <div class="steps">
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        1
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Pengguna Memberikan Perintah
+                        </h3>
+
+                        <p>
+                            Pengguna menjalankan aplikasi melalui
+                            desktop atau terminal.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        2
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Shell atau Sistem Menerima Perintah
+                        </h3>
+
+                        <p>
+                            Perintah diteruskan ke sistem untuk
+                            diproses.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        3
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Kernel Mengatur Sumber Daya
+                        </h3>
+
+                        <p>
+                            Kernel membantu mengatur processor,
+                            memori, penyimpanan, dan perangkat
+                            yang dibutuhkan.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        4
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Program Berjalan
+                        </h3>
+
+                        <p>
+                            Program mendapatkan sumber daya
+                            yang diperlukan dan menjalankan
+                            tugasnya.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- KELEBIHAN -->
+
+        <section class="card">
+
+            <span class="section-label">
+                07 — KELEBIHAN
+            </span>
+
+            <h2>
+                Kelebihan dan Hal yang Perlu Dipelajari
+            </h2>
+
+
+            <div class="pros-cons">
+
+
+                <div class="pros">
+
+                    <h3>
+                        ✓ Kelebihan
+                    </h3>
+
+                    <ul>
+
+                        <li>
+                            Banyak pilihan distribusi.
+                        </li>
+
+                        <li>
+                            Banyak perangkat lunak open source.
+                        </li>
+
+                        <li>
+                            Fleksibel untuk berbagai kebutuhan.
+                        </li>
+
+                        <li>
+                            Banyak digunakan pada server.
+                        </li>
+
+                        <li>
+                            Cocok untuk belajar administrasi
+                            sistem dan jaringan.
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+                <div class="cons">
+
+                    <h3>
+                        📚 Hal yang Perlu Dipelajari
+                    </h3>
+
+                    <ul>
+
+                        <li>
+                            Perintah terminal.
+                        </li>
+
+                        <li>
+                            Struktur direktori Linux.
+                        </li>
+
+                        <li>
+                            Hak akses file.
+                        </li>
+
+                        <li>
+                            Instalasi dan pengelolaan paket.
+                        </li>
+
+                        <li>
+                            Administrasi pengguna dan sistem.
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- NOTE -->
+
+        <section class="note">
+
+            <div class="note-icon">
+                💡
+            </div>
+
+            <div>
+
+                <h2>
+                    Tips Belajar Linux
+                </h2>
+
+                <p>
+                    Kalau kamu baru belajar Linux, mulai dari
+                    mengenal struktur folder, mencoba perintah
+                    terminal dasar, memahami permission, lalu
+                    lanjut ke instalasi software dan administrasi
+                    sistem. Kamu juga bisa mencoba Linux melalui
+                    virtual machine agar lebih aman untuk belajar.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- RANGKUMAN -->
+
+        <section class="card summary">
+
+            <span class="section-label">
+                RANGKUMAN
+            </span>
+
+            <h2>
+                Yang Perlu Kamu Ingat
+            </h2>
+
+
+            <div class="summary-grid">
+
+                <div class="summary-item">
+                    ✓ Linux merupakan keluarga sistem operasi
+                    berbasis kernel Linux.
+                </div>
+
+                <div class="summary-item">
+                    ✓ Linux memiliki banyak distribusi seperti
+                    Ubuntu, Debian, Fedora, dan Linux Mint.
+                </div>
+
+                <div class="summary-item">
+                    ✓ Linux banyak digunakan pada desktop,
+                    server, jaringan, dan cloud.
+                </div>
+
+                <div class="summary-item">
+                    ✓ Kernel merupakan bagian inti yang
+                    mengelola sumber daya sistem.
+                </div>
+
+                <div class="summary-item">
+                    ✓ Terminal dapat digunakan untuk
+                    menjalankan berbagai perintah.
+                </div>
+
+                <div class="summary-item">
+                    ✓ Linux cocok dipelajari untuk memahami
+                    sistem operasi dan administrasi komputer.
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- NAVIGASI -->
+
+        <div class="navigation">
+
+            <a href="windows.html" class="back">
+                ← Materi Windows
+            </a>
+
+            <a href="debian.html" class="next">
+                Materi Berikutnya →
+            </a>
+
+        </div>
+
+
+    </main>
+
+</body>
+
+</html>

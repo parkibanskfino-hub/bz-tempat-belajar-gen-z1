@@ -1,0 +1,1702 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Materi Windows - BZ</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #102642;
+            line-height: 1.7;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #eef8ff 0%,
+                    #ffffff 45%,
+                    #e4fffa 100%
+                );
+
+            min-height: 100vh;
+        }
+
+        /* HEADER */
+
+        .header {
+            width: min(1050px, 92%);
+            margin: 25px auto 0;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .back {
+            display: inline-block;
+            padding: 11px 18px;
+
+            background: white;
+            color: #087cff;
+
+            border-radius: 13px;
+            text-decoration: none;
+
+            font-size: 14px;
+            font-weight: 700;
+
+            box-shadow:
+                0 8px 25px rgba(20, 100, 160, .10);
+
+            transition: .25s;
+        }
+
+        .back:hover {
+            transform: translateY(-3px);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .brand-logo {
+            width: 45px;
+            height: 45px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 14px;
+
+            color: white;
+            font-weight: 900;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #167cff,
+                    #12c5b4
+                );
+        }
+
+        .brand-text strong {
+            display: block;
+            font-size: 14px;
+        }
+
+        .brand-text span {
+            display: block;
+            color: #0aa99d;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+
+        /* HERO */
+
+        .hero {
+            width: min(1050px, 92%);
+            margin: 25px auto;
+
+            padding: 55px 50px;
+
+            position: relative;
+            overflow: hidden;
+
+            border-radius: 30px;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    120deg,
+                    #087cff 0%,
+                    #159fe6 50%,
+                    #10c5b4 100%
+                );
+
+            box-shadow:
+                0 25px 60px rgba(20, 120, 220, .22);
+        }
+
+        .hero::before {
+            content: "";
+
+            position: absolute;
+
+            width: 320px;
+            height: 320px;
+
+            right: -100px;
+            top: -150px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(255,255,255,.10);
+        }
+
+        .hero::after {
+            content: "";
+
+            position: absolute;
+
+            width: 180px;
+            height: 180px;
+
+            right: 100px;
+            bottom: -120px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(255,255,255,.08);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .label {
+            display: inline-block;
+
+            padding: 7px 13px;
+            margin-bottom: 15px;
+
+            border-radius: 20px;
+
+            background:
+                rgba(255,255,255,.16);
+
+            font-size: 11px;
+            font-weight: 800;
+
+            letter-spacing: 1px;
+        }
+
+        .hero-icon {
+            font-size: 48px;
+            margin-bottom: 5px;
+        }
+
+        .hero h1 {
+            font-size:
+                clamp(36px, 5vw, 55px);
+
+            line-height: 1.1;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            max-width: 760px;
+
+            color:
+                rgba(255,255,255,.92);
+
+            font-size: 15px;
+        }
+
+
+        /* CONTAINER */
+
+        .container {
+            width: min(1050px, 92%);
+            margin: auto;
+
+            padding-bottom: 60px;
+        }
+
+
+        /* CARD */
+
+        .card {
+            margin-bottom: 25px;
+
+            padding: 32px;
+
+            border-radius: 22px;
+
+            background:
+                rgba(255,255,255,.94);
+
+            border:
+                1px solid #dceef3;
+
+            box-shadow:
+                0 12px 35px
+                rgba(20, 80, 120, .06);
+        }
+
+
+        /* TUJUAN */
+
+        .info {
+            display: flex;
+            gap: 20px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ffffff,
+                    #effdff
+                );
+        }
+
+        .info-icon {
+            width: 58px;
+            height: 58px;
+
+            flex-shrink: 0;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 17px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #e5f2ff,
+                    #dffbf7
+                );
+
+            font-size: 27px;
+        }
+
+        .info h2 {
+            margin-bottom: 8px;
+        }
+
+        .info p,
+        .info li {
+            color: #61768c;
+            font-size: 14px;
+        }
+
+        .info ul {
+            padding-left: 20px;
+            margin-top: 8px;
+        }
+
+
+        /* SECTION */
+
+        .section-label {
+            color: #087df1;
+
+            font-size: 11px;
+
+            font-weight: 900;
+
+            letter-spacing: 1px;
+        }
+
+        .card h2 {
+            margin-top: 7px;
+            margin-bottom: 12px;
+
+            font-size: 28px;
+
+            line-height: 1.2;
+        }
+
+        .card > p {
+            color: #61768c;
+            font-size: 14px;
+        }
+
+
+        /* WINDOWS FEATURES */
+
+        .features {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 16px;
+
+            margin-top: 25px;
+        }
+
+        .feature {
+            padding: 23px;
+
+            border-radius: 18px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #f8fdff,
+                    #ffffff
+                );
+
+            border:
+                1px solid #dceef4;
+
+            transition: .25s;
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+
+            box-shadow:
+                0 15px 30px
+                rgba(20, 100, 150, .09);
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+
+            display: grid;
+            place-items: center;
+
+            margin-bottom: 12px;
+
+            border-radius: 15px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #e6f2ff,
+                    #e0fbf7
+                );
+
+            font-size: 25px;
+        }
+
+        .feature h3 {
+            margin-bottom: 6px;
+            font-size: 17px;
+        }
+
+        .feature p {
+            color: #61768c;
+            font-size: 13px;
+        }
+
+
+        /* VERSI */
+
+        .versions {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 15px;
+
+            margin-top: 25px;
+        }
+
+        .version {
+            padding: 22px;
+
+            border-radius: 18px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f8fdff,
+                    #effffc
+                );
+
+            border:
+                1px solid #d7edef;
+        }
+
+        .version h3 {
+            color: #087cff;
+
+            margin-bottom: 7px;
+
+            font-size: 18px;
+        }
+
+        .version p {
+            color: #61768c;
+
+            font-size: 13px;
+        }
+
+
+        /* KOMPONEN WINDOWS */
+
+        .components {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 16px;
+
+            margin-top: 25px;
+        }
+
+        .component {
+            padding: 23px;
+
+            border-radius: 18px;
+
+            background: #f7fcff;
+
+            border:
+                1px solid #dceef4;
+        }
+
+        .component-title {
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            margin-bottom: 8px;
+        }
+
+        .component-icon {
+            width: 45px;
+            height: 45px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 13px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #e6f2ff,
+                    #e0fbf7
+                );
+
+            font-size: 22px;
+        }
+
+        .component h3 {
+            font-size: 17px;
+        }
+
+        .component p {
+            color: #61768c;
+            font-size: 13px;
+        }
+
+
+        /* LANGKAH */
+
+        .steps {
+            margin-top: 25px;
+        }
+
+        .step {
+            display: flex;
+
+            gap: 18px;
+
+            padding: 20px;
+
+            margin-bottom: 12px;
+
+            border-radius: 16px;
+
+            background: #f8fcff;
+
+            border:
+                1px solid #dceef4;
+        }
+
+        .step-number {
+            width: 42px;
+            height: 42px;
+
+            flex-shrink: 0;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 50%;
+
+            color: white;
+
+            font-weight: 900;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #167cff,
+                    #11c4b3
+                );
+        }
+
+        .step h3 {
+            margin-bottom: 4px;
+            font-size: 17px;
+        }
+
+        .step p {
+            color: #61768c;
+            font-size: 13px;
+        }
+
+
+        /* SHORTCUT */
+
+        .shortcut-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 12px;
+
+            margin-top: 23px;
+        }
+
+        .shortcut {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 15px 18px;
+
+            border-radius: 13px;
+
+            background: #f7fcff;
+
+            border:
+                1px solid #dceef4;
+        }
+
+        .shortcut span {
+            color: #61768c;
+            font-size: 13px;
+        }
+
+        kbd {
+            padding: 5px 9px;
+
+            border-radius: 7px;
+
+            color: #087cff;
+
+            background: white;
+
+            border:
+                1px solid #cfe4ee;
+
+            font-family: monospace;
+
+            font-weight: bold;
+        }
+
+
+        /* TIPS */
+
+        .note {
+            display: flex;
+
+            gap: 18px;
+
+            align-items: flex-start;
+
+            padding: 28px;
+
+            margin-bottom: 25px;
+
+            border-radius: 22px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #edf8ff,
+                    #e7fffb
+                );
+
+            border:
+                1px solid #cdece9;
+        }
+
+        .note-icon {
+            font-size: 34px;
+        }
+
+        .note h2 {
+            margin-bottom: 6px;
+        }
+
+        .note p {
+            color: #60758c;
+            font-size: 14px;
+        }
+
+
+        /* RANGKUMAN */
+
+        .summary {
+            color: white;
+
+            background:
+                linear-gradient(
+                    120deg,
+                    #087cff,
+                    #11bfb3
+                );
+
+            box-shadow:
+                0 20px 45px
+                rgba(10, 130, 210, .18);
+        }
+
+        .summary .section-label {
+            color:
+                rgba(255,255,255,.8);
+        }
+
+        .summary h2 {
+            margin-top: 7px;
+            margin-bottom: 18px;
+        }
+
+        .summary-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 10px;
+        }
+
+        .summary-item {
+            padding: 13px;
+
+            border-radius: 12px;
+
+            background:
+                rgba(255,255,255,.14);
+
+            font-size: 13px;
+        }
+
+
+        /* NAVIGASI */
+
+        .navigation {
+            display: flex;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            margin-top: 25px;
+        }
+
+        .next {
+            display: inline-block;
+
+            padding: 12px 20px;
+
+            border-radius: 12px;
+
+            color: white;
+
+            text-decoration: none;
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+            background:
+                linear-gradient(
+                    110deg,
+                    #167cff,
+                    #11c4b3
+                );
+
+            transition: .25s;
+        }
+
+        .next:hover {
+            transform: translateY(-3px);
+        }
+
+
+        /* MOBILE */
+
+        @media (max-width: 750px) {
+
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .hero {
+                padding: 40px 25px;
+            }
+
+            .card,
+            .note {
+                padding: 24px;
+            }
+
+            .features,
+            .versions,
+            .components,
+            .shortcut-grid,
+            .summary-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .info,
+            .note {
+                flex-direction: column;
+            }
+
+            .navigation {
+                flex-direction: column;
+            }
+
+            .navigation a {
+                text-align: center;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <a href="pengenalan-sistem-operasi.html" class="back">
+            ← Kembali ke Sistem Operasi
+        </a>
+
+        <div class="brand">
+
+            <div class="brand-logo">
+                BZ
+            </div>
+
+            <div class="brand-text">
+
+                <strong>
+                    Tempat Belajar
+                </strong>
+
+                <span>
+                    Gen Z
+                </span>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <span class="label">
+                MATERI 02 • SISTEM OPERASI
+            </span>
+
+            <div class="hero-icon">
+                🪟
+            </div>
+
+            <h1>
+                Windows
+            </h1>
+
+            <p>
+                Pelajari pengertian Windows, fungsi,
+                fitur utama, komponen antarmuka, versi
+                Windows, dan penggunaan dasar sistem operasi
+                Windows.
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <main class="container">
+
+
+        <!-- TUJUAN -->
+
+        <section class="card info">
+
+            <div class="info-icon">
+                🎯
+            </div>
+
+            <div>
+
+                <h2>
+                    Tujuan Pembelajaran
+                </h2>
+
+                <p>
+                    Setelah mempelajari materi ini,
+                    kamu diharapkan dapat:
+                </p>
+
+                <ul>
+
+                    <li>
+                        Menjelaskan pengertian Windows.
+                    </li>
+
+                    <li>
+                        Mengetahui fungsi dasar Windows.
+                    </li>
+
+                    <li>
+                        Mengenali komponen antarmuka Windows.
+                    </li>
+
+                    <li>
+                        Mengetahui beberapa versi Windows.
+                    </li>
+
+                    <li>
+                        Menggunakan fitur dasar Windows.
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- PENGERTIAN -->
+
+        <section class="card">
+
+            <span class="section-label">
+                01 — PENGENALAN
+            </span>
+
+            <h2>
+                Apa Itu Windows?
+            </h2>
+
+            <p>
+                <strong>Windows</strong> adalah keluarga sistem
+                operasi yang dikembangkan oleh Microsoft.
+                Windows banyak digunakan pada komputer desktop
+                dan laptop.
+            </p>
+
+            <p style="margin-top:12px;">
+                Windows menyediakan lingkungan grafis yang
+                memungkinkan pengguna menjalankan aplikasi,
+                mengelola file, mengatur perangkat, dan
+                melakukan berbagai aktivitas pada komputer
+                dengan lebih mudah.
+            </p>
+
+
+            <div class="features">
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        🖥️
+                    </div>
+
+                    <h3>
+                        Antarmuka Grafis
+                    </h3>
+
+                    <p>
+                        Pengguna dapat berinteraksi dengan
+                        komputer melalui jendela, ikon, menu,
+                        dan tombol.
+                    </p>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        📁
+                    </div>
+
+                    <h3>
+                        Mengelola File
+                    </h3>
+
+                    <p>
+                        Windows menyediakan fitur untuk membuat,
+                        memindahkan, menyalin, dan menghapus
+                        file serta folder.
+                    </p>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        ⚙️
+                    </div>
+
+                    <h3>
+                        Mengatur Sistem
+                    </h3>
+
+                    <p>
+                        Pengguna dapat mengatur perangkat,
+                        aplikasi, jaringan, akun, dan berbagai
+                        pengaturan komputer.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- FUNGSI -->
+
+        <section class="card">
+
+            <span class="section-label">
+                02 — FUNGSI
+            </span>
+
+            <h2>
+                Fungsi Utama Windows
+            </h2>
+
+            <p>
+                Sebagai sistem operasi, Windows memiliki
+                berbagai fungsi penting untuk membantu
+                pengguna mengoperasikan komputer.
+            </p>
+
+
+            <div class="features">
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        🧠
+                    </div>
+
+                    <h3>
+                        Mengelola Sumber Daya
+                    </h3>
+
+                    <p>
+                        Mengatur penggunaan processor,
+                        RAM, penyimpanan, dan perangkat
+                        komputer.
+                    </p>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        📂
+                    </div>
+
+                    <h3>
+                        Manajemen File
+                    </h3>
+
+                    <p>
+                        Memudahkan pengguna mengatur file
+                        dan folder menggunakan File Explorer.
+                    </p>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        🔌
+                    </div>
+
+                    <h3>
+                        Mengelola Perangkat
+                    </h3>
+
+                    <p>
+                        Membantu komputer menggunakan printer,
+                        keyboard, mouse, jaringan, dan perangkat
+                        lainnya.
+                    </p>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        🔐
+                    </div>
+
+                    <h3>
+                        Keamanan
+                    </h3>
+
+                    <p>
+                        Menyediakan berbagai fitur keamanan
+                        untuk membantu melindungi perangkat
+                        dan data pengguna.
+                    </p>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        🌐
+                    </div>
+
+                    <h3>
+                        Jaringan
+                    </h3>
+
+                    <p>
+                        Mendukung koneksi jaringan dan internet
+                        untuk berbagai kebutuhan pengguna.
+                    </p>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        📦
+                    </div>
+
+                    <h3>
+                        Menjalankan Aplikasi
+                    </h3>
+
+                    <p>
+                        Menyediakan lingkungan agar berbagai
+                        aplikasi dapat dijalankan.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- KOMPONEN -->
+
+        <section class="card">
+
+            <span class="section-label">
+                03 — ANTARMUKA
+            </span>
+
+            <h2>
+                Komponen Dasar Windows
+            </h2>
+
+            <p>
+                Beberapa bagian antarmuka Windows yang penting
+                untuk diketahui oleh pemula.
+            </p>
+
+
+            <div class="components">
+
+
+                <div class="component">
+
+                    <div class="component-title">
+
+                        <div class="component-icon">
+                            🪟
+                        </div>
+
+                        <h3>
+                            Desktop
+                        </h3>
+
+                    </div>
+
+                    <p>
+                        Area utama yang muncul setelah pengguna
+                        masuk ke Windows. Desktop dapat berisi
+                        ikon, shortcut, dan wallpaper.
+                    </p>
+
+                </div>
+
+
+                <div class="component">
+
+                    <div class="component-title">
+
+                        <div class="component-icon">
+                            ⊞
+                        </div>
+
+                        <h3>
+                            Start Menu
+                        </h3>
+
+                    </div>
+
+                    <p>
+                        Menu yang digunakan untuk mengakses
+                        aplikasi, pengaturan, akun pengguna,
+                        dan berbagai fitur Windows.
+                    </p>
+
+                </div>
+
+
+                <div class="component">
+
+                    <div class="component-title">
+
+                        <div class="component-icon">
+                            📁
+                        </div>
+
+                        <h3>
+                            File Explorer
+                        </h3>
+
+                    </div>
+
+                    <p>
+                        Digunakan untuk melihat dan mengelola
+                        file, folder, serta perangkat
+                        penyimpanan.
+                    </p>
+
+                </div>
+
+
+                <div class="component">
+
+                    <div class="component-title">
+
+                        <div class="component-icon">
+                            📊
+                        </div>
+
+                        <h3>
+                            Taskbar
+                        </h3>
+
+                    </div>
+
+                    <p>
+                        Bagian antarmuka yang biasanya berada
+                        di bagian bawah layar dan menyediakan
+                        akses cepat ke aplikasi serta fitur
+                        sistem.
+                    </p>
+
+                </div>
+
+
+                <div class="component">
+
+                    <div class="component-title">
+
+                        <div class="component-icon">
+                            ⚙️
+                        </div>
+
+                        <h3>
+                            Settings
+                        </h3>
+
+                    </div>
+
+                    <p>
+                        Tempat untuk mengatur berbagai
+                        konfigurasi Windows dan perangkat.
+                    </p>
+
+                </div>
+
+
+                <div class="component">
+
+                    <div class="component-title">
+
+                        <div class="component-icon">
+                            🔎
+                        </div>
+
+                        <h3>
+                            Search
+                        </h3>
+
+                    </div>
+
+                    <p>
+                        Fitur untuk mencari aplikasi, file,
+                        pengaturan, dan informasi tertentu
+                        pada komputer.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- VERSI WINDOWS -->
+
+        <section class="card">
+
+            <span class="section-label">
+                04 — VERSI
+            </span>
+
+            <h2>
+                Perkembangan Windows
+            </h2>
+
+            <p>
+                Windows telah mengalami perkembangan dari
+                generasi ke generasi. Berikut beberapa versi
+                Windows yang terkenal.
+            </p>
+
+
+            <div class="versions">
+
+
+                <div class="version">
+
+                    <h3>
+                        Windows 7
+                    </h3>
+
+                    <p>
+                        Salah satu versi Windows yang populer
+                        dengan tampilan desktop yang sederhana
+                        dan mudah digunakan.
+                    </p>
+
+                </div>
+
+
+                <div class="version">
+
+                    <h3>
+                        Windows 8
+                    </h3>
+
+                    <p>
+                        Memperkenalkan perubahan antarmuka yang
+                        lebih berorientasi pada perangkat
+                        layar sentuh.
+                    </p>
+
+                </div>
+
+
+                <div class="version">
+
+                    <h3>
+                        Windows 10
+                    </h3>
+
+                    <p>
+                        Menghadirkan berbagai fitur modern,
+                        dukungan perangkat yang luas, dan
+                        antarmuka desktop yang familiar.
+                    </p>
+
+                </div>
+
+
+                <div class="version">
+
+                    <h3>
+                        Windows 11
+                    </h3>
+
+                    <p>
+                        Membawa desain antarmuka yang lebih
+                        modern dengan berbagai perubahan pada
+                        desktop, Start Menu, dan fitur sistem.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- CARA KERJA -->
+
+        <section class="card">
+
+            <span class="section-label">
+                05 — CARA KERJA
+            </span>
+
+            <h2>
+                Cara Windows Menjalankan Program
+            </h2>
+
+            <p>
+                Saat pengguna menjalankan aplikasi, Windows
+                mengatur sumber daya yang diperlukan agar
+                aplikasi dapat bekerja.
+            </p>
+
+
+            <div class="steps">
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        1
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Pengguna Membuka Aplikasi
+                        </h3>
+
+                        <p>
+                            Pengguna memilih aplikasi dari
+                            Start Menu, Desktop, Taskbar,
+                            atau File Explorer.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        2
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Windows Memuat Program
+                        </h3>
+
+                        <p>
+                            Sistem operasi memuat program dan
+                            menyediakan sumber daya yang
+                            diperlukan.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        3
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Program Menggunakan Hardware
+                        </h3>
+
+                        <p>
+                            Program menggunakan processor,
+                            RAM, penyimpanan, jaringan, atau
+                            perangkat lain sesuai kebutuhannya.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        4
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Pengguna Menggunakan Program
+                        </h3>
+
+                        <p>
+                            Setelah berjalan, pengguna dapat
+                            menggunakan fungsi aplikasi
+                            tersebut.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- SHORTCUT -->
+
+        <section class="card">
+
+            <span class="section-label">
+                06 — SHORTCUT
+            </span>
+
+            <h2>
+                Shortcut Windows yang Berguna
+            </h2>
+
+            <p>
+                Shortcut dapat membantu mempercepat beberapa
+                aktivitas saat menggunakan Windows.
+            </p>
+
+
+            <div class="shortcut-grid">
+
+                <div class="shortcut">
+
+                    <span>
+                        Membuka File Explorer
+                    </span>
+
+                    <kbd>Win + E</kbd>
+
+                </div>
+
+
+                <div class="shortcut">
+
+                    <span>
+                        Membuka Settings
+                    </span>
+
+                    <kbd>Win + I</kbd>
+
+                </div>
+
+
+                <div class="shortcut">
+
+                    <span>
+                        Mengunci komputer
+                    </span>
+
+                    <kbd>Win + L</kbd>
+
+                </div>
+
+
+                <div class="shortcut">
+
+                    <span>
+                        Membuka Run
+                    </span>
+
+                    <kbd>Win + R</kbd>
+
+                </div>
+
+
+                <div class="shortcut">
+
+                    <span>
+                        Menyalin
+                    </span>
+
+                    <kbd>Ctrl + C</kbd>
+
+                </div>
+
+
+                <div class="shortcut">
+
+                    <span>
+                        Menempelkan
+                    </span>
+
+                    <kbd>Ctrl + V</kbd>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- TIPS -->
+
+        <section class="note">
+
+            <div class="note-icon">
+                💡
+            </div>
+
+            <div>
+
+                <h2>
+                    Tips untuk Pemula
+                </h2>
+
+                <p>
+                    Biasakan mengenali Desktop, Start Menu,
+                    Taskbar, File Explorer, dan Settings.
+                    Kelima bagian tersebut merupakan bagian
+                    penting yang sering digunakan ketika
+                    mengoperasikan Windows.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- RANGKUMAN -->
+
+        <section class="card summary">
+
+            <span class="section-label">
+                RANGKUMAN
+            </span>
+
+            <h2>
+                Yang Perlu Kamu Ingat
+            </h2>
+
+
+            <div class="summary-grid">
+
+                <div class="summary-item">
+                    ✓ Windows adalah keluarga sistem operasi
+                    yang dikembangkan oleh Microsoft.
+                </div>
+
+                <div class="summary-item">
+                    ✓ Windows digunakan untuk mengelola
+                    sumber daya komputer.
+                </div>
+
+                <div class="summary-item">
+                    ✓ Windows menyediakan antarmuka grafis
+                    untuk pengguna.
+                </div>
+
+                <div class="summary-item">
+                    ✓ File Explorer digunakan untuk mengelola
+                    file dan folder.
+                </div>
+
+                <div class="summary-item">
+                    ✓ Start Menu dan Taskbar membantu pengguna
+                    mengakses aplikasi dan fitur sistem.
+                </div>
+
+                <div class="summary-item">
+                    ✓ Shortcut dapat mempercepat pekerjaan
+                    saat menggunakan Windows.
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- NAVIGASI -->
+
+        <div class="navigation">
+
+            <a href="system.html" class="back">
+                ← Pengenalan Sistem Operasi
+            </a>
+
+            <a href="linux.html" class="next">
+                Materi Berikutnya →
+            </a>
+
+        </div>
+
+
+    </main>
+
+
+</body>
+
+</html>
