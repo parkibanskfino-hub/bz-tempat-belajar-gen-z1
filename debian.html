@@ -1,0 +1,2056 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Materi Debian - BZ</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #102642;
+            line-height: 1.7;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #eef8ff 0%,
+                    #ffffff 45%,
+                    #e4fffa 100%
+                );
+
+            min-height: 100vh;
+        }
+
+        /* HEADER */
+
+        .header {
+            width: min(1050px, 92%);
+            margin: 25px auto 0;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .back {
+            display: inline-block;
+            padding: 11px 18px;
+
+            background: white;
+            color: #087cff;
+
+            border-radius: 13px;
+            text-decoration: none;
+
+            font-size: 14px;
+            font-weight: 700;
+
+            box-shadow:
+                0 8px 25px rgba(20, 100, 160, .10);
+
+            transition: .25s;
+        }
+
+        .back:hover {
+            transform: translateY(-3px);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .brand-logo {
+            width: 45px;
+            height: 45px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 14px;
+
+            color: white;
+            font-weight: 900;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #167cff,
+                    #12c5b4
+                );
+        }
+
+        .brand-text strong {
+            display: block;
+            font-size: 14px;
+        }
+
+        .brand-text span {
+            display: block;
+            color: #0aa99d;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+
+        /* HERO */
+
+        .hero {
+            width: min(1050px, 92%);
+            margin: 25px auto;
+
+            padding: 55px 50px;
+
+            position: relative;
+            overflow: hidden;
+
+            border-radius: 30px;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    120deg,
+                    #087cff 0%,
+                    #159fe6 50%,
+                    #10c5b4 100%
+                );
+
+            box-shadow:
+                0 25px 60px rgba(20, 120, 220, .22);
+        }
+
+        .hero::before {
+            content: "";
+
+            position: absolute;
+
+            width: 320px;
+            height: 320px;
+
+            right: -100px;
+            top: -150px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(255,255,255,.10);
+        }
+
+        .hero::after {
+            content: "";
+
+            position: absolute;
+
+            width: 180px;
+            height: 180px;
+
+            right: 100px;
+            bottom: -120px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(255,255,255,.08);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .label {
+            display: inline-block;
+
+            padding: 7px 13px;
+            margin-bottom: 15px;
+
+            border-radius: 20px;
+
+            background:
+                rgba(255,255,255,.16);
+
+            font-size: 11px;
+            font-weight: 800;
+
+            letter-spacing: 1px;
+        }
+
+        .hero-icon {
+            font-size: 48px;
+            margin-bottom: 5px;
+        }
+
+        .hero h1 {
+            font-size: clamp(36px, 5vw, 55px);
+            line-height: 1.1;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            max-width: 760px;
+
+            color: rgba(255,255,255,.92);
+            font-size: 15px;
+        }
+
+
+        /* CONTAINER */
+
+        .container {
+            width: min(1050px, 92%);
+            margin: auto;
+            padding-bottom: 60px;
+        }
+
+
+        /* CARD */
+
+        .card {
+            margin-bottom: 25px;
+
+            padding: 32px;
+
+            border-radius: 22px;
+
+            background:
+                rgba(255,255,255,.94);
+
+            border:
+                1px solid #dceef3;
+
+            box-shadow:
+                0 12px 35px
+                rgba(20, 80, 120, .06);
+        }
+
+
+        /* INFO */
+
+        .info {
+            display: flex;
+            gap: 20px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ffffff,
+                    #effdff
+                );
+        }
+
+        .info-icon {
+            width: 58px;
+            height: 58px;
+
+            flex-shrink: 0;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 17px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #e5f2ff,
+                    #dffbf7
+                );
+
+            font-size: 27px;
+        }
+
+        .info h2 {
+            margin-bottom: 8px;
+        }
+
+        .info p,
+        .info li {
+            color: #61768c;
+            font-size: 14px;
+        }
+
+        .info ul {
+            padding-left: 20px;
+            margin-top: 8px;
+        }
+
+
+        /* SECTION */
+
+        .section-label {
+            color: #087df1;
+
+            font-size: 11px;
+            font-weight: 900;
+
+            letter-spacing: 1px;
+        }
+
+        .card h2 {
+            margin-top: 7px;
+            margin-bottom: 12px;
+
+            font-size: 28px;
+            line-height: 1.2;
+        }
+
+        .card > p {
+            color: #61768c;
+            font-size: 14px;
+        }
+
+
+        /* FEATURES */
+
+        .features {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 16px;
+
+            margin-top: 25px;
+        }
+
+        .feature {
+            padding: 23px;
+
+            border-radius: 18px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #f8fdff,
+                    #ffffff
+                );
+
+            border:
+                1px solid #dceef4;
+
+            transition: .25s;
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+
+            box-shadow:
+                0 15px 30px
+                rgba(20, 100, 150, .09);
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+
+            display: grid;
+            place-items: center;
+
+            margin-bottom: 12px;
+
+            border-radius: 15px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #e6f2ff,
+                    #e0fbf7
+                );
+
+            font-size: 25px;
+        }
+
+        .feature h3 {
+            margin-bottom: 6px;
+            font-size: 17px;
+        }
+
+        .feature p {
+            color: #61768c;
+            font-size: 13px;
+        }
+
+
+        /* VERSI */
+
+        .versions {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 16px;
+
+            margin-top: 25px;
+        }
+
+        .version {
+            padding: 23px;
+
+            border-radius: 18px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f8fdff,
+                    #effffc
+                );
+
+            border:
+                1px solid #d7edef;
+
+            transition: .25s;
+        }
+
+        .version:hover {
+            transform: translateY(-4px);
+        }
+
+        .version-title {
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            margin-bottom: 8px;
+        }
+
+        .version-icon {
+            width: 48px;
+            height: 48px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 14px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #e6f2ff,
+                    #e0fbf7
+                );
+
+            font-size: 23px;
+        }
+
+        .version h3 {
+            font-size: 17px;
+        }
+
+        .version p {
+            color: #61768c;
+            font-size: 13px;
+        }
+
+
+        /* KOMPONEN */
+
+        .components {
+            margin-top: 25px;
+        }
+
+        .component {
+            display: flex;
+
+            gap: 17px;
+
+            padding: 19px;
+
+            margin-bottom: 12px;
+
+            border-radius: 16px;
+
+            background: #f8fcff;
+
+            border:
+                1px solid #dceef4;
+        }
+
+        .component-number {
+            width: 42px;
+            height: 42px;
+
+            flex-shrink: 0;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 13px;
+
+            color: white;
+            font-weight: 900;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #167cff,
+                    #11c4b3
+                );
+        }
+
+        .component h3 {
+            font-size: 16px;
+            margin-bottom: 3px;
+        }
+
+        .component p {
+            color: #61768c;
+            font-size: 13px;
+        }
+
+
+        /* COMMAND */
+
+        .command-box {
+            margin-top: 25px;
+
+            padding: 25px;
+
+            border-radius: 18px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #102642,
+                    #123e58
+                );
+
+            color: white;
+        }
+
+        .command-box p {
+            color: #b9d4e3;
+            font-size: 13px;
+            margin-bottom: 17px;
+        }
+
+        .commands {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 10px;
+        }
+
+        .command {
+            display: flex;
+
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 10px;
+
+            padding: 12px 14px;
+
+            border-radius: 10px;
+
+            background:
+                rgba(255,255,255,.08);
+        }
+
+        .command span {
+            color: #c4dbe6;
+            font-size: 12px;
+        }
+
+        code {
+            color: white;
+            font-family: monospace;
+            font-weight: bold;
+        }
+
+
+        /* INSTALASI */
+
+        .steps {
+            margin-top: 25px;
+        }
+
+        .step {
+            display: flex;
+
+            gap: 18px;
+
+            padding: 20px;
+
+            margin-bottom: 12px;
+
+            border-radius: 16px;
+
+            background: #f8fcff;
+
+            border:
+                1px solid #dceef4;
+        }
+
+        .step-number {
+            width: 42px;
+            height: 42px;
+
+            flex-shrink: 0;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 50%;
+
+            color: white;
+            font-weight: 900;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #167cff,
+                    #11c4b3
+                );
+        }
+
+        .step h3 {
+            margin-bottom: 4px;
+            font-size: 17px;
+        }
+
+        .step p {
+            color: #61768c;
+            font-size: 13px;
+        }
+
+
+        /* KELEBIHAN */
+
+        .pros-cons {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 16px;
+
+            margin-top: 25px;
+        }
+
+        .pros,
+        .cons {
+            padding: 23px;
+
+            border-radius: 18px;
+
+            background: #f8fcff;
+
+            border:
+                1px solid #dceef4;
+        }
+
+        .pros h3 {
+            color: #079b87;
+            margin-bottom: 12px;
+        }
+
+        .cons h3 {
+            color: #087cff;
+            margin-bottom: 12px;
+        }
+
+        .pros ul,
+        .cons ul {
+            padding-left: 20px;
+        }
+
+        .pros li,
+        .cons li {
+            color: #61768c;
+
+            font-size: 13px;
+            margin-bottom: 7px;
+        }
+
+
+        /* TIPS */
+
+        .note {
+            display: flex;
+
+            gap: 18px;
+            align-items: flex-start;
+
+            padding: 28px;
+            margin-bottom: 25px;
+
+            border-radius: 22px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #edf8ff,
+                    #e7fffb
+                );
+
+            border:
+                1px solid #cdece9;
+        }
+
+        .note-icon {
+            font-size: 34px;
+        }
+
+        .note h2 {
+            margin-bottom: 6px;
+        }
+
+        .note p {
+            color: #60758c;
+            font-size: 14px;
+        }
+
+
+        /* SUMMARY */
+
+        .summary {
+            color: white;
+
+            background:
+                linear-gradient(
+                    120deg,
+                    #087cff,
+                    #11bfb3
+                );
+
+            box-shadow:
+                0 20px 45px
+                rgba(10, 130, 210, .18);
+        }
+
+        .summary .section-label {
+            color:
+                rgba(255,255,255,.8);
+        }
+
+        .summary h2 {
+            margin-top: 7px;
+            margin-bottom: 18px;
+        }
+
+        .summary-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 10px;
+        }
+
+        .summary-item {
+            padding: 13px;
+
+            border-radius: 12px;
+
+            background:
+                rgba(255,255,255,.14);
+
+            font-size: 13px;
+        }
+
+
+        /* NAVIGASI */
+
+        .navigation {
+            display: flex;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            margin-top: 25px;
+        }
+
+        .next {
+            display: inline-block;
+
+            padding: 12px 20px;
+
+            border-radius: 12px;
+
+            color: white;
+
+            text-decoration: none;
+
+            font-size: 13px;
+            font-weight: 800;
+
+            background:
+                linear-gradient(
+                    110deg,
+                    #167cff,
+                    #11c4b3
+                );
+
+            transition: .25s;
+        }
+
+        .next:hover {
+            transform: translateY(-3px);
+        }
+
+
+        /* MOBILE */
+
+        @media (max-width: 750px) {
+
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .hero {
+                padding: 40px 25px;
+            }
+
+            .card,
+            .note {
+                padding: 24px;
+            }
+
+            .features,
+            .versions,
+            .pros-cons,
+            .commands,
+            .summary-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .info,
+            .note {
+                flex-direction: column;
+            }
+
+            .navigation {
+                flex-direction: column;
+            }
+
+            .navigation a {
+                text-align: center;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <a href="linux-server.html" class="back">
+            ← Kembali ke Linux Server
+        </a>
+
+        <div class="brand">
+
+            <div class="brand-logo">
+                BZ
+            </div>
+
+            <div class="brand-text">
+
+                <strong>
+                    Tempat Belajar
+                </strong>
+
+                <span>
+                    Gen Z
+                </span>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <span class="label">
+                MATERI 05 • SISTEM OPERASI
+            </span>
+
+            <div class="hero-icon">
+                🌀
+            </div>
+
+            <h1>
+                Debian
+            </h1>
+
+            <p>
+                Pelajari pengertian Debian, karakteristik,
+                kelebihan, struktur sistem, manajemen paket,
+                perintah dasar, serta penggunaan Debian sebagai
+                sistem operasi desktop maupun server.
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <main class="container">
+
+
+        <!-- TUJUAN -->
+
+        <section class="card info">
+
+            <div class="info-icon">
+                🎯
+            </div>
+
+            <div>
+
+                <h2>
+                    Tujuan Pembelajaran
+                </h2>
+
+                <p>
+                    Setelah mempelajari materi ini,
+                    kamu diharapkan dapat:
+                </p>
+
+                <ul>
+
+                    <li>
+                        Menjelaskan pengertian Debian.
+                    </li>
+
+                    <li>
+                        Mengetahui karakteristik Debian.
+                    </li>
+
+                    <li>
+                        Memahami sistem manajemen paket Debian.
+                    </li>
+
+                    <li>
+                        Mengenal perintah dasar Debian.
+                    </li>
+
+                    <li>
+                        Mengetahui penggunaan Debian sebagai
+                        sistem desktop dan server.
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- PENGERTIAN -->
+
+        <section class="card">
+
+            <span class="section-label">
+                01 — PENGENALAN
+            </span>
+
+            <h2>
+                Apa Itu Debian?
+            </h2>
+
+            <p>
+                <strong>Debian</strong> adalah distribusi sistem
+                operasi berbasis Linux yang dikembangkan oleh
+                komunitas melalui Debian Project.
+            </p>
+
+            <p style="margin-top:12px;">
+                Debian dikenal sebagai salah satu distribusi
+                Linux yang memiliki banyak paket perangkat lunak,
+                komunitas yang besar, serta dapat digunakan untuk
+                berbagai kebutuhan mulai dari komputer desktop
+                hingga server.
+            </p>
+
+
+            <div class="features">
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        🔓
+                    </div>
+
+                    <h3>
+                        Open Source
+                    </h3>
+
+                    <p>
+                        Debian dikembangkan menggunakan banyak
+                        perangkat lunak open source dengan
+                        lisensi masing-masing.
+                    </p>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        📦
+                    </div>
+
+                    <h3>
+                        Banyak Paket
+                    </h3>
+
+                    <p>
+                        Debian menyediakan repositori dengan
+                        banyak paket perangkat lunak yang dapat
+                        dipasang melalui package manager.
+                    </p>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        🖥️
+                    </div>
+
+                    <h3>
+                        Desktop & Server
+                    </h3>
+
+                    <p>
+                        Debian dapat digunakan untuk kebutuhan
+                        desktop maupun sebagai sistem operasi
+                        server.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- KARAKTERISTIK -->
+
+        <section class="card">
+
+            <span class="section-label">
+                02 — KARAKTERISTIK
+            </span>
+
+            <h2>
+                Karakteristik Debian
+            </h2>
+
+            <p>
+                Debian memiliki beberapa karakteristik yang
+                membuatnya banyak digunakan dalam berbagai
+                lingkungan komputer.
+            </p>
+
+
+            <div class="versions">
+
+
+                <div class="version">
+
+                    <div class="version-title">
+
+                        <div class="version-icon">
+                            🛡️
+                        </div>
+
+                        <h3>
+                            Stabil
+                        </h3>
+
+                    </div>
+
+                    <p>
+                        Rilis stabil Debian berfokus pada
+                        kestabilan dan pengujian paket sebelum
+                        digunakan pada sistem stabil.
+                    </p>
+
+                </div>
+
+
+                <div class="version">
+
+                    <div class="version-title">
+
+                        <div class="version-icon">
+                            👥
+                        </div>
+
+                        <h3>
+                            Komunitas
+                        </h3>
+
+                    </div>
+
+                    <p>
+                        Debian dikembangkan oleh komunitas
+                        pengembang dan kontributor dari berbagai
+                        tempat.
+                    </p>
+
+                </div>
+
+
+                <div class="version">
+
+                    <div class="version-title">
+
+                        <div class="version-icon">
+                            📦
+                        </div>
+
+                        <h3>
+                            Package Management
+                        </h3>
+
+                    </div>
+
+                    <p>
+                        Debian menggunakan sistem paket yang
+                        memudahkan proses instalasi, pembaruan,
+                        dan penghapusan software.
+                    </p>
+
+                </div>
+
+
+                <div class="version">
+
+                    <div class="version-title">
+
+                        <div class="version-icon">
+                            ⚙️
+                        </div>
+
+                        <h3>
+                            Fleksibel
+                        </h3>
+
+                    </div>
+
+                    <p>
+                        Debian dapat dikonfigurasi untuk berbagai
+                        kebutuhan, termasuk desktop dan server.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- VERSI -->
+
+        <section class="card">
+
+            <span class="section-label">
+                03 — CABANG DEBIAN
+            </span>
+
+            <h2>
+                Cabang Rilis Debian
+            </h2>
+
+            <p>
+                Debian memiliki beberapa cabang pengembangan
+                dengan tingkat kestabilan dan tujuan yang
+                berbeda.
+            </p>
+
+
+            <div class="versions">
+
+
+                <div class="version">
+
+                    <div class="version-title">
+
+                        <div class="version-icon">
+                            🟢
+                        </div>
+
+                        <h3>
+                            Stable
+                        </h3>
+
+                    </div>
+
+                    <p>
+                        Cabang utama yang ditujukan untuk penggunaan
+                        yang membutuhkan kestabilan.
+                    </p>
+
+                </div>
+
+
+                <div class="version">
+
+                    <div class="version-title">
+
+                        <div class="version-icon">
+                            🟡
+                        </div>
+
+                        <h3>
+                            Testing
+                        </h3>
+
+                    </div>
+
+                    <p>
+                        Berisi paket yang sedang dipersiapkan
+                        untuk menjadi bagian dari rilis stable
+                        berikutnya.
+                    </p>
+
+                </div>
+
+
+                <div class="version">
+
+                    <div class="version-title">
+
+                        <div class="version-icon">
+                            🔴
+                        </div>
+
+                        <h3>
+                            Unstable
+                        </h3>
+
+                    </div>
+
+                    <p>
+                        Cabang pengembangan yang menerima
+                        perubahan dan paket baru lebih cepat.
+                    </p>
+
+                </div>
+
+
+                <div class="version">
+
+                    <div class="version-title">
+
+                        <div class="version-icon">
+                            🧪
+                        </div>
+
+                        <h3>
+                            Experimental
+                        </h3>
+
+                    </div>
+
+                    <p>
+                        Area untuk paket atau perubahan yang
+                        masih dalam tahap eksperimen.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- PACKAGE -->
+
+        <section class="card">
+
+            <span class="section-label">
+                04 — PACKAGE MANAGEMENT
+            </span>
+
+            <h2>
+                Manajemen Paket Debian
+            </h2>
+
+            <p>
+                Salah satu hal penting yang perlu dipahami saat
+                menggunakan Debian adalah pengelolaan paket
+                perangkat lunak.
+            </p>
+
+
+            <div class="components">
+
+
+                <div class="component">
+
+                    <div class="component-number">
+                        1
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            APT
+                        </h3>
+
+                        <p>
+                            APT adalah kumpulan tools yang
+                            digunakan untuk mengelola paket
+                            perangkat lunak dari repositori.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="component">
+
+                    <div class="component-number">
+                        2
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            DPKG
+                        </h3>
+
+                        <p>
+                            dpkg merupakan sistem tingkat rendah
+                            yang digunakan untuk mengelola paket
+                            Debian dengan format .deb.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="component">
+
+                    <div class="component-number">
+                        3
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Repository
+                        </h3>
+
+                        <p>
+                            Repository merupakan tempat paket
+                            perangkat lunak disediakan agar
+                            dapat diakses oleh sistem.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="component">
+
+                    <div class="component-number">
+                        4
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Paket .deb
+                        </h3>
+
+                        <p>
+                            Paket dengan format .deb merupakan
+                            salah satu format paket perangkat
+                            lunak yang digunakan Debian.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- COMMAND -->
+
+        <section class="card">
+
+            <span class="section-label">
+                05 — PERINTAH DASAR
+            </span>
+
+            <h2>
+                Perintah Dasar Debian
+            </h2>
+
+            <p>
+                Berikut beberapa perintah yang dapat digunakan
+                untuk belajar administrasi Debian.
+            </p>
+
+
+            <div class="command-box">
+
+                <p>
+                    Contoh perintah:
+                </p>
+
+
+                <div class="commands">
+
+
+                    <div class="command">
+
+                        <span>
+                            Melihat isi direktori
+                        </span>
+
+                        <code>
+                            ls
+                        </code>
+
+                    </div>
+
+
+                    <div class="command">
+
+                        <span>
+                            Berpindah direktori
+                        </span>
+
+                        <code>
+                            cd
+                        </code>
+
+                    </div>
+
+
+                    <div class="command">
+
+                        <span>
+                            Mengetahui lokasi
+                        </span>
+
+                        <code>
+                            pwd
+                        </code>
+
+                    </div>
+
+
+                    <div class="command">
+
+                        <span>
+                            Memperbarui daftar paket
+                        </span>
+
+                        <code>
+                            apt update
+                        </code>
+
+                    </div>
+
+
+                    <div class="command">
+
+                        <span>
+                            Memasang paket
+                        </span>
+
+                        <code>
+                            apt install
+                        </code>
+
+                    </div>
+
+
+                    <div class="command">
+
+                        <span>
+                            Menghapus paket
+                        </span>
+
+                        <code>
+                            apt remove
+                        </code>
+
+                    </div>
+
+
+                    <div class="command">
+
+                        <span>
+                            Mencari paket
+                        </span>
+
+                        <code>
+                            apt search
+                        </code>
+
+                    </div>
+
+
+                    <div class="command">
+
+                        <span>
+                            Melihat informasi paket
+                        </span>
+
+                        <code>
+                            apt show
+                        </code>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- STRUKTUR -->
+
+        <section class="card">
+
+            <span class="section-label">
+                06 — STRUKTUR DIREKTORI
+            </span>
+
+            <h2>
+                Direktori Penting di Debian
+            </h2>
+
+            <p>
+                Linux menggunakan struktur direktori yang
+                berbeda dengan sistem operasi Windows.
+            </p>
+
+
+            <div class="components">
+
+
+                <div class="component">
+
+                    <div class="component-number">
+                        /
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Root Directory
+                        </h3>
+
+                        <p>
+                            Direktori paling atas dalam struktur
+                            file system Linux.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="component">
+
+                    <div class="component-number">
+                        1
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            /home
+                        </h3>
+
+                        <p>
+                            Menyimpan direktori dan file milik
+                            pengguna biasa.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="component">
+
+                    <div class="component-number">
+                        2
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            /etc
+                        </h3>
+
+                        <p>
+                            Berisi berbagai file konfigurasi
+                            sistem dan layanan.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="component">
+
+                    <div class="component-number">
+                        3
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            /var
+                        </h3>
+
+                        <p>
+                            Menyimpan data yang sering berubah,
+                            seperti beberapa file log dan data
+                            layanan.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="component">
+
+                    <div class="component-number">
+                        4
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            /tmp
+                        </h3>
+
+                        <p>
+                            Digunakan untuk menyimpan file
+                            sementara.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- INSTALASI -->
+
+        <section class="card">
+
+            <span class="section-label">
+                07 — INSTALASI
+            </span>
+
+            <h2>
+                Gambaran Instalasi Debian
+            </h2>
+
+            <p>
+                Saat melakukan instalasi Debian, pengguna akan
+                melewati beberapa tahapan konfigurasi.
+            </p>
+
+
+            <div class="steps">
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        1
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Menyiapkan Media Instalasi
+                        </h3>
+
+                        <p>
+                            Siapkan media instalasi Debian dan
+                            pastikan perangkat memenuhi kebutuhan
+                            sistem.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        2
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Memilih Bahasa dan Lokasi
+                        </h3>
+
+                        <p>
+                            Installer akan meminta beberapa
+                            konfigurasi dasar seperti bahasa,
+                            lokasi, dan keyboard.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        3
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Konfigurasi Jaringan
+                        </h3>
+
+                        <p>
+                            Sistem dapat dikonfigurasi agar
+                            terhubung ke jaringan sesuai kebutuhan.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        4
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Membuat User
+                        </h3>
+
+                        <p>
+                            Pengguna dapat membuat akun dan
+                            mengatur informasi autentikasi sesuai
+                            konfigurasi instalasi.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        5
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Memilih Software
+                        </h3>
+
+                        <p>
+                            Installer dapat digunakan untuk
+                            memilih lingkungan desktop atau
+                            software sesuai kebutuhan.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        6
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Menyelesaikan Instalasi
+                        </h3>
+
+                        <p>
+                            Setelah konfigurasi selesai, sistem
+                            dipasang dan perangkat dapat melakukan
+                            boot ke Debian.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- KELEBIHAN -->
+
+        <section class="card">
+
+            <span class="section-label">
+                08 — KELEBIHAN
+            </span>
+
+            <h2>
+                Kelebihan dan Tantangan Debian
+            </h2>
+
+
+            <div class="pros-cons">
+
+
+                <div class="pros">
+
+                    <h3>
+                        ✓ Kelebihan
+                    </h3>
+
+                    <ul>
+
+                        <li>
+                            Stabil dan cocok untuk berbagai
+                            kebutuhan.
+                        </li>
+
+                        <li>
+                            Memiliki banyak paket perangkat lunak.
+                        </li>
+
+                        <li>
+                            Dapat digunakan untuk desktop dan server.
+                        </li>
+
+                        <li>
+                            Komunitas dan dokumentasi yang luas.
+                        </li>
+
+                        <li>
+                            Sistem manajemen paket yang kuat.
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+                <div class="cons">
+
+                    <h3>
+                        📚 Yang Perlu Dipelajari
+                    </h3>
+
+                    <ul>
+
+                        <li>
+                            Penggunaan terminal.
+                        </li>
+
+                        <li>
+                            Struktur direktori Linux.
+                        </li>
+
+                        <li>
+                            Manajemen paket.
+                        </li>
+
+                        <li>
+                            Permission dan user.
+                        </li>
+
+                        <li>
+                            Konfigurasi jaringan dan service.
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- TIPS -->
+
+        <section class="note">
+
+            <div class="note-icon">
+                💡
+            </div>
+
+            <div>
+
+                <h2>
+                    Tips Belajar Debian
+                </h2>
+
+                <p>
+                    Kalau kamu baru belajar Debian, mulai dari
+                    mengenal desktop dan terminal. Setelah itu
+                    pelajari struktur direktori, perintah dasar,
+                    APT, user dan permission. Untuk latihan
+                    administrasi server, Debian juga dapat
+                    dipelajari menggunakan virtual machine.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- RANGKUMAN -->
+
+        <section class="card summary">
+
+            <span class="section-label">
+                RANGKUMAN
+            </span>
+
+            <h2>
+                Yang Perlu Kamu Ingat
+            </h2>
+
+
+            <div class="summary-grid">
+
+                <div class="summary-item">
+                    ✓ Debian adalah distribusi sistem operasi
+                    berbasis Linux.
+                </div>
+
+                <div class="summary-item">
+                    ✓ Debian dapat digunakan untuk komputer
+                    desktop maupun server.
+                </div>
+
+                <div class="summary-item">
+                    ✓ APT digunakan untuk membantu mengelola
+                    paket perangkat lunak.
+                </div>
+
+                <div class="summary-item">
+                    ✓ dpkg merupakan sistem tingkat rendah
+                    untuk mengelola paket Debian.
+                </div>
+
+                <div class="summary-item">
+                    ✓ Struktur direktori Linux menggunakan
+                    root "/" sebagai direktori paling atas.
+                </div>
+
+                <div class="summary-item">
+                    ✓ Menguasai terminal merupakan salah satu
+                    dasar penting untuk belajar Debian.
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- NAVIGASI -->
+
+        <div class="navigation">
+
+            <a href="linuxserver.html" class="back">
+                ← Linux Server
+            </a>
+
+            <a href="virtualbox.html" class="next">
+                Materi Berikutnya →
+            </a>
+
+        </div>
+
+
+    </main>
+
+
+</body>
+
+</html>
