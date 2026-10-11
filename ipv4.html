@@ -1,0 +1,1349 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Materi IPv4 - BZ</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --blue: #087cff;
+    --cyan: #10bfb3;
+    --ink: #102642;
+    --muted: #61768c;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--ink);
+    line-height: 1.7;
+    min-height: 100vh;
+    background: linear-gradient(135deg,#dcecff,#f4fbff 48%,#cef6f3);
+}
+
+a { text-decoration: none; }
+
+.container {
+    width: min(990px,92%);
+    margin: auto;
+}
+
+/* HEADER */
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin: 25px auto 20px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo {
+    width: 43px;
+    height: 43px;
+    display: grid;
+    place-items: center;
+    border-radius: 14px;
+    color: white;
+    font-weight: 900;
+    background: linear-gradient(135deg,#167cff,#10bfb3);
+}
+
+.brand strong {
+    display: block;
+    font-size: 14px;
+}
+
+.brand span {
+    color: #079f9a;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.back {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 11px 17px;
+    background: white;
+    color: var(--blue);
+    border-radius: 13px;
+    font-size: 12px;
+    font-weight: 800;
+    box-shadow: 0 8px 25px #1464a014;
+    transition: .25s;
+}
+
+.back:hover,
+.next:hover {
+    transform: translateY(-3px);
+}
+
+/* HERO */
+
+.hero {
+    position: relative;
+    overflow: hidden;
+    padding: 42px;
+    color: white;
+    border-radius: 29px;
+    background: linear-gradient(115deg,#176bff,#6559f4 62%,#9438ed);
+    box-shadow: 0 25px 55px #2b66c52b;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    right: -70px;
+    top: -120px;
+    border-radius: 50%;
+    background: #ffffff12;
+    border: 1px solid #ffffff20;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-icon {
+    width: 58px;
+    height: 58px;
+    display: grid;
+    place-items: center;
+    margin-bottom: 13px;
+    border-radius: 17px;
+    background: #ffffff20;
+    border: 1px solid #ffffff40;
+    font-size: 29px;
+}
+
+.label {
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.hero h1 {
+    font-size: clamp(34px,5vw,45px);
+    line-height: 1.15;
+    margin: 8px 0 12px;
+}
+
+.hero p {
+    max-width: 700px;
+    color: #f1f5ff;
+    font-size: 14px;
+}
+
+.chips {
+    display: flex;
+    gap: 9px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.chip {
+    padding: 6px 12px;
+    font-size: 11px;
+    font-weight: 800;
+    border: 1px solid #ffffff45;
+    background: #ffffff18;
+    border-radius: 10px;
+}
+
+/* CONTENT */
+
+.content {
+    display: grid;
+    grid-template-columns: minmax(0,1fr) 245px;
+    gap: 18px;
+    align-items: start;
+    margin: 24px 0 25px;
+}
+
+.card {
+    padding: 27px;
+    margin-bottom: 17px;
+    border-radius: 21px;
+    background: #ffffffdf;
+    border: 1px solid white;
+    box-shadow: 0 12px 35px #1450780c;
+}
+
+.section-label {
+    color: var(--blue);
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.card h2 {
+    font-size: 24px;
+    line-height: 1.3;
+    margin: 6px 0 13px;
+}
+
+.card h3 {
+    font-size: 16px;
+    margin: 18px 0 5px;
+}
+
+.card p,
+.card li {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.card p + p { margin-top: 10px; }
+
+.card ul,
+.card ol {
+    padding-left: 20px;
+    margin-top: 9px;
+}
+
+.info-box {
+    padding: 15px 17px;
+    margin-top: 17px;
+    border-radius: 13px;
+    background: linear-gradient(135deg,#edf7ff,#e6fbf7);
+    border: 1px solid #d7efef;
+    color: #45617d;
+    font-size: 12px;
+}
+
+/* GRID */
+
+.tool-grid {
+    display: grid;
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    gap: 12px;
+    margin-top: 17px;
+}
+
+.tool {
+    padding: 16px;
+    border: 1px solid #deedf5;
+    border-radius: 15px;
+    background: #fbfdff;
+}
+
+.tool-icon {
+    font-size: 27px;
+    margin-bottom: 5px;
+}
+
+.tool h3 {
+    margin: 0 0 5px;
+    font-size: 14px;
+}
+
+.tool p { font-size: 12px; }
+
+/* LANGKAH */
+
+.steps {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 17px;
+}
+
+.step {
+    display: grid;
+    grid-template-columns: 43px minmax(0,1fr);
+    gap: 12px;
+    padding: 15px;
+    border: 1px solid #deedf5;
+    border-radius: 14px;
+    background: #fbfdff;
+}
+
+.step-number {
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-items: center;
+    border-radius: 12px;
+    color: white;
+    font-size: 15px;
+    font-weight: 900;
+    background: linear-gradient(135deg,#167cff,#10bfb3);
+}
+
+.step h3 {
+    margin: 0 0 4px;
+    font-size: 14px;
+}
+
+.step p { font-size: 12px; }
+
+/* TABEL */
+
+.table-wrap {
+    overflow-x: auto;
+    margin-top: 15px;
+    border-radius: 12px;
+    border: 1px solid #deedf5;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    font-size: 12px;
+}
+
+th, td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #e5edf5;
+    text-align: left;
+    vertical-align: top;
+}
+
+th {
+    color: #234363;
+    background: #edf6ff;
+}
+
+td { color: #526a82; }
+
+tr:last-child td { border-bottom: none; }
+
+.code-box {
+    padding: 15px;
+    margin-top: 10px;
+    border-radius: 12px;
+    background: #102642;
+    color: #d9f5ff;
+    overflow-x: auto;
+    font-size: 12px;
+    line-height: 1.9;
+}
+
+/* SIDEBAR */
+
+.side-card {
+    padding: 22px;
+    margin-bottom: 16px;
+    border: 1px solid white;
+    border-radius: 19px;
+    background: #ffffffdf;
+    box-shadow: 0 12px 30px #1450780c;
+}
+
+.side-card h3 {
+    font-size: 15px;
+    margin-bottom: 9px;
+}
+
+.side-card p,
+.side-card li {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.side-card ul { padding-left: 18px; }
+
+.progress {
+    height: 8px;
+    background: #e1edf5;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 12px 0 7px;
+}
+
+.progress div {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,#167cff,#10bfb3);
+}
+
+/* QUIZ */
+
+.question {
+    padding: 17px;
+    margin: 15px 0;
+    border: 1px solid #deedf5;
+    border-radius: 15px;
+    background: #fbfdff;
+}
+
+.question legend {
+    padding: 0 4px;
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--ink);
+}
+
+.option {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    padding: 10px;
+    margin-top: 7px;
+    border: 1px solid #e4edf4;
+    border-radius: 10px;
+    background: white;
+    color: #506782;
+    font-size: 12px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.option:hover {
+    background: #f0f8ff;
+    border-color: #8bc8ff;
+}
+
+.option input {
+    margin-top: 5px;
+    accent-color: #167cff;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.button,
+.next {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 11px 17px;
+    border: none;
+    border-radius: 11px;
+    color: white;
+    background: linear-gradient(110deg,#176bff,#10bfb3);
+    font-size: 12px;
+    font-weight: 900;
+    cursor: pointer;
+    transition: .25s;
+}
+
+.button.secondary {
+    background: white;
+    color: var(--blue);
+    border: 1px solid #dceaf5;
+}
+
+.result {
+    display: none;
+    padding: 21px;
+    margin-top: 20px;
+    border-radius: 16px;
+    background: linear-gradient(135deg,#eaf7ff,#e5fbf6);
+    border: 1px solid #cfece8;
+}
+
+.result.show { display: block; }
+
+.score {
+    color: #079f91;
+    font-size: 39px;
+    font-weight: 900;
+}
+
+.result h3 { margin: 0 0 5px; }
+.result p { font-size: 12px; }
+
+.feedback {
+    padding-top: 12px;
+    margin-top: 12px;
+    border-top: 1px solid #d2e8e8;
+}
+
+.feedback div {
+    padding: 7px 0;
+    font-size: 12px;
+}
+
+.correct { color: #078b6d; }
+.incorrect { color: #cf4d5a; }
+
+/* TIPS */
+
+.note {
+    display: flex;
+    gap: 17px;
+    align-items: flex-start;
+    padding: 25px;
+    margin-bottom: 20px;
+    border-radius: 21px;
+    background: linear-gradient(135deg,#edf8ff,#e7fffb);
+    border: 1px solid #cdece9;
+}
+
+.note-icon { font-size: 30px; }
+
+.note h2 {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.note p {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+/* RANGKUMAN */
+
+.summary {
+    padding: 27px;
+    margin-bottom: 22px;
+    color: white;
+    border-radius: 21px;
+    background: linear-gradient(120deg,#087cff,#11bfb3);
+    box-shadow: 0 20px 45px #0a82d21f;
+}
+
+.summary .section-label { color: #eafaff; }
+
+.summary h2 {
+    margin: 7px 0 17px;
+    font-size: 23px;
+}
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 10px;
+}
+
+.summary-item {
+    padding: 12px;
+    border-radius: 12px;
+    background: #ffffff20;
+    font-size: 12px;
+}
+
+/* NAVIGASI */
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin: 22px 0 50px;
+}
+
+.navigation .back,
+.navigation .next {
+    min-height: 40px;
+}
+
+.footer {
+    text-align: center;
+    color: #7890a8;
+    font-size: 11px;
+    padding-bottom: 28px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:760px) {
+    .header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .hero { padding: 29px 24px; }
+
+    .content { grid-template-columns: 1fr; }
+
+    .card,
+    .side-card { padding: 21px; }
+
+    .hero h1 { font-size: 34px; }
+
+    .tool-grid,
+    .summary-grid { grid-template-columns: 1fr; }
+
+    .note { flex-direction: column; }
+
+    .navigation {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .navigation a {
+        width: 100%;
+        text-align: center;
+    }
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<!-- HEADER -->
+
+<header class="header">
+    <div class="brand">
+        <div class="logo">BZ</div>
+        <div>
+            <strong>Tempat Belajar</strong>
+            <span>Gen Z</span>
+        </div>
+    </div>
+
+    <a href="jaringan.html" class="back">
+        ← Kembali ke Materi
+    </a>
+</header>
+
+<!-- HERO -->
+
+<section class="hero">
+    <div class="hero-content">
+        <div class="hero-icon">🌐</div>
+        <div class="label">MATERI • NETWORKING</div>
+
+        <h1>Internet Protocol Version 4</h1>
+
+        <p>
+            Pelajari IPv4, struktur alamat 32 bit, cara membaca
+            oktet biner, network ID, host ID, subnet mask,
+            alamat private, dan contoh penerapannya pada jaringan.
+        </p>
+
+        <div class="chips">
+            <span class="chip">🔢 32 Bit</span>
+            <span class="chip">🌐 Alamat IPv4</span>
+            <span class="chip">🧮 Subnet Mask</span>
+            <span class="chip">📝 5 Soal</span>
+        </div>
+    </div>
+</section>
+
+<main class="content">
+<div>
+
+<!-- MATERI 1 -->
+
+<section class="card">
+    <div class="section-label">01 — PENGERTIAN</div>
+    <h2>Apa Itu IPv4?</h2>
+
+    <p>
+        <strong>IPv4 (Internet Protocol Version 4)</strong>
+        adalah versi protokol internet yang menggunakan alamat
+        sepanjang 32 bit untuk mengidentifikasi antarmuka
+        perangkat dan membantu pengiriman paket data melalui
+        jaringan IP.
+    </p>
+
+    <p>
+        Alamat IPv4 biasanya ditulis sebagai empat kelompok
+        angka desimal yang dipisahkan oleh titik. Setiap
+        kelompok disebut oktet dan memiliki nilai 0 sampai 255.
+    </p>
+
+    <div class="info-box">
+        💡 <strong>Contoh alamat IPv4:</strong>
+        192.168.1.10. Alamat ini dapat digunakan sebagai
+        alamat perangkat dalam jaringan lokal.
+    </div>
+</section>
+
+<!-- MATERI 2 -->
+
+<section class="card">
+    <div class="section-label">02 — STRUKTUR IPv4</div>
+    <h2>Struktur Alamat IPv4</h2>
+
+    <p>
+        IPv4 terdiri dari 32 bit yang dibagi menjadi empat
+        oktet. Setiap oktet memiliki panjang 8 bit.
+    </p>
+
+    <div class="code-box">
+        <code>
+            192 . 168 . 1 . 10<br>
+            Oktet 1 | Oktet 2 | Oktet 3 | Oktet 4
+        </code>
+    </div>
+
+    <div class="tool-grid">
+
+        <div class="tool">
+            <div class="tool-icon">🔢</div>
+            <h3>32 Bit</h3>
+            <p>
+                Total panjang alamat IPv4 adalah 32 bit.
+            </p>
+        </div>
+
+        <div class="tool">
+            <div class="tool-icon">🧩</div>
+            <h3>4 Oktet</h3>
+            <p>
+                Setiap oktet memiliki panjang 8 bit.
+            </p>
+        </div>
+
+        <div class="tool">
+            <div class="tool-icon">📊</div>
+            <h3>Desimal</h3>
+            <p>
+                Setiap oktet ditulis sebagai angka 0 sampai 255.
+            </p>
+        </div>
+
+        <div class="tool">
+            <div class="tool-icon">💻</div>
+            <h3>Representasi Biner</h3>
+            <p>
+                Setiap oktet dapat direpresentasikan dengan
+                delapan digit biner, yaitu 0 dan 1.
+            </p>
+        </div>
+
+    </div>
+
+    <div class="info-box">
+        📌 IPv4 memiliki total 2³² kemungkinan pola alamat,
+        tetapi tidak semuanya dapat digunakan sebagai alamat
+        host biasa karena ada alamat khusus dan alamat yang
+        dicadangkan.
+    </div>
+</section>
+
+<!-- MATERI 3 -->
+
+<section class="card">
+    <div class="section-label">03 — BILANGAN BINER</div>
+    <h2>Mengenal Oktet Biner</h2>
+
+    <p>
+        Setiap oktet IPv4 terdiri dari delapan bit. Nilai
+        setiap posisi bit, dari kiri ke kanan, adalah
+        128, 64, 32, 16, 8, 4, 2, dan 1.
+    </p>
+
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Posisi Bit</th>
+                    <th>Nilai</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Bit 1</td><td>128</td></tr>
+                <tr><td>Bit 2</td><td>64</td></tr>
+                <tr><td>Bit 3</td><td>32</td></tr>
+                <tr><td>Bit 4</td><td>16</td></tr>
+                <tr><td>Bit 5</td><td>8</td></tr>
+                <tr><td>Bit 6</td><td>4</td></tr>
+                <tr><td>Bit 7</td><td>2</td></tr>
+                <tr><td>Bit 8</td><td>1</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>Contoh konversi</h3>
+
+    <p>
+        Angka desimal 192 dapat ditulis dalam biner sebagai
+        11000000 karena 128 + 64 = 192.
+    </p>
+
+    <div class="code-box">
+        <code>
+            Desimal : 192<br>
+            Biner   : 11000000
+        </code>
+    </div>
+
+    <p>
+        Jadi, alamat IPv4 192.168.1.10 dapat direpresentasikan
+        dalam bentuk biner sebagai empat oktet.
+    </p>
+
+    <div class="code-box">
+        <code>
+            192 = 11000000<br>
+            168 = 10101000<br>
+            1   = 00000001<br>
+            10  = 00001010
+        </code>
+    </div>
+</section>
+
+<!-- MATERI 4 -->
+
+<section class="card">
+    <div class="section-label">04 — NETWORK DAN HOST</div>
+    <h2>Network ID dan Host ID</h2>
+
+    <p>
+        Pada alamat IPv4, bagian network menunjukkan jaringan
+        tempat alamat berada, sedangkan bagian host
+        mengidentifikasi antarmuka di dalam jaringan tersebut.
+        Pembagian ini ditentukan oleh subnet mask atau prefix.
+    </p>
+
+    <h3>Contoh menggunakan /24</h3>
+
+    <div class="code-box">
+        <code>
+            IP Address : 192.168.1.10<br>
+            Prefix     : /24<br>
+            Subnet Mask: 255.255.255.0<br>
+            Network    : 192.168.1.0<br>
+            Host       : 10
+        </code>
+    </div>
+
+    <p>
+        Dengan prefix /24, 24 bit pertama merupakan bagian
+        network dan 8 bit sisanya merupakan bagian host.
+    </p>
+
+    <div class="info-box">
+        💡 Network ID dan host ID tidak selalu terbagi
+        menjadi tiga oktet dan satu oktet. Pembagiannya
+        bergantung pada prefix yang digunakan.
+    </div>
+</section>
+
+<!-- MATERI 5 -->
+
+<section class="card">
+    <div class="section-label">05 — SUBNET MASK</div>
+    <h2>Subnet Mask dan Prefix</h2>
+
+    <p>
+        Subnet mask membantu menentukan bagian network
+        dan host pada alamat IPv4. Prefix ditulis dengan
+        tanda garis miring, misalnya /24.
+    </p>
+
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Prefix</th>
+                    <th>Subnet Mask</th>
+                    <th>Jumlah Alamat</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>/8</td>
+                    <td>255.0.0.0</td>
+                    <td>16.777.216</td>
+                </tr>
+                <tr>
+                    <td>/16</td>
+                    <td>255.255.0.0</td>
+                    <td>65.536</td>
+                </tr>
+                <tr>
+                    <td>/24</td>
+                    <td>255.255.255.0</td>
+                    <td>256</td>
+                </tr>
+                <tr>
+                    <td>/25</td>
+                    <td>255.255.255.128</td>
+                    <td>128</td>
+                </tr>
+                <tr>
+                    <td>/26</td>
+                    <td>255.255.255.192</td>
+                    <td>64</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <p>
+        Jumlah alamat pada tabel adalah jumlah seluruh alamat
+        dalam subnet. Pada subnet IPv4 biasa, sebagian alamat
+        digunakan untuk network dan broadcast sehingga tidak
+        semuanya tersedia untuk host.
+    </p>
+
+    <div class="info-box">
+        📌 Contoh: subnet /24 memiliki 256 alamat secara total
+        dan biasanya menyediakan 254 alamat host.
+    </div>
+</section>
+
+<!-- MATERI 6 -->
+
+<section class="card">
+    <div class="section-label">06 — JENIS ALAMAT</div>
+    <h2>IP Private dan IP Public</h2>
+
+    <h3>IP Private</h3>
+    <p>
+        Alamat private digunakan di jaringan lokal, seperti
+        rumah, sekolah, dan laboratorium komputer.
+    </p>
+
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Rentang Private</th>
+                    <th>Prefix</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>10.0.0.0 – 10.255.255.255</td>
+                    <td>10.0.0.0/8</td>
+                </tr>
+                <tr>
+                    <td>172.16.0.0 – 172.31.255.255</td>
+                    <td>172.16.0.0/12</td>
+                </tr>
+                <tr>
+                    <td>192.168.0.0 – 192.168.255.255</td>
+                    <td>192.168.0.0/16</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>IP Public</h3>
+    <p>
+        IP public dapat dirutekan pada internet publik dan
+        biasanya dialokasikan melalui penyedia layanan
+        internet atau pengelola alamat IP.
+    </p>
+
+    <div class="info-box">
+        ⚠️ IP private tidak dapat diakses langsung melalui
+        internet publik tanpa mekanisme jaringan tambahan,
+        seperti NAT atau VPN sesuai konfigurasi.
+    </div>
+</section>
+
+<!-- MATERI 7 -->
+
+<section class="card">
+    <div class="section-label">07 — JENIS ALAMAT KHUSUS</div>
+    <h2>Alamat IPv4 yang Perlu Dikenal</h2>
+
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Alamat</th>
+                    <th>Fungsi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>127.0.0.1</td>
+                    <td>Alamat loopback untuk menguji sistem lokal.</td>
+                </tr>
+                <tr>
+                    <td>0.0.0.0</td>
+                    <td>Alamat khusus yang maknanya bergantung pada konteks.</td>
+                </tr>
+                <tr>
+                    <td>255.255.255.255</td>
+                    <td>Alamat broadcast terbatas pada IPv4.</td>
+                </tr>
+                <tr>
+                    <td>169.254.0.0/16</td>
+                    <td>Rentang link-local IPv4 yang dapat digunakan otomatis dalam kondisi tertentu.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="info-box">
+        💡 Jika komputer mendapatkan alamat 169.254.x.x,
+        periksa konfigurasi jaringan dan layanan DHCP apabila
+        komputer seharusnya mendapatkan alamat secara otomatis.
+    </div>
+</section>
+
+<!-- MATERI 8 -->
+
+<section class="card">
+    <div class="section-label">08 — KONFIGURASI DAN PENGUJIAN</div>
+    <h2>Cara Memeriksa IPv4</h2>
+
+    <h3>Windows</h3>
+    <p>
+        Buka Command Prompt, lalu ketik:
+    </p>
+
+    <div class="code-box">
+        <code>ipconfig</code>
+    </div>
+
+    <p>
+        Untuk informasi lebih lengkap, gunakan:
+    </p>
+
+    <div class="code-box">
+        <code>ipconfig /all</code>
+    </div>
+
+    <h3>Linux</h3>
+    <p>
+        Buka terminal dan jalankan:
+    </p>
+
+    <div class="code-box">
+        <code>ip addr</code>
+    </div>
+
+    <h3>Menguji koneksi</h3>
+    <p>
+        Gunakan ping ke alamat gateway yang sesuai dengan
+        konfigurasi jaringanmu.
+    </p>
+
+    <div class="code-box">
+        <code>ping 192.168.1.1</code>
+    </div>
+
+    <div class="info-box">
+        📌 Alamat 192.168.1.1 hanya contoh. Gunakan alamat
+        gateway yang sebenarnya pada jaringanmu.
+    </div>
+</section>
+
+<!-- LATIHAN -->
+
+<section class="card" id="latihan">
+    <div class="section-label">UJI PEMAHAMAN</div>
+    <h2>Latihan Soal Pilihan Ganda</h2>
+
+    <p>
+        Jawab lima soal berikut. Setiap soal bernilai 20 poin.
+        Klik Kirim Jawaban untuk melihat nilai dan pembahasan.
+    </p>
+
+    <form id="quizForm">
+
+        <fieldset class="question">
+            <legend>1. Berapa panjang alamat IPv4?</legend>
+
+            <label class="option">
+                <input type="radio" name="q1" value="a" required>
+                8 bit
+            </label>
+            <label class="option">
+                <input type="radio" name="q1" value="b">
+                16 bit
+            </label>
+            <label class="option">
+                <input type="radio" name="q1" value="c">
+                32 bit
+            </label>
+            <label class="option">
+                <input type="radio" name="q1" value="d">
+                128 bit
+            </label>
+        </fieldset>
+
+        <fieldset class="question">
+            <legend>2. Berapa jumlah bit dalam satu oktet IPv4?</legend>
+
+            <label class="option">
+                <input type="radio" name="q2" value="a" required>
+                4 bit
+            </label>
+            <label class="option">
+                <input type="radio" name="q2" value="b">
+                8 bit
+            </label>
+            <label class="option">
+                <input type="radio" name="q2" value="c">
+                16 bit
+            </label>
+            <label class="option">
+                <input type="radio" name="q2" value="d">
+                32 bit
+            </label>
+        </fieldset>
+
+        <fieldset class="question">
+            <legend>3. Manakah yang termasuk alamat IPv4 private?</legend>
+
+            <label class="option">
+                <input type="radio" name="q3" value="a" required>
+                8.8.8.8
+            </label>
+            <label class="option">
+                <input type="radio" name="q3" value="b">
+                1.1.1.1
+            </label>
+            <label class="option">
+                <input type="radio" name="q3" value="c">
+                192.168.1.10
+            </label>
+            <label class="option">
+                <input type="radio" name="q3" value="d">
+                208.67.222.222
+            </label>
+        </fieldset>
+
+        <fieldset class="question">
+            <legend>4. Apa fungsi subnet mask?</legend>
+
+            <label class="option">
+                <input type="radio" name="q4" value="a" required>
+                Mengubah kabel menjadi Wi-Fi
+            </label>
+            <label class="option">
+                <input type="radio" name="q4" value="b">
+                Membedakan bagian network dan host
+            </label>
+            <label class="option">
+                <input type="radio" name="q4" value="c">
+                Menambah kapasitas RAM
+            </label>
+            <label class="option">
+                <input type="radio" name="q4" value="d">
+                Mengganti sistem operasi
+            </label>
+        </fieldset>
+
+        <fieldset class="question">
+            <legend>5. Perintah Windows untuk melihat konfigurasi IP adalah ...</legend>
+
+            <label class="option">
+                <input type="radio" name="q5" value="a" required>
+                mkdir
+            </label>
+            <label class="option">
+                <input type="radio" name="q5" value="b">
+                rename
+            </label>
+            <label class="option">
+                <input type="radio" name="q5" value="c">
+                ipconfig
+            </label>
+            <label class="option">
+                <input type="radio" name="q5" value="d">
+                format
+            </label>
+        </fieldset>
+
+        <div class="actions">
+            <button type="submit" class="button">
+                Kirim Jawaban →
+            </button>
+
+            <button type="reset" class="button secondary">
+                Ulangi Latihan
+            </button>
+        </div>
+    </form>
+
+    <div class="result" id="result" aria-live="polite">
+        <div class="score" id="score">Nilai: 0</div>
+        <h3 id="resultTitle">Hasil Latihan</h3>
+        <p id="resultSummary"></p>
+        <div class="feedback" id="feedback"></div>
+    </div>
+</section>
+
+</div>
+
+<!-- SIDEBAR -->
+
+<aside>
+    <section class="side-card">
+        <h3>📚 Isi Materi</h3>
+        <ul>
+            <li>Pengertian IPv4</li>
+            <li>Struktur alamat IPv4</li>
+            <li>Bilangan biner</li>
+            <li>Network dan host</li>
+            <li>Subnet mask</li>
+            <li>IP private dan public</li>
+            <li>Alamat khusus</li>
+            <li>Pengujian IPv4</li>
+            <li>Latihan pilihan ganda</li>
+        </ul>
+
+        <div class="progress"><div></div></div>
+        <p>Materi siap dipelajari.</p>
+    </section>
+
+    <section class="side-card">
+        <h3>🎯 Tips Belajar</h3>
+        <p>
+            Hafalkan bahwa IPv4 memiliki 32 bit dan empat oktet.
+            Berlatihlah mengubah angka desimal menjadi biner
+            serta membaca subnet mask.
+        </p>
+    </section>
+
+    <section class="side-card">
+        <h3>💻 Perintah Penting</h3>
+        <p>
+            Gunakan ipconfig pada Windows atau ip addr pada
+            Linux untuk melihat konfigurasi alamat IP.
+        </p>
+    </section>
+</aside>
+</main>
+
+<!-- TIPS -->
+
+<section class="note">
+    <div class="note-icon">💡</div>
+    <div>
+        <h2>Tips Memahami IPv4</h2>
+        <p>
+            Latihlah konversi desimal ke biner, pahami fungsi
+            subnet mask, dan coba periksa alamat IPv4 pada
+            komputer agar konsepnya lebih mudah dipahami.
+        </p>
+    </div>
+</section>
+
+<!-- RANGKUMAN -->
+
+<section class="summary">
+    <div class="section-label">RANGKUMAN</div>
+    <h2>Yang Perlu Kamu Ingat</h2>
+
+    <div class="summary-grid">
+        <div class="summary-item">
+            ✓ IPv4 adalah protokol pengalamatan dengan panjang 32 bit.
+        </div>
+        <div class="summary-item">
+            ✓ Alamat IPv4 terdiri dari empat oktet.
+        </div>
+        <div class="summary-item">
+            ✓ Nilai setiap oktet berkisar dari 0 sampai 255.
+        </div>
+        <div class="summary-item">
+            ✓ Subnet mask menentukan bagian network dan host.
+        </div>
+        <div class="summary-item">
+            ✓ IP private digunakan untuk jaringan lokal.
+        </div>
+        <div class="summary-item">
+            ✓ ipconfig membantu memeriksa konfigurasi IPv4 di Windows.
+        </div>
+    </div>
+</section>
+
+<!-- NAVIGASI BAWAH -->
+
+<nav class="navigation">
+    <a href="ipaddress.html" class="back">
+        ← Kembali ke Pengenalan IP Address
+    </a>
+
+    <a href="subnetting.html" class="next">
+        Materi Berikutnya →
+    </a>
+</nav>
+
+<div class="footer">
+    © BZ — Tempat Belajar Gen Z
+</div>
+
+</div>
+
+<script>
+const kunciJawaban = {
+    q1: "c",
+    q2: "b",
+    q3: "c",
+    q4: "b",
+    q5: "c"
+};
+
+const pembahasan = {
+    q1: "IPv4 memiliki panjang alamat 32 bit.",
+    q2: "Satu oktet IPv4 terdiri dari 8 bit sehingga terdapat empat oktet dalam satu alamat.",
+    q3: "192.168.1.10 termasuk rentang alamat IPv4 private 192.168.0.0/16.",
+    q4: "Subnet mask membantu menentukan bagian network dan host pada alamat IPv4.",
+    q5: "ipconfig digunakan di Windows untuk menampilkan informasi konfigurasi jaringan."
+};
+
+const form = document.getElementById("quizForm");
+
+form.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const data = new FormData(form);
+    let benar = 0;
+    let hasilPembahasan = "";
+
+    for (let i = 1; i <= 5; i++) {
+        const nomor = "q" + i;
+        const tepat = data.get(nomor) === kunciJawaban[nomor];
+
+        if (tepat) benar++;
+
+        hasilPembahasan += `
+            <div class="${tepat ? "correct" : "incorrect"}">
+                <strong>Soal ${i}: ${tepat ? "Benar" : "Belum tepat"}.</strong>
+                ${pembahasan[nomor]}
+            </div>
+        `;
+    }
+
+    const nilai = benar * 20;
+
+    document.getElementById("score").textContent =
+        "Nilai: " + nilai;
+
+    document.getElementById("resultTitle").textContent =
+        nilai >= 80 ? "Bagus sekali! 🎉" :
+        nilai >= 60 ? "Terus berlatih! 💪" :
+        "Jangan menyerah! 📘";
+
+    document.getElementById("resultSummary").textContent =
+        benar + " jawaban benar dari 5 soal. " +
+        (5 - benar) + " jawaban salah.";
+
+    document.getElementById("feedback").innerHTML =
+        hasilPembahasan;
+
+    const hasil = document.getElementById("result");
+    hasil.classList.add("show");
+
+    hasil.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+});
+
+form.addEventListener("reset", function() {
+    document.getElementById("result").classList.remove("show");
+    document.getElementById("feedback").innerHTML = "";
+});
+</script>
+
+</body>
+
+</html>
