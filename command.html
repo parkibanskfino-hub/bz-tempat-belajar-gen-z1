@@ -1,0 +1,795 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi Command Line Linux</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #eaf8ff, #d7fff5);
+            color: #183b50;
+            line-height: 1.8;
+        }
+
+        header {
+            background: linear-gradient(135deg, #075985, #0891b2, #2dd4bf);
+            color: white;
+            padding: 35px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 32px;
+            margin: 15px 0 8px;
+        }
+
+        header p {
+            max-width: 750px;
+            margin: auto;
+            color: #e0fbff;
+        }
+
+        .back-button {
+            display: inline-block;
+            color: white;
+            text-decoration: none;
+            border: 1px solid rgba(255,255,255,0.7);
+            padding: 7px 16px;
+            border-radius: 25px;
+            transition: 0.3s;
+        }
+
+        .back-button:hover {
+            background: white;
+            color: #075985;
+        }
+
+        .hero {
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 30px 25px;
+            background: white;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(8,145,178,0.12);
+        }
+
+        .hero h2 {
+            color: #087e8b;
+            margin-bottom: 10px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 0 20px 40px;
+        }
+
+        .card {
+            background: white;
+            padding: 26px;
+            margin-bottom: 24px;
+            border-radius: 18px;
+            border-left: 6px solid #14b8a6;
+            box-shadow: 0 6px 20px rgba(15,100,120,0.09);
+        }
+
+        h2 {
+            color: #087e8b;
+            margin-bottom: 14px;
+            font-size: 24px;
+        }
+
+        h3 {
+            color: #087e8b;
+            margin: 18px 0 8px;
+        }
+
+        p {
+            margin-bottom: 10px;
+        }
+
+        ul, ol {
+            padding-left: 25px;
+            margin: 10px 0;
+        }
+
+        li {
+            margin-bottom: 7px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 18px;
+            margin-top: 18px;
+        }
+
+        .mini-card {
+            background: linear-gradient(135deg, #f0fbff, #e2fff8);
+            border: 1px solid #bceee8;
+            padding: 20px;
+            border-radius: 14px;
+        }
+
+        .mini-card h3 {
+            margin-top: 0;
+        }
+
+        .command {
+            display: block;
+            background: #083344;
+            color: #a7f3d0;
+            padding: 14px 16px;
+            border-radius: 10px;
+            margin: 10px 0 15px;
+            overflow-x: auto;
+            font-family: Consolas, monospace;
+            font-size: 14px;
+            white-space: pre;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, #e0f7ff, #d7fff5);
+            padding: 16px;
+            border-radius: 12px;
+            margin-top: 15px;
+        }
+
+        .warning {
+            background: #fff8e5;
+            border-left: 5px solid #eab308;
+            padding: 16px;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 500px;
+            margin-top: 12px;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #d5eeee;
+            text-align: left;
+        }
+
+        th {
+            background: #0891b2;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background: #f0fbff;
+        }
+
+        .quiz-question {
+            background: #f0fbff;
+            padding: 18px;
+            margin: 15px 0;
+            border-radius: 12px;
+        }
+
+        .quiz-question label {
+            display: block;
+            margin: 8px 0;
+            cursor: pointer;
+        }
+
+        .quiz-question input {
+            margin-right: 8px;
+        }
+
+        .quiz-button {
+            background: linear-gradient(135deg, #0891b2, #14b8a6);
+            border: none;
+            color: white;
+            padding: 12px 22px;
+            border-radius: 25px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 8px 5px 0 0;
+        }
+
+        .quiz-button:hover {
+            opacity: 0.88;
+        }
+
+        #hasil {
+            margin-top: 18px;
+            font-weight: bold;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 25px 0;
+        }
+
+        .navigation a {
+            text-decoration: none;
+            color: white;
+            background: linear-gradient(135deg, #075985, #0891b2);
+            padding: 12px 20px;
+            border-radius: 25px;
+        }
+
+        .navigation a:hover {
+            background: #0f766e;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px 15px;
+            background: #083344;
+            color: #d7f9f5;
+        }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 26px;
+            }
+
+            .hero {
+                margin: 20px 12px;
+                padding: 24px 18px;
+            }
+
+            .container {
+                padding: 0 12px 25px;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            h2 {
+                font-size: 21px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <a href="index.html" class="back-button">← Kembali ke Beranda</a>
+    <h1>Command Line Linux</h1>
+    <p>Pelajari perintah terminal Linux untuk mengelola sistem dengan lebih cepat dan efisien.</p>
+</header>
+
+<section class="hero">
+    <h2>💻 Belajar Linux dari Terminal</h2>
+    <p>
+        Command Line Interface (CLI) memungkinkan pengguna berinteraksi dengan
+        sistem operasi melalui perintah teks. Materi ini membantu kamu memahami
+        perintah dasar yang sering digunakan pada Debian dan Ubuntu.
+    </p>
+</section>
+
+<main class="container">
+
+    <section class="card">
+        <h2>📘 1. Pengertian Command Line Linux</h2>
+
+        <p>
+            Command Line Interface (CLI) adalah antarmuka yang digunakan untuk
+            berkomunikasi dengan komputer melalui perintah berbentuk teks.
+            Di Linux, perintah biasanya dimasukkan melalui aplikasi terminal.
+        </p>
+
+        <p>
+            Berbeda dengan Graphical User Interface (GUI) yang menggunakan
+            jendela, ikon, dan tombol, CLI mengandalkan perintah yang diketik
+            pengguna.
+        </p>
+
+        <div class="highlight">
+            <strong>Contoh:</strong> Perintah <code>pwd</code> digunakan untuk
+            mengetahui lokasi direktori yang sedang aktif di terminal.
+        </div>
+    </section>
+
+    <section class="card">
+        <h2>🎯 2. Fungsi Command Line</h2>
+
+        <div class="grid">
+            <div class="mini-card">
+                <h3>📁 Mengelola File</h3>
+                <p>Membuat, menyalin, memindahkan, dan menghapus file atau direktori.</p>
+            </div>
+
+            <div class="mini-card">
+                <h3>👤 Mengelola User</h3>
+                <p>Membuat pengguna dan mengatur hak akses melalui perintah yang sesuai.</p>
+            </div>
+
+            <div class="mini-card">
+                <h3>⚙️ Administrasi Sistem</h3>
+                <p>Memeriksa informasi sistem, proses, layanan, dan penggunaan sumber daya.</p>
+            </div>
+
+            <div class="mini-card">
+                <h3>🌐 Mengelola Jaringan</h3>
+                <p>Memeriksa alamat IP, konektivitas, dan konfigurasi jaringan.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="card">
+        <h2>⌨️ 3. Cara Membuka Terminal Linux</h2>
+
+        <p>Terminal dapat dibuka melalui beberapa cara, tergantung lingkungan desktop.</p>
+
+        <ul>
+            <li>Cari aplikasi bernama <strong>Terminal</strong> pada menu aplikasi.</li>
+            <li>Pada banyak lingkungan desktop, tekan <strong>Ctrl + Alt + T</strong>.</li>
+            <li>Pada sistem Linux tanpa desktop, gunakan konsol teks jika tersedia.</li>
+        </ul>
+
+        <h3>Contoh tampilan terminal</h3>
+
+        <code class="command">siswa@debian:~$</code>
+
+        <p>Keterangan:</p>
+
+        <ul>
+            <li><code>siswa</code> adalah nama pengguna.</li>
+            <li><code>debian</code> adalah nama komputer atau hostname.</li>
+            <li><code>~</code> biasanya menunjukkan direktori home pengguna.</li>
+            <li><code>$</code> umumnya menandakan shell berjalan sebagai pengguna biasa.</li>
+        </ul>
+
+        <div class="highlight">
+            Simbol prompt dapat berbeda. Shell yang berjalan dengan hak root
+            biasanya menampilkan <code>#</code>, tetapi simbol tersebut bukan
+            satu-satunya cara untuk memastikan tingkat hak akses.
+        </div>
+    </section>
+
+    <section class="card">
+        <h2>📂 4. Perintah Dasar Navigasi Direktori</h2>
+
+        <h3>A. pwd — Melihat lokasi direktori</h3>
+        <code class="command">pwd</code>
+        <p>Menampilkan lokasi direktori aktif saat ini.</p>
+
+        <h3>B. ls — Melihat isi direktori</h3>
+        <code class="command">ls</code>
+        <p>Menampilkan file dan folder di direktori aktif.</p>
+
+        <code class="command">ls -l</code>
+        <p>Menampilkan informasi file dalam format lebih terperinci.</p>
+
+        <code class="command">ls -a</code>
+        <p>Menampilkan file tersembunyi juga.</p>
+
+        <h3>C. cd — Berpindah direktori</h3>
+        <code class="command">cd Documents</code>
+        <p>Masuk ke direktori Documents jika tersedia di lokasi aktif.</p>
+
+        <code class="command">cd ..</code>
+        <p>Berpindah ke direktori induk.</p>
+
+        <code class="command">cd ~</code>
+        <p>Kembali ke direktori home pengguna.</p>
+
+        <div class="highlight">
+            <strong>Tips:</strong> Gunakan <code>pwd</code> dan <code>ls</code>
+            untuk memeriksa lokasi serta isi direktori sebelum menjalankan perintah lain.
+        </div>
+    </section>
+
+    <section class="card">
+        <h2>📁 5. Perintah Mengelola File dan Folder</h2>
+
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Perintah</th>
+                        <th>Fungsi</th>
+                        <th>Contoh</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>mkdir</code></td>
+                        <td>Membuat folder</td>
+                        <td><code>mkdir latihan</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>touch</code></td>
+                        <td>Membuat file kosong jika belum ada</td>
+                        <td><code>touch catatan.txt</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>cp</code></td>
+                        <td>Menyalin file</td>
+                        <td><code>cp a.txt b.txt</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>mv</code></td>
+                        <td>Memindahkan atau mengganti nama file</td>
+                        <td><code>mv a.txt data.txt</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>rm</code></td>
+                        <td>Menghapus file</td>
+                        <td><code>rm catatan.txt</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>rmdir</code></td>
+                        <td>Menghapus folder kosong</td>
+                        <td><code>rmdir latihan</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>cat</code></td>
+                        <td>Menampilkan isi file teks</td>
+                        <td><code>cat catatan.txt</code></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="warning">
+            <strong>Perhatian:</strong> Perintah penghapusan dapat menghilangkan data.
+            Hindari mencoba perintah <code>rm</code> pada file penting atau memakai
+            opsi penghapusan rekursif tanpa memahami akibatnya.
+        </div>
+    </section>
+
+    <section class="card">
+        <h2>🔐 6. Perintah User dan Hak Akses</h2>
+
+        <h3>A. Melihat pengguna aktif</h3>
+        <code class="command">whoami</code>
+        <p>Menampilkan nama pengguna yang sedang aktif.</p>
+
+        <h3>B. Melihat identitas dan grup</h3>
+        <code class="command">id</code>
+        <p>Menampilkan UID, GID, dan grup pengguna.</p>
+
+        <h3>C. Mengubah hak akses file</h3>
+        <code class="command">chmod 644 catatan.txt</code>
+        <p>
+            Memberikan izin baca dan tulis kepada pemilik, serta izin baca
+            kepada grup dan pengguna lain.
+        </p>
+
+        <h3>D. Menjalankan perintah dengan hak administrator</h3>
+        <code class="command">sudo perintah</code>
+        <p>
+            Menjalankan perintah dengan hak istimewa jika akun diizinkan menggunakan
+            sudo. Ganti kata <code>perintah</code> dengan perintah yang diperlukan.
+        </p>
+
+        <div class="warning">
+            Gunakan <code>sudo</code> hanya saat diperlukan. Perintah dengan hak
+            administrator dapat mengubah konfigurasi penting sistem.
+        </div>
+    </section>
+
+    <section class="card">
+        <h2>📦 7. Mengelola Paket Aplikasi di Debian</h2>
+
+        <p>
+            Debian menggunakan APT untuk membantu mengelola paket perangkat lunak
+            dari repositori yang dikonfigurasi.
+        </p>
+
+        <h3>A. Memperbarui daftar paket</h3>
+        <code class="command">sudo apt update</code>
+        <p>Memperbarui informasi paket dari repositori.</p>
+
+        <h3>B. Memasang aplikasi</h3>
+        <code class="command">sudo apt install nama-paket</code>
+        <p>Memasang paket yang tersedia. Ganti <code>nama-paket</code> dengan nama paket sebenarnya.</p>
+
+        <h3>C. Memperbarui paket yang terpasang</h3>
+        <code class="command">sudo apt upgrade</code>
+        <p>Memperbarui paket yang dapat ditingkatkan sesuai pengelolaan APT.</p>
+
+        <h3>D. Mencari paket</h3>
+        <code class="command">apt search nama-paket</code>
+        <p>Mencari paket berdasarkan kata kunci.</p>
+
+        <div class="highlight">
+            Perintah instalasi atau pembaruan dapat meminta konfirmasi dan koneksi
+            internet. Pastikan sumber paket yang digunakan tepercaya.
+        </div>
+    </section>
+
+    <section class="card">
+        <h2>📊 8. Perintah Memeriksa Sistem dan Proses</h2>
+
+        <h3>A. Melihat informasi sistem</h3>
+        <code class="command">uname -a</code>
+        <p>Menampilkan informasi kernel dan sistem.</p>
+
+        <h3>B. Memeriksa penggunaan disk</h3>
+        <code class="command">df -h</code>
+        <p>Menampilkan penggunaan ruang sistem berkas dengan ukuran yang mudah dibaca.</p>
+
+        <h3>C. Memeriksa penggunaan memori</h3>
+        <code class="command">free -h</code>
+        <p>Menampilkan informasi penggunaan RAM dan swap.</p>
+
+        <h3>D. Melihat proses yang berjalan</h3>
+        <code class="command">ps aux</code>
+        <p>Menampilkan daftar proses yang berjalan atau tercatat oleh sistem.</p>
+
+        <h3>E. Memantau proses secara langsung</h3>
+        <code class="command">top</code>
+        <p>Menampilkan proses dan penggunaan sumber daya secara berkala. Tekan q untuk keluar.</p>
+    </section>
+
+    <section class="card">
+        <h2>🌐 9. Perintah Dasar Jaringan</h2>
+
+        <h3>A. Melihat alamat IP</h3>
+        <code class="command">ip addr</code>
+        <p>Menampilkan antarmuka jaringan dan alamat IP yang dikonfigurasi.</p>
+
+        <h3>B. Melihat rute jaringan</h3>
+        <code class="command">ip route</code>
+        <p>Menampilkan informasi rute jaringan.</p>
+
+        <h3>C. Menguji koneksi</h3>
+        <code class="command">ping -c 4 1.1.1.1</code>
+        <p>
+            Mengirim empat paket uji ke alamat tersebut. Hasilnya dapat membantu
+            memeriksa konektivitas IP, tetapi tidak selalu memastikan semua layanan jaringan berfungsi.
+        </p>
+
+        <h3>D. Melihat nama host</h3>
+        <code class="command">hostname</code>
+        <p>Menampilkan nama komputer pada jaringan.</p>
+
+        <div class="highlight">
+            Jika perintah tertentu tidak tersedia, periksa apakah paket yang
+            menyediakan perintah tersebut sudah terpasang. Hasil jaringan juga
+            dapat dipengaruhi firewall atau kebijakan jaringan.
+        </div>
+    </section>
+
+    <section class="card">
+        <h2>⌨️ 10. Simbol Penting di Command Line</h2>
+
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Simbol</th>
+                        <th>Fungsi</th>
+                        <th>Contoh</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>|</code></td>
+                        <td>Mengirim keluaran satu perintah ke perintah berikutnya</td>
+                        <td><code>ls -l | less</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>&gt;</code></td>
+                        <td>Mengarahkan keluaran ke file dan mengganti isi sebelumnya</td>
+                        <td><code>echo Halo &gt; a.txt</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>&gt;&gt;</code></td>
+                        <td>Menambahkan keluaran ke akhir file</td>
+                        <td><code>echo Halo &gt;&gt; a.txt</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>&amp;&amp;</code></td>
+                        <td>Menjalankan perintah berikutnya jika perintah pertama berhasil</td>
+                        <td><code>mkdir tes &amp;&amp; cd tes</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>*</code></td>
+                        <td>Wildcard untuk mencocokkan nama file</td>
+                        <td><code>ls *.txt</code></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="warning">
+            Operator pengalihan seperti <code>&gt;</code> dapat mengganti isi file
+            tujuan. Periksa nama file sebelum menjalankan perintah.
+        </div>
+    </section>
+
+    <section class="card">
+        <h2>🧪 11. Praktik Command Line Linux</h2>
+
+        <p>
+            Coba praktik berikut di Debian atau Ubuntu menggunakan akun biasa.
+            Perintah ini membuat file latihan di dalam direktori home pengguna.
+        </p>
+
+        <h3>Langkah 1 — Periksa lokasi</h3>
+        <code class="command">pwd</code>
+
+        <h3>Langkah 2 — Buat direktori latihan</h3>
+        <code class="command">mkdir latihan-cli</code>
+
+        <h3>Langkah 3 — Masuk ke direktori</h3>
+        <code class="command">cd latihan-cli</code>
+
+        <h3>Langkah 4 — Buat file teks</h3>
+        <code class="command">echo "Belajar Command Line Linux" &gt; catatan.txt</code>
+
+        <h3>Langkah 5 — Baca isi file</h3>
+        <code class="command">cat catatan.txt</code>
+
+        <h3>Langkah 6 — Periksa file dan izinnya</h3>
+        <code class="command">ls -l</code>
+
+        <h3>Langkah 7 — Salin file</h3>
+        <code class="command">cp catatan.txt salinan.txt</code>
+
+        <h3>Langkah 8 — Periksa hasil salinan</h3>
+        <code class="command">ls</code>
+
+        <div class="highlight">
+            <strong>Hasil yang diharapkan:</strong> Di dalam folder
+            <code>latihan-cli</code> terdapat file <code>catatan.txt</code> dan
+            <code>salinan.txt</code>. File tersebut berisi teks yang sama.
+        </div>
+    </section>
+
+    <section class="card">
+        <h2>💡 12. Tips Menggunakan Terminal</h2>
+
+        <ul>
+            <li>Gunakan tombol Tab untuk membantu melengkapi nama file atau perintah.</li>
+            <li>Gunakan tombol panah atas untuk melihat perintah sebelumnya.</li>
+            <li>Baca pesan kesalahan jika sebuah perintah gagal.</li>
+            <li>Periksa lokasi dengan <code>pwd</code> sebelum mengubah atau menghapus file.</li>
+            <li>Gunakan <code>man nama-perintah</code> untuk membaca panduan perintah jika tersedia.</li>
+            <li>Jangan menyalin perintah administrator dari sumber yang tidak dikenal tanpa memahaminya.</li>
+        </ul>
+    </section>
+
+    <section class="card">
+        <h2>📝 13. Latihan Soal</h2>
+        <p>Jawab lima soal berikut untuk menguji pemahamanmu.</p>
+
+        <form id="quizForm">
+
+            <div class="quiz-question">
+                <p><strong>1. Apa fungsi perintah pwd?</strong></p>
+                <label><input type="radio" name="q1" value="a"> Menghapus direktori</label>
+                <label><input type="radio" name="q1" value="b"> Menampilkan lokasi direktori aktif</label>
+                <label><input type="radio" name="q1" value="c"> Membuat pengguna baru</label>
+            </div>
+
+            <div class="quiz-question">
+                <p><strong>2. Perintah apa yang digunakan untuk membuat direktori?</strong></p>
+                <label><input type="radio" name="q2" value="a"> mkdir</label>
+                <label><input type="radio" name="q2" value="b"> whoami</label>
+                <label><input type="radio" name="q2" value="c"> uname</label>
+            </div>
+
+            <div class="quiz-question">
+                <p><strong>3. Apa fungsi perintah ls?</strong></p>
+                <label><input type="radio" name="q3" value="a"> Memperbarui paket</label>
+                <label><input type="radio" name="q3" value="b"> Memeriksa RAM</label>
+                <label><input type="radio" name="q3" value="c"> Melihat isi direktori</label>
+            </div>
+
+            <div class="quiz-question">
+                <p><strong>4. Perintah apa yang digunakan untuk melihat alamat IP di Linux modern?</strong></p>
+                <label><input type="radio" name="q4" value="a"> touch</label>
+                <label><input type="radio" name="q4" value="b"> ip addr</label>
+                <label><input type="radio" name="q4" value="c"> mkdir</label>
+            </div>
+
+            <div class="quiz-question">
+                <p><strong>5. Apa fungsi sudo?</strong></p>
+                <label><input type="radio" name="q5" value="a"> Meminta izin menjalankan perintah dengan hak istimewa jika diizinkan</label>
+                <label><input type="radio" name="q5" value="b"> Membuat file teks</label>
+                <label><input type="radio" name="q5" value="c"> Menampilkan isi direktori</label>
+            </div>
+
+            <button type="button" class="quiz-button" onclick="periksaJawaban()">
+                Periksa Jawaban
+            </button>
+
+            <button type="reset" class="quiz-button" onclick="resetHasil()">
+                Ulangi
+            </button>
+        </form>
+
+        <div id="hasil"></div>
+    </section>
+
+    <div class="navigation">
+        <a href="manajemen.html">← Manajemen User & File</a>
+
+        <a href="linuxserver.html">Materi Linux Server →</a>
+    </div>
+
+</main>
+
+<footer>
+    <p>© 2026 Website Pembelajaran Komputer</p>
+    <p>Belajar lebih cerdas. Berkembang lebih cepat.</p>
+</footer>
+
+<script>
+    function periksaJawaban() {
+        const kunci = {
+            q1: "b",
+            q2: "a",
+            q3: "c",
+            q4: "b",
+            q5: "a"
+        };
+
+        let skor = 0;
+        let terjawab = 0;
+
+        for (const soal in kunci) {
+            const jawaban = document.querySelector(
+                'input[name="' + soal + '"]:checked'
+            );
+
+            if (jawaban) {
+                terjawab++;
+
+                if (jawaban.value === kunci[soal]) {
+                    skor++;
+                }
+            }
+        }
+
+        const hasil = document.getElementById("hasil");
+
+        if (terjawab < 5) {
+            hasil.style.color = "#b45309";
+            hasil.textContent =
+                "Kamu baru menjawab " + terjawab +
+                " dari 5 soal. Lengkapi semua jawaban terlebih dahulu.";
+            return;
+        }
+
+        hasil.style.color = "#087e8b";
+        hasil.textContent =
+            "Hasil: " + skor + " dari 5 jawaban benar. Nilai kamu: " +
+            (skor * 20) + "/100. " +
+            (skor === 5
+                ? "Hebat! Kamu sudah memahami materi ini."
+                : "Tetap semangat! Pelajari kembali materi yang belum dikuasai.");
+    }
+
+    function resetHasil() {
+        document.getElementById("hasil").textContent = "";
+    }
+</script>
+
+</body>
+
+</html>

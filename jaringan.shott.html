@@ -1,0 +1,1279 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Troubleshooting Jaringan - BZ</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --blue: #087cff;
+    --cyan: #10bfb3;
+    --ink: #102642;
+    --muted: #61768c;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--ink);
+    line-height: 1.7;
+    min-height: 100vh;
+    background: linear-gradient(135deg,#dcecff,#f4fbff 48%,#cef6f3);
+}
+
+a { text-decoration: none; }
+
+.container {
+    width: min(990px,92%);
+    margin: auto;
+}
+
+/* HEADER */
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin: 25px auto 20px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo {
+    width: 43px;
+    height: 43px;
+    display: grid;
+    place-items: center;
+    border-radius: 14px;
+    color: white;
+    font-weight: 900;
+    background: linear-gradient(135deg,#167cff,#10bfb3);
+}
+
+.brand strong {
+    display: block;
+    font-size: 14px;
+}
+
+.brand span {
+    color: #079f9a;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.back {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 11px 17px;
+    background: white;
+    color: var(--blue);
+    border-radius: 13px;
+    font-size: 12px;
+    font-weight: 800;
+    box-shadow: 0 8px 25px #1464a014;
+    transition: .25s;
+}
+
+.back:hover,
+.next:hover {
+    transform: translateY(-3px);
+}
+
+/* HERO */
+
+.hero {
+    position: relative;
+    overflow: hidden;
+    padding: 42px;
+    color: white;
+    border-radius: 29px;
+    background: linear-gradient(115deg,#176bff,#6559f4 62%,#9438ed);
+    box-shadow: 0 25px 55px #2b66c52b;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    right: -70px;
+    top: -120px;
+    border-radius: 50%;
+    background: #ffffff12;
+    border: 1px solid #ffffff20;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-icon {
+    width: 58px;
+    height: 58px;
+    display: grid;
+    place-items: center;
+    margin-bottom: 13px;
+    border-radius: 17px;
+    background: #ffffff20;
+    border: 1px solid #ffffff40;
+    font-size: 29px;
+}
+
+.label {
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.hero h1 {
+    font-size: clamp(34px,5vw,45px);
+    line-height: 1.15;
+    margin: 8px 0 12px;
+}
+
+.hero p {
+    max-width: 700px;
+    color: #f1f5ff;
+    font-size: 14px;
+}
+
+.chips {
+    display: flex;
+    gap: 9px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.chip {
+    padding: 6px 12px;
+    font-size: 11px;
+    font-weight: 800;
+    border: 1px solid #ffffff45;
+    background: #ffffff18;
+    border-radius: 10px;
+}
+
+/* CONTENT */
+
+.content {
+    display: grid;
+    grid-template-columns: minmax(0,1fr) 245px;
+    gap: 18px;
+    align-items: start;
+    margin: 24px 0 25px;
+}
+
+.card {
+    padding: 27px;
+    margin-bottom: 17px;
+    border-radius: 21px;
+    background: #ffffffdf;
+    border: 1px solid white;
+    box-shadow: 0 12px 35px #1450780c;
+}
+
+.section-label {
+    color: var(--blue);
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.card h2 {
+    font-size: 24px;
+    line-height: 1.3;
+    margin: 6px 0 13px;
+}
+
+.card h3 {
+    font-size: 16px;
+    margin: 18px 0 5px;
+}
+
+.card p,
+.card li {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.card p + p { margin-top: 10px; }
+
+.card ul,
+.card ol {
+    padding-left: 20px;
+    margin-top: 9px;
+}
+
+.info-box {
+    padding: 15px 17px;
+    margin-top: 17px;
+    border-radius: 13px;
+    background: linear-gradient(135deg,#edf7ff,#e6fbf7);
+    border: 1px solid #d7efef;
+    color: #45617d;
+    font-size: 12px;
+}
+
+/* TOOLS */
+
+.tool-grid {
+    display: grid;
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    gap: 12px;
+    margin-top: 17px;
+}
+
+.tool {
+    padding: 16px;
+    border: 1px solid #deedf5;
+    border-radius: 15px;
+    background: #fbfdff;
+}
+
+.tool-icon {
+    font-size: 27px;
+    margin-bottom: 5px;
+}
+
+.tool h3 {
+    margin: 0 0 5px;
+    font-size: 14px;
+}
+
+.tool p {
+    font-size: 12px;
+}
+
+/* LANGKAH */
+
+.steps {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 17px;
+}
+
+.step {
+    display: grid;
+    grid-template-columns: 43px minmax(0,1fr);
+    gap: 12px;
+    padding: 15px;
+    border: 1px solid #deedf5;
+    border-radius: 14px;
+    background: #fbfdff;
+}
+
+.step-number {
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-items: center;
+    border-radius: 12px;
+    color: white;
+    font-size: 15px;
+    font-weight: 900;
+    background: linear-gradient(135deg,#167cff,#10bfb3);
+}
+
+.step h3 {
+    margin: 0 0 4px;
+    font-size: 14px;
+}
+
+.step p {
+    font-size: 12px;
+}
+
+/* TABEL */
+
+.table-wrap {
+    overflow-x: auto;
+    margin-top: 15px;
+    border-radius: 12px;
+    border: 1px solid #deedf5;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    font-size: 12px;
+}
+
+th, td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #e5edf5;
+    text-align: left;
+}
+
+th {
+    color: #234363;
+    background: #edf6ff;
+}
+
+td { color: #526a82; }
+
+tr:last-child td { border-bottom: none; }
+
+code {
+    font-family: Consolas, monospace;
+}
+
+.code-box {
+    padding: 15px;
+    margin-top: 10px;
+    border-radius: 12px;
+    background: #102642;
+    color: #d9f5ff;
+    overflow-x: auto;
+    font-size: 12px;
+    line-height: 1.9;
+}
+
+/* SIDEBAR */
+
+.side-card {
+    padding: 22px;
+    margin-bottom: 16px;
+    border: 1px solid white;
+    border-radius: 19px;
+    background: #ffffffdf;
+    box-shadow: 0 12px 30px #1450780c;
+}
+
+.side-card h3 {
+    font-size: 15px;
+    margin-bottom: 9px;
+}
+
+.side-card p,
+.side-card li {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.side-card ul { padding-left: 18px; }
+
+.progress {
+    height: 8px;
+    background: #e1edf5;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 12px 0 7px;
+}
+
+.progress div {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,#167cff,#10bfb3);
+}
+
+/* QUIZ */
+
+.question {
+    padding: 17px;
+    margin: 15px 0;
+    border: 1px solid #deedf5;
+    border-radius: 15px;
+    background: #fbfdff;
+}
+
+.question legend {
+    padding: 0 4px;
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--ink);
+}
+
+.option {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    padding: 10px;
+    margin-top: 7px;
+    border: 1px solid #e4edf4;
+    border-radius: 10px;
+    background: white;
+    color: #506782;
+    font-size: 12px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.option:hover {
+    background: #f0f8ff;
+    border-color: #8bc8ff;
+}
+
+.option input {
+    margin-top: 5px;
+    accent-color: #167cff;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.button,
+.next {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 11px 17px;
+    border: none;
+    border-radius: 11px;
+    color: white;
+    background: linear-gradient(110deg,#176bff,#10bfb3);
+    font-size: 12px;
+    font-weight: 900;
+    cursor: pointer;
+    transition: .25s;
+}
+
+.button.secondary {
+    background: white;
+    color: var(--blue);
+    border: 1px solid #dceaf5;
+}
+
+.result {
+    display: none;
+    padding: 21px;
+    margin-top: 20px;
+    border-radius: 16px;
+    background: linear-gradient(135deg,#eaf7ff,#e5fbf6);
+    border: 1px solid #cfece8;
+}
+
+.result.show { display: block; }
+
+.score {
+    color: #079f91;
+    font-size: 39px;
+    font-weight: 900;
+}
+
+.result h3 { margin: 0 0 5px; }
+.result p { font-size: 12px; }
+
+.feedback {
+    padding-top: 12px;
+    margin-top: 12px;
+    border-top: 1px solid #d2e8e8;
+}
+
+.feedback div {
+    padding: 7px 0;
+    font-size: 12px;
+}
+
+.correct { color: #078b6d; }
+.incorrect { color: #cf4d5a; }
+
+/* RANGKUMAN */
+
+.note {
+    display: flex;
+    gap: 17px;
+    align-items: flex-start;
+    padding: 25px;
+    margin-bottom: 20px;
+    border-radius: 21px;
+    background: linear-gradient(135deg,#edf8ff,#e7fffb);
+    border: 1px solid #cdece9;
+}
+
+.note-icon { font-size: 30px; }
+
+.note h2 {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.note p {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.summary {
+    padding: 27px;
+    margin-bottom: 22px;
+    color: white;
+    border-radius: 21px;
+    background: linear-gradient(120deg,#087cff,#11bfb3);
+    box-shadow: 0 20px 45px #0a82d21f;
+}
+
+.summary .section-label { color: #eafaff; }
+
+.summary h2 {
+    margin: 7px 0 17px;
+    font-size: 23px;
+}
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 10px;
+}
+
+.summary-item {
+    padding: 12px;
+    border-radius: 12px;
+    background: #ffffff20;
+    font-size: 12px;
+}
+
+/* NAVIGASI */
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin: 22px 0 50px;
+}
+
+.navigation .back,
+.navigation .next {
+    min-height: 40px;
+}
+
+.footer {
+    text-align: center;
+    color: #7890a8;
+    font-size: 11px;
+    padding-bottom: 28px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:760px) {
+    .header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .hero { padding: 29px 24px; }
+
+    .content { grid-template-columns: 1fr; }
+
+    .card,
+    .side-card { padding: 21px; }
+
+    .hero h1 { font-size: 34px; }
+
+    .tool-grid,
+    .summary-grid { grid-template-columns: 1fr; }
+
+    .note { flex-direction: column; }
+
+    .navigation {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .navigation a {
+        width: 100%;
+        text-align: center;
+    }
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<!-- HEADER -->
+
+<header class="header">
+    <div class="brand">
+        <div class="logo">BZ</div>
+        <div>
+            <strong>Tempat Belajar</strong>
+            <span>Gen Z</span>
+        </div>
+    </div>
+
+    <a href="jaringan.html" class="back">
+        ← Kembali ke Materi
+    </a>
+</header>
+
+<!-- HERO -->
+
+<section class="hero">
+    <div class="hero-content">
+        <div class="hero-icon">🛠️</div>
+        <div class="label">MATERI • NETWORKING</div>
+
+        <h1>Troubleshooting Jaringan</h1>
+
+        <p>
+            Pelajari cara menemukan penyebab masalah jaringan,
+            memeriksa koneksi, menggunakan perintah jaringan,
+            dan memperbaiki gangguan agar perangkat dapat
+            berkomunikasi dengan baik.
+        </p>
+
+        <div class="chips">
+            <span class="chip">🔍 Analisis Masalah</span>
+            <span class="chip">💻 Perintah Jaringan</span>
+            <span class="chip">🌐 Koneksi LAN</span>
+            <span class="chip">📝 5 Soal</span>
+        </div>
+    </div>
+</section>
+
+<main class="content">
+<div>
+
+<!-- MATERI 1 -->
+
+<section class="card">
+    <div class="section-label">01 — PENGERTIAN</div>
+    <h2>Apa Itu Troubleshooting Jaringan?</h2>
+
+    <p>
+        <strong>Troubleshooting jaringan</strong> adalah proses
+        mencari, mengidentifikasi, menganalisis, dan memperbaiki
+        masalah yang menyebabkan jaringan komputer tidak
+        bekerja sebagaimana mestinya.
+    </p>
+
+    <p>
+        Troubleshooting dilakukan ketika komputer tidak dapat
+        terhubung ke jaringan, tidak bisa berkomunikasi dengan
+        perangkat lain, atau mengalami gangguan saat mengakses
+        layanan jaringan.
+    </p>
+
+    <div class="info-box">
+        💡 <strong>Tujuan:</strong> menemukan sumber masalah dan
+        mengembalikan koneksi jaringan agar dapat berfungsi
+        dengan baik.
+    </div>
+</section>
+
+<!-- MATERI 2 -->
+
+<section class="card">
+    <div class="section-label">02 — PENYEBAB MASALAH</div>
+    <h2>Penyebab Gangguan Jaringan</h2>
+
+    <div class="tool-grid">
+
+        <div class="tool">
+            <div class="tool-icon">🔌</div>
+            <h3>1. Kabel Bermasalah</h3>
+            <p>
+                Kabel LAN putus, konektor longgar, atau
+                susunan kabel tidak benar.
+            </p>
+        </div>
+
+        <div class="tool">
+            <div class="tool-icon">🖥️</div>
+            <h3>2. Perangkat Jaringan</h3>
+            <p>
+                Switch, router, atau adaptor jaringan mati
+                maupun mengalami gangguan.
+            </p>
+        </div>
+
+        <div class="tool">
+            <div class="tool-icon">🌐</div>
+            <h3>3. Konfigurasi IP</h3>
+            <p>
+                Alamat IP, subnet mask, atau default gateway
+                tidak sesuai dengan jaringan.
+            </p>
+        </div>
+
+        <div class="tool">
+            <div class="tool-icon">⚙️</div>
+            <h3>4. Konfigurasi Jaringan</h3>
+            <p>
+                VLAN, routing, atau pengaturan DNS tidak
+                sesuai dengan kebutuhan jaringan.
+            </p>
+        </div>
+
+    </div>
+
+    <div class="info-box">
+        ⚠️ Sebelum mengubah konfigurasi, periksa gejala dan
+        catat pengaturan awal agar perubahan dapat ditelusuri.
+    </div>
+</section>
+
+<!-- MATERI 3 -->
+
+<section class="card">
+    <div class="section-label">03 — LANGKAH KERJA</div>
+    <h2>Tahapan Troubleshooting</h2>
+
+    <div class="steps">
+
+        <div class="step">
+            <div class="step-number">1</div>
+            <div>
+                <h3>Identifikasi Masalah</h3>
+                <p>
+                    Cari tahu gejala yang terjadi, misalnya
+                    koneksi terputus, tidak dapat ping, atau
+                    tidak dapat membuka situs.
+                </p>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-number">2</div>
+            <div>
+                <h3>Periksa Koneksi Fisik</h3>
+                <p>
+                    Pastikan kabel terpasang dengan benar,
+                    indikator port menyala sesuai kondisi,
+                    dan perangkat jaringan mendapatkan daya.
+                </p>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-number">3</div>
+            <div>
+                <h3>Periksa Konfigurasi IP</h3>
+                <p>
+                    Periksa alamat IP, subnet mask, dan
+                    default gateway pada komputer.
+                </p>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-number">4</div>
+            <div>
+                <h3>Uji Koneksi dengan Ping</h3>
+                <p>
+                    Uji koneksi ke perangkat tujuan untuk
+                    mengetahui apakah alamat tersebut
+                    dapat dijangkau.
+                </p>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-number">5</div>
+            <div>
+                <h3>Periksa Konfigurasi Lanjutan</h3>
+                <p>
+                    Jika masalah belum ditemukan, periksa
+                    gateway, VLAN, routing, DNS, dan aturan
+                    firewall sesuai gejala.
+                </p>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-number">6</div>
+            <div>
+                <h3>Lakukan Perbaikan</h3>
+                <p>
+                    Perbaiki penyebab yang ditemukan.
+                    Hindari mengubah pengaturan yang tidak
+                    berkaitan dengan masalah.
+                </p>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-number">7</div>
+            <div>
+                <h3>Uji Kembali</h3>
+                <p>
+                    Pastikan koneksi sudah berjalan dan
+                    catat tindakan serta hasil perbaikannya.
+                </p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- MATERI 4 -->
+
+<section class="card">
+    <div class="section-label">04 — PERINTAH JARINGAN</div>
+    <h2>Perintah untuk Troubleshooting</h2>
+
+    <h3>1. ipconfig</h3>
+    <p>
+        Digunakan di Windows untuk melihat konfigurasi
+        jaringan komputer.
+    </p>
+    <div class="code-box">
+        <code>ipconfig<br>ipconfig /all</code>
+    </div>
+
+    <h3>2. ping</h3>
+    <p>
+        Digunakan untuk menguji keterjangkauan perangkat
+        atau alamat IP tujuan.
+    </p>
+    <div class="code-box">
+        <code>ping 192.168.1.1<br>ping 8.8.8.8</code>
+    </div>
+
+    <h3>3. tracert</h3>
+    <p>
+        Digunakan di Windows untuk melihat jalur yang
+        dilalui paket menuju alamat tujuan.
+    </p>
+    <div class="code-box">
+        <code>tracert 8.8.8.8</code>
+    </div>
+
+    <h3>4. nslookup</h3>
+    <p>
+        Digunakan untuk memeriksa pencarian nama domain
+        melalui DNS.
+    </p>
+    <div class="code-box">
+        <code>nslookup google.com</code>
+    </div>
+
+    <h3>5. ip addr</h3>
+    <p>
+        Digunakan di Linux untuk melihat alamat IP dan
+        antarmuka jaringan.
+    </p>
+    <div class="code-box">
+        <code>ip addr</code>
+    </div>
+
+    <div class="info-box">
+        📌 Hasil perintah harus dibaca sesuai konteks.
+        Kegagalan ping tidak selalu berarti jaringan putus,
+        karena perangkat tujuan atau firewall dapat memblokir
+        paket ICMP.
+    </div>
+</section>
+
+<!-- MATERI 5 -->
+
+<section class="card">
+    <div class="section-label">05 — CONTOH KASUS</div>
+    <h2>Contoh Masalah dan Solusinya</h2>
+
+    <h3>Kasus 1: Kabel LAN Tidak Terdeteksi</h3>
+    <ul>
+        <li>Periksa kabel dan konektor pada kedua ujung.</li>
+        <li>Periksa indikator port pada komputer dan switch.</li>
+        <li>Coba kabel atau port lain yang diketahui berfungsi.</li>
+        <li>Periksa apakah adaptor jaringan aktif.</li>
+    </ul>
+
+    <h3>Kasus 2: Tidak Bisa Ping ke Gateway</h3>
+    <ul>
+        <li>Periksa alamat IP dan subnet mask komputer.</li>
+        <li>Pastikan alamat gateway benar dan satu jaringan.</li>
+        <li>Periksa VLAN dan port switch jika menggunakan VLAN.</li>
+        <li>Pastikan perangkat gateway menyala dan terhubung.</li>
+    </ul>
+
+    <h3>Kasus 3: Bisa Ping IP, tetapi Situs Tidak Terbuka</h3>
+    <ul>
+        <li>Jalankan nslookup untuk memeriksa DNS.</li>
+        <li>Periksa konfigurasi DNS pada komputer.</li>
+        <li>Pastikan akses ke internet tidak dibatasi.</li>
+    </ul>
+
+    <div class="info-box">
+        💡 Perbaikan yang tepat dimulai dengan pemeriksaan
+        bertahap. Jangan langsung menyimpulkan penyebab
+        hanya dari satu hasil pengujian.
+    </div>
+</section>
+
+<!-- MATERI 6 -->
+
+<section class="card">
+    <div class="section-label">06 — HASIL PENGUJIAN</div>
+    <h2>Membaca Hasil Troubleshooting</h2>
+
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Hasil Pemeriksaan</th>
+                    <th>Hal yang Perlu Diperiksa</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Kabel tidak terdeteksi</td>
+                    <td>Kabel, konektor, port, adaptor jaringan</td>
+                </tr>
+                <tr>
+                    <td>IP tidak sesuai</td>
+                    <td>Alamat IP, subnet mask, DHCP</td>
+                </tr>
+                <tr>
+                    <td>Gateway tidak terjangkau</td>
+                    <td>IP, VLAN, kabel, gateway</td>
+                </tr>
+                <tr>
+                    <td>IP tujuan bisa dijangkau, domain gagal</td>
+                    <td>DNS dan konfigurasi nama domain</td>
+                </tr>
+                <tr>
+                    <td>Koneksi lambat atau tidak stabil</td>
+                    <td>Sinyal, kabel, beban jaringan, kehilangan paket</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="info-box">
+        ⚠️ Tabel ini merupakan panduan awal. Satu gejala
+        dapat memiliki beberapa penyebab, sehingga perlu
+        pemeriksaan lanjutan.
+    </div>
+</section>
+
+<!-- LATIHAN -->
+
+<section class="card" id="latihan">
+    <div class="section-label">UJI PEMAHAMAN</div>
+    <h2>Latihan Soal Pilihan Ganda</h2>
+
+    <p>
+        Jawab lima soal berikut. Setiap soal bernilai 20 poin.
+        Klik Kirim Jawaban untuk melihat nilai dan pembahasan.
+    </p>
+
+    <form id="quizForm">
+
+        <fieldset class="question">
+            <legend>1. Apa yang dimaksud dengan troubleshooting jaringan?</legend>
+
+            <label class="option">
+                <input type="radio" name="q1" value="a" required>
+                Mengganti semua perangkat jaringan
+            </label>
+            <label class="option">
+                <input type="radio" name="q1" value="b">
+                Mencari dan memperbaiki masalah jaringan
+            </label>
+            <label class="option">
+                <input type="radio" name="q1" value="c">
+                Membuat akun pengguna komputer
+            </label>
+            <label class="option">
+                <input type="radio" name="q1" value="d">
+                Menghapus seluruh data komputer
+            </label>
+        </fieldset>
+
+        <fieldset class="question">
+            <legend>2. Perintah Windows untuk melihat konfigurasi IP adalah ...</legend>
+
+            <label class="option">
+                <input type="radio" name="q2" value="a" required>
+                mkdir
+            </label>
+            <label class="option">
+                <input type="radio" name="q2" value="b">
+                copy
+            </label>
+            <label class="option">
+                <input type="radio" name="q2" value="c">
+                ipconfig
+            </label>
+            <label class="option">
+                <input type="radio" name="q2" value="d">
+                dir
+            </label>
+        </fieldset>
+
+        <fieldset class="question">
+            <legend>3. Perintah yang digunakan untuk menguji keterjangkauan perangkat adalah ...</legend>
+
+            <label class="option">
+                <input type="radio" name="q3" value="a" required>
+                format
+            </label>
+            <label class="option">
+                <input type="radio" name="q3" value="b">
+                rename
+            </label>
+            <label class="option">
+                <input type="radio" name="q3" value="c">
+                mkdir
+            </label>
+            <label class="option">
+                <input type="radio" name="q3" value="d">
+                ping
+            </label>
+        </fieldset>
+
+        <fieldset class="question">
+            <legend>4. Apa yang harus diperiksa pertama kali ketika kabel LAN tidak terdeteksi?</legend>
+
+            <label class="option">
+                <input type="radio" name="q4" value="a" required>
+                Menginstal ulang sistem operasi
+            </label>
+            <label class="option">
+                <input type="radio" name="q4" value="b">
+                Mengganti semua komputer
+            </label>
+            <label class="option">
+                <input type="radio" name="q4" value="c">
+                Memeriksa kabel dan konektornya
+            </label>
+            <label class="option">
+                <input type="radio" name="q4" value="d">
+                Menghapus seluruh file
+            </label>
+        </fieldset>
+
+        <fieldset class="question">
+            <legend>5. Perintah untuk memeriksa pencarian nama domain adalah ...</legend>
+
+            <label class="option">
+                <input type="radio" name="q5" value="a" required>
+                nslookup
+            </label>
+            <label class="option">
+                <input type="radio" name="q5" value="b">
+                mkdir
+            </label>
+            <label class="option">
+                <input type="radio" name="q5" value="c">
+                copy
+            </label>
+            <label class="option">
+                <input type="radio" name="q5" value="d">
+                rename
+            </label>
+        </fieldset>
+
+        <div class="actions">
+            <button type="submit" class="button">
+                Kirim Jawaban →
+            </button>
+
+            <button type="reset" class="button secondary">
+                Ulangi Latihan
+            </button>
+        </div>
+    </form>
+
+    <div class="result" id="result" aria-live="polite">
+        <div class="score" id="score">Nilai: 0</div>
+        <h3 id="resultTitle">Hasil Latihan</h3>
+        <p id="resultSummary"></p>
+        <div class="feedback" id="feedback"></div>
+    </div>
+</section>
+
+</div>
+
+<!-- SIDEBAR -->
+
+<aside>
+    <section class="side-card">
+        <h3>📚 Isi Materi</h3>
+        <ul>
+            <li>Pengertian troubleshooting</li>
+            <li>Penyebab gangguan jaringan</li>
+            <li>Tahapan troubleshooting</li>
+            <li>Perintah jaringan</li>
+            <li>Contoh kasus</li>
+            <li>Hasil pengujian</li>
+            <li>Latihan pilihan ganda</li>
+        </ul>
+
+        <div class="progress"><div></div></div>
+        <p>Materi siap dipelajari.</p>
+    </section>
+
+    <section class="side-card">
+        <h3>🎯 Tips Belajar</h3>
+        <p>
+            Periksa masalah secara bertahap. Mulai dari kabel,
+            konfigurasi IP, lalu uji koneksi sebelum memeriksa
+            pengaturan lainnya.
+        </p>
+    </section>
+
+    <section class="side-card">
+        <h3>💻 Perintah Penting</h3>
+        <p>
+            Pelajari ipconfig, ping, tracert, nslookup,
+            dan ip addr untuk membantu pemeriksaan jaringan.
+        </p>
+
+    </section>
+
+</aside>
+
+</main>
+
+<!-- TIPS -->
+
+<section class="note">
+    <div class="note-icon">💡</div>
+    <div>
+        <h2>Tips Troubleshooting</h2>
+        <p>
+            Jangan langsung mengubah banyak konfigurasi.
+            Periksa satu per satu, catat hasil pemeriksaan,
+            lakukan perbaikan, lalu uji kembali koneksi jaringan.
+        </p>
+
+    </div>
+
+</section>
+
+<!-- RANGKUMAN -->
+
+<section class="summary">
+    <div class="section-label">RANGKUMAN</div>
+    <h2>Yang Perlu Kamu Ingat</h2>
+
+    <div class="summary-grid">
+        <div class="summary-item">
+            ✓ Troubleshooting bertujuan menemukan dan memperbaiki masalah jaringan.
+        </div>
+        <div class="summary-item">
+            ✓ Periksa kabel dan perangkat sebelum memeriksa konfigurasi.
+        </div>
+        <div class="summary-item">
+            ✓ ipconfig digunakan untuk melihat konfigurasi IP di Windows.
+        </div>
+        <div class="summary-item">
+            ✓ ping membantu menguji keterjangkauan perangkat.
+        </div>
+        <div class="summary-item">
+            ✓ nslookup membantu memeriksa pencarian nama domain.
+        </div>
+        <div class="summary-item">
+            ✓ Setelah perbaikan, lakukan pengujian ulang.
+        </div>
+
+    </div>
+
+</section>
+
+<!-- NAVIGASI BAWAH -->
+
+<nav class="navigation">
+    <a href="crimping.html" class="back">
+        ← Kembali ke Crimping Kabel
+    </a>
+
+    <a href="index.html" class="next">
+        Kembali ke beranda 
+    </a>
+</nav>
+
+<div class="footer">
+    © BZ — Tempat Belajar Gen Z
+</div>
+
+</div>
+
+<script>
+const kunciJawaban = {
+    q1: "b",
+    q2: "c",
+    q3: "d",
+    q4: "c",
+    q5: "a"
+};
+
+const pembahasan = {
+    q1: "Troubleshooting adalah proses mencari, menganalisis, dan memperbaiki masalah jaringan.",
+    q2: "ipconfig digunakan di Windows untuk melihat informasi konfigurasi IP komputer.",
+    q3: "ping digunakan untuk menguji apakah perangkat tujuan dapat dijangkau.",
+    q4: "Pemeriksaan kabel dan konektor membantu menemukan gangguan pada koneksi fisik.",
+    q5: "nslookup membantu memeriksa pencarian nama domain melalui DNS."
+};
+
+const form = document.getElementById("quizForm");
+
+form.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const data = new FormData(form);
+    let benar = 0;
+    let hasilPembahasan = "";
+
+    for (let i = 1; i <= 5; i++) {
+        const nomor = "q" + i;
+        const tepat = data.get(nomor) === kunciJawaban[nomor];
+
+        if (tepat) benar++;
+
+        hasilPembahasan += `
+            <div class="${tepat ? "correct" : "incorrect"}">
+                <strong>Soal ${i}: ${tepat ? "Benar" : "Belum tepat"}.</strong>
+                ${pembahasan[nomor]}
+            </div>
+        `;
+    }
+
+    const nilai = benar * 20;
+
+    document.getElementById("score").textContent =
+        "Nilai: " + nilai;
+
+    document.getElementById("resultTitle").textContent =
+        nilai >= 80 ? "Bagus sekali! 🎉" :
+        nilai >= 60 ? "Terus berlatih! 💪" :
+        "Jangan menyerah! 📘";
+
+    document.getElementById("resultSummary").textContent =
+        benar + " jawaban benar dari 5 soal. " +
+        (5 - benar) + " jawaban salah.";
+
+    document.getElementById("feedback").innerHTML =
+        hasilPembahasan;
+
+    const hasil = document.getElementById("result");
+    hasil.classList.add("show");
+
+    hasil.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+});
+
+form.addEventListener("reset", function() {
+    document.getElementById("result").classList.remove("show");
+    document.getElementById("feedback").innerHTML = "";
+});
+</script>
+
+</body>
+
+</html>

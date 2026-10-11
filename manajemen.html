@@ -1,0 +1,758 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi Manajemen User & File</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #eaf8ff, #d7fff5);
+            color: #183b50;
+            line-height: 1.8;
+        }
+
+        header {
+            background: linear-gradient(135deg, #075985, #0891b2, #2dd4bf);
+            color: white;
+            padding: 35px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 32px;
+            margin: 15px 0 8px;
+        }
+
+        header p {
+            max-width: 750px;
+            margin: auto;
+            color: #e0fbff;
+        }
+
+        .back-button {
+            display: inline-block;
+            color: white;
+            text-decoration: none;
+            border: 1px solid rgba(255,255,255,0.7);
+            padding: 7px 16px;
+            border-radius: 25px;
+            transition: 0.3s;
+        }
+
+        .back-button:hover {
+            background: white;
+            color: #075985;
+        }
+
+        .hero {
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 30px 25px;
+            background: white;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(8,145,178,0.12);
+        }
+
+        .hero h2 {
+            color: #087e8b;
+            margin-bottom: 10px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 0 20px 40px;
+        }
+
+        .card {
+            background: white;
+            padding: 26px;
+            margin-bottom: 24px;
+            border-radius: 18px;
+            border-left: 6px solid #14b8a6;
+            box-shadow: 0 6px 20px rgba(15,100,120,0.09);
+        }
+
+        h2 {
+            color: #087e8b;
+            margin-bottom: 14px;
+            font-size: 24px;
+        }
+
+        h3 {
+            color: #087e8b;
+            margin: 18px 0 8px;
+        }
+
+        p {
+            margin-bottom: 10px;
+        }
+
+        ul, ol {
+            padding-left: 25px;
+            margin: 10px 0;
+        }
+
+        li {
+            margin-bottom: 7px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 18px;
+            margin-top: 18px;
+        }
+
+        .mini-card {
+            background: linear-gradient(135deg, #f0fbff, #e2fff8);
+            border: 1px solid #bceee8;
+            padding: 20px;
+            border-radius: 14px;
+        }
+
+        .mini-card h3 {
+            margin-top: 0;
+        }
+
+        .command {
+            display: block;
+            background: #083344;
+            color: #a7f3d0;
+            padding: 14px 16px;
+            border-radius: 10px;
+            margin: 10px 0 15px;
+            overflow-x: auto;
+            font-family: Consolas, monospace;
+            font-size: 14px;
+            white-space: pre;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, #e0f7ff, #d7fff5);
+            padding: 16px;
+            border-radius: 12px;
+            margin-top: 15px;
+        }
+
+        .warning {
+            background: #fff8e5;
+            border-left: 5px solid #eab308;
+            padding: 16px;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 500px;
+            margin-top: 12px;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #d5eeee;
+            text-align: left;
+        }
+
+        th {
+            background: #0891b2;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background: #f0fbff;
+        }
+
+        .quiz-question {
+            background: #f0fbff;
+            padding: 18px;
+            margin: 15px 0;
+            border-radius: 12px;
+        }
+
+        .quiz-question label {
+            display: block;
+            margin: 8px 0;
+            cursor: pointer;
+        }
+
+        .quiz-question input {
+            margin-right: 8px;
+        }
+
+        .quiz-button {
+            background: linear-gradient(135deg, #0891b2, #14b8a6);
+            border: none;
+            color: white;
+            padding: 12px 22px;
+            border-radius: 25px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 8px 5px 0 0;
+        }
+
+        .quiz-button:hover {
+            opacity: 0.88;
+        }
+
+        #hasil {
+            margin-top: 18px;
+            font-weight: bold;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 25px 0;
+        }
+
+        .navigation a {
+            text-decoration: none;
+            color: white;
+            background: linear-gradient(135deg, #075985, #0891b2);
+            padding: 12px 20px;
+            border-radius: 25px;
+        }
+
+        .navigation a:hover {
+            background: #0f766e;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px 15px;
+            background: #083344;
+            color: #d7f9f5;
+        }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 26px;
+            }
+
+            .hero {
+                margin: 20px 12px;
+                padding: 24px 18px;
+            }
+
+            .container {
+                padding: 0 12px 25px;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            h2 {
+                font-size: 21px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <a href="index.html" class="back-button">← Kembali ke Beranda</a>
+    <h1>Manajemen User & File</h1>
+    <p>Pelajari cara mengelola pengguna, grup, file, direktori, dan hak akses di Linux.</p>
+</header>
+
+<section class="hero">
+    <h2>🐧 Belajar Administrasi Linux</h2>
+    <p>
+        Manajemen user dan file merupakan bagian penting dalam administrasi sistem.
+        Dengan memahami materi ini, kamu dapat mengatur siapa yang boleh masuk ke
+        sistem, file yang dapat diakses, serta tindakan yang diizinkan bagi setiap pengguna.
+    </p>
+</section>
+
+<main class="container">
+
+    <section class="card">
+        <h2>📘 1. Pengertian Manajemen User & File</h2>
+        <p>
+            <strong>Manajemen user</strong> adalah proses membuat, mengatur, mengubah,
+            dan menghapus akun pengguna dalam sistem operasi.
+        </p>
+        <p>
+            <strong>Manajemen file</strong> adalah proses mengelola file dan direktori,
+            termasuk membuat, menyalin, memindahkan, menghapus, serta mengatur hak aksesnya.
+        </p>
+
+        <div class="highlight">
+            <strong>Contoh penerapan:</strong> Administrator server membuat akun untuk
+            setiap pengguna dan membatasi akses mereka agar file penting tidak dapat
+            diubah oleh sembarang orang.
+        </div>
+    </section>
+
+    <section class="card">
+        <h2>🎯 2. Tujuan Manajemen User & File</h2>
+        <ul>
+            <li>Mengatur akun yang dapat menggunakan sistem.</li>
+            <li>Membatasi akses sesuai tugas dan tanggung jawab pengguna.</li>
+            <li>Melindungi file dan data penting.</li>
+            <li>Mempermudah pengelolaan file serta direktori.</li>
+            <li>Mendukung keamanan dan administrasi server.</li>
+            <li>Mencegah perubahan data oleh pengguna yang tidak berwenang.</li>
+        </ul>
+    </section>
+
+    <section class="card">
+        <h2>👤 3. Jenis Pengguna di Linux</h2>
+
+        <div class="grid">
+            <div class="mini-card">
+                <h3>Administrator / Root</h3>
+                <p>
+                    Akun dengan hak istimewa tertinggi untuk mengelola sistem.
+                    Penggunaannya harus hati-hati karena dapat mengubah bagian penting sistem.
+                </p>
+            </div>
+
+            <div class="mini-card">
+                <h3>Pengguna Biasa</h3>
+                <p>
+                    Akun untuk kegiatan sehari-hari, seperti mengelola file sendiri
+                    dan menjalankan aplikasi sesuai izin.
+                </p>
+            </div>
+
+            <div class="mini-card">
+                <h3>Akun Sistem</h3>
+                <p>
+                    Akun yang digunakan oleh layanan atau proses tertentu untuk
+                    menjalankan tugas sistem.
+                </p>
+            </div>
+        </div>
+
+        <h3>Perintah melihat pengguna</h3>
+        <code class="command">whoami</code>
+        <p>Menampilkan nama pengguna yang sedang aktif di terminal.</p>
+
+        <code class="command">who</code>
+        <p>Menampilkan pengguna yang sedang masuk ke sistem.</p>
+
+        <code class="command">id</code>
+        <p>Menampilkan UID, GID, dan grup yang dimiliki pengguna saat ini.</p>
+    </section>
+
+    <section class="card">
+        <h2>➕ 4. Membuat dan Mengelola User</h2>
+
+        <h3>A. Membuat pengguna baru</h3>
+        <code class="command">sudo adduser siswa</code>
+        <p>
+            Membuat akun bernama <strong>siswa</strong> pada Debian atau sistem
+            Linux yang mendukung perintah <code>adduser</code>. Ikuti petunjuk
+            untuk mengatur kata sandi dan informasi akun.
+        </p>
+
+        <h3>B. Mengatur kata sandi</h3>
+        <code class="command">sudo passwd siswa</code>
+        <p>Mengatur atau mengganti kata sandi akun siswa.</p>
+
+        <h3>C. Melihat informasi pengguna</h3>
+        <code class="command">id siswa</code>
+        <p>Menampilkan identitas dan keanggotaan grup pengguna siswa.</p>
+
+        <h3>D. Mengubah nama pengguna</h3>
+        <code class="command">sudo usermod -l siswa_baru siswa</code>
+        <p>
+            Mengubah nama login dari siswa menjadi siswa_baru. Pastikan pengguna
+            tidak sedang aktif dan periksa direktori home jika perlu.
+        </p>
+
+        <h3>E. Menghapus pengguna</h3>
+        <code class="command">sudo deluser siswa</code>
+        <p>
+            Menghapus akun siswa pada Debian. Perintah ini tidak otomatis menghapus
+            semua file milik pengguna.
+        </p>
+
+        <div class="warning">
+            <strong>Perhatian:</strong> Sebelum menghapus akun, pastikan file penting
+            sudah dicadangkan dan akun tersebut memang tidak lagi diperlukan.
+        </div>
+    </section>
+
+    <section class="card">
+        <h2>👥 5. Manajemen Grup Pengguna</h2>
+        <p>
+            Grup digunakan untuk mengelompokkan pengguna sehingga hak akses terhadap
+            file atau sumber daya tertentu dapat dikelola bersama.
+        </p>
+
+        <h3>A. Membuat grup</h3>
+        <code class="command">sudo addgroup jaringan</code>
+        <p>Membuat grup bernama jaringan pada Debian.</p>
+
+        <h3>B. Menambahkan pengguna ke grup</h3>
+        <code class="command">sudo usermod -aG jaringan siswa</code>
+        <p>
+            Menambahkan siswa ke grup jaringan. Opsi <code>-aG</code> digunakan
+            untuk menambahkan grup tambahan tanpa mengganti keanggotaan grup lain.
+        </p>
+
+        <h3>C. Melihat grup pengguna</h3>
+        <code class="command">groups siswa</code>
+
+        <h3>D. Menghapus grup</h3>
+        <code class="command">sudo delgroup jaringan</code>
+        <p>
+            Menghapus grup jaringan jika grup tersebut sudah tidak diperlukan dan
+            tidak sedang digunakan sebagai grup utama pengguna.
+        </p>
+    </section>
+
+    <section class="card">
+        <h2>📁 6. Mengelola File dan Direktori</h2>
+
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Perintah</th>
+                        <th>Fungsi</th>
+                        <th>Contoh</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>pwd</code></td>
+                        <td>Menampilkan direktori aktif</td>
+                        <td><code>pwd</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>ls</code></td>
+                        <td>Melihat isi direktori</td>
+                        <td><code>ls -l</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>cd</code></td>
+                        <td>Berpindah direktori</td>
+                        <td><code>cd Documents</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>mkdir</code></td>
+                        <td>Membuat direktori</td>
+                        <td><code>mkdir latihan</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>touch</code></td>
+                        <td>Membuat file kosong jika belum ada</td>
+                        <td><code>touch catatan.txt</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>cp</code></td>
+                        <td>Menyalin file</td>
+                        <td><code>cp a.txt b.txt</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>mv</code></td>
+                        <td>Memindahkan atau mengganti nama</td>
+                        <td><code>mv a.txt data.txt</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>rm</code></td>
+                        <td>Menghapus file</td>
+                        <td><code>rm catatan.txt</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>rmdir</code></td>
+                        <td>Menghapus direktori kosong</td>
+                        <td><code>rmdir latihan</code></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="warning">
+            <strong>Hati-hati saat menggunakan perintah penghapusan.</strong>
+            Perintah <code>rm</code> dapat menghapus file tanpa memindahkannya
+            ke tempat sampah. Periksa nama dan lokasi file sebelum menjalankannya.
+        </div>
+    </section>
+
+    <section class="card">
+        <h2>🔐 7. Hak Akses File di Linux</h2>
+        <p>
+            Linux memiliki tiga kategori utama pengguna dalam pengaturan izin file:
+        </p>
+
+        <ul>
+            <li><strong>Owner (u):</strong> pemilik file.</li>
+            <li><strong>Group (g):</strong> grup yang memiliki akses ke file.</li>
+            <li><strong>Others (o):</strong> pengguna lain di luar pemilik dan grup.</li>
+        </ul>
+
+        <p>Jenis izin yang umum digunakan:</p>
+
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Izin</th>
+                        <th>Simbol</th>
+                        <th>Arti</th>
+                        <th>Nilai angka</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Read</td>
+                        <td>r</td>
+                        <td>Membaca file atau melihat isi direktori</td>
+                        <td>4</td>
+                    </tr>
+                    <tr>
+                        <td>Write</td>
+                        <td>w</td>
+                        <td>Mengubah file atau isi direktori</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>Execute</td>
+                        <td>x</td>
+                        <td>Menjalankan file atau menelusuri direktori</td>
+                        <td>1</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>Contoh tampilan izin</h3>
+        <code class="command">-rw-r--r-- 1 siswa siswa 120 Oct 10 catatan.txt</code>
+
+        <p>
+            Bagian <code>-rw-r--r--</code> menunjukkan bahwa pemilik dapat membaca
+            dan mengubah file, sedangkan grup dan pengguna lain hanya dapat membacanya.
+        </p>
+
+        <h3>Melihat hak akses file</h3>
+        <code class="command">ls -l</code>
+
+        <h3>Mengubah hak akses dengan chmod</h3>
+        <code class="command">chmod 644 catatan.txt</code>
+        <p>
+            Pemilik mendapat izin baca dan tulis, sedangkan grup serta pengguna lain
+            mendapat izin baca.
+        </p>
+
+        <code class="command">chmod 755 skrip.sh</code>
+        <p>
+            Pemilik mendapat izin baca, tulis, dan eksekusi; grup serta pengguna lain
+            mendapat izin baca dan eksekusi.
+        </p>
+
+        <h3>Mengubah pemilik file dengan chown</h3>
+        <code class="command">sudo chown siswa:siswa catatan.txt</code>
+        <p>Mengubah pemilik dan grup file menjadi siswa.</p>
+
+        <div class="highlight">
+            <strong>Ingat:</strong> Nilai chmod merupakan penjumlahan izin.
+            Contohnya, 7 = 4 + 2 + 1 (baca, tulis, eksekusi), sedangkan
+            5 = 4 + 1 (baca dan eksekusi).
+        </div>
+    </section>
+
+    <section class="card">
+        <h2>🗂️ 8. Lokasi File Penting di Linux</h2>
+
+        <ul>
+            <li><code>/home</code> — lokasi direktori home banyak pengguna biasa.</li>
+            <li><code>/root</code> — direktori home untuk akun root.</li>
+            <li><code>/etc/passwd</code> — informasi dasar akun pengguna.</li>
+            <li><code>/etc/shadow</code> — informasi autentikasi dan hash kata sandi yang dilindungi aksesnya.</li>
+            <li><code>/etc/group</code> — informasi grup pengguna.</li>
+            <li><code>/tmp</code> — lokasi untuk file sementara.</li>
+            <li><code>/var/log</code> — lokasi banyak file log sistem dan layanan.</li>
+        </ul>
+
+        <div class="warning">
+            File konfigurasi akun dan autentikasi merupakan bagian penting sistem.
+            Jangan mengeditnya secara langsung tanpa memahami format dan dampaknya.
+        </div>
+    </section>
+
+    <section class="card">
+        <h2>🧪 9. Praktik Sederhana di Debian</h2>
+        <p>
+            Praktik berikut cocok dilakukan pada mesin virtual Debian agar aman
+            untuk pembelajaran.
+        </p>
+
+        <h3>Langkah 1 — Buat pengguna latihan</h3>
+        <code class="command">sudo adduser siswa</code>
+
+        <h3>Langkah 2 — Buat folder latihan</h3>
+        <code class="command">mkdir ~/latihan-file</code>
+
+        <h3>Langkah 3 — Masuk ke folder</h3>
+        <code class="command">cd ~/latihan-file</code>
+
+        <h3>Langkah 4 — Buat file</h3>
+        <code class="command">touch catatan.txt</code>
+
+        <h3>Langkah 5 — Periksa file</h3>
+        <code class="command">ls -l</code>
+
+        <h3>Langkah 6 — Ubah izin file</h3>
+        <code class="command">chmod 640 catatan.txt</code>
+
+        <h3>Langkah 7 — Periksa hasil</h3>
+        <code class="command">ls -l catatan.txt</code>
+
+        <p>
+            Jika perintah berhasil, izin file akan menunjukkan bahwa pemilik dapat
+            membaca dan menulis, grup dapat membaca, dan pengguna lain tidak memiliki
+            izin baca, tulis, atau eksekusi.
+        </p>
+
+        <div class="highlight">
+            <strong>Catatan:</strong> Jalankan perintah pembuatan file dan folder
+            sebagai pengguna biasa. Jika terminal belum berada di akun siswa,
+            folder latihan akan dibuat di direktori home pengguna yang sedang aktif.
+        </div>
+    </section>
+
+    <section class="card">
+        <h2>📝 10. Latihan Soal</h2>
+        <p>Jawab lima pertanyaan berikut untuk menguji pemahamanmu.</p>
+
+        <form id="quizForm">
+
+            <div class="quiz-question">
+                <p><strong>1. Perintah apa yang digunakan untuk membuat pengguna baru di Debian?</strong></p>
+                <label><input type="radio" name="q1" value="a"> mkdir</label>
+                <label><input type="radio" name="q1" value="b"> adduser</label>
+                <label><input type="radio" name="q1" value="c"> chmod</label>
+            </div>
+
+            <div class="quiz-question">
+                <p><strong>2. Apa fungsi perintah chmod?</strong></p>
+                <label><input type="radio" name="q2" value="a"> Mengubah izin akses file</label>
+                <label><input type="radio" name="q2" value="b"> Membuat akun baru</label>
+                <label><input type="radio" name="q2" value="c"> Menampilkan direktori aktif</label>
+            </div>
+
+            <div class="quiz-question">
+                <p><strong>3. Apa arti izin read (r)?</strong></p>
+                <label><input type="radio" name="q3" value="a"> Menghapus file</label>
+                <label><input type="radio" name="q3" value="b"> Mengubah pemilik file</label>
+                <label><input type="radio" name="q3" value="c"> Membaca file</label>
+            </div>
+
+            <div class="quiz-question">
+                <p><strong>4. Perintah apa yang digunakan untuk melihat isi direktori?</strong></p>
+                <label><input type="radio" name="q4" value="a"> passwd</label>
+                <label><input type="radio" name="q4" value="b"> ls</label>
+                <label><input type="radio" name="q4" value="c"> usermod</label>
+            </div>
+
+            <div class="quiz-question">
+                <p><strong>5. Apa fungsi grup pengguna di Linux?</strong></p>
+                <label><input type="radio" name="q5" value="a"> Mengelompokkan pengguna untuk memudahkan pengaturan akses</label>
+                <label><input type="radio" name="q5" value="b"> Mengganti sistem operasi</label>
+                <label><input type="radio" name="q5" value="c"> Menghapus seluruh file otomatis</label>
+            </div>
+
+            <button type="button" class="quiz-button" onclick="periksaJawaban()">
+                Periksa Jawaban
+            </button>
+
+            <button type="reset" class="quiz-button" onclick="resetHasil()">
+                Ulangi
+            </button>
+        </form>
+
+        <div id="hasil"></div>
+    </section>
+
+    <div class="navigation">
+        <a href="instalasi.html">← Instalasi Sistem Operasi</a>
+        <a href="linuxserver.html">Materi Linux Server →</a>
+    </div>
+
+</main>
+
+<footer>
+    <p>© 2026 Website Pembelajaran Komputer</p>
+    <p>Belajar lebih cerdas. Berkembang lebih cepat.</p>
+</footer>
+
+<script>
+    function periksaJawaban() {
+        const kunci = {
+            q1: "b",
+            q2: "a",
+            q3: "c",
+            q4: "b",
+            q5: "a"
+        };
+
+        let skor = 0;
+        let terjawab = 0;
+
+        for (const soal in kunci) {
+            const jawaban = document.querySelector(
+                'input[name="' + soal + '"]:checked'
+            );
+
+            if (jawaban) {
+                terjawab++;
+
+                if (jawaban.value === kunci[soal]) {
+                    skor++;
+                }
+            }
+        }
+
+        const hasil = document.getElementById("hasil");
+
+        if (terjawab < 5) {
+            hasil.style.color = "#b45309";
+            hasil.textContent =
+                "Kamu baru menjawab " + terjawab +
+                " dari 5 soal. Lengkapi semua jawaban terlebih dahulu.";
+            return;
+        }
+
+        hasil.style.color = "#087e8b";
+        hasil.textContent =
+            "Hasil: " + skor + " dari 5 jawaban benar. Nilai kamu: " +
+            (skor * 20) + "/100. " +
+            (skor === 5
+                ? "Hebat! Kamu sudah memahami materi ini."
+                : "Semangat! Pelajari kembali materi yang belum kamu kuasai.");
+    }
+
+    function resetHasil() {
+        document.getElementById("hasil").textContent = "";
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1054 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Topologi Jaringan - BZ</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --blue: #087cff;
+    --cyan: #10c5b4;
+    --ink: #102642;
+    --muted: #61768c;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--ink);
+    line-height: 1.7;
+    min-height: 100vh;
+    background: linear-gradient(
+        135deg,
+        #dcecff 0%,
+        #f4fbff 48%,
+        #cef6f3 100%
+    );
+}
+
+a {
+    text-decoration: none;
+}
+
+.container {
+    width: min(990px, 92%);
+    margin: auto;
+}
+
+/* HEADER */
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin: 25px auto 20px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo {
+    width: 43px;
+    height: 43px;
+    display: grid;
+    place-items: center;
+    border-radius: 14px;
+    color: white;
+    font-weight: 900;
+    background: linear-gradient(135deg, #167cff, #10c5b4);
+}
+
+.brand strong {
+    display: block;
+    font-size: 14px;
+}
+
+.brand span {
+    color: #079f9a;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.back {
+    display: inline-block;
+    padding: 11px 17px;
+    background: white;
+    color: var(--blue);
+    border-radius: 13px;
+    font-size: 12px;
+    font-weight: 800;
+    box-shadow: 0 8px 25px #1464a014;
+    transition: .25s;
+}
+
+.back:hover,
+.next:hover {
+    transform: translateY(-3px);
+}
+
+/* HERO */
+
+.hero {
+    position: relative;
+    overflow: hidden;
+    padding: 42px;
+    color: white;
+    border-radius: 29px;
+    background: linear-gradient(
+        115deg,
+        #176bff,
+        #6559f4 62%,
+        #9438ed
+    );
+    box-shadow: 0 25px 55px #2b66c52b;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    right: -70px;
+    top: -120px;
+    border-radius: 50%;
+    background: #ffffff12;
+    border: 1px solid #ffffff20;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-icon {
+    width: 58px;
+    height: 58px;
+    display: grid;
+    place-items: center;
+    margin-bottom: 13px;
+    border-radius: 17px;
+    background: #ffffff20;
+    border: 1px solid #ffffff40;
+    font-size: 29px;
+}
+
+.label {
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.hero h1 {
+    font-size: clamp(34px, 5vw, 45px);
+    line-height: 1.15;
+    margin: 8px 0 12px;
+}
+
+.hero p {
+    max-width: 700px;
+    color: #f1f5ff;
+    font-size: 14px;
+}
+
+.chips {
+    display: flex;
+    gap: 9px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.chip {
+    padding: 6px 12px;
+    font-size: 11px;
+    font-weight: 800;
+    border: 1px solid #ffffff45;
+    background: #ffffff18;
+    border-radius: 10px;
+}
+
+/* LAYOUT */
+
+.content {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 245px;
+    gap: 18px;
+    align-items: start;
+    margin: 24px 0 25px;
+}
+
+.card {
+    padding: 27px;
+    margin-bottom: 17px;
+    border-radius: 21px;
+    background: #ffffffdf;
+    border: 1px solid #ffffff;
+    box-shadow: 0 12px 35px #1450780c;
+}
+
+.section-label {
+    color: var(--blue);
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.card h2 {
+    font-size: 24px;
+    line-height: 1.3;
+    margin: 6px 0 13px;
+}
+
+.card h3 {
+    font-size: 16px;
+    margin: 18px 0 5px;
+}
+
+.card p,
+.card li {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.card p + p {
+    margin-top: 10px;
+}
+
+.card ul {
+    padding-left: 20px;
+    margin-top: 9px;
+}
+
+.info-box {
+    padding: 15px 17px;
+    margin-top: 17px;
+    border-radius: 13px;
+    background: linear-gradient(135deg, #edf7ff, #e6fbf7);
+    border: 1px solid #d7efef;
+    color: #45617d;
+    font-size: 12px;
+}
+
+/* SIDEBAR */
+
+.side-card {
+    padding: 22px;
+    margin-bottom: 16px;
+    border: 1px solid white;
+    border-radius: 19px;
+    background: #ffffffdf;
+    box-shadow: 0 12px 30px #1450780c;
+}
+
+.side-card h3 {
+    font-size: 15px;
+    margin-bottom: 9px;
+}
+
+.side-card p,
+.side-card li {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.side-card ul {
+    padding-left: 18px;
+}
+
+.progress {
+    height: 8px;
+    background: #e1edf5;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 12px 0 7px;
+}
+
+.progress div {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #167cff, #10c5b4);
+}
+
+/* LATIHAN SOAL */
+
+.question {
+    padding: 17px;
+    margin: 15px 0;
+    border: 1px solid #deedf5;
+    border-radius: 15px;
+    background: #fbfdff;
+}
+
+.question legend {
+    padding: 0 4px;
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--ink);
+}
+
+.option {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    padding: 10px;
+    margin-top: 7px;
+    border: 1px solid #e4edf4;
+    border-radius: 10px;
+    background: white;
+    color: #506782;
+    font-size: 12px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.option:hover {
+    background: #f0f8ff;
+    border-color: #8bc8ff;
+}
+
+.option input {
+    margin-top: 5px;
+    accent-color: #167cff;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.button,
+.next {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 11px 17px;
+    border: none;
+    border-radius: 11px;
+    color: white;
+    background: linear-gradient(110deg, #176bff, #10bfb3);
+    font-size: 12px;
+    font-weight: 900;
+    cursor: pointer;
+    transition: .25s;
+}
+
+.button.secondary {
+    background: white;
+    color: var(--blue);
+    border: 1px solid #dceaf5;
+}
+
+/* HASIL NILAI */
+
+.result {
+    display: none;
+    padding: 21px;
+    margin-top: 20px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #eaf7ff, #e5fbf6);
+    border: 1px solid #cfece8;
+}
+
+.result.show {
+    display: block;
+}
+
+.score {
+    color: #079f91;
+    font-size: 39px;
+    font-weight: 900;
+}
+
+.result h3 {
+    margin: 0 0 5px;
+}
+
+.result p {
+    font-size: 12px;
+}
+
+.feedback {
+    padding-top: 12px;
+    margin-top: 12px;
+    border-top: 1px solid #d2e8e8;
+}
+
+.feedback div {
+    padding: 7px 0;
+    font-size: 12px;
+}
+
+.correct {
+    color: #078b6d;
+}
+
+.incorrect {
+    color: #cf4d5a;
+}
+
+/* TIPS */
+
+.note {
+    display: flex;
+    gap: 17px;
+    align-items: flex-start;
+    padding: 25px;
+    margin-bottom: 20px;
+    border-radius: 21px;
+    background: linear-gradient(135deg, #edf8ff, #e7fffb);
+    border: 1px solid #cdece9;
+}
+
+.note-icon {
+    font-size: 30px;
+}
+
+.note h2 {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.note p {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+/* RANGKUMAN */
+
+.summary {
+    padding: 27px;
+    margin-bottom: 22px;
+    color: white;
+    border-radius: 21px;
+    background: linear-gradient(120deg, #087cff, #11bfb3);
+    box-shadow: 0 20px 45px #0a82d21f;
+}
+
+.summary .section-label {
+    color: #eafaff;
+}
+
+.summary h2 {
+    margin: 7px 0 17px;
+    font-size: 23px;
+}
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.summary-item {
+    padding: 12px;
+    border-radius: 12px;
+    background: #ffffff20;
+    font-size: 12px;
+}
+
+/* NAVIGASI BAWAH */
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin: 22px 0 50px;
+}
+
+.navigation .back,
+.navigation .next {
+    min-height: 40px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer {
+    text-align: center;
+    color: #7890a8;
+    font-size: 11px;
+    padding-bottom: 28px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 760px) {
+    .header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .hero {
+        padding: 29px 24px;
+    }
+
+    .content {
+        grid-template-columns: 1fr;
+    }
+
+    .card,
+    .side-card {
+        padding: 21px;
+    }
+
+    .hero h1 {
+        font-size: 34px;
+    }
+
+    .summary-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .note {
+        flex-direction: column;
+    }
+
+    .navigation {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .navigation a {
+        width: 100%;
+        text-align: center;
+    }
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<!-- HEADER -->
+
+<header class="header">
+    <div class="brand">
+        <div class="logo">BZ</div>
+        <div>
+            <strong>Tempat Belajar</strong>
+            <span>Gen Z</span>
+        </div>
+    </div>
+
+    <a href="pengenalan777.html" class="back">
+        ← Kembali ke Materi
+    </a>
+</header>
+
+<!-- HERO -->
+
+<section class="hero">
+    <div class="hero-content">
+        <div class="hero-icon">🔗</div>
+        <div class="label">MATERI 02 • NETWORKING</div>
+
+        <h1>Topologi Jaringan</h1>
+
+        <p>
+            Pelajari pengertian topologi jaringan, jenis-jenis topologi,
+            cara kerja, serta kelebihan dan kekurangannya.
+        </p>
+
+        <div class="chips">
+            <span class="chip">📚 Materi Dasar</span>
+            <span class="chip">🌐 Networking</span>
+            <span class="chip">🚀 Pemula</span>
+            <span class="chip">📝 5 Soal</span>
+        </div>
+    </div>
+</section>
+
+<main class="content">
+
+<div>
+
+<!-- MATERI 1 -->
+
+<section class="card">
+    <div class="section-label">01 — PENGERTIAN</div>
+    <h2>Apa Itu Topologi Jaringan?</h2>
+
+    <p>
+        <strong>Topologi jaringan</strong> adalah pola atau susunan
+        hubungan antarperangkat dalam suatu jaringan komputer.
+        Topologi dapat menggambarkan bagaimana perangkat terhubung
+        dan bagaimana data berpindah di antara perangkat tersebut.
+    </p>
+
+    <p>
+        Pemilihan topologi berpengaruh terhadap kebutuhan kabel,
+        biaya pemasangan, kemudahan perawatan, dan dampak ketika
+        terjadi gangguan jaringan.
+    </p>
+
+    <div class="info-box">
+        💡 <strong>Contoh:</strong> beberapa komputer di laboratorium
+        terhubung ke satu switch. Susunan seperti ini umumnya
+        menggunakan topologi Star.
+    </div>
+</section>
+
+<!-- MATERI 2 -->
+
+<section class="card">
+    <div class="section-label">02 — JENIS TOPOLOGI</div>
+    <h2>Jenis-Jenis Topologi Jaringan</h2>
+
+    <h3>1. Topologi Bus</h3>
+    <p>
+        Semua perangkat terhubung melalui satu jalur kabel utama.
+        Susunannya sederhana, tetapi gangguan pada kabel utama
+        dapat memengaruhi komunikasi seluruh jaringan.
+    </p>
+
+    <h3>2. Topologi Star</h3>
+    <p>
+        Setiap perangkat terhubung ke satu perangkat pusat,
+        biasanya switch. Topologi ini mudah dikelola dan
+        banyak digunakan pada jaringan LAN modern.
+    </p>
+
+    <h3>3. Topologi Ring</h3>
+    <p>
+        Perangkat terhubung membentuk lingkaran. Data diteruskan
+        dari satu perangkat ke perangkat lain melalui jalur ring.
+    </p>
+
+    <h3>4. Topologi Mesh</h3>
+    <p>
+        Perangkat memiliki beberapa jalur koneksi ke perangkat
+        lain. Topologi ini menyediakan redundansi, tetapi
+        membutuhkan lebih banyak koneksi dan biaya.
+    </p>
+
+    <h3>5. Topologi Tree</h3>
+    <p>
+        Perangkat disusun secara bertingkat menyerupai pohon.
+        Topologi ini cocok untuk jaringan yang memiliki beberapa
+        kelompok atau cabang.
+    </p>
+
+    <h3>6. Topologi Hybrid</h3>
+    <p>
+        Menggabungkan dua atau lebih jenis topologi untuk
+        menyesuaikan kebutuhan jaringan.
+    </p>
+
+</section>
+
+<!-- MATERI 3 -->
+
+<section class="card">
+    <div class="section-label">03 — KELEBIHAN DAN KEKURANGAN</div>
+    <h2>Perbandingan Topologi</h2>
+
+    <h3>Bus</h3>
+    <ul>
+        <li>Kelebihan: struktur sederhana dan kebutuhan kabel relatif sedikit.</li>
+        <li>Kekurangan: gangguan pada kabel utama dapat memengaruhi jaringan.</li>
+    </ul>
+
+    <h3>Star</h3>
+    <ul>
+        <li>Kelebihan: mudah dikelola dan gangguan satu kabel perangkat biasanya tidak memutus perangkat lain.</li>
+        <li>Kekurangan: switch pusat menjadi titik penting jaringan.</li>
+    </ul>
+
+    <h3>Ring</h3>
+    <ul>
+        <li>Kelebihan: aliran data dapat diatur mengikuti mekanisme ring.</li>
+        <li>Kekurangan: gangguan jalur dapat mengganggu komunikasi jika tidak ada mekanisme redundansi.</li>
+    </ul>
+
+    <h3>Mesh</h3>
+    <ul>
+        <li>Kelebihan: menyediakan beberapa jalur alternatif.</li>
+        <li>Kekurangan: membutuhkan lebih banyak koneksi dan biaya.</li>
+    </ul>
+
+    <h3>Tree dan Hybrid</h3>
+    <ul>
+        <li>Kelebihan: dapat disesuaikan untuk jaringan yang lebih besar.</li>
+        <li>Kekurangan: perencanaan dan pengelolaannya bisa lebih kompleks.</li>
+    </ul>
+</section>
+
+<!-- MATERI 4 -->
+
+<section class="card">
+    <div class="section-label">04 — PENERAPAN</div>
+    <h2>Topologi yang Sering Digunakan</h2>
+
+    <p>
+        Pada jaringan sekolah atau kantor, topologi Star sering
+        digunakan karena komputer dapat dihubungkan ke switch
+        secara terpusat.
+    </p>
+
+    <p>
+        Untuk jaringan yang lebih besar, beberapa switch dapat
+        dihubungkan secara bertingkat sehingga membentuk susunan
+        hierarkis. Desain yang tepat bergantung pada jumlah
+        perangkat, kebutuhan ketersediaan jaringan, dan anggaran.
+    </p>
+
+    <div class="info-box">
+        📌 <strong>Tips:</strong> sebelum memilih topologi,
+        tentukan jumlah perangkat, lokasi pemasangan, kebutuhan
+        koneksi, dan rencana pengembangan jaringan.
+    </div>
+
+</section>
+
+<!-- LATIHAN -->
+
+<section class="card" id="latihan">
+    <div class="section-label">UJI PEMAHAMAN</div>
+    <h2>Latihan Soal Pilihan Ganda</h2>
+
+    <p>
+        Jawab semua soal berikut. Setiap soal bernilai 20 poin.
+        Nilai akan ditampilkan setelah kamu mengirim jawaban.
+    </p>
+
+    <form id="quizForm">
+
+        <fieldset class="question">
+            <legend>1. Apa yang dimaksud dengan topologi jaringan?</legend>
+
+            <label class="option">
+                <input type="radio" name="q1" value="a" required>
+                Sistem operasi untuk jaringan
+            </label>
+
+            <label class="option">
+                <input type="radio" name="q1" value="b">
+                Pola hubungan antarperangkat dalam jaringan
+            </label>
+
+            <label class="option">
+                <input type="radio" name="q1" value="c">
+                Jenis aplikasi pengolah kata
+            </label>
+
+            <label class="option">
+                <input type="radio" name="q1" value="d">
+                Metode menghapus file komputer
+            </label>
+        </fieldset>
+
+        <fieldset class="question">
+            <legend>2. Topologi yang menggunakan perangkat pusat seperti switch adalah ...</legend>
+
+            <label class="option">
+                <input type="radio" name="q2" value="a" required>
+                Bus
+            </label>
+
+            <label class="option">
+                <input type="radio" name="q2" value="b">
+                Ring
+            </label>
+
+            <label class="option">
+                <input type="radio" name="q2" value="c">
+                Star
+            </label>
+
+            <label class="option">
+                <input type="radio" name="q2" value="d">
+                Mesh
+            </label>
+        </fieldset>
+
+        <fieldset class="question">
+            <legend>3. Topologi yang menggunakan satu kabel utama adalah ...</legend>
+
+            <label class="option">
+                <input type="radio" name="q3" value="a" required>
+                Star
+            </label>
+
+            <label class="option">
+                <input type="radio" name="q3" value="b">
+                Mesh
+            </label>
+
+            <label class="option">
+                <input type="radio" name="q3" value="c">
+                Tree
+            </label>
+
+            <label class="option">
+                <input type="radio" name="q3" value="d">
+                Bus
+            </label>
+        </fieldset>
+
+        <fieldset class="question">
+            <legend>4. Topologi yang menyediakan beberapa jalur koneksi antarperangkat adalah ...</legend>
+
+            <label class="option">
+                <input type="radio" name="q4" value="a" required>
+                Bus
+            </label>
+
+            <label class="option">
+                <input type="radio" name="q4" value="b">
+                Mesh
+            </label>
+
+            <label class="option">
+                <input type="radio" name="q4" value="c">
+                Star
+            </label>
+
+            <label class="option">
+                <input type="radio" name="q4" value="d">
+                Ring
+            </label>
+        </fieldset>
+
+        <fieldset class="question">
+            <legend>5. Salah satu kekurangan topologi Star adalah ...</legend>
+
+            <label class="option">
+                <input type="radio" name="q5" value="a" required>
+                Tidak bisa menggunakan switch
+            </label>
+
+            <label class="option">
+                <input type="radio" name="q5" value="b">
+                Semua komputer harus terhubung langsung satu sama lain
+            </label>
+
+            <label class="option">
+                <input type="radio" name="q5" value="c">
+                Tidak bisa digunakan untuk LAN
+            </label>
+
+            <label class="option">
+                <input type="radio" name="q5" value="d">
+                Gangguan perangkat pusat dapat memengaruhi perangkat yang terhubung
+            </label>
+        </fieldset>
+
+        <div class="actions">
+            <button type="submit" class="button">
+                Kirim Jawaban →
+            </button>
+
+            <button type="reset" class="button secondary">
+                Ulangi Latihan
+            </button>
+        </div>
+
+    </form>
+
+    <div class="result" id="result" aria-live="polite">
+        <div class="score" id="score">0</div>
+        <h3 id="resultTitle">Hasil Latihan</h3>
+        <p id="resultSummary"></p>
+        <div class="feedback" id="feedback"></div>
+    </div>
+</section>
+
+</div>
+
+<!-- SIDEBAR -->
+
+<aside>
+    <section class="side-card">
+        <h3>📚 Isi Materi</h3>
+        <ul>
+            <li>Pengertian topologi</li>
+            <li>Jenis-jenis topologi</li>
+            <li>Kelebihan dan kekurangan</li>
+            <li>Penerapan topologi</li>
+            <li>Latihan pilihan ganda</li>
+        </ul>
+
+        <div class="progress">
+            <div></div>
+        </div>
+
+        <p>Materi siap dipelajari.</p>
+
+    </section>
+
+    <section class="side-card">
+        <h3>🎯 Tips Belajar</h3>
+        <p>
+            Pahami bentuk dan karakteristik setiap topologi.
+            Bandingkan kelebihan serta kekurangannya sebelum
+            mengerjakan latihan.
+        </p>
+
+    </section>
+
+    <section class="side-card">
+        <h3>💻 Praktik Jaringan</h3>
+        <p>
+            Cobalah membuat topologi Star menggunakan switch
+            dan beberapa PC di Cisco Packet Tracer.
+        </p>
+    </section>
+</aside>
+
+</main>
+
+<!-- TIPS -->
+
+<section class="note">
+    <div class="note-icon">💡</div>
+    <div>
+        <h2>Tips Memilih Topologi</h2>
+        <p>
+            Sesuaikan topologi dengan jumlah perangkat, anggaran,
+            kebutuhan koneksi, dan kemudahan perawatan. Untuk
+            jaringan LAN sekolah, topologi Star sering menjadi
+            pilihan karena mudah dikelola.
+        </p>
+    </div>
+
+</section>
+
+<!-- RANGKUMAN -->
+
+<section class="summary">
+    <div class="section-label">RANGKUMAN</div>
+    <h2>Yang Perlu Kamu Ingat</h2>
+
+    <div class="summary-grid">
+        <div class="summary-item">
+            ✓ Topologi adalah pola hubungan antarperangkat jaringan.
+        </div>
+
+        <div class="summary-item">
+            ✓ Bus menggunakan satu jalur kabel utama.
+        </div>
+
+        <div class="summary-item">
+            ✓ Star menghubungkan perangkat ke perangkat pusat.
+        </div>
+
+        <div class="summary-item">
+            ✓ Mesh menyediakan beberapa jalur koneksi.
+        </div>
+
+        <div class="summary-item">
+            ✓ Tree memiliki struktur jaringan bertingkat.
+        </div>
+
+        <div class="summary-item">
+            ✓ Pilihan topologi harus disesuaikan dengan kebutuhan.
+        </div>
+    </div>
+</section>
+
+<!-- TOMBOL BAWAH SESUAI GAMBAR -->
+
+<nav class="navigation">
+    <a href="pengenalan777.html" class="back">
+        ← Kembali ke materi sebelumnya
+    </a>
+
+    <a href="osi.html" class="next">
+        Materi Berikutnya →
+    </a>
+</nav>
+
+<div class="footer">
+    © BZ — Tempat Belajar Gen Z
+</div>
+
+</div>
+
+<script>
+const kunciJawaban = {
+    q1: "b",
+    q2: "c",
+    q3: "d",
+    q4: "b",
+    q5: "d"
+};
+
+const pembahasan = {
+    q1: "Topologi jaringan merupakan pola atau susunan hubungan antarperangkat.",
+    q2: "Topologi Star menghubungkan perangkat ke perangkat pusat seperti switch.",
+    q3: "Topologi Bus menggunakan satu jalur kabel utama.",
+    q4: "Topologi Mesh memiliki beberapa jalur koneksi antarperangkat.",
+    q5: "Perangkat pusat pada topologi Star merupakan titik penting. Jika perangkat tersebut gagal, koneksi perangkat yang terhubung dapat terganggu."
+};
+
+const form = document.getElementById("quizForm");
+
+form.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const data = new FormData(form);
+    let benar = 0;
+    let hasilPembahasan = "";
+
+    for (let i = 1; i <= 5; i++) {
+        const nomor = "q" + i;
+        const tepat = data.get(nomor) === kunciJawaban[nomor];
+
+        if (tepat) benar++;
+
+        hasilPembahasan += `
+            <div class="${tepat ? "correct" : "incorrect"}">
+                <strong>Soal ${i}: ${tepat ? "Benar" : "Belum tepat"}.</strong>
+                ${pembahasan[nomor]}
+            </div>
+        `;
+    }
+
+    const nilai = benar * 20;
+
+    document.getElementById("score").textContent =
+        "Nilai: " + nilai;
+
+    document.getElementById("resultTitle").textContent =
+        nilai >= 80 ? "Bagus sekali! 🎉" :
+        nilai >= 60 ? "Terus berlatih! 💪" :
+        "Jangan menyerah! 📘";
+
+    document.getElementById("resultSummary").textContent =
+        benar + " jawaban benar dari 5 soal. " +
+        (5 - benar) + " jawaban salah.";
+
+    document.getElementById("feedback").innerHTML =
+        hasilPembahasan;
+
+    const hasil = document.getElementById("result");
+    hasil.classList.add("show");
+
+    hasil.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+});
+
+form.addEventListener("reset", function() {
+    document.getElementById("result").classList.remove("show");
+    document.getElementById("feedback").innerHTML = "";
+});
+</script>
+
+</body>
+
+</html>

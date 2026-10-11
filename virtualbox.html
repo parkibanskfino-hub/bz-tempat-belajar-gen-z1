@@ -1,0 +1,740 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi VirtualBox - BZ</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #102642;
+            line-height: 1.7;
+            background: linear-gradient(135deg, #eef8ff, #ffffff, #e4fffa);
+            min-height: 100vh;
+        }
+
+        .header {
+            width: min(1050px, 92%);
+            margin: 25px auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .back {
+            display: inline-block;
+            padding: 10px 17px;
+            background: white;
+            color: #087cff;
+            border-radius: 12px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: bold;
+            box-shadow: 0 8px 25px #1464a01a;
+            transition: .25s;
+        }
+
+        .back:hover, .next:hover {
+            transform: translateY(-3px);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .brand-logo {
+            width: 44px;
+            height: 44px;
+            display: grid;
+            place-items: center;
+            border-radius: 14px;
+            color: white;
+            font-weight: 900;
+            background: linear-gradient(135deg, #167cff, #12c5b4);
+        }
+
+        .brand strong {
+            display: block;
+            font-size: 14px;
+        }
+
+        .brand span {
+            color: #0aa99d;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .hero {
+            width: min(1050px, 92%);
+            margin: 25px auto;
+            padding: 55px 45px;
+            border-radius: 28px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(120deg, #087cff, #159fe6, #10c5b4);
+            box-shadow: 0 25px 60px #1478dc38;
+        }
+
+        .hero::after {
+            content: "▦";
+            position: absolute;
+            right: 35px;
+            bottom: -75px;
+            font-size: 240px;
+            color: #ffffff12;
+            transform: rotate(-10deg);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .label {
+            display: inline-block;
+            padding: 6px 13px;
+            margin-bottom: 15px;
+            border-radius: 20px;
+            background: #ffffff25;
+            font-size: 11px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .hero-icon {
+            font-size: 48px;
+            margin-bottom: 5px;
+        }
+
+        .hero h1 {
+            font-size: clamp(36px, 5vw, 55px);
+            line-height: 1.15;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            max-width: 720px;
+            font-size: 15px;
+            color: #ffffffed;
+        }
+
+        .container {
+            width: min(1050px, 92%);
+            margin: auto;
+            padding-bottom: 60px;
+        }
+
+        .card {
+            margin-bottom: 24px;
+            padding: 30px;
+            border-radius: 22px;
+            background: #ffffffed;
+            border: 1px solid #dceef3;
+            box-shadow: 0 12px 35px #1450780f;
+        }
+
+        .section-label {
+            color: #087df1;
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: 1px;
+        }
+
+        .card h2 {
+            margin: 7px 0 12px;
+            font-size: 27px;
+            line-height: 1.3;
+        }
+
+        .card > p {
+            color: #61768c;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .info {
+            display: flex;
+            gap: 18px;
+            background: linear-gradient(135deg, white, #effdff);
+        }
+
+        .info-icon {
+            width: 55px;
+            height: 55px;
+            flex-shrink: 0;
+            display: grid;
+            place-items: center;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #e5f2ff, #dffbf7);
+            font-size: 26px;
+        }
+
+        .info p, .info li {
+            color: #61768c;
+            font-size: 14px;
+        }
+
+        .info ul {
+            padding-left: 20px;
+            margin-top: 8px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-top: 22px;
+        }
+
+        .feature {
+            padding: 21px;
+            border-radius: 17px;
+            background: linear-gradient(145deg, #f4fbff, white);
+            border: 1px solid #dceef4;
+            transition: .25s;
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px #14649617;
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            display: grid;
+            place-items: center;
+            margin-bottom: 12px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #e6f2ff, #e0fbf7);
+            font-size: 24px;
+        }
+
+        .feature h3 {
+            font-size: 16px;
+            margin-bottom: 6px;
+        }
+
+        .feature p {
+            color: #61768c;
+            font-size: 13px;
+        }
+
+        .steps {
+            margin-top: 22px;
+        }
+
+        .step {
+            display: flex;
+            gap: 16px;
+            padding: 18px;
+            margin-bottom: 12px;
+            border-radius: 16px;
+            background: #f8fcff;
+            border: 1px solid #dceef4;
+        }
+
+        .number {
+            width: 42px;
+            height: 42px;
+            flex-shrink: 0;
+            display: grid;
+            place-items: center;
+            border-radius: 13px;
+            color: white;
+            font-weight: 900;
+            background: linear-gradient(135deg, #167cff, #11c4b3);
+        }
+
+        .step h3 {
+            font-size: 16px;
+            margin-bottom: 4px;
+        }
+
+        .step p {
+            color: #61768c;
+            font-size: 13px;
+        }
+
+        .command-box {
+            margin-top: 20px;
+            padding: 23px;
+            border-radius: 18px;
+            background: linear-gradient(135deg, #102642, #123e58);
+            color: white;
+        }
+
+        .command-box p {
+            color: #b9d4e3;
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+
+        .command {
+            padding: 13px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            background: #ffffff12;
+            overflow-wrap: anywhere;
+        }
+
+        .command code {
+            color: #75e9d9;
+            font-size: 13px;
+        }
+
+        .command small {
+            display: block;
+            color: #c4dbe6;
+            margin-top: 5px;
+        }
+
+        .tip {
+            padding: 25px;
+            margin-bottom: 24px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, #edf8ff, #e7fffb);
+            border: 1px solid #cdece9;
+        }
+
+        .tip h2 {
+            margin-bottom: 7px;
+        }
+
+        .tip p {
+            color: #60758c;
+            font-size: 14px;
+        }
+
+        .summary {
+            color: white;
+            background: linear-gradient(120deg, #087cff, #11bfb3);
+            box-shadow: 0 20px 45px #0a82d229;
+        }
+
+        .summary .section-label {
+            color: #ffffffd9;
+        }
+
+        .summary h2 {
+            margin: 8px 0 17px;
+        }
+
+        .summary-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .summary-item {
+            padding: 13px;
+            border-radius: 12px;
+            background: #ffffff24;
+            font-size: 13px;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .next {
+            display: inline-block;
+            padding: 12px 20px;
+            border-radius: 12px;
+            color: white;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: bold;
+            background: linear-gradient(110deg, #167cff, #11c4b3);
+            transition: .25s;
+        }
+
+        @media (max-width: 750px) {
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .hero {
+                padding: 38px 24px;
+            }
+
+            .card {
+                padding: 23px;
+            }
+
+            .grid, .summary-list {
+                grid-template-columns: 1fr;
+            }
+
+            .info {
+                flex-direction: column;
+            }
+
+            .navigation {
+                flex-direction: column;
+            }
+
+            .navigation a {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="header">
+        <a href="debian.html" class="back">← Kembali ke Debian</a>
+
+        <div class="brand">
+            <div class="brand-logo">BZ</div>
+            <div>
+                <strong>Tempat Belajar</strong>
+                <span>Gen Z</span>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <span class="label">MATERI 06 • SISTEM OPERASI</span>
+            <div class="hero-icon">🖥️</div>
+            <h1>VirtualBox</h1>
+            <p>
+                Kenali teknologi virtualisasi, fungsi VirtualBox,
+                komponen mesin virtual, serta langkah membuat
+                komputer virtual untuk belajar Linux dan sistem operasi.
+            </p>
+        </div>
+    </section>
+
+    <main class="container">
+
+        <section class="card info">
+            <div class="info-icon">🎯</div>
+            <div>
+                <h2>Tujuan Pembelajaran</h2>
+                <p>Setelah mempelajari materi ini, kamu diharapkan dapat:</p>
+                <ul>
+                    <li>Menjelaskan pengertian VirtualBox.</li>
+                    <li>Memahami fungsi virtualisasi.</li>
+                    <li>Mengenal komponen mesin virtual.</li>
+                    <li>Memahami langkah membuat mesin virtual.</li>
+                    <li>Mengenal pengaturan RAM, penyimpanan, dan jaringan.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="card">
+            <span class="section-label">01 — PENGENALAN</span>
+            <h2>Apa Itu VirtualBox?</h2>
+            <p>
+                <strong>VirtualBox</strong> adalah perangkat lunak virtualisasi
+                yang memungkinkan pengguna menjalankan sistem operasi lain
+                di dalam komputer melalui sebuah mesin virtual atau
+                <em>Virtual Machine (VM)</em>.
+            </p>
+            <p>
+                Contohnya, jika komputer kamu menggunakan Windows,
+                kamu dapat membuat mesin virtual untuk belajar Debian atau
+                Linux tanpa harus mengganti sistem operasi utama.
+                Sistem operasi di dalam VM disebut guest, sedangkan
+                sistem operasi utama disebut host.
+            </p>
+
+            <div class="grid">
+                <div class="feature">
+                    <div class="feature-icon">💻</div>
+                    <h3>Host OS</h3>
+                    <p>Sistem operasi utama yang terpasang pada komputer fisik.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🖥️</div>
+                    <h3>Guest OS</h3>
+                    <p>Sistem operasi yang dijalankan di dalam mesin virtual.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">📦</div>
+                    <h3>Virtual Machine</h3>
+                    <p>Komputer virtual dengan perangkat keras yang disimulasikan oleh software.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <span class="section-label">02 — FUNGSI</span>
+            <h2>Fungsi VirtualBox</h2>
+            <p>VirtualBox berguna untuk kegiatan belajar, pengujian, dan pengembangan.</p>
+
+            <div class="grid">
+                <div class="feature">
+                    <div class="feature-icon">🐧</div>
+                    <h3>Belajar Linux</h3>
+                    <p>Mencoba Debian, Ubuntu, dan distribusi Linux lainnya.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🧪</div>
+                    <h3>Pengujian Software</h3>
+                    <p>Menguji aplikasi atau konfigurasi dalam lingkungan terpisah.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🌐</div>
+                    <h3>Simulasi Jaringan</h3>
+                    <p>Mempelajari komunikasi antar-VM dan layanan jaringan.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🎓</div>
+                    <h3>Praktik Sekolah</h3>
+                    <p>Berlatih instalasi sistem operasi tanpa perlu banyak komputer fisik.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">📸</div>
+                    <h3>Snapshot</h3>
+                    <p>Menyimpan keadaan VM agar bisa dikembalikan ke kondisi sebelumnya.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🗂️</div>
+                    <h3>Lingkungan Terpisah</h3>
+                    <p>Menjalankan beberapa sistem operasi pada satu komputer, sesuai kemampuan perangkat.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <span class="section-label">03 — KOMPONEN</span>
+            <h2>Komponen Penting VirtualBox</h2>
+
+            <div class="steps">
+                <div class="step">
+                    <div class="number">1</div>
+                    <div>
+                        <h3>RAM</h3>
+                        <p>Memori yang dialokasikan untuk mesin virtual ketika berjalan. Alokasi harus menyisakan cukup RAM untuk host.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="number">2</div>
+                    <div>
+                        <h3>Virtual Hard Disk</h3>
+                        <p>Media penyimpanan virtual untuk sistem operasi, aplikasi, dan file guest.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="number">3</div>
+                    <div>
+                        <h3>ISO Image</h3>
+                        <p>File citra instalasi yang dapat digunakan sebagai media boot untuk memasang sistem operasi.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="number">4</div>
+                    <div>
+                        <h3>CPU</h3>
+                        <p>Jumlah inti prosesor yang dialokasikan kepada VM. Jangan mengalokasikan seluruh kemampuan CPU tanpa mempertimbangkan host.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="number">5</div>
+                    <div>
+                        <h3>Network Adapter</h3>
+                        <p>Pengaturan jaringan yang menentukan bagaimana VM terhubung ke host, VM lain, atau jaringan luar.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <span class="section-label">04 — PEMBUATAN VM</span>
+            <h2>Cara Membuat Mesin Virtual</h2>
+            <p>Berikut alur umum membuat VM untuk belajar Debian atau Linux.</p>
+
+            <div class="steps">
+                <div class="step">
+                    <div class="number">1</div>
+                    <div>
+                        <h3>Pasang VirtualBox</h3>
+                        <p>Unduh installer VirtualBox dari situs resmi Oracle, lalu pasang sesuai sistem operasi host.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="number">2</div>
+                    <div>
+                        <h3>Siapkan File ISO</h3>
+                        <p>Unduh ISO sistem operasi yang ingin dipelajari dari situs resmi distribusinya.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="number">3</div>
+                    <div>
+                        <h3>Buat Mesin Virtual</h3>
+                        <p>Klik tombol New, isi nama VM, lalu pilih file ISO dan jenis sistem operasi jika diperlukan.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="number">4</div>
+                    <div>
+                        <h3>Atur RAM dan CPU</h3>
+                        <p>Pilih alokasi sumber daya sesuai kemampuan komputer dan persyaratan sistem operasi guest.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="number">5</div>
+                    <div>
+                        <h3>Buat Virtual Hard Disk</h3>
+                        <p>Tentukan ukuran penyimpanan yang cukup untuk instalasi sistem operasi dan kebutuhan latihan.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="number">6</div>
+                    <div>
+                        <h3>Jalankan dan Instal</h3>
+                        <p>Mulai VM, ikuti petunjuk installer, kemudian lepaskan ISO jika diperlukan setelah instalasi selesai.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <span class="section-label">05 — MODE JARINGAN</span>
+            <h2>Jenis Network Adapter</h2>
+            <p>VirtualBox menyediakan beberapa mode jaringan. Pilih sesuai tujuan latihan.</p>
+
+            <div class="grid">
+                <div class="feature">
+                    <div class="feature-icon">🔗</div>
+                    <h3>NAT</h3>
+                    <p>VM biasanya dapat mengakses jaringan luar melalui koneksi host tanpa harus terlihat langsung di jaringan lokal.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🏠</div>
+                    <h3>Bridged Adapter</h3>
+                    <p>VM terhubung ke jaringan fisik seperti perangkat tersendiri, sesuai dukungan jaringan yang digunakan.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Host-Only</h3>
+                    <p>Membuat jaringan antara host dan VM untuk latihan komunikasi lokal tanpa akses luar secara langsung melalui adapter tersebut.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <span class="section-label">06 — PENGATURAN</span>
+            <h2>Pengaturan yang Perlu Diketahui</h2>
+
+            <div class="steps">
+                <div class="step">
+                    <div class="number">1</div>
+                    <div>
+                        <h3>System</h3>
+                        <p>Untuk mengatur RAM, urutan boot, dan beberapa konfigurasi prosesor VM.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="number">2</div>
+                    <div>
+                        <h3>Display</h3>
+                        <p>Untuk mengatur tampilan dan memori video virtual sesuai kebutuhan guest.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="number">3</div>
+                    <div>
+                        <h3>Storage</h3>
+                        <p>Untuk mengelola virtual hard disk dan media ISO yang digunakan VM.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="number">4</div>
+                    <div>
+                        <h3>Network</h3>
+                        <p>Untuk mengatur mode jaringan dan adapter yang digunakan VM.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="number">5</div>
+                    <div>
+                        <h3>Snapshots</h3>
+                        <p>Untuk menyimpan kondisi VM pada titik tertentu sebelum melakukan perubahan besar.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <span class="section-label">07 — KELEBIHAN DAN KETERBATASAN</span>
+            <h2>Hal yang Perlu Diperhatikan</h2>
+
+            <div class="grid">
+                <div class="feature">
+                    <div class="feature-icon">✅</div>
+                    <h3>Kelebihan</h3>
+                    <p>Memudahkan latihan banyak sistem operasi, pengujian, dan simulasi jaringan pada satu komputer.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">⚠️</div>
+                    <h3>Keterbatasan</h3>
+                    <p>VM memakai sumber daya komputer. Performa dapat menurun jika RAM, CPU, atau penyimpanan tidak mencukupi.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Keamanan</h3>
+                    <p>VM bukan jaminan isolasi mutlak. Gunakan ISO tepercaya, backup, dan pengaturan jaringan yang sesuai.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="tip">
+            <h2>💡 Tips Belajar VirtualBox</h2>
+            <p>
+                Mulailah dengan membuat satu VM Debian. Pelajari cara memasang
+                sistem operasi, menggunakan terminal, mengatur jaringan NAT,
+                dan membuat snapshot sebelum mengubah konfigurasi. Pastikan
+                spesifikasi komputer memenuhi kebutuhan sistem operasi yang
+                akan dijalankan.
+            </p>
+        </section>
+
+        <section class="card summary">
+            <span class="section-label">RANGKUMAN</span>
+            <h2>Yang Perlu Kamu Ingat</h2>
+
+            <div class="summary-list">
+                <div class="summary-item">✓ VirtualBox merupakan perangkat lunak virtualisasi.</div>
+                <div class="summary-item">✓ VM memungkinkan sistem operasi guest berjalan di dalam host.</div>
+                <div class="summary-item">✓ ISO digunakan sebagai media instalasi sistem operasi.</div>
+                <div class="summary-item">✓ RAM, CPU, dan penyimpanan perlu dialokasikan dengan tepat.</div>
+                <div class="summary-item">✓ NAT, Bridged, dan Host-Only memiliki kegunaan jaringan berbeda.</div>
+                <div class="summary-item">✓ Snapshot membantu menyimpan kondisi VM sebelum perubahan.</div>
+            </div>
+        </section>
+
+        <div class="navigation">
+            <a href="debian.html" class="back">← Materi Debian</a>
+
+            <a href="instalasi.html" class="next">Materi selamjut nya→</a>
+        </div>
+
+    </main>
+
+    
+</body>
+
+
+</html>

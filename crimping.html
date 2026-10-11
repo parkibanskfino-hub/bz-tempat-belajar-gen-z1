@@ -1,0 +1,1253 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crimping Kabel Jaringan - BZ</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --blue: #087cff;
+    --cyan: #10bfb3;
+    --ink: #102642;
+    --muted: #61768c;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--ink);
+    line-height: 1.7;
+    min-height: 100vh;
+    background: linear-gradient(135deg,#dcecff,#f4fbff 48%,#cef6f3);
+}
+
+a { text-decoration: none; }
+
+.container {
+    width: min(990px,92%);
+    margin: auto;
+}
+
+/* HEADER */
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin: 25px auto 20px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo {
+    width: 43px;
+    height: 43px;
+    display: grid;
+    place-items: center;
+    border-radius: 14px;
+    color: white;
+    font-weight: 900;
+    background: linear-gradient(135deg,#167cff,#10bfb3);
+}
+
+.brand strong {
+    display: block;
+    font-size: 14px;
+}
+
+.brand span {
+    color: #079f9a;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.back {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 11px 17px;
+    background: white;
+    color: var(--blue);
+    border-radius: 13px;
+    font-size: 12px;
+    font-weight: 800;
+    box-shadow: 0 8px 25px #1464a014;
+    transition: .25s;
+}
+
+.back:hover,
+.next:hover {
+    transform: translateY(-3px);
+}
+
+/* HERO */
+
+.hero {
+    position: relative;
+    overflow: hidden;
+    padding: 42px;
+    color: white;
+    border-radius: 29px;
+    background: linear-gradient(115deg,#176bff,#6559f4 62%,#9438ed);
+    box-shadow: 0 25px 55px #2b66c52b;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    right: -70px;
+    top: -120px;
+    border-radius: 50%;
+    background: #ffffff12;
+    border: 1px solid #ffffff20;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-icon {
+    width: 58px;
+    height: 58px;
+    display: grid;
+    place-items: center;
+    margin-bottom: 13px;
+    border-radius: 17px;
+    background: #ffffff20;
+    border: 1px solid #ffffff40;
+    font-size: 29px;
+}
+
+.label {
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.hero h1 {
+    font-size: clamp(34px,5vw,45px);
+    line-height: 1.15;
+    margin: 8px 0 12px;
+}
+
+.hero p {
+    max-width: 700px;
+    color: #f1f5ff;
+    font-size: 14px;
+}
+
+.chips {
+    display: flex;
+    gap: 9px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.chip {
+    padding: 6px 12px;
+    font-size: 11px;
+    font-weight: 800;
+    border: 1px solid #ffffff45;
+    background: #ffffff18;
+    border-radius: 10px;
+}
+
+/* CONTENT */
+
+.content {
+    display: grid;
+    grid-template-columns: minmax(0,1fr) 245px;
+    gap: 18px;
+    align-items: start;
+    margin: 24px 0 25px;
+}
+
+.card {
+    padding: 27px;
+    margin-bottom: 17px;
+    border-radius: 21px;
+    background: #ffffffdf;
+    border: 1px solid white;
+    box-shadow: 0 12px 35px #1450780c;
+}
+
+.section-label {
+    color: var(--blue);
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.card h2 {
+    font-size: 24px;
+    line-height: 1.3;
+    margin: 6px 0 13px;
+}
+
+.card h3 {
+    font-size: 16px;
+    margin: 18px 0 5px;
+}
+
+.card p,
+.card li {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.card p + p { margin-top: 10px; }
+
+.card ul,
+.card ol {
+    padding-left: 20px;
+    margin-top: 9px;
+}
+
+.info-box {
+    padding: 15px 17px;
+    margin-top: 17px;
+    border-radius: 13px;
+    background: linear-gradient(135deg,#edf7ff,#e6fbf7);
+    border: 1px solid #d7efef;
+    color: #45617d;
+    font-size: 12px;
+}
+
+/* TOOLS */
+
+.tool-grid {
+    display: grid;
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    gap: 12px;
+    margin-top: 17px;
+}
+
+.tool {
+    padding: 16px;
+    border: 1px solid #deedf5;
+    border-radius: 15px;
+    background: #fbfdff;
+}
+
+.tool-icon {
+    font-size: 27px;
+    margin-bottom: 5px;
+}
+
+.tool h3 {
+    margin: 0 0 5px;
+    font-size: 14px;
+}
+
+.tool p {
+    font-size: 12px;
+}
+
+/* LANGKAH */
+
+.steps {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 17px;
+}
+
+.step {
+    display: grid;
+    grid-template-columns: 43px minmax(0,1fr);
+    gap: 12px;
+    padding: 15px;
+    border: 1px solid #deedf5;
+    border-radius: 14px;
+    background: #fbfdff;
+}
+
+.step-number {
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-items: center;
+    border-radius: 12px;
+    color: white;
+    font-size: 15px;
+    font-weight: 900;
+    background: linear-gradient(135deg,#167cff,#10bfb3);
+}
+
+.step h3 {
+    margin: 0 0 4px;
+    font-size: 14px;
+}
+
+.step p {
+    font-size: 12px;
+}
+
+/* WARNA KABEL */
+
+.table-wrap {
+    overflow-x: auto;
+    margin-top: 15px;
+    border-radius: 12px;
+    border: 1px solid #deedf5;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    font-size: 12px;
+}
+
+th, td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #e5edf5;
+    text-align: left;
+    white-space: nowrap;
+}
+
+th {
+    color: #234363;
+    background: #edf6ff;
+}
+
+td { color: #526a82; }
+
+tr:last-child td { border-bottom: none; }
+
+.wire {
+    display: inline-block;
+    width: 19px;
+    height: 19px;
+    margin-right: 8px;
+    vertical-align: middle;
+    border: 1px solid #d1dbe4;
+    border-radius: 5px;
+}
+
+.wo { background: repeating-linear-gradient(45deg,#fff,#fff 4px,#f3a55b 4px,#f3a55b 7px); }
+.o { background: #f28b28; }
+.wg { background: repeating-linear-gradient(45deg,#fff,#fff 4px,#46a66b 4px,#46a66b 7px); }
+.b { background: #2878d4; }
+.wb { background: repeating-linear-gradient(45deg,#fff,#fff 4px,#2878d4 4px,#2878d4 7px); }
+.g { background: #36a064; }
+.wbr { background: repeating-linear-gradient(45deg,#fff,#fff 4px,#986342 4px,#986342 7px); }
+.br { background: #986342; }
+
+/* SIDEBAR */
+
+.side-card {
+    padding: 22px;
+    margin-bottom: 16px;
+    border: 1px solid white;
+    border-radius: 19px;
+    background: #ffffffdf;
+    box-shadow: 0 12px 30px #1450780c;
+}
+
+.side-card h3 {
+    font-size: 15px;
+    margin-bottom: 9px;
+}
+
+.side-card p,
+.side-card li {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.side-card ul { padding-left: 18px; }
+
+.progress {
+    height: 8px;
+    background: #e1edf5;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 12px 0 7px;
+}
+
+.progress div {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,#167cff,#10bfb3);
+}
+
+/* QUIZ */
+
+.question {
+    padding: 17px;
+    margin: 15px 0;
+    border: 1px solid #deedf5;
+    border-radius: 15px;
+    background: #fbfdff;
+}
+
+.question legend {
+    padding: 0 4px;
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--ink);
+}
+
+.option {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    padding: 10px;
+    margin-top: 7px;
+    border: 1px solid #e4edf4;
+    border-radius: 10px;
+    background: white;
+    color: #506782;
+    font-size: 12px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.option:hover {
+    background: #f0f8ff;
+    border-color: #8bc8ff;
+}
+
+.option input {
+    margin-top: 5px;
+    accent-color: #167cff;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.button,
+.next {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 11px 17px;
+    border: none;
+    border-radius: 11px;
+    color: white;
+    background: linear-gradient(110deg,#176bff,#10bfb3);
+    font-size: 12px;
+    font-weight: 900;
+    cursor: pointer;
+    transition: .25s;
+}
+
+.button.secondary {
+    background: white;
+    color: var(--blue);
+    border: 1px solid #dceaf5;
+}
+
+.result {
+    display: none;
+    padding: 21px;
+    margin-top: 20px;
+    border-radius: 16px;
+    background: linear-gradient(135deg,#eaf7ff,#e5fbf6);
+    border: 1px solid #cfece8;
+}
+
+.result.show { display: block; }
+
+.score {
+    color: #079f91;
+    font-size: 39px;
+    font-weight: 900;
+}
+
+.result h3 { margin: 0 0 5px; }
+.result p { font-size: 12px; }
+
+.feedback {
+    padding-top: 12px;
+    margin-top: 12px;
+    border-top: 1px solid #d2e8e8;
+}
+
+.feedback div {
+    padding: 7px 0;
+    font-size: 12px;
+}
+
+.correct { color: #078b6d; }
+.incorrect { color: #cf4d5a; }
+
+/* RANGKUMAN */
+
+.note {
+    display: flex;
+    gap: 17px;
+    align-items: flex-start;
+    padding: 25px;
+    margin-bottom: 20px;
+    border-radius: 21px;
+    background: linear-gradient(135deg,#edf8ff,#e7fffb);
+    border: 1px solid #cdece9;
+}
+
+.note-icon { font-size: 30px; }
+
+.note h2 {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.note p {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.summary {
+    padding: 27px;
+    margin-bottom: 22px;
+    color: white;
+    border-radius: 21px;
+    background: linear-gradient(120deg,#087cff,#11bfb3);
+    box-shadow: 0 20px 45px #0a82d21f;
+}
+
+.summary .section-label { color: #eafaff; }
+
+.summary h2 {
+    margin: 7px 0 17px;
+    font-size: 23px;
+}
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 10px;
+}
+
+.summary-item {
+    padding: 12px;
+    border-radius: 12px;
+    background: #ffffff20;
+    font-size: 12px;
+}
+
+/* NAVIGASI */
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin: 22px 0 50px;
+}
+
+.navigation .back,
+.navigation .next {
+    min-height: 40px;
+}
+
+.footer {
+    text-align: center;
+    color: #7890a8;
+    font-size: 11px;
+    padding-bottom: 28px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:760px) {
+    .header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .hero { padding: 29px 24px; }
+
+    .content { grid-template-columns: 1fr; }
+
+    .card,
+    .side-card { padding: 21px; }
+
+    .hero h1 { font-size: 34px; }
+
+    .tool-grid,
+    .summary-grid { grid-template-columns: 1fr; }
+
+    .note { flex-direction: column; }
+
+    .navigation {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .navigation a {
+        width: 100%;
+        text-align: center;
+    }
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<!-- HEADER -->
+
+<header class="header">
+    <div class="brand">
+        <div class="logo">BZ</div>
+        <div>
+            <strong>Tempat Belajar</strong>
+            <span>Gen Z</span>
+        </div>
+    </div>
+
+    <a href="jaringan.html" class="back">
+        ← Kembali ke Materi
+    </a>
+</header>
+
+<!-- HERO -->
+
+<section class="hero">
+    <div class="hero-content">
+        <div class="hero-icon">🛠️</div>
+        <div class="label">MATERI • NETWORKING</div>
+
+        <h1>Crimping Kabel Jaringan</h1>
+
+        <p>
+            Pelajari alat dan bahan, urutan warna kabel Ethernet,
+            langkah crimping, serta cara menguji kabel agar siap
+            digunakan untuk membangun jaringan komputer.
+        </p>
+
+        <div class="chips">
+            <span class="chip">🧰 Alat Praktik</span>
+            <span class="chip">🔌 Kabel Ethernet</span>
+            <span class="chip">💻 Praktik LAN</span>
+            <span class="chip">📝 5 Soal</span>
+        </div>
+    </div>
+</section>
+
+<main class="content">
+<div>
+
+<!-- MATERI 1 -->
+
+<section class="card">
+    <div class="section-label">01 — PENGERTIAN</div>
+    <h2>Apa Itu Crimping Kabel?</h2>
+
+    <p>
+        <strong>Crimping kabel</strong> adalah proses memasang
+        konektor pada ujung kabel menggunakan alat crimping agar
+        kawat di dalam kabel terhubung dengan kontak konektor.
+    </p>
+
+    <p>
+        Dalam jaringan komputer, crimping sering dilakukan pada
+        kabel twisted pair Ethernet untuk membuat kabel yang
+        menghubungkan komputer, switch, router, dan perangkat jaringan
+        lainnya.
+    </p>
+
+    <div class="info-box">
+        💡 <strong>Tujuan:</strong> membuat sambungan kabel yang rapi,
+        kuat, dan sesuai standar susunan kawat sehingga koneksi
+        jaringan dapat berfungsi dengan baik.
+    </div>
+</section>
+
+<!-- MATERI 2 -->
+
+<section class="card">
+    <div class="section-label">02 — ALAT DAN BAHAN</div>
+    <h2>Peralatan untuk Crimping</h2>
+
+    <div class="tool-grid">
+
+        <div class="tool">
+            <div class="tool-icon">🔌</div>
+            <h3>1. Kabel UTP</h3>
+            <p>
+                Media kabel twisted pair yang digunakan untuk
+                koneksi Ethernet.
+            </p>
+        </div>
+
+        <div class="tool">
+            <div class="tool-icon">🔗</div>
+            <h3>2. Konektor 8P8C</h3>
+            <p>
+                Konektor modular yang umum disebut RJ45 dan sesuai
+                dengan jenis serta ukuran kabel.
+            </p>
+        </div>
+
+        <div class="tool">
+            <div class="tool-icon">🛠️</div>
+            <h3>3. Tang Crimping</h3>
+            <p>
+                Digunakan untuk memasang konektor pada kabel
+                dengan menekan kontak konektor.
+            </p>
+        </div>
+
+        <div class="tool">
+            <div class="tool-icon">🧪</div>
+            <h3>4. LAN Cable Tester</h3>
+            <p>
+                Membantu memeriksa kontinuitas dan pemetaan kawat
+                setelah kabel selesai dibuat.
+            </p>
+        </div>
+
+    </div>
+
+    <div class="info-box">
+        ⚠️ Gunakan konektor yang sesuai dengan tipe kabel, ukuran
+        konduktor, dan konstruksi kabel. Hati-hati saat mengupas
+        jaket kabel agar kawat di dalamnya tidak rusak.
+    </div>
+</section>
+
+<!-- MATERI 3 -->
+
+<section class="card">
+    <div class="section-label">03 — URUTAN WARNA</div>
+    <h2>Standar T568A dan T568B</h2>
+
+    <p>
+        Sebelum crimping, kawat harus disusun berdasarkan standar
+        yang dipilih. Berikut urutan warna pin 1 sampai pin 8.
+    </p>
+
+    <h3>Standar T568A</h3>
+
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr><th>Pin</th><th>Warna Kawat</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>1</td><td><span class="wire wg"></span>Putih-Hijau</td></tr>
+                <tr><td>2</td><td><span class="wire g"></span>Hijau</td></tr>
+                <tr><td>3</td><td><span class="wire wo"></span>Putih-Oranye</td></tr>
+                <tr><td>4</td><td><span class="wire b"></span>Biru</td></tr>
+                <tr><td>5</td><td><span class="wire wb"></span>Putih-Biru</td></tr>
+                <tr><td>6</td><td><span class="wire o"></span>Oranye</td></tr>
+                <tr><td>7</td><td><span class="wire wbr"></span>Putih-Cokelat</td></tr>
+                <tr><td>8</td><td><span class="wire br"></span>Cokelat</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>Standar T568B</h3>
+
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr><th>Pin</th><th>Warna Kawat</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>1</td><td><span class="wire wo"></span>Putih-Oranye</td></tr>
+                <tr><td>2</td><td><span class="wire o"></span>Oranye</td></tr>
+                <tr><td>3</td><td><span class="wire wg"></span>Putih-Hijau</td></tr>
+                <tr><td>4</td><td><span class="wire b"></span>Biru</td></tr>
+                <tr><td>5</td><td><span class="wire wb"></span>Putih-Biru</td></tr>
+                <tr><td>6</td><td><span class="wire g"></span>Hijau</td></tr>
+                <tr><td>7</td><td><span class="wire wbr"></span>Putih-Cokelat</td></tr>
+                <tr><td>8</td><td><span class="wire br"></span>Cokelat</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="info-box">
+        📌 Kabel straight menggunakan standar yang sama pada kedua
+        ujung. Kabel crossover umumnya menggunakan T568A pada satu
+        ujung dan T568B pada ujung lainnya.
+    </div>
+</section>
+
+<!-- MATERI 4 -->
+
+<section class="card">
+    <div class="section-label">04 — LANGKAH KERJA</div>
+    <h2>Cara Melakukan Crimping</h2>
+
+    <div class="steps">
+
+        <div class="step">
+            <div class="step-number">1</div>
+            <div>
+                <h3>Siapkan kabel</h3>
+                <p>
+                    Ukur panjang kabel sesuai kebutuhan dan potong
+                    dengan rapi menggunakan alat yang sesuai.
+                </p>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-number">2</div>
+            <div>
+                <h3>Kupas jaket kabel</h3>
+                <p>
+                    Kupas sedikit jaket luar kabel dengan hati-hati.
+                    Hindari memotong atau melukai kawat di bagian dalam.
+                </p>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-number">3</div>
+            <div>
+                <h3>Susun kawat</h3>
+                <p>
+                    Luruskan kawat seperlunya dan susun sesuai standar
+                    T568A atau T568B yang akan digunakan.
+                </p>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-number">4</div>
+            <div>
+                <h3>Potong ujung kawat</h3>
+                <p>
+                    Ratakan ujung kawat agar panjangnya sesuai dan
+                    semua kawat dapat masuk ke dalam konektor.
+                </p>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-number">5</div>
+            <div>
+                <h3>Masukkan ke konektor</h3>
+                <p>
+                    Masukkan kawat sesuai urutan pin. Periksa kembali
+                    urutan warna dan pastikan ujung kawat mencapai
+                    bagian kontak konektor.
+                </p>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-number">6</div>
+            <div>
+                <h3>Lakukan crimping</h3>
+                <p>
+                    Masukkan konektor ke tang crimping yang sesuai,
+                    lalu tekan sampai kontak konektor terpasang dengan baik.
+                </p>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-number">7</div>
+            <div>
+                <h3>Uji kabel</h3>
+                <p>
+                    Gunakan LAN cable tester untuk memeriksa kontinuitas
+                    dan pemetaan kawat. Jika hasil tidak sesuai, periksa
+                    kembali susunan dan sambungan kabel.
+                </p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- MATERI 5 -->
+
+<section class="card">
+    <div class="section-label">05 — PENGUJIAN</div>
+    <h2>Cara Memeriksa Hasil Crimping</h2>
+
+    <h3>Periksa urutan warna</h3>
+    <p>
+        Pastikan warna kawat pada setiap pin sesuai dengan standar
+        yang dipilih dan tidak ada kawat yang tertukar.
+    </p>
+
+    <h3>Gunakan LAN cable tester</h3>
+    <p>
+        Periksa indikator tester untuk mengetahui apakah kawat
+        terhubung dan dipetakan sesuai kebutuhan. Hasil yang berbeda
+        dapat menunjukkan sambungan putus, hubungan pendek, atau
+        pemetaan yang keliru, bergantung pada kemampuan alat.
+    </p>
+
+    <h3>Uji koneksi jaringan</h3>
+    <p>
+        Setelah kabel lolos pengujian, hubungkan ke perangkat jaringan
+        dan periksa indikator link. Kamu juga dapat menguji konektivitas
+        menggunakan ping jika alamat IP sudah dikonfigurasi.
+    </p>
+
+    <div class="info-box">
+        💡 Kabel yang terlihat rapi belum tentu berfungsi dengan benar.
+        Selalu lakukan pengujian sebelum digunakan.
+    </div>
+</section>
+
+<!-- MATERI 6 -->
+
+<section class="card">
+    <div class="section-label">06 — KESALAHAN UMUM</div>
+    <h2>Kesalahan Saat Crimping</h2>
+
+    <ul>
+        <li>Urutan warna kawat tidak sesuai standar.</li>
+        <li>Kawat tidak masuk sampai ujung konektor.</li>
+        <li>Jaket kabel tidak tertahan dengan baik oleh bagian penahan konektor.</li>
+        <li>Kawat terpotong atau rusak ketika jaket dikupas.</li>
+        <li>Konektor tidak sesuai dengan jenis kabel.</li>
+        <li>Kabel tidak diuji setelah proses crimping.</li>
+    </ul>
+
+    <div class="info-box">
+        ⚠️ Jika kabel gagal saat pengujian, periksa susunan warna,
+        posisi kawat, dan kualitas crimping. Ganti konektor jika
+        kontaknya sudah rusak.
+    </div>
+</section>
+
+<!-- LATIHAN -->
+
+<section class="card" id="latihan">
+    <div class="section-label">UJI PEMAHAMAN</div>
+    <h2>Latihan Soal Pilihan Ganda</h2>
+
+    <p>
+        Jawab lima soal berikut. Setiap soal bernilai 20 poin.
+        Klik Kirim Jawaban untuk melihat nilai dan pembahasan.
+    </p>
+
+    <form id="quizForm">
+
+        <fieldset class="question">
+            <legend>1. Apa tujuan utama proses crimping kabel?</legend>
+
+            <label class="option">
+                <input type="radio" name="q1" value="a" required>
+                Mengubah kabel menjadi jaringan Wi-Fi
+            </label>
+            <label class="option">
+                <input type="radio" name="q1" value="b">
+                Memasang konektor pada ujung kabel
+            </label>
+            <label class="option">
+                <input type="radio" name="q1" value="c">
+                Mengganti alamat IP komputer
+            </label>
+            <label class="option">
+                <input type="radio" name="q1" value="d">
+                Menghapus konfigurasi switch
+            </label>
+        </fieldset>
+
+        <fieldset class="question">
+            <legend>2. Alat yang digunakan untuk menekan kontak konektor adalah ...</legend>
+
+            <label class="option">
+                <input type="radio" name="q2" value="a" required>
+                Obeng
+            </label>
+            <label class="option">
+                <input type="radio" name="q2" value="b">
+                Keyboard
+            </label>
+            <label class="option">
+                <input type="radio" name="q2" value="c">
+                Tang crimping
+            </label>
+            <label class="option">
+                <input type="radio" name="q2" value="d">
+                Monitor
+            </label>
+        </fieldset>
+
+        <fieldset class="question">
+            <legend>3. Berapa jumlah pin pada konektor Ethernet modular 8P8C yang umum disebut RJ45?</legend>
+
+            <label class="option">
+                <input type="radio" name="q3" value="a" required>
+                4 pin
+            </label>
+            <label class="option">
+                <input type="radio" name="q3" value="b">
+                6 pin
+            </label>
+            <label class="option">
+                <input type="radio" name="q3" value="c">
+                7 pin
+            </label>
+            <label class="option">
+                <input type="radio" name="q3" value="d">
+                8 pin
+            </label>
+        </fieldset>
+
+        <fieldset class="question">
+            <legend>4. Apa fungsi LAN cable tester?</legend>
+
+            <label class="option">
+                <input type="radio" name="q4" value="a" required>
+                Memeriksa kontinuitas dan pemetaan kawat kabel
+            </label>
+            <label class="option">
+                <input type="radio" name="q4" value="b">
+                Menambah panjang kabel secara otomatis
+            </label>
+            <label class="option">
+                <input type="radio" name="q4" value="c">
+                Mengatur nama komputer
+            </label>
+            <label class="option">
+                <input type="radio" name="q4" value="d">
+                Mengubah kabel menjadi fiber optic
+            </label>
+        </fieldset>
+
+        <fieldset class="question">
+            <legend>5. Apa yang harus dilakukan setelah kabel selesai di-crimping?</legend>
+
+            <label class="option">
+                <input type="radio" name="q5" value="a" required>
+                Langsung memotong semua kawat
+            </label>
+            <label class="option">
+                <input type="radio" name="q5" value="b">
+                Mengabaikan susunan warna
+            </label>
+            <label class="option">
+                <input type="radio" name="q5" value="c">
+                Menguji kabel dengan tester
+            </label>
+            <label class="option">
+                <input type="radio" name="q5" value="d">
+                Melepas seluruh konektor
+            </label>
+        </fieldset>
+
+        <div class="actions">
+            <button type="submit" class="button">
+                Kirim Jawaban →
+            </button>
+
+            <button type="reset" class="button secondary">
+                Ulangi Latihan
+            </button>
+        </div>
+    </form>
+
+    <div class="result" id="result" aria-live="polite">
+        <div class="score" id="score">Nilai: 0</div>
+        <h3 id="resultTitle">Hasil Latihan</h3>
+        <p id="resultSummary"></p>
+        <div class="feedback" id="feedback"></div>
+    </div>
+    
+</section>
+
+</div>
+
+<!-- SIDEBAR -->
+
+<aside>
+    <section class="side-card">
+        <h3>📚 Isi Materi</h3>
+        <ul>
+            <li>Pengertian crimping</li>
+            <li>Alat dan bahan</li>
+            <li>Urutan warna T568A/B</li>
+            <li>Langkah kerja</li>
+            <li>Pengujian kabel</li>
+            <li>Kesalahan umum</li>
+            <li>Latihan pilihan ganda</li>
+        </ul>
+
+        <div class="progress"><div></div></div>
+        <p>Materi siap dipelajari.</p>
+    </section>
+
+    <section class="side-card">
+        <h3>🎯 Tips Belajar</h3>
+        <p>
+            Hafalkan urutan warna, lakukan crimping dengan teliti,
+            dan selalu uji kabel sebelum dipakai.
+        </p>
+
+    </section>
+
+    <section class="side-card">
+        <h3>🧰 Peralatan Praktik</h3>
+        <p>
+            Siapkan kabel UTP, konektor yang sesuai, tang crimping,
+            dan LAN cable tester.
+        </p>
+
+    </section>
+
+</aside>
+
+</main>
+
+<!-- TIPS -->
+
+<section class="note">
+    <div class="note-icon">💡</div>
+    <div>
+        <h2>Tips Praktik Crimping</h2>
+        <p>
+            Kerjakan dengan teliti, jangan merusak kawat saat mengupas
+            kabel, dan pastikan semua kawat masuk ke konektor sesuai
+            urutan. Periksa hasilnya menggunakan LAN cable tester.
+        </p>
+
+    </div>
+
+</section>
+
+<!-- RANGKUMAN -->
+
+<section class="summary">
+    <div class="section-label">RANGKUMAN</div>
+    <h2>Yang Perlu Kamu Ingat</h2>
+
+    <div class="summary-grid">
+        <div class="summary-item">
+            ✓ Crimping memasang konektor pada ujung kabel.
+        </div>
+        <div class="summary-item">
+            ✓ Tang crimping digunakan untuk memasang konektor.
+        </div>
+        <div class="summary-item">
+            ✓ T568A dan T568B menentukan urutan warna kawat.
+        </div>
+        <div class="summary-item">
+            ✓ Susunan kawat harus benar sebelum konektor di-crimp.
+        </div>
+        <div class="summary-item">
+            ✓ LAN cable tester membantu memeriksa hasil crimping.
+        </div>
+        <div class="summary-item">
+            ✓ Kabel yang sudah selesai harus diuji sebelum digunakan.
+        </div>
+
+    </div>
+
+</section>
+
+<!-- TOMBOL NAVIGASI BAWAH -->
+
+<nav class="navigation">
+    <a href="straight.html" class="back">
+        ← Kembali ke Straight & Cross
+    </a>
+
+    <a href="crimping.html" class="next">
+        Materi Berikutnya →
+    </a>
+</nav>
+
+<div class="footer">
+    © BZ — Tempat Belajar Gen Z
+</div>
+
+</div>
+
+<script>
+const kunciJawaban = {
+    q1: "b",
+    q2: "c",
+    q3: "d",
+    q4: "a",
+    q5: "c"
+};
+
+const pembahasan = {
+    q1: "Crimping merupakan proses memasang konektor pada ujung kabel agar kontaknya terhubung dengan kawat.",
+    q2: "Tang crimping digunakan untuk menekan kontak konektor agar terpasang pada kawat kabel.",
+    q3: "Konektor 8P8C memiliki delapan posisi kontak dan delapan kontak.",
+    q4: "LAN cable tester membantu memeriksa kontinuitas dan pemetaan kawat sesuai kemampuan alat.",
+    q5: "Kabel perlu diuji untuk mengetahui apakah sambungan dan pemetaan kawat sudah sesuai."
+};
+
+const form = document.getElementById("quizForm");
+
+form.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const data = new FormData(form);
+    let benar = 0;
+    let hasilPembahasan = "";
+
+    for (let i = 1; i <= 5; i++) {
+        const nomor = "q" + i;
+        const tepat = data.get(nomor) === kunciJawaban[nomor];
+
+        if (tepat) benar++;
+
+        hasilPembahasan += `
+            <div class="${tepat ? "correct" : "incorrect"}">
+                <strong>Soal ${i}: ${tepat ? "Benar" : "Belum tepat"}.</strong>
+                ${pembahasan[nomor]}
+            </div>
+        `;
+    }
+
+    const nilai = benar * 20;
+
+    document.getElementById("score").textContent =
+        "Nilai: " + nilai;
+
+    document.getElementById("resultTitle").textContent =
+        nilai >= 80 ? "Bagus sekali! 🎉" :
+        nilai >= 60 ? "Terus berlatih! 💪" :
+        "Jangan menyerah! 📘";
+
+    document.getElementById("resultSummary").textContent =
+        benar + " jawaban benar dari 5 soal. " +
+        (5 - benar) + " jawaban salah.";
+
+    document.getElementById("feedback").innerHTML =
+        hasilPembahasan;
+
+    const hasil = document.getElementById("result");
+    hasil.classList.add("show");
+
+    hasil.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+});
+
+form.addEventListener("reset", function() {
+    document.getElementById("result").classList.remove("show");
+    document.getElementById("feedback").innerHTML = "";
+});
+</script>
+
+</body>
+
+</html>

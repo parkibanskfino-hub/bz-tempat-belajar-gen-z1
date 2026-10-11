@@ -1,0 +1,1071 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TCP/IP - BZ</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --blue: #087cff;
+    --cyan: #10bfb3;
+    --ink: #102642;
+    --muted: #61768c;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--ink);
+    line-height: 1.7;
+    min-height: 100vh;
+    background: linear-gradient(135deg,#dcecff,#f4fbff 48%,#cef6f3);
+}
+
+a { text-decoration: none; }
+
+.container {
+    width: min(990px,92%);
+    margin: auto;
+}
+
+/* HEADER */
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin: 25px auto 20px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo {
+    width: 43px;
+    height: 43px;
+    display: grid;
+    place-items: center;
+    border-radius: 14px;
+    color: white;
+    font-weight: 900;
+    background: linear-gradient(135deg,#167cff,#10c5b4);
+}
+
+.brand strong {
+    display: block;
+    font-size: 14px;
+}
+
+.brand span {
+    color: #079f9a;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.back {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 11px 17px;
+    background: white;
+    color: var(--blue);
+    border-radius: 13px;
+    font-size: 12px;
+    font-weight: 800;
+    box-shadow: 0 8px 25px #1464a014;
+    transition: .25s;
+}
+
+.back:hover,
+.next:hover {
+    transform: translateY(-3px);
+}
+
+/* HERO */
+
+.hero {
+    position: relative;
+    overflow: hidden;
+    padding: 42px;
+    color: white;
+    border-radius: 29px;
+    background: linear-gradient(115deg,#176bff,#6559f4 62%,#9438ed);
+    box-shadow: 0 25px 55px #2b66c52b;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    right: -70px;
+    top: -120px;
+    border-radius: 50%;
+    background: #ffffff12;
+    border: 1px solid #ffffff20;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-icon {
+    width: 58px;
+    height: 58px;
+    display: grid;
+    place-items: center;
+    margin-bottom: 13px;
+    border-radius: 17px;
+    background: #ffffff20;
+    border: 1px solid #ffffff40;
+    font-size: 29px;
+}
+
+.label {
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.hero h1 {
+    font-size: clamp(34px,5vw,45px);
+    line-height: 1.15;
+    margin: 8px 0 12px;
+}
+
+.hero p {
+    max-width: 700px;
+    color: #f1f5ff;
+    font-size: 14px;
+}
+
+.chips {
+    display: flex;
+    gap: 9px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.chip {
+    padding: 6px 12px;
+    font-size: 11px;
+    font-weight: 800;
+    border: 1px solid #ffffff45;
+    background: #ffffff18;
+    border-radius: 10px;
+}
+
+/* KONTEN */
+
+.content {
+    display: grid;
+    grid-template-columns: minmax(0,1fr) 245px;
+    gap: 18px;
+    align-items: start;
+    margin: 24px 0 25px;
+}
+
+.card {
+    padding: 27px;
+    margin-bottom: 17px;
+    border-radius: 21px;
+    background: #ffffffdf;
+    border: 1px solid white;
+    box-shadow: 0 12px 35px #1450780c;
+}
+
+.section-label {
+    color: var(--blue);
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.card h2 {
+    font-size: 24px;
+    line-height: 1.3;
+    margin: 6px 0 13px;
+}
+
+.card h3 {
+    font-size: 16px;
+    margin: 18px 0 5px;
+}
+
+.card p,
+.card li {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.card p + p { margin-top: 10px; }
+
+.card ul {
+    padding-left: 20px;
+    margin-top: 9px;
+}
+
+.info-box {
+    padding: 15px 17px;
+    margin-top: 17px;
+    border-radius: 13px;
+    background: linear-gradient(135deg,#edf7ff,#e6fbf7);
+    border: 1px solid #d7efef;
+    color: #45617d;
+    font-size: 12px;
+}
+
+/* LAPISAN TCP/IP */
+
+.protocol-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 17px;
+}
+
+.protocol-layer {
+    padding: 17px;
+    border: 1px solid #deedf5;
+    border-radius: 14px;
+    background: #fbfdff;
+    transition: .2s;
+}
+
+.protocol-layer:hover {
+    transform: translateX(4px);
+    border-color: #8bc8ff;
+}
+
+.protocol-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 5px;
+}
+
+.protocol-number {
+    width: 38px;
+    height: 38px;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    border-radius: 12px;
+    color: white;
+    font-weight: 900;
+    background: linear-gradient(135deg,#167cff,#10bfb3);
+}
+
+.protocol-layer h3 {
+    margin: 0;
+    font-size: 15px;
+}
+
+.protocol-layer p {
+    font-size: 12px;
+}
+
+/* SIDEBAR */
+
+.side-card {
+    padding: 22px;
+    margin-bottom: 16px;
+    border: 1px solid white;
+    border-radius: 19px;
+    background: #ffffffdf;
+    box-shadow: 0 12px 30px #1450780c;
+}
+
+.side-card h3 {
+    font-size: 15px;
+    margin-bottom: 9px;
+}
+
+.side-card p,
+.side-card li {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.side-card ul { padding-left: 18px; }
+
+.progress {
+    height: 8px;
+    background: #e1edf5;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 12px 0 7px;
+}
+
+.progress div {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,#167cff,#10bfb3);
+}
+
+/* LATIHAN */
+
+.question {
+    padding: 17px;
+    margin: 15px 0;
+    border: 1px solid #deedf5;
+    border-radius: 15px;
+    background: #fbfdff;
+}
+
+.question legend {
+    padding: 0 4px;
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--ink);
+}
+
+.option {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    padding: 10px;
+    margin-top: 7px;
+    border: 1px solid #e4edf4;
+    border-radius: 10px;
+    background: white;
+    color: #506782;
+    font-size: 12px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.option:hover {
+    background: #f0f8ff;
+    border-color: #8bc8ff;
+}
+
+.option input {
+    margin-top: 5px;
+    accent-color: #167cff;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.button,
+.next {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 11px 17px;
+    border: none;
+    border-radius: 11px;
+    color: white;
+    background: linear-gradient(110deg,#176bff,#10bfb3);
+    font-size: 12px;
+    font-weight: 900;
+    cursor: pointer;
+    transition: .25s;
+}
+
+.button.secondary {
+    background: white;
+    color: var(--blue);
+    border: 1px solid #dceaf5;
+}
+
+/* HASIL NILAI */
+
+.result {
+    display: none;
+    padding: 21px;
+    margin-top: 20px;
+    border-radius: 16px;
+    background: linear-gradient(135deg,#eaf7ff,#e5fbf6);
+    border: 1px solid #cfece8;
+}
+
+.result.show { display: block; }
+
+.score {
+    color: #079f91;
+    font-size: 39px;
+    font-weight: 900;
+}
+
+.result h3 { margin: 0 0 5px; }
+.result p { font-size: 12px; }
+
+.feedback {
+    padding-top: 12px;
+    margin-top: 12px;
+    border-top: 1px solid #d2e8e8;
+}
+
+.feedback div {
+    padding: 7px 0;
+    font-size: 12px;
+}
+
+.correct { color: #078b6d; }
+.incorrect { color: #cf4d5a; }
+
+/* TIPS DAN RANGKUMAN */
+
+.note {
+    display: flex;
+    gap: 17px;
+    align-items: flex-start;
+    padding: 25px;
+    margin-bottom: 20px;
+    border-radius: 21px;
+    background: linear-gradient(135deg,#edf8ff,#e7fffb);
+    border: 1px solid #cdece9;
+}
+
+.note-icon { font-size: 30px; }
+
+.note h2 {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.note p {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.summary {
+    padding: 27px;
+    margin-bottom: 22px;
+    color: white;
+    border-radius: 21px;
+    background: linear-gradient(120deg,#087cff,#11bfb3);
+    box-shadow: 0 20px 45px #0a82d21f;
+}
+
+.summary .section-label { color: #eafaff; }
+
+.summary h2 {
+    margin: 7px 0 17px;
+    font-size: 23px;
+}
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 10px;
+}
+
+.summary-item {
+    padding: 12px;
+    border-radius: 12px;
+    background: #ffffff20;
+    font-size: 12px;
+}
+
+/* NAVIGASI BAWAH */
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin: 22px 0 50px;
+}
+
+.navigation .back,
+.navigation .next {
+    min-height: 40px;
+}
+
+.footer {
+    text-align: center;
+    color: #7890a8;
+    font-size: 11px;
+    padding-bottom: 28px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:760px) {
+    .header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .hero { padding: 29px 24px; }
+
+    .content { grid-template-columns: 1fr; }
+
+    .card,
+    .side-card { padding: 21px; }
+
+    .hero h1 { font-size: 34px; }
+
+    .summary-grid { grid-template-columns: 1fr; }
+
+    .note { flex-direction: column; }
+
+    .navigation {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .navigation a {
+        width: 100%;
+        text-align: center;
+    }
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<!-- HEADER -->
+
+<header class="header">
+    <div class="brand">
+        <div class="logo">BZ</div>
+        <div>
+            <strong>Tempat Belajar</strong>
+            <span>Gen Z</span>
+        </div>
+    </div>
+
+    <a href="jaringan.html" class="back">
+        ← Kembali ke Materi
+    </a>
+</header>
+
+<!-- HERO -->
+
+<section class="hero">
+    <div class="hero-content">
+        <div class="hero-icon">🌐</div>
+        <div class="label">MATERI 04 • NETWORKING</div>
+
+        <h1>TCP/IP</h1>
+
+        <p>
+            Pelajari model TCP/IP, fungsi setiap lapisan, protokol
+            penting, serta cara data dikirim melalui jaringan komputer.
+        </p>
+
+        <div class="chips">
+            <span class="chip">📚 4 Lapisan</span>
+            <span class="chip">🌐 Networking</span>
+            <span class="chip">🚀 Pemula</span>
+            <span class="chip">📝 5 Soal</span>
+        </div>
+    </div>
+</section>
+
+<main class="content">
+<div>
+
+<!-- MATERI 1 -->
+
+<section class="card">
+    <div class="section-label">01 — PENGERTIAN</div>
+    <h2>Apa Itu TCP/IP?</h2>
+
+    <p>
+        <strong>TCP/IP</strong> adalah kumpulan protokol yang digunakan
+        untuk menghubungkan perangkat dan memungkinkan pertukaran data
+        melalui jaringan komputer, termasuk internet.
+    </p>
+
+    <p>
+        TCP/IP merupakan singkatan dari Transmission Control Protocol
+        dan Internet Protocol. TCP membantu pengiriman data secara andal,
+        sedangkan IP menangani pengalamatan dan penerusan paket menuju
+        jaringan tujuan.
+    </p>
+
+    <div class="info-box">
+        💡 <strong>Contoh:</strong> saat membuka situs web, perangkat
+        menggunakan protokol jaringan seperti IP dan TCP atau protokol
+        transport lain sesuai layanan yang digunakan.
+    </div>
+</section>
+
+<!-- MATERI 2 -->
+
+<section class="card">
+    <div class="section-label">02 — LAPISAN TCP/IP</div>
+    <h2>Empat Lapisan TCP/IP</h2>
+
+    <p>
+        Model TCP/IP sering dijelaskan menggunakan empat lapisan.
+        Setiap lapisan memiliki fungsi yang saling melengkapi.
+    </p>
+
+    <div class="protocol-list">
+
+        <div class="protocol-layer">
+            <div class="protocol-head">
+                <div class="protocol-number">4</div>
+                <h3>Application Layer</h3>
+            </div>
+            <p>
+                Menyediakan protokol yang digunakan aplikasi untuk
+                berkomunikasi melalui jaringan.
+            </p>
+            <p><strong>Contoh:</strong> HTTP, DNS, SMTP, DHCP.</p>
+        </div>
+
+        <div class="protocol-layer">
+            <div class="protocol-head">
+                <div class="protocol-number">3</div>
+                <h3>Transport Layer</h3>
+            </div>
+            <p>
+                Mendukung komunikasi antaraplikasi menggunakan port
+                dan mekanisme transport yang sesuai.
+            </p>
+            <p><strong>Contoh:</strong> TCP dan UDP.</p>
+        </div>
+
+        <div class="protocol-layer">
+            <div class="protocol-head">
+                <div class="protocol-number">2</div>
+                <h3>Internet Layer</h3>
+            </div>
+            <p>
+                Menangani alamat IP dan penerusan paket antarjaringan.
+            </p>
+            <p><strong>Contoh:</strong> IPv4, IPv6, ICMP.</p>
+        </div>
+
+        <div class="protocol-layer">
+            <div class="protocol-head">
+                <div class="protocol-number">1</div>
+                <h3>Network Access Layer</h3>
+            </div>
+            <p>
+                Menangani pengiriman data pada jaringan lokal melalui
+                teknologi link dan media yang digunakan.
+            </p>
+            <p><strong>Contoh:</strong> Ethernet dan Wi-Fi.</p>
+        </div>
+
+    </div>
+</section>
+
+<!-- MATERI 3 -->
+
+<section class="card">
+    <div class="section-label">03 — TCP DAN IP</div>
+    <h2>Perbedaan TCP dan IP</h2>
+
+    <h3>TCP (Transmission Control Protocol)</h3>
+    <p>
+        TCP menyediakan komunikasi berorientasi koneksi dan mekanisme
+        untuk pengiriman data yang andal, termasuk pengurutan data,
+        pengiriman ulang, serta pengendalian aliran.
+    </p>
+
+    <h3>IP (Internet Protocol)</h3>
+    <p>
+        IP menyediakan pengalamatan logis dan membantu paket mencapai
+        jaringan tujuan. IP tidak menjamin bahwa setiap paket pasti
+        sampai atau tiba sesuai urutan.
+    </p>
+
+    <div class="info-box">
+        📌 <strong>Ingat:</strong> TCP membantu keandalan pengiriman
+        data, sedangkan IP menangani pengalamatan dan penerusan paket.
+    </div>
+</section>
+
+<!-- MATERI 4 -->
+
+<section class="card">
+    <div class="section-label">04 — PROTOKOL PENTING</div>
+    <h2>Contoh Protokol TCP/IP</h2>
+
+    <h3>HTTP dan HTTPS</h3>
+    <p>
+        Digunakan untuk pertukaran data web. HTTPS melindungi komunikasi
+        menggunakan TLS.
+    </p>
+
+    <h3>DNS</h3>
+    <p>
+        Membantu menerjemahkan nama domain, seperti example.com,
+        menjadi informasi alamat IP yang diperlukan.
+    </p>
+
+    <h3>DHCP</h3>
+    <p>
+        Membantu perangkat mendapatkan konfigurasi jaringan secara
+        otomatis, misalnya alamat IP, subnet mask, dan gateway.
+    </p>
+
+    <h3>ICMP</h3>
+    <p>
+        Digunakan untuk pesan kontrol dan diagnostik jaringan.
+        Perintah ping umumnya memanfaatkan ICMP Echo pada jaringan IP.
+    </p>
+
+    <h3>Ethernet dan Wi-Fi</h3>
+    <p>
+        Menyediakan teknologi koneksi jaringan lokal yang membawa
+        data melalui media kabel atau nirkabel.
+    </p>
+</section>
+
+<!-- MATERI 5 -->
+
+<section class="card">
+    <div class="section-label">05 — PROSES KOMUNIKASI</div>
+    <h2>Bagaimana Data Berjalan?</h2>
+
+    <p>
+        Saat aplikasi mengirim data, data diproses oleh lapisan protokol
+        yang sesuai. Lapisan transport dapat membaginya menjadi bagian
+        data, IP membawa paket menuju tujuan, dan lapisan akses jaringan
+        mengirimkannya melalui link yang tersedia.
+    </p>
+
+    <ul>
+        <li>Aplikasi menghasilkan data yang akan dikirim.</li>
+        <li>Transport menangani komunikasi antaraplikasi.</li>
+        <li>Internet Layer membantu paket mencapai jaringan tujuan.</li>
+        <li>Network Access mengirim data melalui jaringan lokal.</li>
+        <li>Perangkat penerima memproses data agar dapat digunakan aplikasi.</li>
+    </ul>
+
+    <div class="info-box">
+        💡 TCP/IP menggunakan proses enkapsulasi: setiap lapisan menambahkan
+        informasi yang diperlukan untuk menjalankan fungsi komunikasinya.
+    </div>
+</section>
+
+<!-- LATIHAN -->
+
+<section class="card" id="latihan">
+    <div class="section-label">UJI PEMAHAMAN</div>
+    <h2>Latihan Soal Pilihan Ganda</h2>
+
+    <p>
+        Jawab lima soal berikut. Setiap soal bernilai 20 poin.
+        Klik Kirim Jawaban untuk melihat nilai dan pembahasan.
+    </p>
+
+    <form id="quizForm">
+
+        <fieldset class="question">
+            <legend>1. Apa fungsi utama IP?</legend>
+
+            <label class="option">
+                <input type="radio" name="q1" value="a" required>
+                Mengedit dokumen
+            </label>
+            <label class="option">
+                <input type="radio" name="q1" value="b">
+                Menangani pengalamatan dan penerusan paket
+            </label>
+            <label class="option">
+                <input type="radio" name="q1" value="c">
+                Mengatur kecerahan monitor
+            </label>
+            <label class="option">
+                <input type="radio" name="q1" value="d">
+                Menghapus file
+            </label>
+        </fieldset>
+
+        <fieldset class="question">
+            <legend>2. Protokol yang menyediakan pengiriman data secara andal adalah ...</legend>
+
+            <label class="option">
+                <input type="radio" name="q2" value="a" required>
+                TCP
+            </label>
+            <label class="option">
+                <input type="radio" name="q2" value="b">
+                IP saja
+            </label>
+            <label class="option">
+                <input type="radio" name="q2" value="c">
+                ARP saja
+            </label>
+            <label class="option">
+                <input type="radio" name="q2" value="d">
+                Ethernet saja
+            </label>
+        </fieldset>
+
+        <fieldset class="question">
+            <legend>3. Pada model TCP/IP empat lapisan, TCP berada di lapisan ...</legend>
+
+            <label class="option">
+                <input type="radio" name="q3" value="a" required>
+                Application
+            </label>
+            <label class="option">
+                <input type="radio" name="q3" value="b">
+                Internet
+            </label>
+            <label class="option">
+                <input type="radio" name="q3" value="c">
+                Transport
+            </label>
+            <label class="option">
+                <input type="radio" name="q3" value="d">
+                Network Access
+            </label>
+        </fieldset>
+
+        <fieldset class="question">
+            <legend>4. Protokol yang membantu perangkat memperoleh alamat IP secara otomatis adalah ...</legend>
+
+            <label class="option">
+                <input type="radio" name="q4" value="a" required>
+                HTTP
+            </label>
+            <label class="option">
+                <input type="radio" name="q4" value="b">
+                SMTP
+            </label>
+            <label class="option">
+                <input type="radio" name="q4" value="c">
+                ICMP
+            </label>
+            <label class="option">
+                <input type="radio" name="q4" value="d">
+                DHCP
+            </label>
+        </fieldset>
+
+        <fieldset class="question">
+            <legend>5. Lapisan yang menangani pengiriman data melalui Ethernet atau Wi-Fi adalah ...</legend>
+
+            <label class="option">
+                <input type="radio" name="q5" value="a" required>
+                Application
+            </label>
+            <label class="option">
+                <input type="radio" name="q5" value="b">
+                Network Access
+            </label>
+            <label class="option">
+                <input type="radio" name="q5" value="c">
+                Transport
+            </label>
+            <label class="option">
+                <input type="radio" name="q5" value="d">
+                Internet
+            </label>
+        </fieldset>
+
+        <div class="actions">
+            <button type="submit" class="button">
+                Kirim Jawaban →
+            </button>
+
+            <button type="reset" class="button secondary">
+                Ulangi Latihan
+            </button>
+
+        </div>
+
+    </form>
+
+    <div class="result" id="result" aria-live="polite">
+        <div class="score" id="score">Nilai: 0</div>
+        <h3 id="resultTitle">Hasil Latihan</h3>
+        <p id="resultSummary"></p>
+        <div class="feedback" id="feedback"></div>
+    </div>
+</section>
+
+</div>
+
+<!-- SIDEBAR -->
+
+<aside>
+    <section class="side-card">
+        <h3>📚 Isi Materi</h3>
+        <ul>
+            <li>Pengertian TCP/IP</li>
+            <li>Empat lapisan TCP/IP</li>
+            <li>Perbedaan TCP dan IP</li>
+            <li>Protokol penting</li>
+            <li>Proses komunikasi data</li>
+            <li>Latihan pilihan ganda</li>
+        </ul>
+
+        <div class="progress"><div></div></div>
+        <p>Materi siap dipelajari.</p>
+    </section>
+
+    <section class="side-card">
+        <h3>🎯 Tips Belajar</h3>
+        <p>
+            Pahami perbedaan TCP dan IP terlebih dahulu, lalu pelajari
+            fungsi Application, Transport, Internet, dan Network Access.
+        </p>
+    </section>
+
+    <section class="side-card">
+        <h3>💻 Praktik Jaringan</h3>
+        <p>
+            Cobalah perintah ping untuk memeriksa konektivitas IP
+            dan nslookup untuk melihat informasi DNS.
+        </p>
+    </section>
+</aside>
+</main>
+
+<!-- TIPS -->
+
+<section class="note">
+    <div class="note-icon">💡</div>
+    <div>
+        <h2>Tips Memahami TCP/IP</h2>
+        <p>
+            Ingat bahwa TCP dan IP memiliki fungsi berbeda.
+            TCP mendukung pengiriman yang andal, sedangkan IP
+            menangani alamat dan penerusan paket. Keduanya bekerja
+            bersama dengan protokol lain untuk komunikasi jaringan.
+        </p>
+    </div>
+</section>
+
+<!-- RANGKUMAN -->
+
+<section class="summary">
+    <div class="section-label">RANGKUMAN</div>
+    <h2>Yang Perlu Kamu Ingat</h2>
+
+    <div class="summary-grid">
+        <div class="summary-item">
+            ✓ TCP/IP adalah kumpulan protokol komunikasi jaringan.
+        </div>
+        <div class="summary-item">
+            ✓ Application menyediakan protokol untuk aplikasi.
+        </div>
+        <div class="summary-item">
+            ✓ Transport mendukung komunikasi antaraplikasi.
+        </div>
+        <div class="summary-item">
+            ✓ Internet Layer menangani IP dan penerusan paket.
+        </div>
+        <div class="summary-item">
+            ✓ Network Access menangani koneksi melalui link jaringan.
+        </div>
+        <div class="summary-item">
+            ✓ DHCP membantu konfigurasi alamat IP secara otomatis.
+        </div>
+    </div>
+</section>
+
+<!-- TOMBOL BAWAH -->
+
+<nav class="navigation">
+    <a href="osi.html" class="back">
+        ← Kembali ke OSI Layer
+    </a>
+
+    <a href="kabel.html" class="next">
+        Materi Berikutnya →
+    </a>
+</nav>
+
+<div class="footer">
+    © BZ — Tempat Belajar Gen Z
+</div>
+
+</div>
+
+<script>
+const kunciJawaban = {
+    q1: "b",
+    q2: "a",
+    q3: "c",
+    q4: "d",
+    q5: "b"
+};
+
+const pembahasan = {
+    q1: "IP menangani pengalamatan logis dan penerusan paket menuju jaringan tujuan.",
+    q2: "TCP menyediakan mekanisme pengiriman yang andal, termasuk pengurutan dan pengiriman ulang data.",
+    q3: "TCP berada pada Transport Layer dalam model TCP/IP empat lapisan.",
+    q4: "DHCP membantu perangkat mendapatkan konfigurasi jaringan, termasuk alamat IP, secara otomatis.",
+    q5: "Network Access menangani pengiriman data melalui link jaringan seperti Ethernet dan Wi-Fi."
+};
+
+const form = document.getElementById("quizForm");
+
+form.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const data = new FormData(form);
+    let benar = 0;
+    let hasilPembahasan = "";
+
+    for (let i = 1; i <= 5; i++) {
+        const nomor = "q" + i;
+        const tepat = data.get(nomor) === kunciJawaban[nomor];
+
+        if (tepat) benar++;
+
+        hasilPembahasan += `
+            <div class="${tepat ? "correct" : "incorrect"}">
+                <strong>Soal ${i}: ${tepat ? "Benar" : "Belum tepat"}.</strong>
+                ${pembahasan[nomor]}
+            </div>
+        `;
+    }
+
+    const nilai = benar * 20;
+
+    document.getElementById("score").textContent =
+        "Nilai: " + nilai;
+
+    document.getElementById("resultTitle").textContent =
+        nilai >= 80 ? "Bagus sekali! 🎉" :
+        nilai >= 60 ? "Terus berlatih! 💪" :
+        "Jangan menyerah! 📘";
+
+    document.getElementById("resultSummary").textContent =
+        benar + " jawaban benar dari 5 soal. " +
+        (5 - benar) + " jawaban salah.";
+
+    document.getElementById("feedback").innerHTML =
+        hasilPembahasan;
+
+    const hasil = document.getElementById("result");
+    hasil.classList.add("show");
+
+    hasil.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+});
+
+form.addEventListener("reset", function() {
+    document.getElementById("result").classList.remove("show");
+    document.getElementById("feedback").innerHTML = "";
+});
+</script>
+
+</body>
+
+</html>

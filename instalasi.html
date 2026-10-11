@@ -1,0 +1,823 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instalasi Sistem Operasi | Belajar Komputer</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #eaf8ff, #d7fff5);
+            color: #183b50;
+            line-height: 1.8;
+        }
+
+        header {
+            background: linear-gradient(135deg, #075985, #0891b2, #2dd4bf);
+            color: white;
+            padding: 35px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 34px;
+            margin: 15px 0 8px;
+        }
+
+        header p {
+            max-width: 750px;
+            margin: auto;
+            color: #e0fbff;
+        }
+
+        .back {
+            display: inline-block;
+            color: white;
+            border: 1px solid white;
+            border-radius: 25px;
+            padding: 7px 17px;
+            text-decoration: none;
+            transition: .3s;
+        }
+
+        .back:hover {
+            background: white;
+            color: #075985;
+        }
+
+        .hero {
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 35px 25px;
+            background: white;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 8px 25px #0891b21a;
+        }
+
+        .hero h2 {
+            color: #087e8b;
+            margin-bottom: 12px;
+        }
+
+        .hero p {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .container {
+            max-width: 1100px;
+            padding: 0 20px 40px;
+            margin: auto;
+        }
+
+        .card {
+            background: white;
+            padding: 27px;
+            margin-bottom: 24px;
+            border-radius: 18px;
+            border-left: 6px solid #14b8a6;
+            box-shadow: 0 6px 20px #0f647812;
+        }
+
+        h2 {
+            color: #087e8b;
+            font-size: 24px;
+            margin-bottom: 14px;
+        }
+
+        h3 {
+            color: #087e8b;
+            margin: 18px 0 8px;
+        }
+
+        p {
+            margin-bottom: 10px;
+        }
+
+        ul, ol {
+            padding-left: 25px;
+            margin: 10px 0;
+        }
+
+        li {
+            margin-bottom: 7px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px;
+            margin-top: 18px;
+        }
+
+        .mini-card {
+            background: linear-gradient(135deg, #f0fbff, #e2fff8);
+            border: 1px solid #bceee8;
+            border-radius: 14px;
+            padding: 20px;
+        }
+
+        .mini-card h3 {
+            margin-top: 0;
+        }
+
+        .step {
+            display: flex;
+            gap: 13px;
+            align-items: flex-start;
+            margin: 20px 0;
+        }
+
+        .number {
+            min-width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #0891b2, #14b8a6);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+        }
+
+        .step h3 {
+            margin-top: 0;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, #e0f7ff, #d7fff5);
+            border-radius: 12px;
+            padding: 16px;
+            margin-top: 15px;
+        }
+
+        .warning {
+            background: #fff8e5;
+            border-left: 5px solid #eab308;
+            padding: 16px;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+
+        .command {
+            display: block;
+            background: #083344;
+            color: #a7f3d0;
+            padding: 13px 16px;
+            border-radius: 9px;
+            margin: 10px 0;
+            overflow-x: auto;
+            font-family: Consolas, monospace;
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            min-width: 480px;
+            border-collapse: collapse;
+            margin-top: 12px;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #d5eeee;
+            text-align: left;
+        }
+
+        th {
+            background: #0891b2;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background: #f0fbff;
+        }
+
+        .quiz-question {
+            background: #f0fbff;
+            padding: 18px;
+            border-radius: 12px;
+            margin: 15px 0;
+        }
+
+        .quiz-question label {
+            display: block;
+            margin: 8px 0;
+            cursor: pointer;
+        }
+
+        .quiz-question input {
+            margin-right: 8px;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #0891b2, #14b8a6);
+            color: white;
+            border: none;
+            padding: 12px 22px;
+            border-radius: 25px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 8px 5px 0 0;
+        }
+
+        .btn:hover {
+            opacity: .85;
+        }
+
+        #hasil {
+            margin-top: 18px;
+            font-weight: bold;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 25px 0;
+        }
+
+        .navigation a {
+            color: white;
+            text-decoration: none;
+            background: linear-gradient(135deg, #075985, #0891b2);
+            padding: 12px 20px;
+            border-radius: 25px;
+        }
+
+        .navigation a:hover {
+            background: #0f766e;
+        }
+
+        footer {
+            background: #083344;
+            color: #d7f9f5;
+            text-align: center;
+            padding: 25px 15px;
+        }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 27px;
+            }
+
+            .hero {
+                margin: 20px 12px;
+                padding: 25px 18px;
+            }
+
+            .container {
+                padding: 0 12px 25px;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            h2 {
+                font-size: 21px;
+            }
+
+            .navigation a {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <a href="index.html" class="back">← Kembali ke Beranda</a>
+    <h1>Instalasi Sistem Operasi</h1>
+    <p>Pelajari cara memasang, mengatur, dan memeriksa sistem operasi komputer.</p>
+</header>
+
+<section class="hero">
+    <h2>💻 Selamat Datang di Materi Instalasi OS</h2>
+    <p>
+        Sistem operasi adalah perangkat lunak utama yang mengatur kerja komputer.
+        Pada materi ini, kamu akan belajar persiapan instalasi, langkah pemasangan
+        Windows dan Debian, penggunaan VirtualBox, serta pemeriksaan setelah instalasi.
+    </p>
+</section>
+
+<main class="container">
+
+    <section class="card">
+        <h2>📘 1. Pengertian Sistem Operasi</h2>
+        <p>
+            Sistem operasi atau Operating System (OS) adalah perangkat lunak yang
+            mengelola perangkat keras dan menyediakan layanan bagi aplikasi.
+            Sistem operasi membantu komputer menjalankan program, mengatur file,
+            mengelola memori, serta mengatur perangkat masukan dan keluaran.
+        </p>
+
+        <h3>Contoh sistem operasi</h3>
+
+        <div class="grid">
+            <div class="mini-card">
+                <h3>🪟 Windows</h3>
+                <p>Sistem operasi yang banyak digunakan pada komputer pribadi, sekolah, dan kantor.</p>
+            </div>
+
+            <div class="mini-card">
+                <h3>🐧 Linux</h3>
+                <p>Sistem operasi berbasis kernel Linux dengan berbagai distribusi, seperti Debian dan Ubuntu.</p>
+            </div>
+
+            <div class="mini-card">
+                <h3>🍎 macOS</h3>
+                <p>Sistem operasi untuk komputer Mac dari Apple.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="card">
+        <h2>🎯 2. Tujuan Instalasi Sistem Operasi</h2>
+        <ul>
+            <li>Menyiapkan komputer agar dapat digunakan.</li>
+            <li>Menyediakan lingkungan untuk menjalankan aplikasi.</li>
+            <li>Mengelola perangkat keras dan penyimpanan.</li>
+            <li>Memasang sistem operasi sesuai kebutuhan pengguna.</li>
+            <li>Menyiapkan komputer untuk kegiatan belajar dan administrasi server.</li>
+            <li>Mengganti atau memulihkan sistem dengan metode yang sesuai.</li>
+        </ul>
+    </section>
+
+    <section class="card">
+        <h2>🧰 3. Peralatan dan Persiapan</h2>
+
+        <div class="grid">
+            <div class="mini-card">
+                <h3>💿 File ISO</h3>
+                <p>File citra media instalasi sistem operasi yang diperoleh dari sumber resmi.</p>
+            </div>
+
+            <div class="mini-card">
+                <h3>🔌 Flashdisk Bootable</h3>
+                <p>Media USB yang disiapkan agar komputer dapat memulai proses instalasi.</p>
+            </div>
+
+            <div class="mini-card">
+                <h3>💾 Penyimpanan</h3>
+                <p>SSD atau HDD dengan kapasitas yang memenuhi persyaratan sistem operasi.</p>
+            </div>
+
+            <div class="mini-card">
+                <h3>⚙️ Komputer</h3>
+                <p>Perangkat yang memenuhi persyaratan prosesor, RAM, dan perangkat keras lainnya.</p>
+            </div>
+        </div>
+
+        <h3>Checklist sebelum instalasi</h3>
+        <ul>
+            <li>Cadangkan file penting.</li>
+            <li>Periksa spesifikasi minimum sistem operasi.</li>
+            <li>Pastikan file ISO berasal dari sumber tepercaya.</li>
+            <li>Siapkan koneksi internet jika diperlukan.</li>
+            <li>Periksa kompatibilitas mode boot UEFI atau Legacy.</li>
+            <li>Pastikan media instalasi dapat digunakan.</li>
+        </ul>
+
+        <div class="warning">
+            <strong>⚠️ Penting:</strong> Memformat atau menghapus partisi dapat
+            menyebabkan kehilangan data. Periksa disk dan partisi dengan teliti
+            sebelum melanjutkan instalasi.
+        </div>
+    </section>
+
+    <section class="card">
+        <h2>🪟 4. Langkah Instalasi Windows</h2>
+
+        <div class="step">
+            <span class="number">1</span>
+            <div>
+                <h3>Siapkan media instalasi</h3>
+                <p>
+                    Unduh media instalasi Windows dari sumber resmi dan buat USB
+                    instalasi menggunakan alat yang sesuai.
+                </p>
+            </div>
+        </div>
+
+        <div class="step">
+            <span class="number">2</span>
+            <div>
+                <h3>Boot dari USB</h3>
+                <p>
+                    Hubungkan USB ke komputer, lalu pilih media tersebut melalui
+                    menu boot perangkat.
+                </p>
+            </div>
+        </div>
+
+        <div class="step">
+            <span class="number">3</span>
+            <div>
+                <h3>Atur bahasa dan keyboard</h3>
+                <p>
+                    Pilih bahasa, format waktu, dan metode input keyboard sesuai kebutuhan.
+                </p>
+            </div>
+        </div>
+
+        <div class="step">
+            <span class="number">4</span>
+            <div>
+                <h3>Mulai instalasi</h3>
+                <p>
+                    Pilih opsi instalasi yang tersedia dan ikuti instruksi pada layar.
+                </p>
+            </div>
+        </div>
+
+        <div class="step">
+            <span class="number">5</span>
+            <div>
+                <h3>Pilih disk dan partisi</h3>
+                <p>
+                    Tentukan lokasi instalasi dengan benar. Pastikan kamu memahami
+                    partisi yang dipilih sebelum melakukan perubahan.
+                </p>
+            </div>
+        </div>
+
+        <div class="step">
+            <span class="number">6</span>
+            <div>
+                <h3>Tunggu proses selesai</h3>
+                <p>
+                    Installer akan menyalin file dan menyiapkan sistem. Komputer
+                    dapat melakukan restart beberapa kali.
+                </p>
+            </div>
+        </div>
+
+        <div class="step">
+            <span class="number">7</span>
+            <div>
+                <h3>Atur konfigurasi awal</h3>
+                <p>
+                    Ikuti petunjuk untuk mengatur wilayah, akun pengguna, jaringan,
+                    dan pengaturan privasi.
+                </p>
+            </div>
+        </div>
+
+        <div class="step">
+            <span class="number">8</span>
+            <div>
+                <h3>Periksa hasil instalasi</h3>
+                <p>
+                    Setelah masuk ke desktop, periksa koneksi jaringan, driver,
+                    pembaruan sistem, dan fungsi perangkat.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="card">
+        <h2>🐧 5. Langkah Instalasi Debian Linux</h2>
+
+        <p>
+            Debian merupakan distribusi Linux yang banyak digunakan untuk belajar
+            administrasi sistem, jaringan, dan server.
+        </p>
+
+        <div class="step">
+            <span class="number">1</span>
+            <div>
+                <h3>Unduh ISO Debian</h3>
+                <p>Gunakan file instalasi dari situs resmi Debian.</p>
+            </div>
+        </div>
+
+        <div class="step">
+            <span class="number">2</span>
+            <div>
+                <h3>Mulai dari media instalasi</h3>
+                <p>Boot komputer dari USB atau hubungkan ISO ke mesin virtual.</p>
+            </div>
+        </div>
+
+        <div class="step">
+            <span class="number">3</span>
+            <div>
+                <h3>Pilih metode instalasi</h3>
+                <p>
+                    Pilih Install atau Graphical Install jika tersedia pada media
+                    instalasi yang digunakan.
+                </p>
+            </div>
+        </div>
+
+        <div class="step">
+            <span class="number">4</span>
+            <div>
+                <h3>Atur bahasa dan jaringan</h3>
+                <p>
+                    Tentukan bahasa, lokasi, keyboard, nama komputer, dan pengaturan jaringan.
+                </p>
+            </div>
+        </div>
+
+        <div class="step">
+            <span class="number">5</span>
+            <div>
+                <h3>Atur akun pengguna</h3>
+                <p>
+                    Ikuti petunjuk installer untuk membuat akun dan mengatur
+                    kata sandi dengan aman.
+                </p>
+            </div>
+        </div>
+
+        <div class="step">
+            <span class="number">6</span>
+            <div>
+                <h3>Atur partisi disk</h3>
+                <p>
+                    Pilih skema partisi sesuai kebutuhan. Untuk latihan pemula,
+                    mesin virtual dapat mengurangi risiko terhadap data komputer utama.
+                </p>
+            </div>
+        </div>
+
+        <div class="step">
+            <span class="number">7</span>
+            <div>
+                <h3>Pilih perangkat lunak</h3>
+                <p>
+                    Pilih lingkungan desktop atau paket perangkat lunak yang dibutuhkan.
+                </p>
+            </div>
+        </div>
+
+        <div class="step">
+            <span class="number">8</span>
+            <div>
+                <h3>Selesaikan instalasi</h3>
+                <p>
+                    Ikuti petunjuk pemasangan bootloader, selesaikan proses,
+                    lalu restart dan masuk ke Debian.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="card">
+        <h2>🖥️ 6. Instalasi Sistem Operasi dengan VirtualBox</h2>
+
+        <p>
+            VirtualBox adalah aplikasi virtualisasi yang memungkinkan kita
+            menjalankan sistem operasi di dalam mesin virtual.
+        </p>
+
+        <ol>
+            <li>Pasang VirtualBox dari situs resminya.</li>
+            <li>Unduh file ISO Windows atau Linux.</li>
+            <li>Buka VirtualBox dan klik <strong>New</strong>.</li>
+            <li>Masukkan nama mesin virtual dan pilih file ISO.</li>
+            <li>Atur RAM, CPU, dan kapasitas disk virtual sesuai kemampuan komputer.</li>
+            <li>Jalankan mesin virtual.</li>
+            <li>Ikuti langkah instalasi sistem operasi di dalam mesin virtual.</li>
+            <li>Setelah selesai, restart mesin virtual dan periksa sistem.</li>
+        </ol>
+
+        <div class="highlight">
+            <strong>Keuntungan VirtualBox:</strong> Kamu dapat berlatih memasang
+            sistem operasi tanpa harus langsung mengubah partisi pada komputer utama.
+        </div>
+    </section>
+
+    <section class="card">
+        <h2>🔍 7. Perbedaan Instalasi Windows dan Debian</h2>
+
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Aspek</th>
+                        <th>Windows</th>
+                        <th>Debian Linux</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Media</td>
+                        <td>ISO atau media instalasi Windows</td>
+                        <td>ISO Debian</td>
+                    </tr>
+                    <tr>
+                        <td>Installer</td>
+                        <td>Installer Windows</td>
+                        <td>Installer Debian</td>
+                    </tr>
+                    <tr>
+                        <td>Sistem berkas umum</td>
+                        <td>NTFS untuk partisi sistem pada instalasi umum</td>
+                        <td>ext4 atau sistem berkas lain yang didukung</td>
+                    </tr>
+                    <tr>
+                        <td>Penggunaan</td>
+                        <td>Komputer pribadi, sekolah, dan kantor</td>
+                        <td>Desktop, pembelajaran, dan server</td>
+                    </tr>
+                    <tr>
+                        <td>Pengelolaan aplikasi</td>
+                        <td>Installer aplikasi dan berbagai metode lain</td>
+                        <td>APT dan metode instalasi lain yang didukung</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="card">
+        <h2>🛠️ 8. Masalah yang Sering Terjadi</h2>
+
+        <h3>USB tidak terdeteksi saat boot</h3>
+        <p>
+            Periksa apakah media instalasi dibuat dengan benar, terdeteksi perangkat,
+            dan sesuai dengan mode boot yang digunakan.
+        </p>
+
+        <h3>File ISO tidak dapat digunakan</h3>
+        <p>
+            Unduh ulang dari sumber resmi dan periksa integritas file jika informasi
+            checksum tersedia.
+        </p>
+
+        <h3>Disk tidak terdeteksi</h3>
+        <p>
+            Periksa kompatibilitas perangkat penyimpanan, pengaturan firmware,
+            dan driver yang diperlukan.
+        </p>
+
+        <h3>Komputer tidak dapat terhubung ke internet</h3>
+        <p>
+            Periksa adaptor jaringan, koneksi Wi-Fi atau kabel, konfigurasi IP,
+            dan driver jaringan.
+        </p>
+
+        <h3>Komputer berjalan lambat</h3>
+        <p>
+            Periksa penggunaan RAM, kapasitas disk, pembaruan sistem, dan aplikasi
+            yang berjalan di latar belakang.
+        </p>
+    </section>
+
+    <section class="card">
+        <h2>✅ 9. Pemeriksaan Setelah Instalasi</h2>
+
+        <ul>
+            <li>Pastikan sistem operasi dapat melakukan boot dengan normal.</li>
+            <li>Periksa tanggal, waktu, bahasa, dan keyboard.</li>
+            <li>Pastikan jaringan dapat berfungsi.</li>
+            <li>Periksa driver dan perangkat yang terdeteksi.</li>
+            <li>Lakukan pembaruan keamanan yang diperlukan.</li>
+            <li>Periksa akun pengguna dan keamanan kata sandi.</li>
+            <li>Pasang aplikasi yang dibutuhkan.</li>
+            <li>Pastikan data penting sudah dicadangkan.</li>
+        </ul>
+    </section>
+
+    <section class="card">
+        <h2>📝 10. Latihan Soal</h2>
+        <p>Pilih jawaban yang paling tepat untuk setiap pertanyaan.</p>
+
+        <form id="quizForm">
+
+            <div class="quiz-question">
+                <p><strong>1. Apa yang dimaksud dengan sistem operasi?</strong></p>
+                <label><input type="radio" name="q1" value="a"> Perangkat untuk mencetak dokumen</label>
+                <label><input type="radio" name="q1" value="b"> Perangkat lunak yang mengelola perangkat keras dan aplikasi</label>
+                <label><input type="radio" name="q1" value="c"> Kabel penghubung jaringan</label>
+            </div>
+
+            <div class="quiz-question">
+                <p><strong>2. Apa fungsi file ISO saat instalasi?</strong></p>
+                <label><input type="radio" name="q2" value="a"> Sebagai citra media instalasi sistem operasi</label>
+                <label><input type="radio" name="q2" value="b"> Menambah kapasitas RAM fisik</label>
+                <label><input type="radio" name="q2" value="c"> Mengganti fungsi prosesor</label>
+            </div>
+
+            <div class="quiz-question">
+                <p><strong>3. Mengapa data penting harus dicadangkan?</strong></p>
+                <label><input type="radio" name="q3" value="a"> Agar monitor lebih terang</label>
+                <label><input type="radio" name="q3" value="b"> Agar instalasi tidak memerlukan file ISO</label>
+                <label><input type="radio" name="q3" value="c"> Untuk mengurangi risiko kehilangan data</label>
+            </div>
+
+            <div class="quiz-question">
+                <p><strong>4. Apa fungsi VirtualBox?</strong></p>
+                <label><input type="radio" name="q4" value="a"> Menghapus semua virus secara otomatis</label>
+                <label><input type="radio" name="q4" value="b"> Menjalankan sistem operasi di mesin virtual</label>
+                <label><input type="radio" name="q4" value="c"> Mengganti perangkat keras komputer</label>
+            </div>
+
+            <div class="quiz-question">
+                <p><strong>5. Apa yang perlu dilakukan setelah instalasi selesai?</strong></p>
+                <label><input type="radio" name="q5" value="a"> Menghapus semua file tanpa pemeriksaan</label>
+                <label><input type="radio" name="q5" value="b"> Mematikan komputer secara paksa</label>
+                <label><input type="radio" name="q5" value="c"> Memeriksa sistem, jaringan, driver, dan pembaruan</label>
+            </div>
+
+            <button type="button" class="btn" onclick="periksaJawaban()">
+                Periksa Jawaban
+            </button>
+
+            <button type="reset" class="btn" onclick="resetHasil()">
+                Ulangi Kuis
+            </button>
+
+        </form>
+
+        <div id="hasil" aria-live="polite"></div>
+    </section>
+
+    <div class="navigation">
+        <a href="virtualbox.html">← Materi VirtualBox</a>
+
+        <a href="manajemen.html">materi berikutnya →</a>
+    </div>
+
+</main>
+
+<footer>
+    <p>© 2026 Website Pembelajaran Komputer</p>
+
+    <p>Belajar lebih cerdas. Berkembang lebih cepat.</p>
+</footer>
+
+<script>
+    function periksaJawaban() {
+        const kunci = {
+            q1: "b",
+            q2: "a",
+            q3: "c",
+            q4: "b",
+            q5: "c"
+        };
+
+        let skor = 0;
+        let terjawab = 0;
+
+        for (const soal in kunci) {
+            const jawaban = document.querySelector(
+                'input[name="' + soal + '"]:checked'
+            );
+
+            if (jawaban) {
+                terjawab++;
+
+                if (jawaban.value === kunci[soal]) {
+                    skor++;
+                }
+            }
+        }
+
+        const hasil = document.getElementById("hasil");
+
+        if (terjawab < 5) {
+            hasil.style.color = "#b45309";
+            hasil.textContent =
+                "Kamu baru menjawab " + terjawab +
+                " dari 5 soal. Lengkapi semua jawaban terlebih dahulu.";
+            return;
+        }
+
+        hasil.style.color = "#087e8b";
+        hasil.textContent =
+            "Hasil: " + skor + " dari 5 jawaban benar. Nilai kamu: " +
+            (skor * 20) + "/100. " +
+            (skor === 5
+                ? "Hebat! Kamu sudah memahami materi ini."
+                : "Semangat! Pelajari kembali materi di atas.");
+    }
+
+    function resetHasil() {
+        document.getElementById("hasil").textContent = "";
+    }
+</script>
+
+</body>
+
+
+</html>

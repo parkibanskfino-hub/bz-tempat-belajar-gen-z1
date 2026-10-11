@@ -1,0 +1,1166 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Straight dan Crossover - BZ</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --blue: #087cff;
+    --cyan: #10bfb3;
+    --ink: #102642;
+    --muted: #61768c;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--ink);
+    line-height: 1.7;
+    min-height: 100vh;
+    background: linear-gradient(135deg,#dcecff,#f4fbff 48%,#cef6f3);
+}
+
+a { text-decoration: none; }
+
+.container {
+    width: min(990px,92%);
+    margin: auto;
+}
+
+/* HEADER */
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin: 25px auto 20px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo {
+    width: 43px;
+    height: 43px;
+    display: grid;
+    place-items: center;
+    border-radius: 14px;
+    color: white;
+    font-weight: 900;
+    background: linear-gradient(135deg,#167cff,#10bfb3);
+}
+
+.brand strong {
+    display: block;
+    font-size: 14px;
+}
+
+.brand span {
+    color: #079f9a;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.back {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 11px 17px;
+    background: white;
+    color: var(--blue);
+    border-radius: 13px;
+    font-size: 12px;
+    font-weight: 800;
+    box-shadow: 0 8px 25px #1464a014;
+    transition: .25s;
+}
+
+.back:hover,
+.next:hover {
+    transform: translateY(-3px);
+}
+
+/* HERO */
+
+.hero {
+    position: relative;
+    overflow: hidden;
+    padding: 42px;
+    color: white;
+    border-radius: 29px;
+    background: linear-gradient(115deg,#176bff,#6559f4 62%,#9438ed);
+    box-shadow: 0 25px 55px #2b66c52b;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    right: -70px;
+    top: -120px;
+    border-radius: 50%;
+    background: #ffffff12;
+    border: 1px solid #ffffff20;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-icon {
+    width: 58px;
+    height: 58px;
+    display: grid;
+    place-items: center;
+    margin-bottom: 13px;
+    border-radius: 17px;
+    background: #ffffff20;
+    border: 1px solid #ffffff40;
+    font-size: 29px;
+}
+
+.label {
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.hero h1 {
+    font-size: clamp(34px,5vw,45px);
+    line-height: 1.15;
+    margin: 8px 0 12px;
+}
+
+.hero p {
+    max-width: 700px;
+    color: #f1f5ff;
+    font-size: 14px;
+}
+
+.chips {
+    display: flex;
+    gap: 9px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.chip {
+    padding: 6px 12px;
+    font-size: 11px;
+    font-weight: 800;
+    border: 1px solid #ffffff45;
+    background: #ffffff18;
+    border-radius: 10px;
+}
+
+/* KONTEN */
+
+.content {
+    display: grid;
+    grid-template-columns: minmax(0,1fr) 245px;
+    gap: 18px;
+    align-items: start;
+    margin: 24px 0 25px;
+}
+
+.card {
+    padding: 27px;
+    margin-bottom: 17px;
+    border-radius: 21px;
+    background: #ffffffdf;
+    border: 1px solid white;
+    box-shadow: 0 12px 35px #1450780c;
+}
+
+.section-label {
+    color: var(--blue);
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.card h2 {
+    font-size: 24px;
+    line-height: 1.3;
+    margin: 6px 0 13px;
+}
+
+.card h3 {
+    font-size: 16px;
+    margin: 18px 0 5px;
+}
+
+.card p,
+.card li {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.card p + p { margin-top: 10px; }
+
+.card ul {
+    padding-left: 20px;
+    margin-top: 9px;
+}
+
+.info-box {
+    padding: 15px 17px;
+    margin-top: 17px;
+    border-radius: 13px;
+    background: linear-gradient(135deg,#edf7ff,#e6fbf7);
+    border: 1px solid #d7efef;
+    color: #45617d;
+    font-size: 12px;
+}
+
+/* PERBANDINGAN */
+
+.compare-grid {
+    display: grid;
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    gap: 13px;
+    margin-top: 17px;
+}
+
+.compare-card {
+    padding: 19px;
+    border: 1px solid #deedf5;
+    border-radius: 16px;
+    background: #fbfdff;
+}
+
+.compare-icon {
+    font-size: 27px;
+    margin-bottom: 5px;
+}
+
+.compare-card h3 {
+    margin: 0 0 8px;
+    font-size: 16px;
+}
+
+.compare-card p {
+    font-size: 12px;
+}
+
+.compare-card ul {
+    padding-left: 17px;
+    margin-top: 10px;
+}
+
+.compare-card li {
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+.badge {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 5px 9px;
+    color: #087cff;
+    background: #eaf4ff;
+    border-radius: 8px;
+    font-size: 10px;
+    font-weight: 800;
+}
+
+/* TABEL WARNA */
+
+.table-wrap {
+    overflow-x: auto;
+    margin-top: 15px;
+    border-radius: 12px;
+    border: 1px solid #deedf5;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    font-size: 12px;
+}
+
+th, td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #e5edf5;
+    text-align: left;
+    white-space: nowrap;
+}
+
+th {
+    color: #234363;
+    background: #edf6ff;
+}
+
+td { color: #526a82; }
+
+tr:last-child td { border-bottom: none; }
+
+.wire {
+    display: inline-block;
+    width: 19px;
+    height: 19px;
+    margin-right: 8px;
+    vertical-align: middle;
+    border: 1px solid #d1dbe4;
+    border-radius: 5px;
+}
+
+.wo { background: repeating-linear-gradient(45deg,#fff,#fff 4px,#f3a55b 4px,#f3a55b 7px); }
+.o { background: #f28b28; }
+.wg { background: repeating-linear-gradient(45deg,#fff,#fff 4px,#46a66b 4px,#46a66b 7px); }
+.b { background: #2878d4; }
+.wb { background: repeating-linear-gradient(45deg,#fff,#fff 4px,#2878d4 4px,#2878d4 7px); }
+.g { background: #36a064; }
+.wbr { background: repeating-linear-gradient(45deg,#fff,#fff 4px,#986342 4px,#986342 7px); }
+.br { background: #986342; }
+
+/* SIDEBAR */
+
+.side-card {
+    padding: 22px;
+    margin-bottom: 16px;
+    border: 1px solid white;
+    border-radius: 19px;
+    background: #ffffffdf;
+    box-shadow: 0 12px 30px #1450780c;
+}
+
+.side-card h3 {
+    font-size: 15px;
+    margin-bottom: 9px;
+}
+
+.side-card p,
+.side-card li {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.side-card ul { padding-left: 18px; }
+
+.progress {
+    height: 8px;
+    background: #e1edf5;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 12px 0 7px;
+}
+
+.progress div {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,#167cff,#10bfb3);
+}
+
+/* LATIHAN */
+
+.question {
+    padding: 17px;
+    margin: 15px 0;
+    border: 1px solid #deedf5;
+    border-radius: 15px;
+    background: #fbfdff;
+}
+
+.question legend {
+    padding: 0 4px;
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--ink);
+}
+
+.option {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    padding: 10px;
+    margin-top: 7px;
+    border: 1px solid #e4edf4;
+    border-radius: 10px;
+    background: white;
+    color: #506782;
+    font-size: 12px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.option:hover {
+    background: #f0f8ff;
+    border-color: #8bc8ff;
+}
+
+.option input {
+    margin-top: 5px;
+    accent-color: #167cff;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.button,
+.next {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 11px 17px;
+    border: none;
+    border-radius: 11px;
+    color: white;
+    background: linear-gradient(110deg,#176bff,#10bfb3);
+    font-size: 12px;
+    font-weight: 900;
+    cursor: pointer;
+    transition: .25s;
+}
+
+.button.secondary {
+    background: white;
+    color: var(--blue);
+    border: 1px solid #dceaf5;
+}
+
+.result {
+    display: none;
+    padding: 21px;
+    margin-top: 20px;
+    border-radius: 16px;
+    background: linear-gradient(135deg,#eaf7ff,#e5fbf6);
+    border: 1px solid #cfece8;
+}
+
+.result.show { display: block; }
+
+.score {
+    color: #079f91;
+    font-size: 39px;
+    font-weight: 900;
+}
+
+.result h3 { margin: 0 0 5px; }
+.result p { font-size: 12px; }
+
+.feedback {
+    padding-top: 12px;
+    margin-top: 12px;
+    border-top: 1px solid #d2e8e8;
+}
+
+.feedback div {
+    padding: 7px 0;
+    font-size: 12px;
+}
+
+.correct { color: #078b6d; }
+.incorrect { color: #cf4d5a; }
+
+/* TIPS DAN RANGKUMAN */
+
+.note {
+    display: flex;
+    gap: 17px;
+    align-items: flex-start;
+    padding: 25px;
+    margin-bottom: 20px;
+    border-radius: 21px;
+    background: linear-gradient(135deg,#edf8ff,#e7fffb);
+    border: 1px solid #cdece9;
+}
+
+.note-icon { font-size: 30px; }
+
+.note h2 {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.note p {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.summary {
+    padding: 27px;
+    margin-bottom: 22px;
+    color: white;
+    border-radius: 21px;
+    background: linear-gradient(120deg,#087cff,#11bfb3);
+    box-shadow: 0 20px 45px #0a82d21f;
+}
+
+.summary .section-label { color: #eafaff; }
+
+.summary h2 {
+    margin: 7px 0 17px;
+    font-size: 23px;
+}
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 10px;
+}
+
+.summary-item {
+    padding: 12px;
+    border-radius: 12px;
+    background: #ffffff20;
+    font-size: 12px;
+}
+
+/* NAVIGASI BAWAH */
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin: 22px 0 50px;
+}
+
+.navigation .back,
+.navigation .next {
+    min-height: 40px;
+}
+
+.footer {
+    text-align: center;
+    color: #7890a8;
+    font-size: 11px;
+    padding-bottom: 28px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:760px) {
+    .header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .hero { padding: 29px 24px; }
+
+    .content { grid-template-columns: 1fr; }
+
+    .card,
+    .side-card { padding: 21px; }
+
+    .hero h1 { font-size: 34px; }
+
+    .summary-grid,
+    .compare-grid { grid-template-columns: 1fr; }
+
+    .note { flex-direction: column; }
+
+    .navigation {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .navigation a {
+        width: 100%;
+        text-align: center;
+    }
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<!-- HEADER -->
+
+<header class="header">
+    <div class="brand">
+        <div class="logo">BZ</div>
+        <div>
+            <strong>Tempat Belajar</strong>
+            <span>Gen Z</span>
+        </div>
+    </div>
+
+    <a href="jaringan.html" class="back">
+        ← Kembali ke Materi
+    </a>
+</header>
+
+<!-- HERO -->
+
+<section class="hero">
+    <div class="hero-content">
+        <div class="hero-icon">🔌</div>
+        <div class="label">MATERI • NETWORKING</div>
+
+        <h1>Kabel Straight & Cross</h1>
+
+        <p>
+            Pelajari perbedaan kabel straight-through dan crossover,
+            urutan warna kabel Ethernet, fungsi setiap kabel,
+            serta cara menggunakannya dalam jaringan komputer.
+        </p>
+
+        <div class="chips">
+            <span class="chip">📚 Kabel Ethernet</span>
+            <span class="chip">🔌 T568A & T568B</span>
+            <span class="chip">🚀 Praktik</span>
+            <span class="chip">📝 5 Soal</span>
+        </div>
+    </div>
+</section>
+
+<main class="content">
+<div>
+
+<!-- MATERI 1 -->
+
+<section class="card">
+    <div class="section-label">01 — PENGERTIAN</div>
+    <h2>Apa Itu Kabel Straight dan Cross?</h2>
+
+    <p>
+        Kabel straight-through dan crossover adalah dua jenis susunan
+        kabel Ethernet twisted pair. Perbedaan utamanya terletak pada
+        susunan kawat di kedua ujung konektor.
+    </p>
+
+    <p>
+        Kabel straight menggunakan standar susunan yang sama pada kedua
+        ujungnya. Kabel crossover menggunakan T568A pada satu ujung dan
+        T568B pada ujung lainnya.
+    </p>
+
+    <div class="info-box">
+        💡 <strong>Contoh:</strong> kabel straight umum digunakan untuk
+        menghubungkan PC ke switch. Kabel crossover dahulu sering
+        digunakan untuk koneksi langsung ant perangkat sejenis.
+        Banyak perangkat modern mendukung Auto MDI-X, sehingga kabel
+        straight juga dapat bekerja pada banyak koneksi tersebut.
+    </div>
+</section>
+
+<!-- MATERI 2 -->
+
+<section class="card">
+    <div class="section-label">02 — PERBEDAAN</div>
+    <h2>Straight vs Crossover</h2>
+
+    <div class="compare-grid">
+
+        <div class="compare-card">
+            <div class="compare-icon">🔵</div>
+            <h3>Straight-Through</h3>
+            <p>
+                Kedua ujung menggunakan standar susunan yang sama.
+            </p>
+            <ul>
+                <li>Ujung pertama: T568A</li>
+                <li>Ujung kedua: T568A</li>
+                <li>Atau T568B di kedua ujung</li>
+                <li>Umum untuk PC ke switch</li>
+            </ul>
+            <span class="badge">Susunan sama</span>
+        </div>
+
+        <div class="compare-card">
+            <div class="compare-icon">🟣</div>
+            <h3>Crossover</h3>
+            <p>
+                Kedua ujung menggunakan standar susunan berbeda.
+            </p>
+            <ul>
+                <li>Ujung pertama: T568A</li>
+                <li>Ujung kedua: T568B</li>
+                <li>Pasangan pengirim dan penerima disilangkan</li>
+                <li>Dahulu umum untuk perangkat sejenis</li>
+            </ul>
+            <span class="badge">Susunan berbeda</span>
+        </div>
+
+    </div>
+
+    <div class="info-box">
+        📌 Pada perangkat modern, Auto MDI-X dapat menyesuaikan
+        konfigurasi pengiriman dan penerimaan secara otomatis.
+        Karena itu, crossover tidak selalu diperlukan.
+    </div>
+</section>
+
+<!-- MATERI 3 -->
+
+<section class="card">
+    <div class="section-label">03 — URUTAN T568A</div>
+    <h2>Susunan Warna Kabel T568A</h2>
+
+    <p>
+        Berikut urutan warna kawat dari pin 1 sampai pin 8 pada
+        konektor Ethernet dengan standar T568A.
+    </p>
+
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Pin</th>
+                    <th>Warna Kawat</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>1</td><td><span class="wire wg"></span>Putih-Hijau</td></tr>
+                <tr><td>2</td><td><span class="wire g"></span>Hijau</td></tr>
+                <tr><td>3</td><td><span class="wire wo"></span>Putih-Oranye</td></tr>
+                <tr><td>4</td><td><span class="wire b"></span>Biru</td></tr>
+                <tr><td>5</td><td><span class="wire wb"></span>Putih-Biru</td></tr>
+                <tr><td>6</td><td><span class="wire o"></span>Oranye</td></tr>
+                <tr><td>7</td><td><span class="wire wbr"></span>Putih-Cokelat</td></tr>
+                <tr><td>8</td><td><span class="wire br"></span>Cokelat</td></tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<!-- MATERI 4 -->
+
+<section class="card">
+    <div class="section-label">04 — URUTAN T568B</div>
+    <h2>Susunan Warna Kabel T568B</h2>
+
+    <p>
+        Berikut urutan warna kawat dari pin 1 sampai pin 8 pada
+        konektor Ethernet dengan standar T568B.
+    </p>
+
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Pin</th>
+                    <th>Warna Kawat</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>1</td><td><span class="wire wo"></span>Putih-Oranye</td></tr>
+                <tr><td>2</td><td><span class="wire o"></span>Oranye</td></tr>
+                <tr><td>3</td><td><span class="wire wg"></span>Putih-Hijau</td></tr>
+                <tr><td>4</td><td><span class="wire b"></span>Biru</td></tr>
+                <tr><td>5</td><td><span class="wire wb"></span>Putih-Biru</td></tr>
+                <tr><td>6</td><td><span class="wire g"></span>Hijau</td></tr>
+                <tr><td>7</td><td><span class="wire wbr"></span>Putih-Cokelat</td></tr>
+                <tr><td>8</td><td><span class="wire br"></span>Cokelat</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="info-box">
+        ⚠️ Saat melihat konektor, pastikan orientasi pin benar dan
+        gunakan urutan standar secara konsisten. Jangan mencampur
+        urutan warna secara acak.
+    </div>
+</section>
+
+<!-- MATERI 5 -->
+
+<section class="card">
+    <div class="section-label">05 — CARA MEMBUAT</div>
+    <h2>Langkah Membuat Kabel Straight dan Cross</h2>
+
+    <h3>Alat dan bahan</h3>
+    <ul>
+        <li>Kabel twisted pair Ethernet.</li>
+        <li>Dua konektor modular 8P8C yang sesuai dengan kabel.</li>
+        <li>Tang crimping.</li>
+        <li>LAN cable tester.</li>
+    </ul>
+
+    <h3>Langkah membuat kabel straight</h3>
+    <ul>
+        <li>Potong kabel sesuai panjang yang diperlukan.</li>
+        <li>Kupas jaket luar dengan hati-hati.</li>
+        <li>Susun kawat dengan standar T568A atau T568B.</li>
+        <li>Masukkan kawat ke konektor sesuai urutan pin.</li>
+        <li>Lakukan crimping pada kedua ujung menggunakan standar yang sama.</li>
+        <li>Uji kabel dengan LAN cable tester.</li>
+    </ul>
+
+    <h3>Langkah membuat kabel crossover</h3>
+    <ul>
+        <li>Siapkan dan kupas kabel seperti langkah sebelumnya.</li>
+        <li>Susun ujung pertama menggunakan T568A.</li>
+        <li>Susun ujung kedua menggunakan T568B.</li>
+        <li>Lakukan crimping pada kedua ujung.</li>
+        <li>Uji kontinuitas dan susunan kabel dengan LAN cable tester yang sesuai.</li>
+    </ul>
+
+    <div class="info-box">
+        💡 Gunakan kabel straight untuk latihan PC ke switch.
+        Untuk latihan crossover, buat ujung A menggunakan T568A dan
+        ujung B menggunakan T568B. Uji hasilnya sebelum digunakan.
+    </div>
+</section>
+
+<!-- MATERI 6 -->
+
+<section class="card">
+    <div class="section-label">06 — PENGGUNAAN</div>
+    <h2>Kapan Kabel Digunakan?</h2>
+
+    <h3>PC ke Switch</h3>
+    <p>
+        Kabel straight merupakan pilihan umum untuk menghubungkan
+        komputer ke switch Ethernet.
+    </p>
+
+    <h3>Switch ke Router</h3>
+    <p>
+        Kabel straight juga umum digunakan untuk menghubungkan
+        port Ethernet switch dengan port Ethernet router.
+    </p>
+
+    <h3>PC ke PC secara langsung</h3>
+    <p>
+        Pada perangkat lama tanpa Auto MDI-X, kabel crossover
+        dapat diperlukan untuk koneksi Ethernet langsung.
+        Perangkat modern sering dapat menggunakan kabel straight
+        karena mampu menyesuaikan pasangan pengiriman dan penerimaan.
+    </p>
+
+    <h3>Switch ke Switch</h3>
+    <p>
+        Pada perangkat lama, crossover mungkin diperlukan.
+        Pada banyak switch modern, Auto MDI-X membuat kabel straight
+        dapat digunakan.
+    </p>
+</section>
+
+<!-- LATIHAN -->
+
+<section class="card" id="latihan">
+    <div class="section-label">UJI PEMAHAMAN</div>
+    <h2>Latihan Soal Pilihan Ganda</h2>
+
+    <p>
+        Jawab lima soal berikut. Setiap soal bernilai 20 poin.
+        Klik Kirim Jawaban untuk melihat nilai dan pembahasan.
+    </p>
+
+    <form id="quizForm">
+
+        <fieldset class="question">
+            <legend>1. Apa perbedaan utama kabel straight dan crossover?</legend>
+
+            <label class="option">
+                <input type="radio" name="q1" value="a" required>
+                Panjang kabel
+            </label>
+            <label class="option">
+                <input type="radio" name="q1" value="b">
+                Warna jaket luar saja
+            </label>
+            <label class="option">
+                <input type="radio" name="q1" value="c">
+                Susunan kawat pada kedua ujung konektor
+            </label>
+            <label class="option">
+                <input type="radio" name="q1" value="d">
+                Jenis sistem operasi komputer
+            </label>
+        </fieldset>
+
+        <fieldset class="question">
+            <legend>2. Kabel straight menggunakan susunan ...</legend>
+
+            <label class="option">
+                <input type="radio" name="q2" value="a" required>
+                T568A pada satu ujung dan T568B pada ujung lainnya
+            </label>
+            <label class="option">
+                <input type="radio" name="q2" value="b">
+                Standar yang sama pada kedua ujung
+            </label>
+            <label class="option">
+                <input type="radio" name="q2" value="c">
+                Susunan warna acak
+            </label>
+            <label class="option">
+                <input type="radio" name="q2" value="d">
+                Tanpa konektor
+            </label>
+        </fieldset>
+
+        <fieldset class="question">
+            <legend>3. Bagaimana susunan kabel crossover yang umum?</legend>
+
+            <label class="option">
+                <input type="radio" name="q3" value="a" required>
+                T568A di kedua ujung
+            </label>
+            <label class="option">
+                <input type="radio" name="q3" value="b">
+                T568B di kedua ujung
+            </label>
+            <label class="option">
+                <input type="radio" name="q3" value="c">
+                Semua kawat menggunakan warna yang sama
+            </label>
+            <label class="option">
+                <input type="radio" name="q3" value="d">
+                T568A di satu ujung dan T568B di ujung lainnya
+            </label>
+        </fieldset>
+
+        <fieldset class="question">
+            <legend>4. Alat untuk memeriksa sambungan dan urutan kabel adalah ...</legend>
+
+            <label class="option">
+                <input type="radio" name="q4" value="a" required>
+                Tang biasa saja
+            </label>
+            <label class="option">
+                <input type="radio" name="q4" value="b">
+                Monitor
+            </label>
+            <label class="option">
+                <input type="radio" name="q4" value="c">
+                LAN cable tester
+            </label>
+            <label class="option">
+                <input type="radio" name="q4" value="d">
+                Keyboard
+            </label>
+        </fieldset>
+
+        <fieldset class="question">
+            <legend>5. Mengapa kabel crossover sering tidak diperlukan pada perangkat modern?</legend>
+
+            <label class="option">
+                <input type="radio" name="q5" value="a" required>
+                Karena semua kabel memiliki susunan warna yang sama
+            </label>
+            <label class="option">
+                <input type="radio" name="q5" value="b">
+                Karena semua perangkat menggunakan fiber optic
+            </label>
+            <label class="option">
+                <input type="radio" name="q5" value="c">
+                Karena kabel jaringan sudah tidak digunakan
+            </label>
+            <label class="option">
+                <input type="radio" name="q5" value="d">
+                Karena banyak perangkat mendukung Auto MDI-X
+            </label>
+        </fieldset>
+
+        <div class="actions">
+            <button type="submit" class="button">
+                Kirim Jawaban →
+            </button>
+
+            <button type="reset" class="button secondary">
+                Ulangi Latihan
+            </button>
+        </div>
+    </form>
+
+    <div class="result" id="result" aria-live="polite">
+        <div class="score" id="score">Nilai: 0</div>
+        <h3 id="resultTitle">Hasil Latihan</h3>
+        <p id="resultSummary"></p>
+        <div class="feedback" id="feedback"></div>
+    </div>
+</section>
+
+</div>
+
+<!-- SIDEBAR -->
+
+<aside>
+    <section class="side-card">
+        <h3>📚 Isi Materi</h3>
+        <ul>
+            <li>Pengertian straight dan crossover</li>
+            <li>Perbedaan kedua kabel</li>
+            <li>Urutan T568A</li>
+            <li>Urutan T568B</li>
+            <li>Cara membuat kabel</li>
+            <li>Latihan pilihan ganda</li>
+        </ul>
+
+        <div class="progress"><div></div></div>
+        <p>Materi siap dipelajari.</p>
+    </section>
+
+    <section class="side-card">
+        <h3>🎯 Tips Belajar</h3>
+        <p>
+            Hafalkan urutan T568A dan T568B. Ingat bahwa straight
+            memakai standar sama di kedua ujung, sedangkan crossover
+            menggunakan T568A dan T568B.
+        </p>
+    </section>
+
+    <section class="side-card">
+        <h3>🧰 Peralatan Praktik</h3>
+        <p>
+            Siapkan kabel Ethernet, konektor 8P8C yang sesuai,
+            tang crimping, dan LAN cable tester.
+        </p>
+
+    </section>
+</aside>
+</main>
+
+<!-- TIPS -->
+
+<section class="note">
+    <div class="note-icon">💡</div>
+    <div>
+        <h2>Tips Membuat Kabel yang Benar</h2>
+        <p>
+            Pastikan semua kawat masuk sampai ujung konektor,
+            susunan warna tidak berubah, dan konektor tercrimping
+            dengan baik. Gunakan cable tester sebelum memasang kabel
+            pada jaringan.
+        </p>
+    </div>
+
+</section>
+
+<!-- RANGKUMAN -->
+
+<section class="summary">
+    <div class="section-label">RANGKUMAN</div>
+    <h2>Yang Perlu Kamu Ingat</h2>
+
+    <div class="summary-grid">
+        <div class="summary-item">
+            ✓ Straight menggunakan standar yang sama pada kedua ujung.
+        </div>
+        <div class="summary-item">
+            ✓ Crossover menggunakan T568A dan T568B.
+        </div>
+        <div class="summary-item">
+            ✓ T568A dan T568B memiliki urutan warna berbeda.
+        </div>
+        <div class="summary-item">
+            ✓ Straight umum digunakan untuk PC ke switch.
+        </div>
+        <div class="summary-item">
+            ✓ Crossover dahulu digunakan pada sejumlah koneksi perangkat sejenis.
+        </div>
+        <div class="summary-item">
+            ✓ Auto MDI-X memungkinkan banyak perangkat modern menggunakan straight.
+        </div>
+    </div>
+
+</section>
+
+<!-- TOMBOL BAWAH -->
+
+<nav class="navigation">
+    <a href="kabel.html" class="back">
+        ← Kembali ke Kabel Jaringan
+    </a>
+
+    <a href="crimping.html" class="next">
+        Materi Berikutnya →
+    </a>
+</nav>
+
+<div class="footer">
+    © BZ — Tempat Belajar Gen Z
+</div>
+
+</div>
+
+<script>
+const kunciJawaban = {
+    q1: "c",
+    q2: "b",
+    q3: "d",
+    q4: "c",
+    q5: "d"
+};
+
+const pembahasan = {
+    q1: "Perbedaan utama terletak pada susunan kawat di kedua ujung konektor.",
+    q2: "Straight-through menggunakan standar yang sama pada kedua ujung, misalnya T568B pada keduanya.",
+    q3: "Crossover umumnya menggunakan T568A di satu ujung dan T568B di ujung lainnya.",
+    q4: "LAN cable tester digunakan untuk memeriksa kontinuitas dan pemetaan kawat sesuai kemampuan alat.",
+    q5: "Auto MDI-X memungkinkan banyak perangkat modern menyesuaikan pasangan pengiriman dan penerimaan secara otomatis."
+};
+
+const form = document.getElementById("quizForm");
+
+form.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const data = new FormData(form);
+    let benar = 0;
+    let hasilPembahasan = "";
+
+    for (let i = 1; i <= 5; i++) {
+        const nomor = "q" + i;
+        const tepat = data.get(nomor) === kunciJawaban[nomor];
+
+        if (tepat) benar++;
+
+        hasilPembahasan += `
+            <div class="${tepat ? "correct" : "incorrect"}">
+                <strong>Soal ${i}: ${tepat ? "Benar" : "Belum tepat"}.</strong>
+                ${pembahasan[nomor]}
+            </div>
+        `;
+    }
+
+    const nilai = benar * 20;
+
+    document.getElementById("score").textContent =
+        "Nilai: " + nilai;
+
+    document.getElementById("resultTitle").textContent =
+        nilai >= 80 ? "Bagus sekali! 🎉" :
+        nilai >= 60 ? "Terus berlatih! 💪" :
+        "Jangan menyerah! 📘";
+
+    document.getElementById("resultSummary").textContent =
+        benar + " jawaban benar dari 5 soal. " +
+        (5 - benar) + " jawaban salah.";
+
+    document.getElementById("feedback").innerHTML =
+        hasilPembahasan;
+
+    const hasil = document.getElementById("result");
+    hasil.classList.add("show");
+
+    hasil.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+});
+
+form.addEventListener("reset", function() {
+    document.getElementById("result").classList.remove("show");
+    document.getElementById("feedback").innerHTML = "";
+});
+</script>
+
+</body>
+
+</html>
