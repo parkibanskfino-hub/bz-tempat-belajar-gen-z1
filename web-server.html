@@ -1,0 +1,251 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Web Server | BZ</title>
+<style>
+:root{--blue:#087cff;--cyan:#10bfb3;--ink:#102642;--muted:#61768c}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;color:var(--ink);background:linear-gradient(135deg,#dcecff,#f4fbff 48%,#cef6f3);line-height:1.7}
+.container{width:min(990px,92%);margin:auto}
+header{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 0}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{width:48px;height:48px;display:grid;place-items:center;border-radius:15px;color:white;font-size:23px;font-weight:900;background:linear-gradient(135deg,var(--blue),var(--cyan))}
+.brand-name{font-size:19px;font-weight:900}
+.brand-sub,.small{color:var(--muted);font-size:12px}
+.back,.navigation a{color:var(--ink);background:white;padding:10px 15px;border-radius:12px;font-size:13px;font-weight:bold;text-decoration:none}
+.hero{padding:34px;border-radius:29px;color:white;background:linear-gradient(115deg,#176bff,#6559f4 62%,#9438ed);box-shadow:0 18px 40px #6559f42b}
+.hero h1{font-size:clamp(30px,5vw,43px);line-height:1.2;margin:8px 0 12px}
+.hero p{max-width:650px;font-size:15px}
+.eyebrow,.section-label{font-size:11px;letter-spacing:1.5px;font-weight:900}
+.chips{display:flex;flex-wrap:wrap;gap:9px;margin-top:20px}
+.chip{padding:6px 12px;border:1px solid #ffffff45;background:#ffffff18;border-radius:50px;font-size:12px}
+.content{display:grid;grid-template-columns:minmax(0,1fr) 245px;gap:22px;align-items:start;margin:24px 0}
+.card,.side-card{background:#ffffffdf;border:1px solid white;border-radius:21px;padding:23px;margin-bottom:18px;box-shadow:0 8px 25px #10264208}
+.section-label{color:var(--blue);margin-bottom:5px}
+.card h2{font-size:22px;margin-bottom:12px;line-height:1.35}
+.card h3{font-size:16px;margin:17px 0 7px}
+.card p{color:#40566e;font-size:14px;margin-bottom:10px}
+.card ul{padding-left:21px;color:#40566e;font-size:14px;margin:8px 0}
+.card li{margin-bottom:6px}
+.tool-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:16px}
+.tool{padding:15px;border-radius:15px;background:#f0f7ff;border:1px solid #dcecff}
+.tool strong,.tool span{display:block}
+.tool strong{font-size:14px}.tool span{font-size:12px;color:var(--muted)}
+.steps{display:grid;gap:12px;margin-top:15px}
+.step{display:flex;gap:12px}
+.step-number{flex-shrink:0;width:30px;height:30px;display:grid;place-items:center;color:white;font-weight:bold;border-radius:10px;background:linear-gradient(135deg,var(--blue),var(--cyan))}
+.table-wrap{overflow-x:auto;margin-top:14px;border-radius:12px;border:1px solid #e2eaf4}
+table{width:100%;border-collapse:collapse;font-size:13px;min-width:350px}
+th,td{padding:11px 12px;text-align:left;border-bottom:1px solid #e6edf5}
+th{background:#edf5ff;color:#176bce}tr:last-child td{border-bottom:none}
+.code-box{background:#102642;color:#d9f2ff;padding:17px;border-radius:14px;overflow-x:auto;margin:12px 0}
+pre{white-space:pre;font-family:Consolas,monospace;font-size:12px;line-height:1.9}
+.note{padding:14px 16px;border-radius:13px;background:#e8f8f6;border-left:4px solid var(--cyan);color:#245d5b;font-size:13px;margin-top:14px}
+.warning{background:#fff5df;border-left-color:#f1ac35;color:#79561d}
+.sidebar{position:sticky;top:16px}
+.side-card{padding:19px}.side-card h3{font-size:15px;margin-bottom:12px}
+.side-link{display:block;padding:9px 0;color:#506780;text-decoration:none;font-size:13px;border-bottom:1px solid #e9eff6}
+.progress-track{height:8px;border-radius:10px;background:#e5edf6;overflow:hidden;margin:10px 0}
+.progress-fill{width:0;height:100%;background:linear-gradient(90deg,var(--blue),var(--cyan));transition:width .3s}
+.question{padding:16px;border:1px solid #e2eaf4;border-radius:15px;margin:13px 0;background:#fbfdff}
+.question h3{margin:0 0 10px;font-size:14px}
+.option{display:flex;gap:9px;padding:9px 11px;border-radius:10px;cursor:pointer;font-size:13px;color:#40566e;margin:4px 0}
+.option:hover{background:#edf5ff}.option input{margin-top:5px;accent-color:var(--blue)}
+.option.correct{background:#ddf8e9;color:#17683d}.option.incorrect{background:#ffebeb;color:#a12d2d}
+.explanation{font-size:12px;margin-top:9px;color:var(--muted)}
+.button{border:0;cursor:pointer;border-radius:12px;padding:12px 17px;font-weight:bold;font-size:13px;background:linear-gradient(110deg,var(--blue),#6559f4);color:white;margin:6px 5px 6px 0}
+.button.secondary{color:var(--ink);background:#eaf2fb}
+.result{display:none;padding:18px;border-radius:15px;background:#eaf8ff;margin-top:14px}
+.summary{padding:20px;border-radius:18px;color:white;background:linear-gradient(120deg,#087cff,#10bfb3)}
+.summary h2{margin-bottom:8px}.summary p{color:white}
+.navigation{display:flex;justify-content:space-between;gap:12px;margin:25px 0}
+footer{text-align:center;padding:25px 0 35px;color:var(--muted);font-size:12px}
+@media(max-width:760px){.content{grid-template-columns:1fr}.sidebar{position:static}.hero{padding:25px}.card{padding:19px}header{flex-wrap:wrap}.tool-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="container" id="top">
+<header>
+<div class="brand"><div class="logo">BZ</div><div><div class="brand-name">BZ Learning</div><div class="brand-sub">Tempat Belajar / Gen Z</div></div></div>
+<a class="back" href="server.html">← Kembali ke Materi</a>
+</header>
+
+<section class="hero">
+<div style="font-size:27px">🖥️</div>
+<div class="eyebrow">MATERI • NETWORKING</div>
+<h1>Web Server</h1>
+<p>Pelajari cara kerja web server, HTTP/HTTPS, dan praktik membuat website menggunakan Apache pada Debian.</p>
+<div class="chips"><span class="chip">HTTP & HTTPS</span><span class="chip">Apache</span><span class="chip">Debian Linux</span></div>
+</section>
+
+<div class="content">
+<main class="main-content">
+
+<section class="card">
+<div class="section-label">01 • PENGENALAN</div>
+<h2>Apa Itu Web Server?</h2>
+<p>Web server adalah perangkat lunak atau komputer yang menerima permintaan dari browser dan mengirimkan konten website melalui jaringan. Contoh perangkat lunaknya adalah Apache, Nginx, dan Microsoft IIS.</p>
+<div class="tool-grid">
+<div class="tool"><strong>🌐 HTTP</strong><span>Protokol pertukaran data web.</span></div>
+<div class="tool"><strong>🔒 HTTPS</strong><span>HTTP yang dilindungi TLS.</span></div>
+<div class="tool"><strong>📁 Document Root</strong><span>Folder penyimpanan file website.</span></div>
+<div class="tool"><strong>🖥️ Browser</strong><span>Klien yang meminta halaman.</span></div>
+</div>
+</section>
+
+<section class="card">
+<div class="section-label">02 • FUNGSI</div>
+<h2>Fungsi Web Server</h2>
+<ul>
+<li>Menyajikan file HTML, CSS, JavaScript, gambar, dan file lainnya.</li>
+<li>Menerima permintaan HTTP atau HTTPS.</li>
+<li>Mengirim respons kepada browser.</li>
+<li>Mencatat akses dan kesalahan pada log.</li>
+</ul>
+<div class="note"><strong>Contoh:</strong> Browser meminta halaman, lalu Apache mengirimkan file HTML kepada browser.</div>
+</section>
+
+<section class="card">
+<div class="section-label">03 • CARA KERJA</div>
+<h2>Alur Kerja Web Server</h2>
+<div class="steps">
+<div class="step"><div class="step-number">1</div><div><strong>Browser meminta halaman</strong><p>Pengguna membuka alamat website.</p></div></div>
+<div class="step"><div class="step-number">2</div><div><strong>Permintaan menuju server</strong><p>Browser menghubungi IP dan port web server.</p></div></div>
+<div class="step"><div class="step-number">3</div><div><strong>Server memproses permintaan</strong><p>Server mencari file atau menjalankan aplikasi.</p></div></div>
+<div class="step"><div class="step-number">4</div><div><strong>Respons dikirim</strong><p>Browser menerima dan menampilkan halaman.</p></div></div>
+</div>
+<div class="note">HTTP umumnya menggunakan port 80, sedangkan HTTPS menggunakan port 443.</div>
+</section>
+
+<section class="card">
+<div class="section-label">04 • PRAKTIK DEBIAN</div>
+<h2>Instal Web Server Apache</h2>
+<h3>1. Instal Apache</h3>
+<div class="code-box"><pre>sudo apt update
+sudo apt install apache2</pre></div>
+<h3>2. Aktifkan layanan</h3>
+<div class="code-box"><pre>sudo systemctl enable --now apache2
+sudo systemctl status apache2</pre></div>
+<h3>3. Buat halaman website</h3>
+<div class="code-box"><pre>sudo nano /var/www/html/index.html</pre></div>
+<p>Isi file dengan HTML berikut:</p>
+<div class="code-box"><pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="id"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Website Sekolah&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Selamat Datang&lt;/h1&gt;
+  &lt;p&gt;Apache berhasil berjalan.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre></div>
+<h3>4. Uji server</h3>
+<div class="code-box"><pre>curl http://localhost</pre></div>
+<p>Dari komputer klien, buka <code>http://IP-SERVER</code> dan ganti IP-SERVER dengan alamat Debian.</p>
+<div class="note warning">Pastikan klien dapat menjangkau server dan firewall mengizinkan port 80. HTTPS memerlukan konfigurasi TLS.</div>
+</section>
+
+<section class="card">
+<div class="section-label">05 • PEMERIKSAAN</div>
+<h2>Troubleshooting Web Server</h2>
+<div class="table-wrap"><table>
+<tr><th>Masalah</th><th>Pemeriksaan</th></tr>
+<tr><td>Website tidak terbuka</td><td>IP, koneksi, firewall, dan layanan.</td></tr>
+<tr><td>403 Forbidden</td><td>Izin file dan aturan akses.</td></tr>
+<tr><td>500 Internal Server Error</td><td>Log aplikasi dan konfigurasi.</td></tr>
+</table></div>
+<div class="code-box"><pre>sudo systemctl status apache2
+sudo apache2ctl configtest
+sudo journalctl -u apache2 --no-pager -n 40</pre></div>
+</section>
+
+<section class="card" id="kuis">
+<div class="section-label">06 • UJI PEMAHAMAN</div>
+<h2>Kuis Web Server</h2>
+<p>Pilih jawaban yang paling tepat. Setiap soal bernilai 20 poin.</p>
+<form id="quizForm">
+<div class="question"><h3>1. Apa fungsi web server?</h3>
+<label class="option"><input type="radio" name="q1" value="0"> Memberikan IP otomatis</label>
+<label class="option"><input type="radio" name="q1" value="1"> Menyajikan konten website</label>
+<label class="option"><input type="radio" name="q1" value="2"> Menerjemahkan domain saja</label>
+<label class="option"><input type="radio" name="q1" value="3"> Mengatur VLAN</label></div>
+
+<div class="question"><h3>2. Port standar HTTP adalah...</h3>
+<label class="option"><input type="radio" name="q2" value="0"> 21</label>
+<label class="option"><input type="radio" name="q2" value="1"> 25</label>
+<label class="option"><input type="radio" name="q2" value="2"> 80</label>
+<label class="option"><input type="radio" name="q2" value="3"> 110</label></div>
+
+<div class="question"><h3>3. Perangkat lunak web server pada praktik ini adalah...</h3>
+<label class="option"><input type="radio" name="q3" value="0"> Apache</label>
+<label class="option"><input type="radio" name="q3" value="1"> BIND9</label>
+<label class="option"><input type="radio" name="q3" value="2"> Postfix</label>
+<label class="option"><input type="radio" name="q3" value="3"> Squid</label></div>
+
+<div class="question"><h3>4. Document root default Apache Debian biasanya...</h3>
+<label class="option"><input type="radio" name="q4" value="0"> /etc/passwd</label>
+<label class="option"><input type="radio" name="q4" value="1"> /var/www/html</label>
+<label class="option"><input type="radio" name="q4" value="2"> /home/dns</label>
+<label class="option"><input type="radio" name="q4" value="3"> /boot</label></div>
+
+<div class="question"><h3>5. HTTPS menggunakan perlindungan komunikasi...</h3>
+<label class="option"><input type="radio" name="q5" value="0"> TLS</label>
+<label class="option"><input type="radio" name="q5" value="1"> DHCP</label>
+<label class="option"><input type="radio" name="q5" value="2"> FTP</label>
+<label class="option"><input type="radio" name="q5" value="3"> ARP</label></div>
+<button class="button" type="button" onclick="checkQuiz()">Periksa Jawaban</button>
+<button class="button secondary" type="reset" onclick="resetQuiz()">Ulangi Kuis</button>
+</form>
+<div class="result" id="result"><h3 id="score"></h3><p id="message"></p><div id="explanations"></div></div>
+</section>
+
+<section class="summary">
+<h2>Kesimpulan</h2>
+<p>Web server menyajikan konten website kepada klien. Pahami HTTP/HTTPS, konfigurasi Apache, serta keamanan layanan sebelum menerapkannya pada jaringan nyata.</p>
+</section>
+<nav class="navigation"><a href="dns-server.html">← DNS Server</a><a href="server.html">Daftar Materi →</a></nav>
+</main>
+
+<aside class="sidebar">
+<div class="side-card"><h3>📚 Isi Materi</h3>
+<a class="side-link" href="#top">Pengenalan</a>
+<a class="side-link" href="#top">Fungsi dan Cara Kerja</a>
+<a class="side-link" href="#kuis">Kuis Web Server</a></div>
+<div class="side-card"><h3>💡 Ingat Ini!</h3><p class="small">Uji konfigurasi di lingkungan laboratorium terlebih dahulu. Periksa akses jaringan, firewall, dan keamanan layanan.</p></div>
+</aside>
+</div>
+<footer>© 2026 BZ Learning • Belajar Jaringan Komputer</footer>
+</div>
+
+<script>
+const answers={q1:1,q2:2,q3:0,q4:1,q5:0};
+const explanations=[
+"Web server menerima permintaan web dan mengirim respons.",
+"HTTP umumnya menggunakan port 80.",
+"Apache adalah perangkat lunak web server.",
+"File website default umumnya berada di /var/www/html.",
+"HTTPS menggunakan TLS."
+];
+function checkQuiz(){
+let score=0,details="";
+for(let i=1;i<=5;i++){
+const selected=document.querySelector('input[name="q'+i+'"]:checked');
+const correct=answers["q"+i];
+if(selected&&Number(selected.value)===correct)score+=20;
+details+="<p><strong>Soal "+i+":</strong> "+explanations[i-1]+"</p>";
+}
+document.getElementById("score").textContent="Nilai kamu: "+score+"/100";
+document.getElementById("message").textContent=score===100?"Hebat! Semua jawaban benar.":score>=80?"Bagus! Kamu memahami sebagian besar materi.":score>=60?"Cukup baik. Pelajari kembali materi.":"Tetap semangat! Baca kembali materi lalu coba lagi.";
+document.getElementById("explanations").innerHTML=details;
+document.getElementById("result").style.display="block";
+}
+function resetQuiz(){document.getElementById("result").style.display="none";}
+</script>
+
+</body>
+
+</html>

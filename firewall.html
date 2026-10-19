@@ -1,0 +1,1766 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#087cff">
+<meta name="description" content="Materi lengkap firewall untuk belajar jaringan komputer di BZ Learning.">
+<title>Firewall - BZ Learning</title>
+
+<style>
+:root {
+  --primary: #087cff;
+  --secondary: #6558ef;
+  --cyan: #10bfb3;
+  --dark: #142b46;
+  --muted: #657991;
+  --surface: #ffffff;
+  --background: #f0f6ff;
+  --border: #e2eaf4;
+  --success: #087f5b;
+  --danger: #c62828;
+  --radius: 20px;
+  --shadow: 0 9px 30px rgba(26, 65, 110, .08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 24px;
+}
+
+body {
+  margin: 0;
+  color: var(--dark);
+  background:
+    radial-gradient(circle at 5% 5%, #d9eaff, transparent 32%),
+    radial-gradient(circle at 95% 25%, #d7faf4, transparent 27%),
+    var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.container {
+  width: min(1120px, 93%);
+  margin-inline: auto;
+}
+
+/* HEADER DAN LOGO */
+
+.header {
+  padding: 19px 0;
+}
+
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.brand-logo {
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  color: white;
+  font-size: 21px;
+  font-weight: 900;
+  letter-spacing: -1px;
+  border-radius: 17px;
+  background: linear-gradient(135deg, var(--primary), var(--cyan));
+  box-shadow: 0 8px 20px #087cff38;
+}
+
+.brand-name {
+  font-size: 21px;
+  line-height: 1.2;
+  font-weight: 900;
+}
+
+.brand-name span {
+  color: var(--primary);
+}
+
+.brand-description {
+  color: var(--muted);
+  font-size: 11px;
+  margin-top: 3px;
+}
+
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 10px 15px;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  font-weight: 800;
+  font-size: 13px;
+  white-space: nowrap;
+  box-shadow: var(--shadow);
+  transition: .2s;
+}
+
+.back-button:hover {
+  color: var(--primary);
+  border-color: var(--primary);
+  transform: translateY(-2px);
+}
+
+/* HERO */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: 38px;
+  margin: 12px 0 25px;
+  color: white;
+  border-radius: 28px;
+  background: linear-gradient(115deg, #1169f5, #6558ef 65%, #9142ec);
+  box-shadow: 0 18px 38px #435fe82b;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  width: 240px;
+  height: 240px;
+  border: 35px solid #ffffff12;
+  border-radius: 50%;
+  right: -75px;
+  top: -95px;
+  pointer-events: none;
+}
+
+.hero-label {
+  display: inline-block;
+  padding: 5px 11px;
+  background: #ffffff20;
+  border: 1px solid #ffffff32;
+  border-radius: 30px;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 1.3px;
+}
+
+.hero h1 {
+  position: relative;
+  z-index: 1;
+  margin: 14px 0 8px;
+  font-size: clamp(32px, 5vw, 47px);
+  line-height: 1.2;
+}
+
+.hero p {
+  position: relative;
+  z-index: 1;
+  max-width: 730px;
+  margin: 0;
+  color: #f0f5ff;
+}
+
+.hero-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.hero-tags span {
+  padding: 5px 11px;
+  background: #ffffff19;
+  border: 1px solid #ffffff29;
+  border-radius: 30px;
+  font-size: 12px;
+}
+
+/* PROGRESS */
+
+.progress-card {
+  background: white;
+  border: 1px solid var(--border);
+  padding: 16px 19px;
+  border-radius: 16px;
+  margin-bottom: 22px;
+}
+
+.progress-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.progress-track {
+  height: 8px;
+  background: #e8eff8;
+  overflow: hidden;
+  border-radius: 20px;
+  margin-top: 10px;
+}
+
+.progress-fill {
+  width: 0;
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary), var(--cyan));
+  border-radius: inherit;
+  transition: width .3s;
+}
+
+/* LAYOUT */
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 255px;
+  align-items: start;
+  gap: 23px;
+}
+
+.card,
+.sidebar-card {
+  background: var(--surface);
+  border: 1px solid #ffffff;
+  border-radius: var(--radius);
+  padding: 26px;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow);
+  min-width: 0;
+}
+
+.section-label {
+  display: block;
+  color: var(--primary);
+  font-size: 11px;
+  letter-spacing: 1.3px;
+  font-weight: 900;
+  margin-bottom: 5px;
+}
+
+h2 {
+  font-size: clamp(22px, 3vw, 27px);
+  line-height: 1.35;
+  margin: 0 0 13px;
+}
+
+h3 {
+  font-size: 18px;
+  line-height: 1.4;
+  margin: 20px 0 8px;
+}
+
+p {
+  margin: 0 0 13px;
+}
+
+ul,
+ol {
+  padding-left: 23px;
+  margin: 10px 0 16px;
+}
+
+li {
+  padding-left: 3px;
+  margin-bottom: 7px;
+}
+
+strong {
+  color: #173b64;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.note {
+  margin-top: 16px;
+  padding: 15px 17px;
+  background: #edf7ff;
+  border-left: 4px solid var(--primary);
+  border-radius: 10px;
+}
+
+.note.success {
+  background: #e9fbf3;
+  border-color: #0b9c72;
+}
+
+.note.warning {
+  background: #fff7e8;
+  border-color: #f0a126;
+}
+
+.note.danger {
+  background: #fff0f0;
+  border-color: #dc4b4b;
+}
+
+.two-column {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 13px;
+  margin: 15px 0;
+}
+
+.info-box {
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: #fbfdff;
+}
+
+.info-box h3 {
+  margin: 0 0 6px;
+  font-size: 16px;
+}
+
+.info-box p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.table-wrap {
+  overflow-x: auto;
+  margin: 15px 0;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+table {
+  width: 100%;
+  min-width: 470px;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+th,
+td {
+  padding: 12px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  background: #edf5ff;
+  color: #174a83;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+.code-block {
+  padding: 18px;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  background: #10243d;
+  color: #d8f5ff;
+  border-radius: 13px;
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 13px;
+  line-height: 1.9;
+  margin: 14px 0;
+}
+
+.sidebar-card h3 {
+  margin: 0 0 12px;
+}
+
+.sidebar-link {
+  display: block;
+  padding: 9px 0;
+  border-bottom: 1px solid #edf1f7;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.sidebar-link:last-child {
+  border-bottom: none;
+}
+
+.sidebar-link:hover {
+  color: var(--primary);
+}
+
+.sidebar-tip {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* KUIS */
+
+.quiz-intro {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.quiz-question {
+  padding: 19px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.quiz-question:last-of-type {
+  border-bottom: none;
+}
+
+.question-number {
+  display: inline-grid;
+  place-items: center;
+  width: 29px;
+  height: 29px;
+  margin-right: 7px;
+  border-radius: 9px;
+  background: #eaf3ff;
+  color: var(--primary);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.question-title {
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.option {
+  display: flex;
+  gap: 9px;
+  align-items: flex-start;
+  padding: 10px 12px;
+  margin: 7px 0;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #fbfdff;
+  cursor: pointer;
+  font-size: 14px;
+  transition: .15s;
+}
+
+.option:hover {
+  background: #eef6ff;
+  border-color: #8dbdff;
+}
+
+.option input {
+  margin-top: 5px;
+  accent-color: var(--primary);
+  flex-shrink: 0;
+}
+
+.option.correct {
+  background: #e8fbf2;
+  border-color: #0b9c72;
+}
+
+.option.incorrect {
+  background: #fff0f0;
+  border-color: #dc4b4b;
+}
+
+.quiz-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 20px;
+}
+
+.button {
+  border: none;
+  border-radius: 11px;
+  padding: 12px 17px;
+  background: linear-gradient(100deg, var(--primary), var(--secondary));
+  color: white;
+  font-weight: 800;
+  font-size: 13px;
+  transition: .2s;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 7px 16px #087cff30;
+}
+
+.button.secondary {
+  color: var(--dark);
+  background: #eaf0f7;
+}
+
+.quiz-result {
+  display: none;
+  padding: 20px;
+  margin-top: 20px;
+  background: #edf7ff;
+  border: 1px solid #d4e8ff;
+  border-radius: 15px;
+}
+
+.quiz-result h3 {
+  margin: 0 0 8px;
+}
+
+.result-score {
+  font-size: 35px;
+  font-weight: 900;
+  color: var(--primary);
+}
+
+.explanation {
+  padding: 10px 12px;
+  margin: 9px 0;
+  border-radius: 9px;
+  background: white;
+  font-size: 13px;
+}
+
+.explanation.right {
+  border-left: 3px solid #0b9c72;
+}
+
+.explanation.wrong {
+  border-left: 3px solid #dc4b4b;
+}
+
+/* NAVIGASI BAWAH */
+
+.bottom-navigation {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin: 10px 0 27px;
+}
+
+.nav-card {
+  display: flex;
+  flex-direction: column;
+  padding: 17px;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  transition: .2s;
+}
+
+.nav-card:hover {
+  border-color: var(--primary);
+  transform: translateY(-2px);
+}
+
+.nav-card.next {
+  text-align: right;
+  align-items: flex-end;
+  background: linear-gradient(120deg, white, #edf6ff);
+}
+
+.nav-caption {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .7px;
+}
+
+.nav-title {
+  font-weight: 900;
+  margin-top: 4px;
+}
+
+footer {
+  padding: 15px 0 30px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+@media (max-width: 800px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .sidebar-card {
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 520px) {
+  .header-inner {
+    align-items: flex-start;
+  }
+
+  .brand-name {
+    font-size: 18px;
+  }
+
+  .brand-logo {
+    width: 44px;
+    height: 44px;
+  }
+
+  .brand-description {
+    font-size: 10px;
+  }
+
+  .back-button {
+    padding: 9px;
+    font-size: 11px;
+  }
+
+  .hero {
+    padding: 25px 21px;
+    border-radius: 21px;
+  }
+
+  .card,
+  .sidebar-card {
+    padding: 19px;
+    border-radius: 17px;
+  }
+
+  .two-column {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    grid-template-columns: 1fr;
+  }
+
+  .bottom-navigation {
+    gap: 9px;
+  }
+
+  .nav-card {
+    padding: 13px;
+  }
+
+  .nav-title {
+    font-size: 13px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header class="header container">
+  <div class="header-inner">
+    <a href="index.html" class="brand" aria-label="BZ Learning, halaman utama">
+      <div class="brand-logo">BZ</div>
+      <div>
+        <div class="brand-name">BZ <span>Learning</span></div>
+        <div class="brand-description">Belajar Jaringan Komputer</div>
+      </div>
+    </a>
+
+    <a class="back-button" href="index.html">
+      ← Kembali ke Materi
+    </a>
+  </div>
+</header>
+
+<main class="container">
+
+<section class="hero">
+  <div class="hero-label">MATERI 01 • KEAMANAN JARINGAN</div>
+  <h1>🛡️ Firewall</h1>
+  <p>
+    Pelajari konsep firewall dari dasar sampai penerapan,
+    termasuk jenis, aturan akses, contoh konfigurasi,
+    studi kasus, dan evaluasi pemahaman.
+  </p>
+  <div class="hero-tags">
+    <span>Jaringan Komputer</span>
+    <span>Keamanan Jaringan</span>
+    <span>SMK TKJ</span>
+    <span>Pemula</span>
+  </div>
+</section>
+
+<section class="progress-card">
+  <div class="progress-heading">
+    <span>Progres belajar halaman</span>
+    <span id="progress-text">0% selesai</span>
+  </div>
+  <div class="progress-track">
+    <div class="progress-fill" id="progress-fill"></div>
+  </div>
+</section>
+
+<div class="layout">
+
+<div class="content">
+
+<section class="card" id="pengertian">
+  <span class="section-label">01 • PENGERTIAN</span>
+  <h2>Apa Itu Firewall?</h2>
+
+  <p>
+    Firewall adalah sistem keamanan jaringan yang memantau
+    dan mengontrol lalu lintas data masuk maupun keluar
+    berdasarkan aturan keamanan yang telah ditetapkan.
+    Firewall dapat berbentuk perangkat keras, perangkat
+    lunak, atau fitur yang terdapat pada perangkat jaringan.
+  </p>
+
+  <p>
+    Ketika sebuah perangkat mencoba berkomunikasi dengan
+    perangkat lain, firewall dapat memeriksa informasi
+    koneksi dan menentukan apakah lalu lintas tersebut
+    diizinkan, dibatasi, atau diblokir.
+  </p>
+
+  <p>
+    Informasi yang diperiksa dapat mencakup alamat IP sumber,
+    alamat IP tujuan, protokol, nomor port, status koneksi,
+    dan pada firewall tertentu, informasi pada tingkat aplikasi.
+  </p>
+
+  <div class="note">
+    <strong>Kesimpulan:</strong> Firewall bekerja berdasarkan
+    aturan. Firewall bukan sekadar alat untuk memblokir
+    semua koneksi, melainkan alat untuk mengatur koneksi
+    mana yang boleh dan tidak boleh melewati batas jaringan.
+  </div>
+</section>
+
+<section class="card" id="tujuan">
+  <span class="section-label">02 • TUJUAN</span>
+  <h2>Tujuan Penggunaan Firewall</h2>
+
+  <ol>
+    <li>
+      <strong>Melindungi jaringan internal.</strong>
+      Membatasi koneksi yang tidak sesuai dengan kebijakan keamanan.
+    </li>
+    <li>
+      <strong>Mengontrol akses.</strong>
+      Menentukan perangkat atau layanan yang boleh diakses.
+    </li>
+    <li>
+      <strong>Mengurangi risiko serangan.</strong>
+      Membatasi sebagian lalu lintas berbahaya yang dapat dikenali.
+    </li>
+    <li>
+      <strong>Memisahkan zona jaringan.</strong>
+      Membuat aturan berbeda untuk jaringan tamu, server, dan karyawan.
+    </li>
+    <li>
+      <strong>Membantu pemantauan.</strong>
+      Mencatat aktivitas koneksi jika fitur logging tersedia dan diaktifkan.
+    </li>
+    <li>
+      <strong>Menerapkan kebijakan organisasi.</strong>
+      Menyesuaikan akses jaringan dengan kebutuhan dan aturan perusahaan.
+    </li>
+  </ol>
+
+  <div class="note warning">
+    Firewall tidak menjamin keamanan 100%. Perangkat tetap membutuhkan
+    pembaruan, konfigurasi yang benar, perlindungan akun, dan sistem
+    keamanan tambahan sesuai kebutuhan.
+  </div>
+</section>
+
+<section class="card" id="fungsi">
+  <span class="section-label">03 • FUNGSI</span>
+  <h2>Fungsi Firewall secara Lengkap</h2>
+
+  <div class="two-column">
+    <div class="info-box">
+      <h3>🔒 Filter Lalu Lintas</h3>
+      <p>Mengizinkan atau menolak koneksi berdasarkan aturan yang dibuat.</p>
+    </div>
+
+    <div class="info-box">
+      <h3>🚪 Kontrol Port</h3>
+      <p>Membatasi akses ke port layanan tertentu, seperti HTTP atau SSH.</p>
+    </div>
+
+    <div class="info-box">
+      <h3>🌐 Kontrol IP</h3>
+      <p>Membatasi koneksi berdasarkan alamat IP sumber atau tujuan.</p>
+    </div>
+
+    <div class="info-box">
+      <h3>📋 Pencatatan</h3>
+      <p>Membantu administrator memeriksa kejadian jaringan melalui log.</p>
+    </div>
+
+    <div class="info-box">
+      <h3>🧱 Segmentasi</h3>
+      <p>Menerapkan aturan akses antara jaringan pengguna dan server.</p>
+    </div>
+
+    <div class="info-box">
+      <h3>🔍 Inspeksi Lanjutan</h3>
+      <p>Firewall tertentu dapat memeriksa protokol dan aplikasi secara lebih mendalam.</p>
+    </div>
+  </div>
+</section>
+
+<section class="card" id="cara-kerja">
+  <span class="section-label">04 • CARA KERJA</span>
+  <h2>Bagaimana Firewall Bekerja?</h2>
+
+  <p>
+    Firewall memproses lalu lintas berdasarkan jenis perangkat,
+    posisi firewall di jaringan, dan aturan yang dikonfigurasi.
+    Pada firewall berbasis aturan, administrator menentukan
+    koneksi mana yang boleh melewati sistem.
+  </p>
+
+  <ol>
+    <li>
+      <strong>Perangkat mengirim paket.</strong>
+      Misalnya, komputer mencoba membuka sebuah situs web.
+    </li>
+    <li>
+      <strong>Firewall memeriksa informasi.</strong>
+      Firewall memeriksa IP, port, protokol, atau status koneksi.
+    </li>
+    <li>
+      <strong>Aturan dicocokkan.</strong>
+      Informasi koneksi dibandingkan dengan aturan firewall.
+    </li>
+    <li>
+      <strong>Keputusan dibuat.</strong>
+      Koneksi dapat diizinkan, ditolak, atau diperiksa lebih lanjut.
+    </li>
+    <li>
+      <strong>Aktivitas dapat dicatat.</strong>
+      Jika logging aktif, kejadian tertentu dapat disimpan di log.
+    </li>
+  </ol>
+
+  <div class="code-block">Komputer pengguna
+       |
+       v
+   [ FIREWALL ]
+       |
+       |-- Cocok dengan aturan izin? --> Izinkan
+       |
+       |-- Cocok dengan aturan blokir? --> Tolak
+       |
+       v
+  Server atau jaringan tujuan</div>
+
+  <p>
+    Urutan aturan dapat memengaruhi hasil. Beberapa firewall
+    memproses aturan dari atas ke bawah, sedangkan sistem lain
+    memiliki mekanisme pemrosesan berbeda. Karena itu,
+    administrator harus memahami perilaku perangkat yang digunakan.
+  </p>
+</section>
+
+<section class="card" id="jenis">
+  <span class="section-label">05 • JENIS-JENIS</span>
+  <h2>Jenis Firewall</h2>
+
+  <h3>1. Packet Filtering Firewall</h3>
+  <p>
+    Memeriksa informasi dasar paket, seperti alamat IP sumber,
+    alamat IP tujuan, protokol, dan nomor port. Metode ini
+    biasanya lebih sederhana dibandingkan inspeksi aplikasi.
+  </p>
+
+  <h3>2. Stateful Inspection Firewall</h3>
+  <p>
+    Memperhatikan status koneksi. Firewall dapat menggunakan
+    informasi tentang koneksi yang sedang berlangsung untuk
+    menentukan apakah paket merupakan bagian dari koneksi
+    yang sudah diizinkan.
+  </p>
+
+  <h3>3. Proxy atau Application-Level Firewall</h3>
+  <p>
+    Bertindak sebagai perantara komunikasi pada tingkat aplikasi.
+    Proxy tertentu dapat memeriksa permintaan aplikasi dan
+    menerapkan kebijakan berdasarkan layanan yang digunakan.
+  </p>
+
+  <h3>4. Next-Generation Firewall (NGFW)</h3>
+  <p>
+    Menggabungkan fungsi firewall tradisional dengan kemampuan
+    tambahan yang dapat mencakup pengenalan aplikasi, inspeksi
+    lebih mendalam, dan integrasi fitur pencegahan ancaman.
+    Fitur pastinya bergantung pada produk dan lisensi.
+  </p>
+
+  <h3>5. Host-Based Firewall</h3>
+  <p>
+    Berjalan langsung pada komputer atau server. Contohnya
+    Windows Defender Firewall dan firewall berbasis perangkat
+    lunak pada Linux.
+  </p>
+
+  <h3>6. Network-Based Firewall</h3>
+  <p>
+    Melindungi lalu lintas di antara jaringan atau zona jaringan.
+    Bentuknya dapat berupa perangkat khusus, router dengan
+    fitur firewall, atau firewall virtual.
+  </p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Jenis</th>
+          <th>Fokus</th>
+          <th>Contoh Penggunaan</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Packet Filtering</td>
+          <td>Informasi dasar paket</td>
+          <td>Filter IP dan port</td>
+        </tr>
+        <tr>
+          <td>Stateful</td>
+          <td>Status koneksi</td>
+          <td>Firewall router</td>
+        </tr>
+        <tr>
+          <td>Proxy</td>
+          <td>Komunikasi aplikasi</td>
+          <td>Kontrol akses web</td>
+        </tr>
+        <tr>
+          <td>NGFW</td>
+          <td>Inspeksi lanjutan</td>
+          <td>Jaringan perusahaan</td>
+        </tr>
+        <tr>
+          <td>Host-Based</td>
+          <td>Perlindungan satu host</td>
+          <td>Komputer dan server</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="card" id="komponen">
+  <span class="section-label">06 • KOMPONEN</span>
+  <h2>Komponen dan Istilah Penting</h2>
+
+  <ul>
+    <li>
+      <strong>Rule:</strong> aturan yang menentukan tindakan firewall.
+    </li>
+    <li>
+      <strong>Source IP:</strong> alamat IP perangkat pengirim.
+    </li>
+    <li>
+      <strong>Destination IP:</strong> alamat IP perangkat tujuan.
+    </li>
+    <li>
+      <strong>Protocol:</strong> protokol komunikasi, seperti TCP, UDP, atau ICMP.
+    </li>
+    <li>
+      <strong>Port:</strong> nomor layanan komunikasi, misalnya TCP 443 untuk HTTPS.
+    </li>
+    <li>
+      <strong>Allow/Accept:</strong> mengizinkan lalu lintas sesuai aturan.
+    </li>
+    <li>
+      <strong>Drop:</strong> membuang paket tanpa meneruskannya.
+    </li>
+    <li>
+      <strong>Reject:</strong> menolak koneksi, terkadang disertai respons penolakan.
+    </li>
+    <li>
+      <strong>Logging:</strong> mencatat kejadian yang dipilih administrator.
+    </li>
+    <li>
+      <strong>Default Policy:</strong> tindakan untuk lalu lintas yang tidak cocok dengan aturan lain.
+    </li>
+  </ul>
+
+  <div class="note">
+    Perbedaan penting: DROP biasanya tidak memberikan respons penolakan,
+    sedangkan REJECT dapat memberikan respons. Perilaku sebenarnya
+    bergantung pada sistem firewall.
+  </div>
+</section>
+
+<section class="card" id="port">
+  <span class="section-label">07 • PORT JARINGAN</span>
+  <h2>Port yang Sering Digunakan</h2>
+
+  <p>
+    Firewall dapat menggunakan nomor port untuk mengatur layanan.
+    Berikut beberapa port umum yang sering dijumpai dalam praktik jaringan.
+  </p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Port</th>
+          <th>Protokol</th>
+          <th>Layanan</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>22</td><td>TCP</td><td>SSH</td></tr>
+        <tr><td>25</td><td>TCP</td><td>SMTP</td></tr>
+        <tr><td>53</td><td>TCP/UDP</td><td>DNS</td></tr>
+        <tr><td>67/68</td><td>UDP</td><td>DHCP IPv4</td></tr>
+        <tr><td>80</td><td>TCP</td><td>HTTP</td></tr>
+        <tr><td>123</td><td>UDP</td><td>NTP</td></tr>
+        <tr><td>443</td><td>TCP</td><td>HTTPS</td></tr>
+        <tr><td>3389</td><td>TCP/UDP</td><td>Remote Desktop, sesuai konfigurasi</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note warning">
+    Jangan membuka port hanya karena nomor port tersebut umum digunakan.
+    Pastikan layanan memang diperlukan, akses dibatasi sesuai kebutuhan,
+    dan sistem diperbarui.
+  </div>
+</section>
+
+<section class="card" id="konfigurasi">
+  <span class="section-label">08 • PRAKTIK</span>
+  <h2>Contoh Konfigurasi Firewall</h2>
+
+  <h3>A. Linux dengan UFW</h3>
+  <p>
+    UFW adalah antarmuka pengelolaan firewall yang tersedia
+    pada banyak sistem berbasis Debian dan Ubuntu.
+    Perintah berikut merupakan contoh dan perlu disesuaikan
+    dengan kondisi server.
+  </p>
+
+  <div class="code-block"># Melihat status firewall
+sudo ufw status verbose
+
+# Mengizinkan SSH
+sudo ufw allow 22/tcp
+
+# Mengizinkan HTTP
+sudo ufw allow 80/tcp
+
+# Mengizinkan HTTPS
+sudo ufw allow 443/tcp
+
+# Mengaktifkan firewall
+sudo ufw enable
+
+# Melihat daftar aturan
+sudo ufw status numbered</div>
+
+  <div class="note warning">
+    Sebelum mengaktifkan firewall pada server jarak jauh,
+    pastikan akses administrasi yang diperlukan sudah diizinkan.
+    Aturan yang salah dapat memutus koneksi SSH.
+  </div>
+
+  <h3>B. Menghapus aturan UFW</h3>
+
+  <div class="code-block"># Menampilkan aturan bernomor
+sudo ufw status numbered
+
+# Menghapus aturan berdasarkan nomor
+sudo ufw delete NOMOR_ATURAN</div>
+
+  <p>
+    Ganti <code>NOMOR_ATURAN</code> dengan nomor yang benar
+    dari hasil perintah status. Periksa ulang daftar aturan
+    setelah melakukan perubahan.
+  </p>
+
+  <h3>C. Melihat status Windows Firewall</h3>
+
+  <p>
+    Pada Windows, kamu dapat membuka Windows Security,
+    memilih Firewall &amp; network protection, lalu memeriksa
+    status firewall untuk profil jaringan yang digunakan.
+  </p>
+
+  <p>
+    Untuk kebutuhan administrasi, Windows juga menyediakan
+    Windows Defender Firewall with Advanced Security yang
+    digunakan untuk mengatur aturan masuk dan keluar.
+  </p>
+</section>
+
+<section class="card" id="topologi">
+  <span class="section-label">09 • TOPOLOGI</span>
+  <h2>Contoh Firewall pada Jaringan Sekolah</h2>
+
+  <div class="code-block">Internet
+   |
+   v
+[Router / Firewall]
+   |
+   +------ VLAN Guru
+   |
+   +------ VLAN Siswa
+   |
+   +------ VLAN Server
+   |
+   +------ VLAN Tamu</div>
+
+  <p>
+    Administrator dapat membuat kebijakan berbeda untuk setiap
+    jaringan. Contohnya, jaringan siswa boleh mengakses internet,
+    tetapi tidak boleh mengakses halaman administrasi server.
+  </p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Sumber</th>
+          <th>Tujuan</th>
+          <th>Kebijakan Contoh</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Siswa</td>
+          <td>Internet</td>
+          <td>Izinkan sesuai kebijakan sekolah</td>
+        </tr>
+        <tr>
+          <td>Siswa</td>
+          <td>Administrasi server</td>
+          <td>Tolak akses yang tidak diperlukan</td>
+        </tr>
+        <tr>
+          <td>Administrator</td>
+          <td>Server</td>
+          <td>Izinkan dari perangkat atau jaringan tepercaya</td>
+        </tr>
+        <tr>
+          <td>Tamu</td>
+          <td>Jaringan internal</td>
+          <td>Batasi akses ke perangkat internal</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>
+    Kebijakan di atas adalah contoh desain. Implementasinya harus
+    mempertimbangkan alamat IP, VLAN, rute, layanan, dan perangkat
+    firewall yang benar-benar digunakan.
+  </p>
+</section>
+
+<section class="card" id="kelebihan">
+  <span class="section-label">10 • ANALISIS</span>
+  <h2>Kelebihan dan Kekurangan Firewall</h2>
+
+  <div class="two-column">
+    <div class="info-box">
+      <h3>✅ Kelebihan</h3>
+      <ul>
+        <li>Mengontrol lalu lintas jaringan.</li>
+        <li>Membatasi akses ke layanan tertentu.</li>
+        <li>Mendukung segmentasi jaringan.</li>
+        <li>Membantu investigasi melalui log.</li>
+        <li>Dapat menerapkan kebijakan secara terpusat.</li>
+      </ul>
+    </div>
+
+    <div class="info-box">
+      <h3>⚠️ Kekurangan</h3>
+      <ul>
+        <li>Konfigurasi salah dapat menghambat layanan.</li>
+        <li>Tidak selalu mengenali semua ancaman.</li>
+        <li>Aturan terlalu longgar mengurangi perlindungan.</li>
+        <li>Inspeksi tertentu dapat menambah beban sistem.</li>
+        <li>Tidak menggantikan seluruh sistem keamanan lain.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="card" id="troubleshooting">
+  <span class="section-label">11 • PEMECAHAN MASALAH</span>
+  <h2>Troubleshooting Firewall</h2>
+
+  <h3>Masalah 1: Situs tidak dapat dibuka</h3>
+  <ol>
+    <li>Pastikan perangkat memiliki koneksi jaringan.</li>
+    <li>Periksa apakah DNS dapat bekerja.</li>
+    <li>Periksa aturan firewall yang berkaitan dengan layanan.</li>
+    <li>Periksa apakah server tujuan sedang aktif.</li>
+    <li>Periksa log untuk menemukan koneksi yang ditolak.</li>
+  </ol>
+
+  <h3>Masalah 2: SSH tidak dapat digunakan</h3>
+  <ol>
+    <li>Pastikan layanan SSH berjalan di server.</li>
+    <li>Periksa alamat IP dan port tujuan.</li>
+    <li>Pastikan aturan firewall mengizinkan SSH dari sumber yang sesuai.</li>
+    <li>Pastikan rute jaringan dan perangkat perantara tidak memblokir koneksi.</li>
+  </ol>
+
+  <h3>Masalah 3: Aturan tidak bekerja seperti yang diharapkan</h3>
+  <ol>
+    <li>Periksa urutan aturan jika firewall menggunakan urutan pemrosesan.</li>
+    <li>Periksa alamat sumber dan tujuan.</li>
+    <li>Periksa protokol serta nomor port.</li>
+    <li>Periksa apakah ada firewall lain di antara dua perangkat.</li>
+    <li>Uji perubahan secara bertahap dan simpan konfigurasi yang benar.</li>
+  </ol>
+
+  <div class="note success">
+    Cara kerja administrator yang baik adalah menguji aturan,
+    mencatat perubahan, dan memastikan layanan penting tetap dapat
+    digunakan setelah konfigurasi firewall diperbarui.
+  </div>
+</section>
+
+<section class="card" id="studi-kasus">
+  <span class="section-label">12 • STUDI KASUS</span>
+  <h2>Kasus: Server Sekolah</h2>
+
+  <p>
+    Sebuah sekolah mempunyai server web untuk siswa dan server
+    administrasi untuk staf. Administrator ingin siswa membuka
+    website sekolah tanpa memberikan akses bebas ke layanan
+    administrasi.
+  </p>
+
+  <h3>Analisis kebutuhan</h3>
+  <ul>
+    <li>Website harus dapat diakses melalui layanan yang disediakan.</li>
+    <li>Akses administrasi harus dibatasi kepada petugas yang berwenang.</li>
+    <li>Jaringan tamu tidak boleh mendapat akses otomatis ke jaringan internal.</li>
+    <li>Aktivitas yang relevan perlu dicatat untuk membantu pemeriksaan.</li>
+  </ul>
+
+  <h3>Rencana kebijakan</h3>
+  <ol>
+    <li>Tentukan alamat IP dan layanan yang benar-benar dibutuhkan.</li>
+    <li>Buat aturan izin untuk layanan website.</li>
+    <li>Batasi layanan administrasi berdasarkan sumber tepercaya.</li>
+    <li>Tolak akses lain yang tidak dibutuhkan sesuai kebijakan jaringan.</li>
+    <li>Uji koneksi dari jaringan siswa, staf, dan tamu.</li>
+  </ol>
+
+  <div class="note">
+    <strong>Hasil yang diharapkan:</strong> layanan website tetap
+    tersedia bagi pengguna yang diizinkan, sementara akses ke
+    layanan administrasi dibatasi sesuai kebijakan.
+  </div>
+</section>
+
+<section class="card" id="rangkuman">
+  <span class="section-label">13 • RANGKUMAN</span>
+  <h2>Hal Penting yang Harus Diingat</h2>
+
+  <ul>
+    <li>Firewall memantau dan mengontrol lalu lintas jaringan.</li>
+    <li>Aturan dapat menggunakan IP, port, protokol, dan status koneksi.</li>
+    <li>Jenis firewall mempunyai kemampuan dan tujuan yang berbeda.</li>
+    <li>Aturan yang terlalu longgar dapat meningkatkan risiko keamanan.</li>
+    <li>Firewall dapat berjalan pada host atau melindungi jaringan.</li>
+    <li>UFW dapat digunakan untuk mengelola firewall pada Linux tertentu.</li>
+    <li>Firewall bukan pengganti pembaruan sistem dan praktik keamanan lainnya.</li>
+    <li>Setiap konfigurasi harus diuji agar layanan yang diperlukan tetap berfungsi.</li>
+  </ul>
+</section>
+
+<section class="card" id="kuis">
+  <span class="section-label">14 • EVALUASI</span>
+  <h2>Latihan Soal Firewall</h2>
+  <p class="quiz-intro">
+    Terdapat 20 soal pilihan ganda. Jawab semua pertanyaan,
+    lalu tekan Periksa Jawaban untuk melihat nilai dan pembahasan.
+  </p>
+
+  <form id="quiz-form">
+    <div id="question-list"></div>
+
+    <div class="quiz-actions">
+      <button class="button" type="submit">Periksa Jawaban</button>
+      <button class="button secondary" type="button" id="reset-quiz">Ulangi Kuis</button>
+    </div>
+  </form>
+
+  <div class="quiz-result" id="quiz-result" aria-live="polite"></div>
+</section>
+
+</div>
+
+<aside class="sidebar">
+
+  <section class="sidebar-card">
+    <h3>📚 Daftar Materi</h3>
+    <a class="sidebar-link" href="#pengertian">Pengertian Firewall</a>
+    <a class="sidebar-link" href="#tujuan">Tujuan</a>
+    <a class="sidebar-link" href="#fungsi">Fungsi</a>
+    <a class="sidebar-link" href="#cara-kerja">Cara Kerja</a>
+    <a class="sidebar-link" href="#jenis">Jenis Firewall</a>
+    <a class="sidebar-link" href="#komponen">Komponen</a>
+    <a class="sidebar-link" href="#port">Port Jaringan</a>
+    <a class="sidebar-link" href="#konfigurasi">Konfigurasi</a>
+    <a class="sidebar-link" href="#topologi">Topologi</a>
+    <a class="sidebar-link" href="#kelebihan">Kelebihan dan Kekurangan</a>
+    <a class="sidebar-link" href="#troubleshooting">Troubleshooting</a>
+    <a class="sidebar-link" href="#studi-kasus">Studi Kasus</a>
+    <a class="sidebar-link" href="#kuis">Latihan Soal</a>
+  </section>
+
+  <section class="sidebar-card">
+    <h3>🎯 Target Belajar</h3>
+    <p class="sidebar-tip">
+      Memahami konsep firewall, membaca aturan dasar,
+      mengenali port layanan, dan menjelaskan penerapan
+      firewall pada jaringan sekolah.
+    </p>
+  </section>
+
+  <section class="sidebar-card">
+    <h3>💡 Tips Belajar</h3>
+    <p class="sidebar-tip">
+      Pelajari konsep terlebih dahulu sebelum mencoba
+      konfigurasi. Saat praktik, gunakan lingkungan lab
+      dan hindari mengubah aturan pada server produksi
+      tanpa izin administrator.
+    </p>
+  </section>
+
+</aside>
+</div>
+
+<nav class="bottom-navigation" aria-label="Navigasi antar materi">
+  <a href="keamanan.html" class="nav-card">
+    <span class="nav-caption">← Kembali</span>
+    <span class="nav-title">Daftar Materi</span>
+  </a>
+
+  <a href="nat.html" class="nav-card next">
+    <span class="nav-caption">Materi Selanjutnya →</span>
+    <span class="nav-title">NAT</span>
+  </a>
+</nav>
+
+</main>
+
+<footer class="container">
+  <p>BZ Learning • Belajar Jaringan Komputer dengan Mudah</p>
+  <p>Materi pembelajaran jaringan komputer dan keamanan dasar.</p>
+</footer>
+
+<script>
+const questions = [
+  {
+    q: "Apa pengertian firewall?",
+    options: [
+      "Sistem yang mengontrol lalu lintas jaringan berdasarkan aturan",
+      "Perangkat untuk menambah kapasitas RAM",
+      "Aplikasi untuk membuat dokumen",
+      "Kabel khusus untuk jaringan"
+    ],
+    answer: 0,
+    explanation: "Firewall mengontrol lalu lintas jaringan sesuai aturan keamanan."
+  },
+  {
+    q: "Apa tujuan utama firewall?",
+    options: [
+      "Membuat semua koneksi selalu terbuka",
+      "Membatasi akses jaringan sesuai kebijakan",
+      "Mengganti semua alamat MAC",
+      "Mempercepat CPU"
+    ],
+    answer: 1,
+    explanation: "Firewall membantu mengontrol akses dan membatasi koneksi yang tidak diizinkan."
+  },
+  {
+    q: "Informasi apa yang dapat digunakan dalam aturan firewall?",
+    options: [
+      "Warna casing komputer",
+      "Ukuran meja",
+      "Alamat IP dan nomor port",
+      "Jenis kertas printer"
+    ],
+    answer: 2,
+    explanation: "IP dan port merupakan informasi umum yang digunakan dalam aturan firewall."
+  },
+  {
+    q: "Packet filtering biasanya memeriksa...",
+    options: [
+      "Informasi dasar paket jaringan",
+      "Isi dokumen Word saja",
+      "Kondisi baterai laptop",
+      "Resolusi monitor"
+    ],
+    answer: 0,
+    explanation: "Packet filtering memeriksa informasi seperti IP, protokol, dan port."
+  },
+  {
+    q: "Apa ciri stateful firewall?",
+    options: [
+      "Hanya memeriksa warna paket",
+      "Tidak pernah menggunakan aturan",
+      "Memperhatikan status koneksi",
+      "Menghapus seluruh paket"
+    ],
+    answer: 2,
+    explanation: "Stateful firewall mempertimbangkan status koneksi ketika membuat keputusan."
+  },
+  {
+    q: "Firewall yang berjalan langsung pada komputer disebut...",
+    options: [
+      "Switch-based storage",
+      "Host-based firewall",
+      "Patch panel",
+      "Access point"
+    ],
+    answer: 1,
+    explanation: "Host-based firewall melindungi host seperti komputer atau server."
+  },
+  {
+    q: "Port standar yang umum digunakan HTTPS adalah...",
+    options: ["21", "25", "80", "443"],
+    answer: 3,
+    explanation: "HTTPS umumnya menggunakan TCP port 443."
+  },
+  {
+    q: "Port standar yang umum digunakan SSH adalah...",
+    options: ["22", "53", "80", "110"],
+    answer: 0,
+    explanation: "SSH secara default menggunakan TCP port 22."
+  },
+  {
+    q: "Apa arti tindakan ALLOW pada aturan firewall?",
+    options: [
+      "Mematikan komputer",
+      "Menghapus sistem operasi",
+      "Mengizinkan lalu lintas yang cocok dengan aturan",
+      "Mengganti alamat MAC"
+    ],
+    answer: 2,
+    explanation: "ALLOW atau ACCEPT mengizinkan lalu lintas sesuai aturan yang berlaku."
+  },
+  {
+    q: "Apa arti tindakan DROP pada banyak firewall?",
+    options: [
+      "Menggandakan paket",
+      "Membuang paket tanpa meneruskannya",
+      "Mengizinkan semua koneksi",
+      "Membuka semua port"
+    ],
+    answer: 1,
+    explanation: "DROP biasanya membuang paket tanpa mengirim respons penolakan."
+  },
+  {
+    q: "Apa fungsi logging pada firewall?",
+    options: [
+      "Mengubah kabel jaringan",
+      "Menghapus seluruh aturan",
+      "Mengganti alamat IP otomatis",
+      "Mencatat kejadian yang dipilih"
+    ],
+    answer: 3,
+    explanation: "Logging dapat membantu administrator memeriksa aktivitas dan masalah jaringan."
+  },
+  {
+    q: "Apa kegunaan UFW pada Linux?",
+    options: [
+      "Mengelola aturan firewall dengan antarmuka sederhana",
+      "Mengedit video",
+      "Membuat presentasi",
+      "Mengganti perangkat keras"
+    ],
+    answer: 0,
+    explanation: "UFW merupakan alat pengelolaan firewall yang tersedia pada banyak sistem Linux."
+  },
+  {
+    q: "Sebelum mengaktifkan firewall pada server melalui SSH, sebaiknya...",
+    options: [
+      "Memblokir semua koneksi terlebih dahulu",
+      "Menghapus akun administrator",
+      "Memastikan aturan akses SSH yang diperlukan sudah benar",
+      "Mematikan semua layanan tanpa pemeriksaan"
+    ],
+    answer: 2,
+    explanation: "Aturan yang salah dapat memutus koneksi administrasi jarak jauh."
+  },
+  {
+    q: "Firewall dapat membantu memisahkan...",
+    options: [
+      "Ukuran layar dan keyboard",
+      "Zona jaringan berdasarkan kebijakan akses",
+      "Jenis kertas dan tinta",
+      "Folder gambar dan video saja"
+    ],
+    answer: 1,
+    explanation: "Firewall dapat menerapkan aturan berbeda di antara zona jaringan."
+  },
+  {
+    q: "Apa yang sebaiknya dilakukan jika sebuah layanan tidak bisa diakses?",
+    options: [
+      "Langsung membuka semua port",
+      "Menghapus semua aturan",
+      "Mengabaikan masalah",
+      "Memeriksa layanan, rute, port, aturan, dan log"
+    ],
+    answer: 3,
+    explanation: "Pemeriksaan bertahap membantu menemukan penyebab tanpa mengurangi keamanan secara berlebihan."
+  },
+  {
+    q: "Apa karakteristik umum proxy firewall?",
+    options: [
+      "Dapat bertindak sebagai perantara komunikasi aplikasi",
+      "Selalu berfungsi sebagai kabel",
+      "Hanya digunakan untuk menambah RAM",
+      "Tidak berhubungan dengan jaringan"
+    ],
+    answer: 0,
+    explanation: "Proxy dapat menjadi perantara dan menerapkan kebijakan pada komunikasi aplikasi."
+  },
+  {
+    q: "Apa kepanjangan NGFW?",
+    options: [
+      "Network Gateway File Window",
+      "Next-Generation Firewall",
+      "New General Fiber Wire",
+      "Network Graphic Firewall Web"
+    ],
+    answer: 1,
+    explanation: "NGFW adalah Next-Generation Firewall yang menyediakan kemampuan inspeksi tambahan."
+  },
+  {
+    q: "Mengapa aturan firewall perlu diuji setelah perubahan?",
+    options: [
+      "Agar semua port terbuka",
+      "Agar log terhapus",
+      "Untuk memastikan akses yang diperlukan tetap berjalan",
+      "Supaya komputer kehilangan koneksi"
+    ],
+    answer: 2,
+    explanation: "Pengujian memastikan aturan baru tidak mengganggu layanan yang diperlukan."
+  },
+  {
+    q: "Apakah firewall menjamin seluruh serangan pasti gagal?",
+    options: [
+      "Ya, selalu",
+      "Ya, jika memiliki banyak aturan",
+      "Ya, tanpa pembaruan",
+      "Tidak, firewall perlu dilengkapi kontrol keamanan lainnya"
+    ],
+    answer: 3,
+    explanation: "Firewall merupakan salah satu lapisan keamanan dan tidak menggantikan semua kontrol lain."
+  },
+  {
+    q: "Dalam jaringan sekolah, akses administrasi server sebaiknya...",
+    options: [
+      "Dibatasi untuk perangkat atau pengguna yang berwenang",
+      "Selalu dibuka untuk semua pengguna",
+      "Tidak pernah menggunakan autentikasi",
+      "Diberikan kepada semua tamu"
+    ],
+    answer: 0,
+    explanation: "Pembatasan akses administrasi mengikuti prinsip hak akses minimum."
+  }
+];
+
+const questionList = document.getElementById("question-list");
+const quizForm = document.getElementById("quiz-form");
+const resultBox = document.getElementById("quiz-result");
+
+function renderQuestions() {
+  questionList.innerHTML = "";
+
+  questions.forEach((item, index) => {
+    const wrapper = document.createElement("div");
+    wrapper.className = "quiz-question";
+    wrapper.id = "question-" + index;
+
+    const title = document.createElement("div");
+    title.className = "question-title";
+
+    const number = document.createElement("span");
+    number.className = "question-number";
+    number.textContent = index + 1;
+
+    title.appendChild(number);
+    title.appendChild(document.createTextNode(item.q));
+    wrapper.appendChild(title);
+
+    item.options.forEach((optionText, optionIndex) => {
+      const label = document.createElement("label");
+      label.className = "option";
+
+      const input = document.createElement("input");
+      input.type = "radio";
+      input.name = "question-" + index;
+      input.value = optionIndex;
+      input.required = true;
+
+      input.addEventListener("change", updateProgress);
+
+      label.appendChild(input);
+      label.appendChild(document.createTextNode(optionText));
+      wrapper.appendChild(label);
+    });
+
+    questionList.appendChild(wrapper);
+  });
+}
+
+function updateProgress() {
+  let answered = 0;
+
+  questions.forEach((item, index) => {
+    if (document.querySelector(
+      'input[name="question-' + index + '"]:checked'
+    )) {
+      answered++;
+    }
+  });
+
+  const percentage = Math.round(
+    answered / questions.length * 100
+  );
+
+  document.getElementById("progress-fill").style.width =
+    percentage + "%";
+
+  document.getElementById("progress-text").textContent =
+    percentage + "% terjawab";
+}
+
+quizForm.addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  let score = 0;
+  let detail = "";
+
+  questions.forEach((item, index) => {
+    const selected = document.querySelector(
+      'input[name="question-' + index + '"]:checked'
+    );
+
+    const labels = document.querySelectorAll(
+      "#question-" + index + " .option"
+    );
+
+    labels.forEach(label => {
+      label.classList.remove("correct", "incorrect");
+    });
+
+    labels[item.answer].classList.add("correct");
+
+    const correct = selected &&
+      Number(selected.value) === item.answer;
+
+    if (correct) {
+      score++;
+    } else if (selected) {
+      labels[Number(selected.value)].classList.add("incorrect");
+    }
+
+    detail +=
+      '<div class="explanation ' +
+      (correct ? "right" : "wrong") +
+      '">' +
+      "<strong>Soal " + (index + 1) + ":</strong> " +
+      (correct ? "Benar." : "Belum tepat.") +
+      " " + item.explanation +
+      "</div>";
+  });
+
+  const grade = Math.round(
+    score / questions.length * 100
+  );
+
+  let message;
+
+  if (grade >= 90) {
+    message = "Hebat! Kamu sangat memahami materi firewall.";
+  } else if (grade >= 80) {
+    message = "Bagus! Pemahamanmu sudah baik.";
+  } else if (grade >= 70) {
+    message = "Cukup baik. Pelajari lagi beberapa bagian.";
+  } else {
+    message = "Pelajari kembali materi lalu coba lagi.";
+  }
+
+  resultBox.style.display = "block";
+  resultBox.innerHTML =
+    '<div class="result-score">' + grade + "/100</div>" +
+    "<h3>" + message + "</h3>" +
+    "<p>Jawaban benar: " + score + " dari " +
+    questions.length + " soal.</p>" +
+    "<h3>Pembahasan Jawaban</h3>" +
+    detail;
+
+  resultBox.scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+});
+
+document.getElementById("reset-quiz").addEventListener(
+  "click",
+  function() {
+    quizForm.reset();
+
+    resultBox.style.display = "none";
+    resultBox.innerHTML = "";
+
+    document.querySelectorAll(".option").forEach(label => {
+      label.classList.remove("correct", "incorrect");
+    });
+
+    updateProgress();
+
+    document.getElementById("kuis").scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  }
+);
+
+renderQuestions();
+updateProgress();
+</script>
+
+</body>
+
+</html>

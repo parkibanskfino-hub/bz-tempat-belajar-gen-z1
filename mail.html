@@ -1,0 +1,127 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mail Server | BZ</title>
+<style>
+:root{--blue:#087cff;--cyan:#10bfb3;--ink:#102642;--muted:#61768c}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;color:var(--ink);background:linear-gradient(135deg,#dcecff,#f4fbff 48%,#cef6f3);line-height:1.7}
+.container{width:min(990px,92%);margin:auto}
+header{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 0}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{width:48px;height:48px;display:grid;place-items:center;border-radius:15px;color:white;font-size:23px;font-weight:900;background:linear-gradient(135deg,var(--blue),var(--cyan))}
+.brand-name{font-size:19px;font-weight:900}.brand-sub,.small{color:var(--muted);font-size:12px}
+.back,.navigation a{color:var(--ink);background:white;padding:10px 15px;border-radius:12px;font-size:13px;font-weight:bold;text-decoration:none}
+.hero{padding:34px;border-radius:29px;color:white;background:linear-gradient(115deg,#176bff,#6559f4 62%,#9438ed);box-shadow:0 18px 40px #6559f42b}
+.hero h1{font-size:clamp(30px,5vw,43px);line-height:1.2;margin:8px 0 12px}.hero p{max-width:650px;font-size:15px}
+.eyebrow,.section-label{font-size:11px;letter-spacing:1.5px;font-weight:900}
+.chips{display:flex;flex-wrap:wrap;gap:9px;margin-top:20px}.chip{padding:6px 12px;border:1px solid #ffffff45;background:#ffffff18;border-radius:50px;font-size:12px}
+.content{display:grid;grid-template-columns:minmax(0,1fr) 245px;gap:22px;align-items:start;margin:24px 0}
+.card,.side-card{background:#ffffffdf;border:1px solid white;border-radius:21px;padding:23px;margin-bottom:18px;box-shadow:0 8px 25px #10264208}
+.section-label{color:var(--blue);margin-bottom:5px}.card h2{font-size:22px;margin-bottom:12px;line-height:1.35}.card h3{font-size:16px;margin:17px 0 7px}
+.card p{color:#40566e;font-size:14px;margin-bottom:10px}.card ul{padding-left:21px;color:#40566e;font-size:14px;margin:8px 0}.card li{margin-bottom:6px}
+.tool-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:16px}.tool{padding:15px;border-radius:15px;background:#f0f7ff;border:1px solid #dcecff}.tool strong,.tool span{display:block}.tool strong{font-size:14px}.tool span{font-size:12px;color:var(--muted)}
+.steps{display:grid;gap:12px;margin-top:15px}.step{display:flex;gap:12px}.step-number{flex-shrink:0;width:30px;height:30px;display:grid;place-items:center;color:white;font-weight:bold;border-radius:10px;background:linear-gradient(135deg,var(--blue),var(--cyan))}
+.table-wrap{overflow-x:auto;margin-top:14px;border-radius:12px;border:1px solid #e2eaf4}table{width:100%;border-collapse:collapse;font-size:13px;min-width:350px}th,td{padding:11px 12px;text-align:left;border-bottom:1px solid #e6edf5}th{background:#edf5ff;color:#176bce}tr:last-child td{border-bottom:none}
+.code-box{background:#102642;color:#d9f2ff;padding:17px;border-radius:14px;overflow-x:auto;margin:12px 0}pre{white-space:pre;font-family:Consolas,monospace;font-size:12px;line-height:1.9}
+.note{padding:14px 16px;border-radius:13px;background:#e8f8f6;border-left:4px solid var(--cyan);color:#245d5b;font-size:13px;margin-top:14px}.warning{background:#fff5df;border-left-color:#f1ac35;color:#79561d}
+.sidebar{position:sticky;top:16px}.side-card{padding:19px}.side-card h3{font-size:15px;margin-bottom:12px}.side-link{display:block;padding:9px 0;color:#506780;text-decoration:none;font-size:13px;border-bottom:1px solid #e9eff6}
+.question{padding:16px;border:1px solid #e2eaf4;border-radius:15px;margin:13px 0;background:#fbfdff}.question h3{margin:0 0 10px;font-size:14px}
+.option{display:flex;gap:9px;padding:9px 11px;border-radius:10px;cursor:pointer;font-size:13px;color:#40566e;margin:4px 0}.option:hover{background:#edf5ff}.option input{margin-top:5px;accent-color:var(--blue)}
+.button{border:0;cursor:pointer;border-radius:12px;padding:12px 17px;font-weight:bold;font-size:13px;background:linear-gradient(110deg,var(--blue),#6559f4);color:white;margin:6px 5px 6px 0}.button.secondary{color:var(--ink);background:#eaf2fb}
+.result{display:none;padding:18px;border-radius:15px;background:#eaf8ff;margin-top:14px}.summary{padding:20px;border-radius:18px;color:white;background:linear-gradient(120deg,#087cff,#10bfb3)}.summary h2{margin-bottom:8px}.summary p{color:white}
+.navigation{display:flex;justify-content:space-between;gap:12px;margin:25px 0}footer{text-align:center;padding:25px 0 35px;color:var(--muted);font-size:12px}
+@media(max-width:760px){.content{grid-template-columns:1fr}.sidebar{position:static}.hero{padding:25px}.card{padding:19px}header{flex-wrap:wrap}.tool-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="container" id="top">
+<header><div class="brand"><div class="logo">BZ</div><div><div class="brand-name">BZ Learning</div><div class="brand-sub">Tempat Belajar / Gen Z</div></div></div><a class="back" href="server.html">← Kembali ke Materi</a></header>
+
+<section class="hero"><div style="font-size:27px">✉️</div><div class="eyebrow">MATERI • NETWORKING</div>
+<h1>Mail Server</h1>
+<p>Pelajari fungsi mail server, perbedaan SMTP, IMAP, POP3, dan pengenalan Postfix di Debian.</p>
+<div class="chips"><span class="chip">SMTP</span><span class="chip">IMAP & POP3</span><span class="chip">Postfix</span></div></section>
+
+<div class="content"><main class="main-content">
+<section class="card"><div class="section-label">01 • PENGENALAN</div><h2>Apa Itu Mail Server?</h2>
+<p>Mail server adalah sistem yang mengirim, menerima, dan meneruskan email melalui jaringan. Layanan ini dapat melibatkan SMTP, penyimpanan mailbox, autentikasi, DNS, dan perlindungan spam.</p>
+<div class="tool-grid">
+<div class="tool"><strong>📤 SMTP</strong><span>Mengirim atau meneruskan email.</span></div>
+<div class="tool"><strong>📬 IMAP</strong><span>Mengakses dan menyinkronkan mailbox.</span></div>
+<div class="tool"><strong>📥 POP3</strong><span>Mengambil email dari server.</span></div>
+<div class="tool"><strong>🛡️ Anti-spam</strong><span>Menyaring pesan yang tidak diinginkan.</span></div>
+</div></section>
+
+<section class="card"><div class="section-label">02 • PROTOKOL EMAIL</div><h2>SMTP, IMAP, dan POP3</h2>
+<div class="table-wrap"><table><tr><th>Protokol</th><th>Fungsi</th><th>Port umum</th></tr>
+<tr><td>SMTP</td><td>Mengirim/relay email.</td><td>25, 587, 465</td></tr>
+<tr><td>IMAP</td><td>Menyinkronkan email di server.</td><td>143, 993</td></tr>
+<tr><td>POP3</td><td>Mengambil email dari server.</td><td>110, 995</td></tr></table></div>
+<p>Port aman yang umum: 587 untuk submission dengan STARTTLS, 465 untuk TLS implisit, 993 untuk IMAPS, dan 995 untuk POP3S. Konfigurasi server menentukan layanan yang tersedia.</p>
+</section>
+
+<section class="card"><div class="section-label">03 • CARA KERJA</div><h2>Alur Pengiriman Email</h2>
+<div class="steps">
+<div class="step"><div class="step-number">1</div><div><strong>Pengirim menulis email</strong><p>Pesan dibuat melalui aplikasi email.</p></div></div>
+<div class="step"><div class="step-number">2</div><div><strong>Email dikirim ke SMTP</strong><p>Klien mengirim pesan ke server pengiriman.</p></div></div>
+<div class="step"><div class="step-number">3</div><div><strong>Server mencari tujuan</strong><p>DNS MX dapat membantu menemukan server domain penerima.</p></div></div>
+<div class="step"><div class="step-number">4</div><div><strong>Penerima membuka pesan</strong><p>Email diakses melalui IMAP, POP3, atau webmail.</p></div></div>
+</div><div class="note">DNS MX menunjukkan mail exchanger domain. MX bukan layanan pengirim email itu sendiri.</div>
+</section>
+
+<section class="card"><div class="section-label">04 • PRAKTIK DEBIAN</div><h2>Pengenalan Postfix</h2>
+<p>Postfix adalah mail transfer agent (MTA). Langkah berikut memasang layanan dasar untuk pembelajaran, bukan konfigurasi siap produksi di internet.</p>
+<h3>1. Instal Postfix</h3><div class="code-box"><pre>sudo apt update
+sudo apt install postfix mailutils</pre></div>
+<p>Pilih tipe konfigurasi yang sesuai saat installer berjalan. Untuk lab, hindari membuka relay ke jaringan luar.</p>
+<h3>2. Periksa layanan</h3><div class="code-box"><pre>sudo systemctl status postfix
+postconf -n</pre></div>
+<h3>3. Periksa log</h3><div class="code-box"><pre>sudo journalctl -u postfix --no-pager -n 50</pre></div>
+<h3>4. Kenali konfigurasi</h3><div class="code-box"><pre>sudo nano /etc/postfix/main.cf</pre></div>
+<p>Parameter penting antara lain <code>myhostname</code>, <code>mydomain</code>, <code>mydestination</code>, dan <code>mynetworks</code>. Nilainya harus sesuai domain dan jaringan.</p>
+<div class="note warning">Mail server publik memerlukan TLS, autentikasi, DNS MX, SPF, DKIM, DMARC, anti-spam, dan pengamanan relay. Jangan menjadikan server sebagai open relay.</div>
+</section>
+
+<section class="card"><div class="section-label">05 • PEMERIKSAAN</div><h2>Troubleshooting Mail Server</h2>
+<div class="table-wrap"><table><tr><th>Masalah</th><th>Pemeriksaan</th></tr>
+<tr><td>Email tidak terkirim</td><td>Antrean, log, DNS, dan koneksi SMTP.</td></tr>
+<tr><td>Email masuk spam</td><td>Reputasi IP, SPF, DKIM, dan DMARC.</td></tr>
+<tr><td>Klien tidak bisa login</td><td>Layanan IMAP/submission dan autentikasi.</td></tr>
+<tr><td>Email tidak sampai</td><td>DNS MX dan kebijakan server penerima.</td></tr></table></div>
+<div class="code-box"><pre>sudo mailq
+sudo postqueue -p
+sudo journalctl -u postfix --no-pager -n 50</pre></div>
+</section>
+
+<section class="card" id="kuis"><div class="section-label">06 • UJI PEMAHAMAN</div><h2>Kuis Mail Server</h2><p>Pilih jawaban yang paling tepat. Setiap soal bernilai 20 poin.</p>
+<form id="quizForm">
+<div class="question"><h3>1. Apa fungsi SMTP?</h3><label class="option"><input type="radio" name="q1" value="0"> Mengirim atau meneruskan email</label><label class="option"><input type="radio" name="q1" value="1"> Menerjemahkan domain saja</label><label class="option"><input type="radio" name="q1" value="2"> Membagikan IP</label><label class="option"><input type="radio" name="q1" value="3"> Mentransfer halaman web</label></div>
+<div class="question"><h3>2. Protokol untuk menyinkronkan email di server adalah...</h3><label class="option"><input type="radio" name="q2" value="0"> FTP</label><label class="option"><input type="radio" name="q2" value="1"> IMAP</label><label class="option"><input type="radio" name="q2" value="2"> DHCP</label><label class="option"><input type="radio" name="q2" value="3"> ARP</label></div>
+<div class="question"><h3>3. DNS record untuk server penerima email adalah...</h3><label class="option"><input type="radio" name="q3" value="0"> A</label><label class="option"><input type="radio" name="q3" value="1"> CNAME</label><label class="option"><input type="radio" name="q3" value="2"> MX</label><label class="option"><input type="radio" name="q3" value="3"> PTR</label></div>
+<div class="question"><h3>4. Postfix merupakan perangkat lunak untuk...</h3><label class="option"><input type="radio" name="q4" value="0"> Mail transfer</label><label class="option"><input type="radio" name="q4" value="1"> Web browsing</label><label class="option"><input type="radio" name="q4" value="2"> DHCP relay saja</label><label class="option"><input type="radio" name="q4" value="3"> Edit gambar</label></div>
+<div class="question"><h3>5. Open relay adalah...</h3><label class="option"><input type="radio" name="q5" value="0"> Server yang meneruskan email tanpa pembatasan semestinya</label><label class="option"><input type="radio" name="q5" value="1"> DNS cache</label><label class="option"><input type="radio" name="q5" value="2"> Web server lokal</label><label class="option"><input type="radio" name="q5" value="3"> Akun biasa</label></div>
+<button class="button" type="button" onclick="checkQuiz()">Periksa Jawaban</button><button class="button secondary" type="reset" onclick="resetQuiz()">Ulangi Kuis</button>
+</form><div class="result" id="result"><h3 id="score"></h3><p id="message"></p><div id="explanations"></div></div>
+</section>
+
+<section class="summary"><h2>Kesimpulan</h2><p>Mail server mengelola pengiriman dan penerimaan email. SMTP, IMAP, POP3, DNS, serta konfigurasi keamanan memiliki peran yang berbeda.</p></section>
+<nav class="navigation"><a href="ftp-server.html">← FTP Server</a><a href="server.html">Daftar Materi →</a></nav>
+</main>
+<aside class="sidebar"><div class="side-card"><h3>📚 Isi Materi</h3><a class="side-link" href="#top">Pengenalan</a><a class="side-link" href="#top">Protokol Email</a><a class="side-link" href="#kuis">Kuis Mail Server</a></div><div class="side-card"><h3>💡 Ingat Ini!</h3><p class="small">Jangan membuka relay email untuk semua pengguna. Terapkan autentikasi dan TLS.</p></div></aside>
+</div>
+<footer>© 2026 BZ Learning • Belajar Jaringan Komputer</footer>
+</div>
+<script>
+const answers={q1:0,q2:1,q3:2,q4:0,q5:0};
+const explanations=["SMTP digunakan untuk pengiriman dan relay email.","IMAP mengakses dan menyinkronkan mailbox.","MX menunjuk mail exchanger domain.","Postfix adalah mail transfer agent.","Open relay dapat disalahgunakan untuk spam."];
+function checkQuiz(){let score=0,details="";for(let i=1;i<=5;i++){const s=document.querySelector('input[name="q'+i+'"]:checked');if(s&&Number(s.value)===answers["q"+i])score+=20;details+="<p><strong>Soal "+i+":</strong> "+explanations[i-1]+"</p>";}document.getElementById("score").textContent="Nilai kamu: "+score+"/100";document.getElementById("message").textContent=score===100?"Hebat! Semua jawaban benar.":score>=80?"Bagus!":score>=60?"Cukup baik. Pelajari kembali materi.":"Tetap semangat! Baca kembali materi lalu coba lagi.";document.getElementById("explanations").innerHTML=details;document.getElementById("result").style.display="block";}
+function resetQuiz(){document.getElementById("result").style.display="none";}
+</script>
+
+</body>
+
+</html>

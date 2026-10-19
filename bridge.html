@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Materi Bridge | BZ Learning</title>
+<style>
+:root{--blue:#087cff;--cyan:#10bfb3;--ink:#102642;--muted:#61768c}*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:linear-gradient(135deg,#dcecff,#f4fbff 48%,#cef6f3);line-height:1.7}
+.container{width:min(990px,92%);margin:auto}header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 0}
+.brand{display:flex;align-items:center;gap:12px}.logo{width:48px;height:48px;border-radius:15px;display:grid;place-items:center;color:white;font-weight:900;font-size:19px;background:linear-gradient(135deg,var(--blue),var(--cyan))}
+.brand small{display:block;color:var(--muted);font-size:12px}.brand strong{font-size:19px}.back{background:white;color:var(--ink);text-decoration:none;border-radius:12px;padding:10px 15px;font-size:13px;font-weight:bold}
+.hero{padding:30px;border-radius:29px;color:white;background:linear-gradient(115deg,#176bff,#6559f4 62%,#9438ed);box-shadow:0 15px 35px #365de42b}
+.hero-icon{font-size:37px}.eyebrow{font-size:11px;font-weight:800;letter-spacing:2px;opacity:.85}h1{font-size:clamp(30px,5vw,43px);line-height:1.2;margin:8px 0 12px}.hero p{max-width:650px;margin:0 0 17px;color:#f0f4ff}
+.chips{display:flex;flex-wrap:wrap;gap:8px}.chip{border:1px solid #ffffff70;background:#ffffff1c;padding:5px 11px;border-radius:20px;font-size:12px}
+.content{display:grid;grid-template-columns:minmax(0,1fr) 245px;gap:20px;margin:23px 0}.main,.sidebar{display:grid;align-content:start;gap:17px}
+.card,.side-card{background:#ffffffdc;border:1px solid #ffffff;border-radius:21px;padding:22px;box-shadow:0 8px 25px #173b6010}
+.section-label{color:var(--blue);font-size:11px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase}h2{font-size:23px;line-height:1.3;margin:5px 0 12px}h3{font-size:16px;margin:17px 0 7px}p{margin:8px 0;color:#344b63}ul,ol{padding-left:22px;color:#344b63}li{margin:5px 0}
+.highlight{padding:13px 15px;border-radius:13px;background:#eaf4ff;border-left:4px solid var(--blue);margin:13px 0}.note{padding:13px 15px;border-radius:13px;background:#e1faf5;border-left:4px solid var(--cyan);margin:13px 0}
+.tool-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:14px}.tool{padding:14px;border-radius:15px;background:#f0f7ff;border:1px solid #deebfb}.tool strong{display:block;margin-bottom:4px}.tool p{font-size:13px;margin:0}
+.table-wrap{overflow-x:auto;margin:12px 0}table{width:100%;border-collapse:collapse;font-size:13px;min-width:400px}th,td{text-align:left;padding:10px;border-bottom:1px solid #e1eaf3}th{background:#eaf4ff;color:#174a80}
+.code-box{background:#102642;color:#e7f4ff;border-radius:15px;padding:16px;overflow-x:auto;font-family:Consolas,monospace;font-size:13px;white-space:pre-wrap;word-break:break-word}
+.steps{counter-reset:step;list-style:none;padding:0}.steps li{counter-increment:step;display:flex;gap:12px;margin:13px 0}.steps li:before{content:counter(step);flex:0 0 29px;height:29px;display:grid;place-items:center;background:#e4efff;color:var(--blue);border-radius:10px;font-weight:bold}
+.side-card h3{margin:0 0 10px}.side-card p,.side-card li{font-size:13px}.progress-list{padding:0;list-style:none}.progress-list li{padding:7px 0;border-bottom:1px solid #e6edf5}.progress-list a{color:#245277;text-decoration:none}
+.question{padding:16px;margin:13px 0;border-radius:15px;background:#f5f9ff;border:1px solid #e1eaf5}.question p{font-weight:bold;color:var(--ink)}.option{display:block;padding:9px 11px;margin:7px 0;border-radius:10px;border:1px solid #dce6f1;background:white;cursor:pointer}.option input{margin-right:8px;accent-color:var(--blue)}.option.correct{background:#dff8ed;border-color:#31b981}.option.wrong{background:#ffe7e7;border-color:#e46b6b}.explanation{display:none;font-size:13px;margin-top:8px;color:#52677c}
+.button{border:0;background:linear-gradient(110deg,var(--blue),#6559f4);color:white;border-radius:12px;padding:12px 18px;font-weight:bold;cursor:pointer;margin:5px 5px 5px 0}.button.secondary{background:#e7eef7;color:var(--ink)}.result{display:none;margin-top:15px;padding:16px;border-radius:14px;background:#e5f6ff}.summary{background:linear-gradient(120deg,#dcecff,#d9faf2);padding:18px;border-radius:16px;margin-top:12px}
+.navigation{display:flex;justify-content:space-between;gap:12px;margin:22px 0}.navigation a{background:white;border:1px solid #e3edf5;border-radius:13px;padding:12px 15px;text-decoration:none;color:var(--ink);font-weight:bold;font-size:13px}footer{text-align:center;padding:10px 0 30px;color:var(--muted);font-size:12px}
+@media(max-width:760px){.content{grid-template-columns:1fr}.sidebar{grid-template-columns:repeat(2,minmax(0,1fr))}.hero{padding:24px}}@media(max-width:480px){header{align-items:flex-start}.brand strong{font-size:16px}.back{font-size:11px;padding:9px}.card,.side-card{padding:17px}.sidebar,.tool-grid{grid-template-columns:1fr}.navigation a{font-size:12px;padding:10px}}
+</style>
+</head>
+<body><div class="container">
+<header><div class="brand"><div class="logo">BZ</div><div><strong>BZ Learning</strong><small>Tempat Belajar / Gen Z</small></div></div><a class="back" href="jaringan.html">← Kembali ke Materi</a></header>
+<section class="hero"><div class="hero-icon">🌉</div><div class="eyebrow">MATERI • NETWORKING</div><h1>Mengenal Bridge</h1><p>Pelajari fungsi bridge, cara menghubungkan segmen LAN, penggunaan MAC address, dan perbedaan bridge dengan switch serta router.</p><div class="chips"><span class="chip">Layer 2</span><span class="chip">LAN</span><span class="chip">MAC Address</span></div></section>
+<div class="content"><main class="main">
+
+<section class="card"><div class="section-label">01 • Pengertian</div><h2>Apa Itu Bridge?</h2>
+<p><b>Bridge</b> adalah perangkat atau fungsi jaringan yang menghubungkan dua atau lebih segmen jaringan Layer 2 sehingga perangkat pada segmen tersebut dapat berkomunikasi sebagai bagian dari jaringan logis yang sama, sesuai konfigurasi.</p>
+<div class="highlight"><b>Contoh:</b> Bridge dapat menghubungkan dua segmen Ethernet dan meneruskan frame berdasarkan MAC address sehingga lalu lintas tidak perlu selalu dikirim ke semua segmen.</div>
+<div class="tool-grid"><div class="tool"><strong>Menghubungkan segmen</strong><p>Menyatukan segmen jaringan Layer 2 sesuai aturan bridging.</p></div><div class="tool"><strong>Mempelajari MAC</strong><p>Mencatat MAC address sumber dan segmen atau port tempat alamat itu ditemukan.</p></div><div class="tool"><strong>Menyaring frame</strong><p>Meneruskan frame sesuai MAC tujuan dan tabel forwarding.</p></div><div class="tool"><strong>Mengurangi lalu lintas yang tidak perlu</strong><p>Frame unicast yang tujuannya diketahui dapat diteruskan hanya ke segmen tujuan.</p></div></div></section>
+
+<section class="card"><div class="section-label">02 • Cara Kerja</div><h2>Bagaimana Bridge Bekerja?</h2>
+<ol class="steps"><li><div><b>Frame diterima.</b><br>Bridge menerima frame Ethernet dari salah satu antarmuka atau segmen.</div></li><li><div><b>MAC address sumber dipelajari.</b><br>Bridge mencatat lokasi MAC address sumber pada tabel forwarding.</div></li><li><div><b>MAC tujuan diperiksa.</b><br>Bridge memeriksa apakah lokasi MAC address tujuan sudah diketahui.</div></li><li><div><b>Frame diteruskan atau disaring.</b><br>Jika tujuan berada di segmen lain, frame diteruskan ke segmen itu. Jika tujuan berada di segmen asal, frame dapat disaring agar tidak dikirim kembali ke segmen yang sama.</div></li><li><div><b>Flooding jika diperlukan.</b><br>Broadcast dan unicast yang belum dikenal dapat diteruskan ke segmen lain sesuai aturan bridging.</div></li></ol>
+<div class="note">Bridge dan switch sama-sama dapat bekerja pada Layer 2. Switch Ethernet modern pada dasarnya dapat dipahami sebagai bridge multiport.</div></section>
+
+<section class="card"><div class="section-label">03 • Jenis Bridge</div><h2>Jenis-Jenis Bridge</h2>
+<div class="tool-grid"><div class="tool"><strong>Transparent Bridge</strong><p>Bridge Ethernet yang mempelajari MAC address dan meneruskan frame tanpa memerlukan perangkat akhir untuk mengetahui keberadaan bridge.</p></div><div class="tool"><strong>Wireless Bridge</strong><p>Menghubungkan dua jaringan melalui sambungan nirkabel, jika perangkat mendukung mode bridge.</p></div><div class="tool"><strong>Remote Bridge</strong><p>Konsep bridge yang menghubungkan segmen LAN melalui sambungan jarak jauh. Implementasinya bergantung pada teknologi yang digunakan.</p></div><div class="tool"><strong>Software Bridge</strong><p>Fungsi bridging yang dilakukan melalui perangkat lunak, misalnya pada sistem operasi atau platform virtualisasi.</p></div></div>
+<p>Jenis dan nama mode bridge dapat berbeda menurut produsen, sistem operasi, dan teknologi jaringan.</p></section>
+
+<section class="card"><div class="section-label">04 • Bridge dan Switch</div><h2>Perbedaan Bridge dan Switch</h2>
+<div class="table-wrap"><table><tr><th>Aspek</th><th>Bridge</th><th>Switch</th></tr><tr><td>Fungsi</td><td>Menghubungkan segmen Layer 2</td><td>Menghubungkan banyak perangkat dan segmen LAN</td></tr><tr><td>Port</td><td>Konsep tradisional sering menghubungkan sedikit segmen</td><td>Umumnya memiliki banyak port Ethernet</td></tr><tr><td>Informasi forwarding</td><td>MAC address</td><td>MAC address untuk switching Layer 2</td></tr><tr><td>Perangkat</td><td>Dapat berupa perangkat khusus atau fungsi software</td><td>Umumnya perangkat switching khusus</td></tr><tr><td>Penggunaan modern</td><td>Bridge software, wireless bridge, atau fungsi bridging</td><td>Switch Ethernet untuk LAN kantor, sekolah, dan rumah</td></tr></table></div>
+<div class="note">Secara konsep, switch adalah bridge multiport. Perbedaan ini terutama bersifat historis dan terkait bentuk implementasi; fitur nyata tetap bergantung pada perangkat.</div></section>
+
+<section class="card"><div class="section-label">05 • Bridge dan Router</div><h2>Perbedaan Bridge dan Router</h2>
+<div class="table-wrap"><table><tr><th>Aspek</th><th>Bridge</th><th>Router</th></tr><tr><td>Lapisan OSI umum</td><td>Layer 2</td><td>Layer 3</td></tr><tr><td>Informasi utama</td><td>MAC address dan frame</td><td>Alamat IP dan paket</td></tr><tr><td>Tujuan</td><td>Menghubungkan segmen Layer 2</td><td>Menghubungkan jaringan IP berbeda</td></tr><tr><td>Broadcast Layer 2</td><td>Dapat meneruskan dalam domain bridging sesuai aturan</td><td>Umumnya tidak meneruskan broadcast Layer 2 antarjaringan</td></tr><tr><td>Contoh</td><td>Menghubungkan segmen Ethernet</td><td>Menghubungkan subnet kantor ke Internet</td></tr></table></div></section>
+
+<section class="card"><div class="section-label">06 • Contoh Penggunaan</div><h2>Bridge pada Jaringan</h2>
+<div class="code-box">Segmen LAN A ── [Bridge] ── Segmen LAN B
+PC A                         PC B
+
+Bridge mempelajari MAC address dan
+meneruskan frame antarsegmen Layer 2.</div>
+<p>Bridge dapat digunakan ketika dua segmen jaringan perlu saling terhubung pada Layer 2. Perangkat pada kedua sisi harus menggunakan pengalamatan dan konfigurasi yang sesuai agar dapat berkomunikasi.</p>
+<h3>Contoh wireless bridge</h3>
+<div class="code-box">Gedung A                         Gedung B
+PC ─ Switch ─ AP/Bridge ))) ((( AP/Bridge ─ Switch ─ PC</div>
+<p>Dengan perangkat yang mendukung mode wireless bridge, dua LAN dapat dihubungkan melalui sambungan nirkabel. Kesesuaian mode, keamanan, jarak, dan line-of-sight perlu diperiksa sesuai perangkat.</p></section>
+
+<section class="card"><div class="section-label">07 • Hal yang Perlu Diperhatikan</div><h2>Masalah pada Bridge</h2>
+<div class="table-wrap"><table><tr><th>Masalah</th><th>Penjelasan</th></tr><tr><td>Loop Layer 2</td><td>Jalur bridging yang membentuk loop dapat menyebabkan frame berputar dan broadcast storm.</td></tr><tr><td>MAC address berpindah-pindah</td><td>Perubahan lokasi MAC yang tidak normal dapat menunjukkan loop atau masalah koneksi.</td></tr><tr><td>Konfigurasi tidak cocok</td><td>Mode bridge, VLAN, atau pengaturan link yang berbeda dapat menghambat koneksi.</td></tr><tr><td>Sinyal wireless lemah</td><td>Pada wireless bridge, jarak, penghalang, interferensi, dan arah antena dapat memengaruhi koneksi.</td></tr></table></div>
+<div class="note">Pada jaringan Ethernet dengan jalur redundan, protokol seperti Spanning Tree Protocol (STP) dapat membantu mencegah loop Layer 2 jika didukung dan dikonfigurasi dengan benar.</div></section>
+
+<section class="card"><div class="section-label">08 • Kuis</div><h2>Uji Pemahaman Bridge</h2><p>Pilih satu jawaban yang benar.</p><form id="quiz">
+<div class="question" data-answer="b"><p>1. Bridge umumnya bekerja pada lapisan OSI ...</p><label class="option"><input type="radio" name="q1" value="a">Layer 1</label><label class="option"><input type="radio" name="q1" value="b">Layer 2</label><label class="option"><input type="radio" name="q1" value="c">Layer 3</label><label class="option"><input type="radio" name="q1" value="d">Layer 7</label><div class="explanation">Bridge umumnya meneruskan frame pada Layer 2.</div></div>
+<div class="question" data-answer="c"><p>2. Informasi utama untuk forwarding bridge Ethernet adalah ...</p><label class="option"><input type="radio" name="q2" value="a">Nama pengguna</label><label class="option"><input type="radio" name="q2" value="b">Alamat situs</label><label class="option"><input type="radio" name="q2" value="c">MAC address</label><label class="option"><input type="radio" name="q2" value="d">Nomor telepon</label><div class="explanation">Bridge mempelajari MAC address dan menggunakan tabel forwarding.</div></div>
+<div class="question" data-answer="a"><p>3. Hubungan konsep antara switch modern dan bridge adalah ...</p><label class="option"><input type="radio" name="q3" value="a">Switch Layer 2 dapat dipahami sebagai bridge multiport</label><label class="option"><input type="radio" name="q3" value="b">Switch selalu sama dengan router</label><label class="option"><input type="radio" name="q3" value="c">Bridge hanya berfungsi sebagai server</label><label class="option"><input type="radio" name="q3" value="d">Bridge tidak dapat menggunakan MAC address</label><div class="explanation">Switch Ethernet modern pada dasarnya merupakan bridge multiport.</div></div>
+<div class="question" data-answer="d"><p>4. Apa risiko loop Layer 2?</p><label class="option"><input type="radio" name="q4" value="a">Monitor mati otomatis</label><label class="option"><input type="radio" name="q4" value="b">Alamat IP berubah menjadi nama domain</label><label class="option"><input type="radio" name="q4" value="c">Kabel berubah menjadi wireless</label><label class="option"><input type="radio" name="q4" value="d">Frame berputar dan broadcast storm</label><div class="explanation">Loop Layer 2 dapat menyebabkan frame berputar dan membanjiri jaringan dengan broadcast.</div></div>
+<div class="question" data-answer="b"><p>5. Wireless bridge digunakan untuk ...</p><label class="option"><input type="radio" name="q5" value="a">Mencetak dokumen</label><label class="option"><input type="radio" name="q5" value="b">Menghubungkan segmen LAN melalui sambungan nirkabel</label><label class="option"><input type="radio" name="q5" value="c">Mengganti subnet mask secara otomatis di semua jaringan</label><label class="option"><input type="radio" name="q5" value="d">Menghapus tabel MAC</label><div class="explanation">Wireless bridge dapat menghubungkan dua segmen LAN menggunakan link nirkabel.</div></div>
+<button class="button" type="button" onclick="checkQuiz()">Periksa Jawaban</button><button class="button secondary" type="button" onclick="resetQuiz()">Ulangi Kuis</button><div class="result" id="result" aria-live="polite"></div></form></section>
+
+<section class="card"><div class="section-label">09 • Ringkasan</div><h2>Kesimpulan Bridge</h2><div class="summary"><ul><li>Bridge menghubungkan segmen jaringan pada Layer 2.</li><li>Bridge Ethernet mempelajari MAC address dan meneruskan frame berdasarkan tabel forwarding.</li><li>Switch modern dapat dipahami sebagai bridge multiport.</li><li>Router berbeda karena menghubungkan jaringan IP pada Layer 3.</li><li>Wireless bridge dapat menghubungkan LAN melalui sambungan nirkabel.</li><li>Loop Layer 2 perlu dicegah agar tidak terjadi broadcast storm.</li></ul></div></section>
+</main>
+<aside class="sidebar">
+<section class="side-card"><h3>📚 Daftar Materi</h3><ul class="progress-list"><li><a href="perangkat.html">Pengantar Jaringan</a></li><li><a href="ip-address.html">IP Address</a></li><li><a href="subnetting.html">Subnetting</a></li><li><a href="switch.html">Switch</a></li><li><a href="router.html">Router</a></li><li><a href="access-point.html">Access Point</a></li><li><b>Bridge</b></li></ul></section>
+<section class="side-card"><h3>💡 Tips Belajar</h3><p>Ingat bahwa bridge dan switch berfokus pada frame serta MAC address, sedangkan router meneruskan paket antarjaringan IP.</p></section>
+<section class="side-card"><h3>🎯 Target Belajar</h3><ul><li>Memahami fungsi bridge.</li><li>Menjelaskan tabel MAC.</li><li>Membedakan bridge, switch, dan router.</li><li>Mengenali risiko loop Layer 2.</li></ul></section>
+</aside></div>
+<nav class="navigation"><a href="point.html">← Materi Access Point</a><a href="perangkat.html">Kembali ke Daftar Materi →</a></nav>
+<footer>BZ Learning • Belajar Jaringan Komputer dengan Mudah</footer></div>
+<script>
+function checkQuiz(){const qs=document.querySelectorAll('.question');let score=0,answered=0;qs.forEach(q=>{const ans=q.dataset.answer,sel=q.querySelector('input:checked');q.querySelectorAll('.option').forEach(l=>{l.classList.remove('correct','wrong');const i=l.querySelector('input');if(i.value===ans)l.classList.add('correct');if(sel&&i===sel&&i.value!==ans)l.classList.add('wrong')});q.querySelector('.explanation').style.display='block';if(sel){answered++;if(sel.value===ans)score+=20}});const r=document.getElementById('result');r.style.display='block';r.innerHTML='<h3>Nilai kamu: '+score+'/100</h3><p>Jawaban terisi: '+answered+'/5. '+(score===100?'Sempurna!':score>=60?'Bagus, pelajari kembali jawaban yang salah.':'Baca ulang materi dan coba lagi.')+'</p>'}
+function resetQuiz(){document.getElementById('quiz').reset();document.querySelectorAll('.option').forEach(x=>x.classList.remove('correct','wrong'));document.querySelectorAll('.explanation').forEach(x=>x.style.display='none');document.getElementById('result').style.display='none'}
+</script>
+</body>
+</html>
