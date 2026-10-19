@@ -1,0 +1,134 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proxy Server | BZ</title>
+<style>
+:root{--blue:#087cff;--cyan:#10bfb3;--ink:#102642;--muted:#61768c}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;color:var(--ink);background:linear-gradient(135deg,#dcecff,#f4fbff 48%,#cef6f3);line-height:1.7}
+.container{width:min(990px,92%);margin:auto}
+header{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 0}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{width:48px;height:48px;display:grid;place-items:center;border-radius:15px;color:white;font-size:23px;font-weight:900;background:linear-gradient(135deg,var(--blue),var(--cyan))}
+.brand-name{font-size:19px;font-weight:900}.brand-sub,.small{color:var(--muted);font-size:12px}
+.back,.navigation a{color:var(--ink);background:white;padding:10px 15px;border-radius:12px;font-size:13px;font-weight:bold;text-decoration:none}
+.hero{padding:34px;border-radius:29px;color:white;background:linear-gradient(115deg,#176bff,#6559f4 62%,#9438ed);box-shadow:0 18px 40px #6559f42b}
+.hero h1{font-size:clamp(30px,5vw,43px);line-height:1.2;margin:8px 0 12px}.hero p{max-width:650px;font-size:15px}
+.eyebrow,.section-label{font-size:11px;letter-spacing:1.5px;font-weight:900}
+.chips{display:flex;flex-wrap:wrap;gap:9px;margin-top:20px}.chip{padding:6px 12px;border:1px solid #ffffff45;background:#ffffff18;border-radius:50px;font-size:12px}
+.content{display:grid;grid-template-columns:minmax(0,1fr) 245px;gap:22px;align-items:start;margin:24px 0}
+.card,.side-card{background:#ffffffdf;border:1px solid white;border-radius:21px;padding:23px;margin-bottom:18px;box-shadow:0 8px 25px #10264208}
+.section-label{color:var(--blue);margin-bottom:5px}.card h2{font-size:22px;margin-bottom:12px;line-height:1.35}.card h3{font-size:16px;margin:17px 0 7px}
+.card p{color:#40566e;font-size:14px;margin-bottom:10px}.card ul{padding-left:21px;color:#40566e;font-size:14px;margin:8px 0}.card li{margin-bottom:6px}
+.tool-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:16px}.tool{padding:15px;border-radius:15px;background:#f0f7ff;border:1px solid #dcecff}.tool strong,.tool span{display:block}.tool strong{font-size:14px}.tool span{font-size:12px;color:var(--muted)}
+.steps{display:grid;gap:12px;margin-top:15px}.step{display:flex;gap:12px}.step-number{flex-shrink:0;width:30px;height:30px;display:grid;place-items:center;color:white;font-weight:bold;border-radius:10px;background:linear-gradient(135deg,var(--blue),var(--cyan))}
+.table-wrap{overflow-x:auto;margin-top:14px;border-radius:12px;border:1px solid #e2eaf4}table{width:100%;border-collapse:collapse;font-size:13px;min-width:350px}th,td{padding:11px 12px;text-align:left;border-bottom:1px solid #e6edf5}th{background:#edf5ff;color:#176bce}tr:last-child td{border-bottom:none}
+.code-box{background:#102642;color:#d9f2ff;padding:17px;border-radius:14px;overflow-x:auto;margin:12px 0}pre{white-space:pre;font-family:Consolas,monospace;font-size:12px;line-height:1.9}
+.note{padding:14px 16px;border-radius:13px;background:#e8f8f6;border-left:4px solid var(--cyan);color:#245d5b;font-size:13px;margin-top:14px}.warning{background:#fff5df;border-left-color:#f1ac35;color:#79561d}
+.sidebar{position:sticky;top:16px}.side-card{padding:19px}.side-card h3{font-size:15px;margin-bottom:12px}.side-link{display:block;padding:9px 0;color:#506780;text-decoration:none;font-size:13px;border-bottom:1px solid #e9eff6}
+.question{padding:16px;border:1px solid #e2eaf4;border-radius:15px;margin:13px 0;background:#fbfdff}.question h3{margin:0 0 10px;font-size:14px}
+.option{display:flex;gap:9px;padding:9px 11px;border-radius:10px;cursor:pointer;font-size:13px;color:#40566e;margin:4px 0}.option:hover{background:#edf5ff}.option input{margin-top:5px;accent-color:var(--blue)}
+.button{border:0;cursor:pointer;border-radius:12px;padding:12px 17px;font-weight:bold;font-size:13px;background:linear-gradient(110deg,var(--blue),#6559f4);color:white;margin:6px 5px 6px 0}.button.secondary{color:var(--ink);background:#eaf2fb}
+.result{display:none;padding:18px;border-radius:15px;background:#eaf8ff;margin-top:14px}.summary{padding:20px;border-radius:18px;color:white;background:linear-gradient(120deg,#087cff,#10bfb3)}.summary h2{margin-bottom:8px}.summary p{color:white}
+.navigation{display:flex;justify-content:space-between;gap:12px;margin:25px 0}footer{text-align:center;padding:25px 0 35px;color:var(--muted);font-size:12px}
+@media(max-width:760px){.content{grid-template-columns:1fr}.sidebar{position:static}.hero{padding:25px}.card{padding:19px}header{flex-wrap:wrap}.tool-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="container" id="top">
+<header><div class="brand"><div class="logo">BZ</div><div><div class="brand-name">BZ Learning</div><div class="brand-sub">Tempat Belajar / Gen Z</div></div></div><a class="back" href="server.html">← Kembali ke Materi</a></header>
+
+<section class="hero"><div style="font-size:27px">🛡️</div><div class="eyebrow">MATERI • NETWORKING</div>
+<h1>Proxy Server</h1>
+<p>Pelajari forward proxy, reverse proxy, kontrol akses, dan praktik dasar Squid pada Debian.</p>
+<div class="chips"><span class="chip">Forward Proxy</span><span class="chip">Squid</span><span class="chip">Kontrol Akses</span></div></section>
+
+<div class="content"><main class="main-content">
+<section class="card"><div class="section-label">01 • PENGENALAN</div><h2>Apa Itu Proxy Server?</h2>
+<p>Proxy server menjadi perantara antara klien dan server tujuan. Proxy dapat digunakan untuk kontrol akses, pencatatan, penyaringan, dan pada konfigurasi tertentu caching konten.</p>
+<div class="tool-grid">
+<div class="tool"><strong>↔️ Forward Proxy</strong><span>Perantara klien menuju server tujuan.</span></div>
+<div class="tool"><strong>🛡️ Reverse Proxy</strong><span>Menerima permintaan dan meneruskannya ke backend.</span></div>
+<div class="tool"><strong>📋 Access Control</strong><span>Membatasi akses berdasarkan aturan.</span></div>
+<div class="tool"><strong>⚡ Cache</strong><span>Menyimpan konten tertentu untuk digunakan kembali.</span></div>
+</div></section>
+
+<section class="card"><div class="section-label">02 • JENIS PROXY</div><h2>Forward Proxy dan Reverse Proxy</h2>
+<div class="table-wrap"><table><tr><th>Jenis</th><th>Peran</th><th>Contoh</th></tr>
+<tr><td>Forward proxy</td><td>Melayani permintaan klien ke tujuan.</td><td>Proxy HTTP kantor/lab.</td></tr>
+<tr><td>Reverse proxy</td><td>Menerima permintaan lalu meneruskan ke backend.</td><td>Proxy di depan web server.</td></tr></table></div>
+<p>Proxy tidak otomatis membuat pengguna anonim atau koneksi aman. Hasilnya bergantung pada konfigurasi dan kebijakan jaringan.</p>
+</section>
+
+<section class="card"><div class="section-label">03 • CARA KERJA</div><h2>Alur Kerja Forward Proxy</h2>
+<div class="steps">
+<div class="step"><div class="step-number">1</div><div><strong>Klien mengirim permintaan</strong><p>Aplikasi dikonfigurasi menggunakan proxy.</p></div></div>
+<div class="step"><div class="step-number">2</div><div><strong>Proxy memeriksa aturan</strong><p>Proxy mengevaluasi tujuan dan kebijakan akses.</p></div></div>
+<div class="step"><div class="step-number">3</div><div><strong>Permintaan diteruskan</strong><p>Jika diizinkan, proxy menghubungi server tujuan.</p></div></div>
+<div class="step"><div class="step-number">4</div><div><strong>Respons dikembalikan</strong><p>Proxy meneruskan respons ke klien.</p></div></div>
+</div><div class="note">Squid sering menggunakan port 3128 untuk HTTP proxy, tetapi port dapat diubah.</div>
+</section>
+
+<section class="card"><div class="section-label">04 • PRAKTIK DEBIAN</div><h2>Instal Proxy Server Squid</h2>
+<p>Contoh berikut membuat forward proxy untuk jaringan laboratorium. Ganti subnet dengan jaringan yang benar.</p>
+<h3>1. Instal Squid</h3><div class="code-box"><pre>sudo apt update
+sudo apt install squid</pre></div>
+<h3>2. Cadangkan dan edit konfigurasi</h3><div class="code-box"><pre>sudo cp /etc/squid/squid.conf /etc/squid/squid.conf.bak
+sudo nano /etc/squid/squid.conf</pre></div>
+<p>Tambahkan aturan yang sesuai sebelum aturan penolakan umum:</p>
+<div class="code-box"><pre>http_port 3128
+acl labnet src 192.168.10.0/24
+http_access allow labnet
+http_access deny all</pre></div>
+<p>Periksa file yang ada agar aturan tidak bertabrakan. Letakkan ACL jaringan lab sebelum <code>http_access deny all</code>.</p>
+<h3>3. Periksa konfigurasi</h3><div class="code-box"><pre>sudo squid -k parse</pre></div>
+<h3>4. Restart layanan</h3><div class="code-box"><pre>sudo systemctl restart squid
+sudo systemctl status squid</pre></div>
+<h3>5. Uji dari klien</h3><div class="code-box"><pre>curl -x http://192.168.10.2:3128 http://example.com</pre></div>
+<p>Ganti IP dengan alamat server proxy. Pastikan klien dapat menjangkau server dan firewall mengizinkan port proxy.</p>
+<div class="note warning">Contoh ACL mengizinkan subnet lab saja. Jangan membuka proxy untuk semua alamat internet karena open proxy dapat disalahgunakan.</div>
+</section>
+
+<section class="card"><div class="section-label">05 • PEMERIKSAAN</div><h2>Troubleshooting Proxy Server</h2>
+<div class="table-wrap"><table><tr><th>Masalah</th><th>Pemeriksaan</th></tr>
+<tr><td>Proxy tidak bisa dihubungi</td><td>IP, layanan Squid, port, dan firewall.</td></tr>
+<tr><td>Access Denied</td><td>ACL, urutan aturan, dan subnet klien.</td></tr>
+<tr><td>Website gagal dibuka</td><td>DNS, koneksi keluar, dan kebijakan proxy.</td></tr>
+<tr><td>Konfigurasi gagal</td><td>Sintaks konfigurasi Squid.</td></tr></table></div>
+<div class="code-box"><pre>sudo systemctl status squid
+sudo squid -k parse
+sudo journalctl -u squid --no-pager -n 40
+sudo tail -n 40 /var/log/squid/access.log</pre></div>
+</section>
+
+<section class="card" id="kuis"><div class="section-label">06 • UJI PEMAHAMAN</div><h2>Kuis Proxy Server</h2><p>Pilih jawaban yang paling tepat. Setiap soal bernilai 20 poin.</p>
+<form id="quizForm">
+<div class="question"><h3>1. Apa fungsi proxy server?</h3><label class="option"><input type="radio" name="q1" value="0"> Menjadi perantara permintaan klien dan server</label><label class="option"><input type="radio" name="q1" value="1"> Memberi daya ke switch</label><label class="option"><input type="radio" name="q1" value="2"> Membuat kabel</label><label class="option"><input type="radio" name="q1" value="3"> Mengganti RAM</label></div>
+<div class="question"><h3>2. Proxy yang melayani klien menuju tujuan disebut...</h3><label class="option"><input type="radio" name="q2" value="0"> Reverse proxy</label><label class="option"><input type="radio" name="q2" value="1"> Forward proxy</label><label class="option"><input type="radio" name="q2" value="2"> DNS root</label><label class="option"><input type="radio" name="q2" value="3"> DHCP relay</label></div>
+<div class="question"><h3>3. Perangkat lunak proxy pada praktik ini adalah...</h3><label class="option"><input type="radio" name="q3" value="0"> Postfix</label><label class="option"><input type="radio" name="q3" value="1"> BIND9</label><label class="option"><input type="radio" name="q3" value="2"> Squid</label><label class="option"><input type="radio" name="q3" value="3"> Apache saja</label></div>
+<div class="question"><h3>4. Port default yang sering digunakan Squid adalah...</h3><label class="option"><input type="radio" name="q4" value="0"> 53</label><label class="option"><input type="radio" name="q4" value="1"> 80</label><label class="option"><input type="radio" name="q4" value="2"> 3128</label><label class="option"><input type="radio" name="q4" value="3"> 25</label></div>
+<div class="question"><h3>5. Mengapa proxy tidak boleh dibuka tanpa pembatasan?</h3><label class="option"><input type="radio" name="q5" value="0"> Dapat disalahgunakan pihak lain</label><label class="option"><input type="radio" name="q5" value="1"> Keyboard lebih cepat</label><label class="option"><input type="radio" name="q5" value="2"> DHCP berhenti</label><label class="option"><input type="radio" name="q5" value="3"> DNS hilang</label></div>
+<button class="button" type="button" onclick="checkQuiz()">Periksa Jawaban</button><button class="button secondary" type="reset" onclick="resetQuiz()">Ulangi Kuis</button>
+</form><div class="result" id="result"><h3 id="score"></h3><p id="message"></p><div id="explanations"></div></div>
+</section>
+
+<section class="summary"><h2>Kesimpulan</h2><p>Proxy server menjadi perantara permintaan klien dan server tujuan. Atur ACL, port, dan kebijakan akses agar proxy hanya digunakan oleh pihak yang diizinkan.</p></section>
+<nav class="navigation"><a href="mail-server.html">← Mail Server</a><a href="server.html">Daftar Materi →</a></nav>
+</main>
+<aside class="sidebar"><div class="side-card"><h3>📚 Isi Materi</h3><a class="side-link" href="#top">Pengenalan</a><a class="side-link" href="#top">Jenis Proxy</a><a class="side-link" href="#kuis">Kuis Proxy Server</a></div><div class="side-card"><h3>💡 Ingat Ini!</h3><p class="small">Batasi akses proxy ke jaringan yang diizinkan. Jangan membuat open proxy.</p></div></aside>
+</div>
+<footer>© 2026 BZ Learning • Belajar Jaringan Komputer</footer>
+</div>
+<script>
+const answers={q1:0,q2:1,q3:2,q4:2,q5:0};
+const explanations=["Proxy bertindak sebagai perantara sesuai konfigurasi.","Forward proxy berada di sisi klien.","Squid adalah perangkat lunak proxy server.","Squid sering menggunakan port 3128.","Proxy terbuka berisiko disalahgunakan."];
+function checkQuiz(){let score=0,details="";for(let i=1;i<=5;i++){const s=document.querySelector('input[name="q'+i+'"]:checked');if(s&&Number(s.value)===answers["q"+i])score+=20;details+="<p><strong>Soal "+i+":</strong> "+explanations[i-1]+"</p>";}document.getElementById("score").textContent="Nilai kamu: "+score+"/100";document.getElementById("message").textContent=score===100?"Hebat! Semua jawaban benar.":score>=80?"Bagus!":score>=60?"Cukup baik. Pelajari kembali materi.":"Tetap semangat! Baca kembali materi lalu coba lagi.";document.getElementById("explanations").innerHTML=details;document.getElementById("result").style.display="block";}
+function resetQuiz(){document.getElementById("result").style.display="none";}
+</script>
+
+</body>
+
+</html>
