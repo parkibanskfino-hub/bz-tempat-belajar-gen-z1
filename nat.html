@@ -1,0 +1,1985 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Materi lengkap Network Address Translation - BZ Learning">
+<title>NAT | BZ Learning</title>
+
+<style>
+:root {
+    --bg:#07111f;
+    --panel:#101e32;
+    --panel2:#162740;
+    --primary:#38bdf8;
+    --secondary:#818cf8;
+    --text:#edf5ff;
+    --muted:#a8b8ce;
+    --border:rgba(148,163,184,.2);
+    --green:#34d399;
+    --red:#fb7185;
+    --yellow:#fbbf24;
+}
+* {
+    box-sizing:border-box;
+}
+html {
+    scroll-behavior:smooth;
+    scroll-padding-top:90px;
+}
+body {
+    margin:0;
+    background:
+        radial-gradient(circle at 10% 0%,#38bdf814,transparent 30%),
+        var(--bg);
+    color:var(--text);
+    font-family:"Segoe UI",Arial,sans-serif;
+    line-height:1.8;
+}
+a {
+    color:inherit;
+    text-decoration:none;
+}
+button {
+    font:inherit;
+    cursor:pointer;
+}
+.container {
+    width:min(1150px,calc(100% - 32px));
+    margin:auto;
+}
+header {
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:rgba(7,17,31,.95);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--border);
+}
+.header-inner {
+    min-height:76px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+}
+.brand {
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+.logo {
+    width:45px;
+    height:45px;
+    display:grid;
+    place-items:center;
+    border-radius:14px;
+    color:#07111f;
+    background:linear-gradient(135deg,#7dd3fc,#818cf8);
+    font-size:19px;
+    font-weight:950;
+    box-shadow:0 5px 25px #38bdf825;
+}
+.brand-name {
+    font-size:18px;
+    font-weight:850;
+    line-height:1.4;
+}
+.brand-subtitle {
+    font-size:10px;
+    color:var(--muted);
+    letter-spacing:1.5px;
+}
+.back-button {
+    padding:10px 15px;
+    border:1px solid var(--border);
+    border-radius:11px;
+    background:var(--panel);
+    font-size:13px;
+    font-weight:750;
+    transition:.2s;
+}
+.back-button:hover {
+    border-color:var(--primary);
+    transform:translateY(-2px);
+}
+.reading-track {
+    height:3px;
+    background:#142137;
+}
+.reading-track span {
+    display:block;
+    width:0;
+    height:100%;
+    background:linear-gradient(90deg,var(--primary),var(--secondary));
+}
+.hero {
+    padding:48px 0 36px;
+}
+.breadcrumb {
+    margin-bottom:18px;
+    color:var(--muted);
+    font-size:13px;
+}
+.hero-grid {
+    display:grid;
+    grid-template-columns:1.4fr .8fr;
+    gap:30px;
+    align-items:center;
+}
+.tag {
+    display:inline-block;
+    padding:6px 12px;
+    border:1px solid #24516b;
+    border-radius:30px;
+    background:#0d2639;
+    color:#7dd3fc;
+    font-size:12px;
+    font-weight:800;
+}
+h1 {
+    margin:18px 0;
+    font-size:clamp(38px,6vw,64px);
+    line-height:1.1;
+    letter-spacing:-2px;
+}
+.gradient {
+    color:transparent;
+    background:linear-gradient(90deg,#7dd3fc,#a5b4fc);
+    background-clip:text;
+}
+.lead {
+    max-width:680px;
+    color:var(--muted);
+}
+.actions {
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:22px;
+}
+.button {
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    padding:12px 17px;
+    border:1px solid var(--border);
+    border-radius:11px;
+    font-size:13px;
+    font-weight:800;
+    transition:.2s;
+}
+.button:hover {
+    transform:translateY(-2px);
+}
+.button-primary {
+    color:#06111f;
+    border-color:transparent;
+    background:linear-gradient(135deg,#38bdf8,#818cf8);
+}
+.button-secondary {
+    background:var(--panel);
+}
+.hero-art {
+    min-height:230px;
+    display:grid;
+    place-items:center;
+    border:1px solid var(--border);
+    border-radius:24px;
+    background:linear-gradient(145deg,#102840,#111b34);
+    font-size:80px;
+}
+.layout {
+    display:grid;
+    grid-template-columns:245px minmax(0,1fr);
+    gap:25px;
+    align-items:start;
+    padding-bottom:50px;
+}
+.sidebar {
+    position:sticky;
+    top:100px;
+    padding:18px;
+    border:1px solid var(--border);
+    border-radius:17px;
+    background:var(--panel);
+}
+.sidebar h2 {
+    color:var(--muted);
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:1.4px;
+}
+.toc {
+    display:grid;
+    gap:4px;
+}
+.toc a {
+    padding:8px 10px;
+    border-radius:8px;
+    color:var(--muted);
+    font-size:13px;
+    transition:.2s;
+}
+.toc a:hover {
+    color:var(--text);
+    background:var(--panel2);
+}
+.sidebar-tip {
+    margin-top:18px;
+    padding:13px;
+    border-radius:10px;
+    background:#0d2639;
+    color:var(--muted);
+    font-size:12px;
+}
+.sidebar-tip strong {
+    color:var(--primary);
+}
+.lesson-card {
+    padding:clamp(20px,4vw,31px);
+    margin-bottom:21px;
+    border:1px solid var(--border);
+    border-radius:18px;
+    background:linear-gradient(145deg,#101e32,#0c1728);
+}
+.kicker {
+    color:var(--primary);
+    font-size:11px;
+    font-weight:900;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+}
+.lesson-card h2 {
+    margin:6px 0 18px;
+    font-size:clamp(23px,3vw,30px);
+    line-height:1.3;
+}
+.lesson-card h3 {
+    margin:24px 0 8px;
+    font-size:18px;
+    line-height:1.4;
+}
+.lesson-card p,
+.lesson-card li {
+    color:#c3d0e1;
+}
+.lesson-card strong {
+    color:#fff;
+}
+.lesson-card ul,
+.lesson-card ol {
+    padding-left:24px;
+}
+.lesson-card li {
+    margin:7px 0;
+}
+.callout {
+    margin:18px 0;
+    padding:15px 18px;
+    border-left:4px solid var(--primary);
+    border-radius:0 10px 10px 0;
+    background:#0d2639;
+}
+.callout.warning {
+    border-color:var(--yellow);
+    background:#292515;
+}
+.callout.success {
+    border-color:var(--green);
+    background:#102c29;
+}
+.info-grid {
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:13px;
+    margin:18px 0;
+}
+.info-box {
+    padding:17px;
+    border:1px solid var(--border);
+    border-radius:13px;
+    background:#ffffff04;
+}
+.info-box h3 {
+    margin:4px 0 7px;
+    font-size:16px;
+}
+.info-box p {
+    margin-bottom:0;
+    font-size:13px;
+}
+.diagram {
+    padding:20px;
+    margin:18px 0;
+    border:1px solid var(--border);
+    border-radius:14px;
+    background:#07111f;
+}
+.diagram-title {
+    margin-bottom:15px;
+    color:var(--muted);
+    text-align:center;
+    font-size:12px;
+}
+.flow {
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+}
+.node {
+    padding:12px 14px;
+    border:1px solid #276080;
+    border-radius:10px;
+    background:#10283b;
+    text-align:center;
+    font-size:12px;
+    font-weight:800;
+}
+.arrow {
+    color:var(--primary);
+    font-size:22px;
+    font-weight:900;
+}
+.table-wrap {
+    overflow-x:auto;
+    margin:18px 0;
+    border:1px solid var(--border);
+    border-radius:11px;
+}
+table {
+    width:100%;
+    min-width:490px;
+    border-collapse:collapse;
+}
+th,td {
+    padding:12px 14px;
+    border-bottom:1px solid var(--border);
+    text-align:left;
+    vertical-align:top;
+    font-size:13px;
+}
+th {
+    color:#7dd3fc;
+    background:#0d2639;
+}
+td {
+    color:#c3d0e1;
+}
+tr:last-child td {
+    border-bottom:0;
+}
+pre {
+    overflow-x:auto;
+    padding:17px;
+    border:1px solid var(--border);
+    border-radius:11px;
+    background:#050b14;
+    color:#a7f3d0;
+    font-size:13px;
+    line-height:1.8;
+}
+code {
+    font-family:Consolas,Monaco,monospace;
+}
+.question {
+    margin:17px 0;
+    padding:17px;
+    border:1px solid var(--border);
+    border-radius:13px;
+    background:#ffffff03;
+}
+.question h3 {
+    margin:0 0 12px;
+    font-size:15px;
+}
+.option {
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    padding:10px;
+    margin:7px 0;
+    border:1px solid var(--border);
+    border-radius:9px;
+    color:#c3d0e1;
+    cursor:pointer;
+    font-size:14px;
+    transition:.15s;
+}
+.option:hover {
+    border-color:var(--primary);
+}
+.option input {
+    margin-top:7px;
+    accent-color:var(--primary);
+}
+.option.correct {
+    border-color:var(--green);
+    background:#34d39912;
+}
+.option.incorrect {
+    border-color:var(--red);
+    background:#fb718512;
+}
+.explanation {
+    display:none;
+    margin-top:10px;
+    padding:11px;
+    border-radius:9px;
+    background:#ffffff08;
+    color:var(--muted);
+    font-size:13px;
+}
+.explanation.show {
+    display:block;
+}
+.quiz-progress {
+    height:7px;
+    margin:20px 0;
+    overflow:hidden;
+    border-radius:20px;
+    background:#ffffff10;
+}
+.quiz-progress span {
+    display:block;
+    width:0;
+    height:100%;
+    background:linear-gradient(90deg,var(--primary),var(--secondary));
+}
+.result {
+    display:none;
+    margin-top:20px;
+    padding:20px;
+    border:1px solid var(--border);
+    border-radius:14px;
+    background:#0d2639;
+}
+.result.show {
+    display:block;
+}
+.score {
+    color:var(--primary);
+    font-size:38px;
+    font-weight:900;
+}
+.lesson-nav {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+    margin-top:28px;
+}
+.nav-link {
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    padding:19px;
+    border:1px solid var(--border);
+    border-radius:14px;
+    background:var(--panel);
+    transition:.2s;
+}
+.nav-link:hover {
+    border-color:var(--primary);
+    transform:translateY(-2px);
+}
+.nav-link.next {
+    text-align:right;
+}
+.nav-link small {
+    display:block;
+    color:var(--muted);
+    font-size:11px;
+    text-transform:uppercase;
+}
+.nav-link strong {
+    font-size:14px;
+}
+.nav-arrow {
+    color:var(--primary);
+    font-size:23px;
+}
+footer {
+    padding:27px 0;
+    border-top:1px solid var(--border);
+    color:var(--muted);
+    text-align:center;
+    font-size:12px;
+}
+footer strong {
+    color:var(--primary);
+}
+@media(max-width:850px) {
+    .hero-grid,.layout {
+        grid-template-columns:1fr;
+    }
+    .sidebar {
+        position:static;
+    }
+    .hero-art {
+        min-height:150px;
+    }
+    .toc {
+        grid-template-columns:repeat(2,minmax(0,1fr));
+    }
+}
+@media(max-width:560px) {
+    .container {
+        width:calc(100% - 22px);
+    }
+    .brand-name {
+        font-size:15px;
+    }
+    .brand-subtitle {
+        font-size:9px;
+    }
+    .logo {
+        width:39px;
+        height:39px;
+    }
+    .back-button {
+        padding:9px;
+        font-size:11px;
+    }
+    .hero {
+        padding-top:30px;
+    }
+    .info-grid,.lesson-nav,.toc {
+        grid-template-columns:1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="container header-inner">
+        <a class="brand" href="index.html">
+            <div class="logo">BZ</div>
+            <div>
+                <div class="brand-name">BZ Learning</div>
+                <div class="brand-subtitle">NETWORK ACADEMY</div>
+            </div>
+        </a>
+
+        <a class="back-button" href="keamanan.html">
+            ← Kembali ke Materi
+        </a>
+    </div>
+
+    <div class="reading-track">
+        <span id="readingProgress"></span>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="container">
+        <div class="breadcrumb">
+            BZ Learning / Jaringan Komputer / NAT
+        </div>
+
+        <div class="hero-grid">
+            <div>
+                <span class="tag">🌐 Jaringan Komputer</span>
+
+                <h1>
+                    Mengenal <span class="gradient">NAT</span>
+                </h1>
+
+                <p class="lead">
+                    Pelajari Network Address Translation, fungsi NAT,
+                    jenis-jenisnya, cara kerja translasi alamat IP,
+                    konfigurasi Cisco, contoh penerapan, troubleshooting,
+                    dan latihan 20 soal interaktif.
+                </p>
+
+                <div class="actions">
+                    <a class="button button-primary" href="#pengertian">
+                        Mulai Belajar ↓
+                    </a>
+                    <a class="button button-secondary" href="#latihan">
+                        Latihan Soal ✎
+                    </a>
+                </div>
+            </div>
+
+            <div class="hero-art" aria-label="Ilustrasi NAT">
+                🌐
+            </div>
+        </div>
+    </div>
+</section>
+
+<main class="container layout">
+
+<aside class="sidebar">
+    <h2>Daftar Materi</h2>
+
+    <nav class="toc">
+        <a href="#pengertian">1. Pengertian NAT</a>
+        <a href="#fungsi">2. Fungsi NAT</a>
+        <a href="#alamat">3. Alamat IP</a>
+        <a href="#jenis">4. Jenis NAT</a>
+        <a href="#cara-kerja">5. Cara Kerja</a>
+        <a href="#topologi">6. Topologi NAT</a>
+        <a href="#konfigurasi">7. Konfigurasi Cisco</a>
+        <a href="#pat">8. NAT Overload</a>
+        <a href="#kelebihan">9. Kelebihan dan Kekurangan</a>
+        <a href="#troubleshooting">10. Troubleshooting</a>
+        <a href="#rangkuman">11. Rangkuman</a>
+        <a href="#latihan">12. Latihan Soal</a>
+    </nav>
+
+    <div class="sidebar-tip">
+        <strong>Tips belajar</strong>
+        <br>
+        Pahami perbedaan IP private dan IP public serta fungsi
+        inside local, inside global, outside local, dan outside global.
+    </div>
+</aside>
+
+<div class="content">
+
+<section class="lesson-card" id="pengertian">
+    <div class="kicker">Bagian 01</div>
+    <h2>Pengertian Network Address Translation</h2>
+
+    <p>
+        <strong>Network Address Translation (NAT)</strong> adalah
+        mekanisme jaringan yang mengubah alamat IP pada paket ketika
+        paket melewati perangkat yang melakukan translasi. NAT banyak
+        digunakan pada router dan firewall untuk menghubungkan jaringan
+        dengan skema alamat yang berbeda.
+    </p>
+
+    <p>
+        Salah satu penggunaan NAT yang paling dikenal adalah ketika
+        banyak perangkat di rumah atau sekolah menggunakan alamat IP
+        private, kemudian mengakses internet melalui alamat IP public
+        pada router.
+    </p>
+
+    <p>
+        Sebagai contoh, sebuah komputer mempunyai alamat
+        <code>192.168.1.10</code>. Router dapat menerjemahkan alamat
+        sumber tersebut menjadi alamat public saat komputer mengakses
+        internet. Untuk NAT yang melacak koneksi, router menyimpan
+        informasi translasi agar balasan dapat dikirim kembali ke
+        perangkat yang sesuai.
+    </p>
+
+    <div class="callout">
+        <strong>Inti materi:</strong>
+        NAT mengubah informasi alamat IP, dan pada NAT dengan translasi
+        port, nomor port juga dapat diterjemahkan. NAT bukan pengganti
+        routing dan tidak otomatis menjamin keamanan jaringan.
+    </div>
+
+    <h3>Analogi NAT</h3>
+
+    <p>
+        Bayangkan beberapa orang dalam satu kantor menggunakan alamat
+        ruangan masing-masing. Saat mengirim surat keluar, kantor
+        memakai satu alamat pengiriman bersama dan mencatat penerima
+        internalnya. Saat balasan datang, catatan tersebut membantu
+        mengarahkan balasan kepada orang yang tepat.
+    </p>
+
+    <p>
+        Dalam jaringan, NAT dan tabel koneksinya dapat menjalankan
+        fungsi yang mirip untuk komunikasi tertentu. Detailnya
+        bergantung pada jenis NAT dan implementasi perangkat.
+    </p>
+
+    <div class="info-grid">
+        <div class="info-box">
+            <h3>Alamat private</h3>
+            <p>
+                Alamat yang digunakan di jaringan internal dan
+                biasanya tidak dirutekan langsung di internet publik.
+            </p>
+        </div>
+
+        <div class="info-box">
+            <h3>Alamat public</h3>
+            <p>
+                Alamat yang dapat digunakan untuk komunikasi di internet,
+                sesuai alokasi dan kebijakan routing yang berlaku.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="lesson-card" id="fungsi">
+    <div class="kicker">Bagian 02</div>
+    <h2>Fungsi NAT</h2>
+
+    <h3>1. Menghemat penggunaan alamat IPv4 public</h3>
+
+    <p>
+        Dengan NAT overload atau PAT, banyak perangkat internal dapat
+        berbagi satu alamat IPv4 public. Router membedakan sesi
+        komunikasi menggunakan informasi koneksi, termasuk nomor port
+        jika diperlukan.
+    </p>
+
+    <h3>2. Menghubungkan jaringan private ke internet</h3>
+
+    <p>
+        Perangkat internal dapat menggunakan alamat private.
+        Router menerjemahkan alamat sumber saat trafik keluar melalui
+        antarmuka yang menuju jaringan luar.
+    </p>
+
+    <h3>3. Melakukan translasi alamat satu-ke-satu</h3>
+
+    <p>
+        Static NAT dapat memetakan satu alamat internal ke satu alamat
+        translasi yang tetap. Ini berguna dalam skenario tertentu ketika
+        alamat internal perlu dipetakan secara konsisten.
+    </p>
+
+    <h3>4. Mendukung publikasi layanan internal</h3>
+
+    <p>
+        Dengan konfigurasi yang sesuai, perangkat luar dapat diarahkan
+        menuju layanan tertentu di jaringan internal melalui pemetaan
+        alamat atau port. Kebijakan firewall tetap perlu diperiksa.
+    </p>
+
+    <h3>5. Memisahkan skema alamat internal dan eksternal</h3>
+
+    <p>
+        NAT memungkinkan organisasi menggunakan skema alamat internal
+        tertentu tanpa harus meneruskan alamat tersebut secara langsung
+        ke internet.
+    </p>
+
+    <div class="callout warning">
+        NAT bukan mekanisme enkripsi. NAT juga tidak otomatis memblokir
+        semua serangan. Untuk mengatur siapa yang boleh berkomunikasi,
+        gunakan kebijakan firewall yang sesuai.
+    </div>
+</section>
+
+<section class="lesson-card" id="alamat">
+    <div class="kicker">Bagian 03</div>
+    <h2>Alamat IP Private dan Public</h2>
+
+    <p>
+        Untuk memahami NAT, kamu perlu memahami alamat IP yang
+        digunakan di jaringan internal dan alamat yang digunakan
+        untuk komunikasi publik.
+    </p>
+
+    <h3>Rentang alamat IPv4 private</h3>
+
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Rentang CIDR</th>
+                    <th>Rentang alamat</th>
+                    <th>Penggunaan umum</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>10.0.0.0/8</td>
+                    <td>10.0.0.0–10.255.255.255</td>
+                    <td>Jaringan internal besar</td>
+                </tr>
+                <tr>
+                    <td>172.16.0.0/12</td>
+                    <td>172.16.0.0–172.31.255.255</td>
+                    <td>Jaringan internal</td>
+                </tr>
+                <tr>
+                    <td>192.168.0.0/16</td>
+                    <td>192.168.0.0–192.168.255.255</td>
+                    <td>Jaringan rumah dan kantor kecil</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <p>
+        Alamat di atas merupakan rentang IPv4 private yang ditetapkan
+        untuk penggunaan internal. Alamat private tidak harus selalu
+        diterjemahkan jika komunikasinya tetap berada dalam jaringan
+        yang dapat merutekan alamat tersebut secara internal.
+    </p>
+
+    <h3>Contoh alamat jaringan</h3>
+
+    <pre><code>PC 1       : 192.168.1.10/24
+PC 2       : 192.168.1.11/24
+Gateway    : 192.168.1.1/24
+Alamat NAT : 203.0.113.10 (contoh dokumentasi)</code></pre>
+
+    <p>
+        Alamat <code>203.0.113.10</code> pada contoh ini berasal dari
+        rentang dokumentasi dan bukan alamat public yang dapat dipakai
+        untuk akses internet nyata. Pada jaringan sebenarnya, gunakan
+        alamat yang diberikan oleh penyedia layanan atau administrator.
+    </p>
+
+    <h3>Empat istilah alamat dalam NAT</h3>
+
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Istilah</th>
+                    <th>Makna umum</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Inside local</td>
+                    <td>Alamat perangkat internal sebagaimana terlihat di jaringan internal.</td>
+                </tr>
+                <tr>
+                    <td>Inside global</td>
+                    <td>Alamat yang mewakili perangkat internal pada sisi luar setelah translasi.</td>
+                </tr>
+                <tr>
+                    <td>Outside global</td>
+                    <td>Alamat sebenarnya dari perangkat tujuan pada jaringan luar.</td>
+                </tr>
+                <tr>
+                    <td>Outside local</td>
+                    <td>Alamat perangkat luar sebagaimana direpresentasikan pada sisi internal; dapat sama dengan outside global.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="lesson-card" id="jenis">
+    <div class="kicker">Bagian 04</div>
+    <h2>Jenis-Jenis NAT</h2>
+
+    <h3>1. Static NAT</h3>
+
+    <p>
+        Static NAT memetakan satu alamat IP internal ke satu alamat
+        translasi yang tetap. Pemetaan tidak berubah selama
+        konfigurasi tidak diubah.
+    </p>
+
+    <p>
+        Contoh konsep: alamat server internal dipetakan secara tetap
+        ke alamat lain untuk kebutuhan tertentu. Static NAT tidak
+        selalu membutuhkan satu alamat public untuk setiap perangkat
+        jika skema penerapannya berbeda, tetapi pemetaan satu-ke-satu
+        klasik umumnya menggunakan pasangan alamat tetap.
+    </p>
+
+    <h3>2. Dynamic NAT</h3>
+
+    <p>
+        Dynamic NAT menggunakan kumpulan alamat translasi. Ketika
+        perangkat internal memerlukan translasi, alamat dari kumpulan
+        yang tersedia dapat diberikan berdasarkan aturan perangkat.
+    </p>
+
+    <p>
+        Jika semua alamat dalam kumpulan sedang digunakan, koneksi
+        baru yang memerlukan translasi dapat gagal sampai ada alamat
+        yang tersedia, bergantung pada implementasinya.
+    </p>
+
+    <h3>3. PAT atau NAT Overload</h3>
+
+    <p>
+        Port Address Translation (PAT), yang pada banyak perangkat
+        Cisco disebut NAT overload, memungkinkan banyak koneksi
+        menggunakan satu alamat IP translasi dengan membedakan
+        koneksi menggunakan nomor port.
+    </p>
+
+    <p>
+        PAT sangat umum digunakan pada jaringan rumah dan kantor
+        karena beberapa perangkat dapat mengakses internet melalui
+        satu alamat IPv4 public.
+    </p>
+
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Jenis</th>
+                    <th>Metode</th>
+                    <th>Contoh penggunaan</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Static NAT</td>
+                    <td>Pemetaan alamat tetap</td>
+                    <td>Memetakan alamat perangkat tertentu</td>
+                </tr>
+                <tr>
+                    <td>Dynamic NAT</td>
+                    <td>Menggunakan kumpulan alamat</td>
+                    <td>Jaringan dengan kumpulan alamat translasi</td>
+                </tr>
+                <tr>
+                    <td>PAT / Overload</td>
+                    <td>Berbagi alamat melalui nomor port</td>
+                    <td>Banyak perangkat berbagi satu IPv4 public</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="callout">
+        Untuk jaringan sekolah atau rumah yang memiliki banyak
+        perangkat dan satu alamat IPv4 public, PAT biasanya menjadi
+        konsep NAT yang paling sering ditemui.
+    </div>
+</section>
+
+<section class="lesson-card" id="cara-kerja">
+    <div class="kicker">Bagian 05</div>
+    <h2>Cara Kerja NAT</h2>
+
+    <h3>Contoh koneksi dari komputer ke internet</h3>
+
+    <p>
+        Misalnya, komputer internal menggunakan alamat
+        <code>192.168.1.10</code> dan mengakses sebuah server web.
+        Router melakukan translasi pada paket keluar sesuai aturan NAT.
+    </p>
+
+    <div class="diagram">
+        <div class="diagram-title">
+            Alur komunikasi menggunakan NAT
+        </div>
+
+        <div class="flow">
+            <div class="node">
+                PC internal<br>
+                192.168.1.10
+            </div>
+            <span class="arrow">→</span>
+            <div class="node">
+                Router NAT<br>
+                Translasi alamat
+            </div>
+            <span class="arrow">→</span>
+            <div class="node">
+                Server internet
+            </div>
+        </div>
+
+        <p style="text-align:center;color:#a8b8ce;font-size:12px;margin-top:18px">
+            Paket balasan kembali melalui jalur yang sesuai dengan
+            routing dan informasi translasi koneksi.
+        </p>
+    </div>
+
+    <h3>Urutan proses NAT overload</h3>
+
+    <ol>
+        <li>
+            PC membuat koneksi menuju alamat server tujuan.
+        </li>
+        <li>
+            PC mengirim paket ke gateway yang telah dikonfigurasi.
+        </li>
+        <li>
+            Router menerima paket dan memeriksa aturan routing serta NAT.
+        </li>
+        <li>
+            Jika paket cocok dengan aturan NAT, router mengubah alamat
+            sumber dan, pada PAT, dapat mengubah nomor port sumber.
+        </li>
+        <li>
+            Router meneruskan paket ke jaringan luar jika rute dan
+            kebijakan mengizinkan.
+        </li>
+        <li>
+            Server tujuan mengirim balasan menuju alamat hasil translasi.
+        </li>
+        <li>
+            Router menggunakan informasi translasi koneksi untuk
+            mengarahkan balasan kembali ke perangkat internal.
+        </li>
+    </ol>
+
+    <h3>Contoh tabel translasi</h3>
+
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Perangkat</th>
+                    <th>Alamat internal</th>
+                    <th>Alamat translasi contoh</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>PC 1</td>
+                    <td>192.168.1.10</td>
+                    <td>203.0.113.10:40001</td>
+                </tr>
+                <tr>
+                    <td>PC 2</td>
+                    <td>192.168.1.11</td>
+                    <td>203.0.113.10:40002</td>
+                </tr>
+                <tr>
+                    <td>PC 3</td>
+                    <td>192.168.1.12</td>
+                    <td>203.0.113.10:40003</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <p>
+        Tabel di atas hanya ilustrasi. Port translasi yang sebenarnya
+        dipilih oleh perangkat dan dapat berbeda. Alamat
+        <code>203.0.113.10</code> digunakan untuk dokumentasi, bukan
+        alamat internet publik yang nyata.
+    </p>
+</section>
+
+<section class="lesson-card" id="topologi">
+    <div class="kicker">Bagian 06</div>
+    <h2>Contoh Topologi NAT</h2>
+
+    <p>
+        Sebuah laboratorium komputer mempunyai beberapa PC, satu switch,
+        dan satu router yang terhubung ke jaringan luar. PC menggunakan
+        alamat private dan router melakukan NAT untuk koneksi keluar.
+    </p>
+
+    <div class="diagram">
+        <div class="diagram-title">
+            Topologi laboratorium menggunakan NAT
+        </div>
+
+        <div class="flow">
+            <div class="node">PC 1<br>192.168.10.10</div>
+            <div class="node">PC 2<br>192.168.10.11</div>
+            <div class="node">PC 3<br>192.168.10.12</div>
+        </div>
+
+        <div style="text-align:center;color:#38bdf8;font-size:22px;margin:12px">
+            ↓
+        </div>
+
+        <div class="flow">
+            <div class="node">Switch LAN</div>
+            <span class="arrow">→</span>
+            <div class="node">
+                Router NAT<br>
+                Gateway: 192.168.10.1
+            </div>
+        </div>
+
+        <div style="text-align:center;color:#38bdf8;font-size:22px;margin:12px">
+            ↓
+        </div>
+
+        <div class="flow">
+            <div class="node">Jaringan luar / ISP</div>
+        </div>
+    </div>
+
+    <h3>Alamat yang digunakan</h3>
+
+    <ul>
+        <li>PC 1: <code>192.168.10.10/24</code></li>
+        <li>PC 2: <code>192.168.10.11/24</code></li>
+        <li>PC 3: <code>192.168.10.12/24</code></li>
+        <li>Gateway LAN: <code>192.168.10.1/24</code></li>
+        <li>Antarmuka luar: alamat dari ISP atau jaringan lab.</li>
+    </ul>
+
+    <h3>Syarat agar koneksi berhasil</h3>
+
+    <ol>
+        <li>PC memiliki alamat IP dan subnet mask yang benar.</li>
+        <li>Default gateway PC menunjuk ke router LAN.</li>
+        <li>Antarmuka router aktif.</li>
+        <li>Routing ke jaringan tujuan tersedia.</li>
+        <li>Aturan NAT cocok dengan alamat sumber yang digunakan.</li>
+        <li>Firewall tidak memblokir koneksi yang diperlukan.</li>
+        <li>Jaringan luar memiliki jalur balasan yang sesuai.</li>
+    </ol>
+
+    <div class="callout warning">
+        NAT tidak menggantikan default gateway. Jika PC tidak memiliki
+        gateway yang benar, paket menuju jaringan di luar subnet lokal
+        biasanya tidak akan mencapai router NAT.
+    </div>
+</section>
+
+<section class="lesson-card" id="konfigurasi">
+    <div class="kicker">Bagian 07</div>
+    <h2>Konfigurasi NAT Overload pada Cisco IOS</h2>
+
+    <p>
+        Contoh ini menunjukkan konfigurasi konsep NAT overload pada
+        router Cisco IOS. Gunakan alamat dan antarmuka yang sesuai
+        dengan topologi latihanmu.
+    </p>
+
+    <div class="callout warning">
+        Contoh ini menggunakan jaringan luar ilustratif.
+        Jangan menyalin alamat contoh begitu saja ke jaringan produksi.
+        Pastikan antarmuka luar benar-benar terhubung ke jaringan
+        yang menyediakan jalur keluar.
+    </div>
+
+    <h3>Contoh topologi dan alamat</h3>
+
+    <pre><code>LAN:
+192.168.10.0/24
+
+Router G0/0:
+192.168.10.1/24
+
+Router G0/1:
+Alamat dari ISP atau jaringan luar</code></pre>
+
+    <h3>Langkah 1: Masuk ke mode konfigurasi</h3>
+
+    <pre><code>enable
+configure terminal</code></pre>
+
+    <h3>Langkah 2: Konfigurasi antarmuka LAN</h3>
+
+    <pre><code>interface gigabitEthernet 0/0
+ip address 192.168.10.1 255.255.255.0
+ip nat inside
+no shutdown
+exit</code></pre>
+
+    <p>
+        Perintah <code>ip nat inside</code> menandai antarmuka
+        yang menghadap jaringan internal sebagai sisi inside.
+    </p>
+
+    <h3>Langkah 3: Konfigurasi antarmuka luar</h3>
+
+    <pre><code>interface gigabitEthernet 0/1
+ip nat outside
+no shutdown
+exit</code></pre>
+
+    <p>
+        Alamat IP pada antarmuka luar harus dikonfigurasi sesuai
+        jaringan luar. Jika alamat diberikan melalui DHCP, konfigurasi
+        dapat berbeda, misalnya menggunakan <code>ip address dhcp</code>
+        jika perangkat dan jaringan mendukungnya.
+    </p>
+
+    <h3>Langkah 4: Membuat access list untuk jaringan internal</h3>
+
+    <pre><code>access-list 1 permit 192.168.10.0 0.0.0.255</code></pre>
+
+    <p>
+        Wildcard mask <code>0.0.0.255</code> cocok dengan jaringan
+        <code>192.168.10.0/24</code> pada contoh ini.
+    </p>
+
+    <h3>Langkah 5: Mengaktifkan NAT overload</h3>
+
+    <pre><code>ip nat inside source list 1 interface gigabitEthernet 0/1 overload</code></pre>
+
+    <p>
+        Perintah tersebut meminta router melakukan translasi sumber
+        untuk alamat yang cocok dengan access list, menggunakan
+        alamat pada antarmuka luar dan mekanisme overload.
+    </p>
+
+    <h3>Langkah 6: Menambahkan default route</h3>
+
+    <pre><code>ip route 0.0.0.0 0.0.0.0 ALAMAT_NEXT_HOP</code></pre>
+
+    <p>
+        Ganti <code>ALAMAT_NEXT_HOP</code> dengan alamat gateway
+        jaringan luar yang benar. Jika jaringan menggunakan routing
+        dinamis atau metode lain, sesuaikan dengan desain jaringan.
+    </p>
+
+    <h3>Langkah 7: Menyimpan konfigurasi</h3>
+
+    <pre><code>end
+copy running-config startup-config</code></pre>
+
+    <h3>Langkah 8: Memeriksa NAT</h3>
+
+    <pre><code>show ip nat translations
+show ip nat statistics
+show access-lists
+show ip route
+show ip interface brief</code></pre>
+
+    <p>
+        Perintah-perintah tersebut membantu memeriksa tabel translasi,
+        statistik NAT, access list, routing, serta status antarmuka.
+    </p>
+</section>
+
+<section class="lesson-card" id="pat">
+    <div class="kicker">Bagian 08</div>
+    <h2>NAT Overload atau PAT</h2>
+
+    <p>
+        NAT overload memungkinkan banyak perangkat internal berbagi
+        alamat translasi yang sama. Router membedakan koneksi dengan
+        informasi seperti nomor port sumber dan tujuan serta protokol.
+    </p>
+
+    <h3>Mengapa PAT banyak digunakan?</h3>
+
+    <ul>
+        <li>Mengurangi kebutuhan alamat IPv4 public.</li>
+        <li>Mendukung banyak sesi komunikasi dari jaringan internal.</li>
+        <li>Cocok untuk koneksi keluar dari rumah atau kantor.</li>
+        <li>Dapat digunakan bersama kebijakan routing dan firewall.</li>
+    </ul>
+
+    <h3>Perbedaan NAT dan PAT</h3>
+
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Aspek</th>
+                    <th>NAT</th>
+                    <th>PAT</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Alamat</td>
+                    <td>Menerjemahkan alamat sesuai jenis dan aturan</td>
+                    <td>Menggunakan alamat translasi bersama untuk banyak sesi</td>
+                </tr>
+                <tr>
+                    <td>Port</td>
+                    <td>Tidak selalu perlu diterjemahkan</td>
+                    <td>Port membantu membedakan sesi</td>
+                </tr>
+                <tr>
+                    <td>Penggunaan umum</td>
+                    <td>Static dan dynamic NAT</td>
+                    <td>Banyak perangkat berbagi satu IPv4</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>Contoh alur beberapa perangkat</h3>
+
+    <div class="diagram">
+        <div class="flow">
+            <div class="node">PC A<br>192.168.10.10</div>
+            <div class="node">PC B<br>192.168.10.11</div>
+            <div class="node">PC C<br>192.168.10.12</div>
+        </div>
+
+        <div style="text-align:center;color:#38bdf8;font-size:22px;margin:12px">
+            ↓
+        </div>
+
+        <div class="flow">
+            <div class="node">
+                Router PAT<br>
+                Banyak sesi
+            </div>
+        </div>
+
+        <div style="text-align:center;color:#38bdf8;font-size:22px;margin:12px">
+            ↓
+        </div>
+
+        <div class="flow">
+            <div class="node">
+                Satu alamat translasi<br>
+                Banyak port sesi
+            </div>
+        </div>
+    </div>
+
+    <div class="callout">
+        PAT tidak berarti seluruh komunikasi pasti berhasil. Routing,
+        DNS, kebijakan firewall, koneksi dari jaringan luar, dan
+        konfigurasi layanan tetap memengaruhi hasil komunikasi.
+    </div>
+</section>
+
+<section class="lesson-card" id="kelebihan">
+    <div class="kicker">Bagian 09</div>
+    <h2>Kelebihan dan Kekurangan NAT</h2>
+
+    <h3>Kelebihan</h3>
+
+    <ul>
+        <li>Memungkinkan banyak perangkat berbagi alamat IPv4 public melalui PAT.</li>
+        <li>Mendukung penggunaan alamat private pada jaringan internal.</li>
+        <li>Menyediakan pemetaan alamat untuk skenario tertentu.</li>
+        <li>Membantu menghubungkan skema alamat internal dan eksternal.</li>
+        <li>Sudah didukung luas oleh router dan firewall jaringan.</li>
+    </ul>
+
+    <h3>Kekurangan</h3>
+
+    <ul>
+        <li>Menambah kompleksitas saat melakukan troubleshooting.</li>
+        <li>Beberapa protokol atau aplikasi dapat memerlukan penanganan tambahan.</li>
+        <li>Koneksi masuk memerlukan pemetaan dan kebijakan yang tepat.</li>
+        <li>Kesalahan aturan dapat membuat koneksi gagal.</li>
+        <li>NAT tidak menyediakan enkripsi komunikasi.</li>
+    </ul>
+
+    <h3>NAT bukan firewall</h3>
+
+    <p>
+        NAT mengubah informasi alamat dan kadang port. Firewall
+        menerapkan kebijakan untuk mengizinkan atau menolak lalu lintas.
+        Satu perangkat dapat memiliki fungsi NAT dan firewall sekaligus,
+        tetapi kedua fungsi tersebut tetap berbeda.
+    </p>
+
+    <div class="callout success">
+        Kesimpulan: gunakan NAT sesuai kebutuhan translasi alamat,
+        routing untuk menentukan jalur paket, dan firewall untuk
+        menerapkan kebijakan keamanan.
+    </div>
+</section>
+
+<section class="lesson-card" id="troubleshooting">
+    <div class="kicker">Bagian 10</div>
+    <h2>Troubleshooting NAT</h2>
+
+    <h3>Masalah 1: PC tidak dapat mengakses internet</h3>
+
+    <ol>
+        <li>Periksa alamat IP dan subnet mask PC.</li>
+        <li>Periksa default gateway PC.</li>
+        <li>Pastikan antarmuka LAN dan WAN router aktif.</li>
+        <li>Periksa apakah router memiliki rute menuju jaringan luar.</li>
+        <li>Periksa access list yang digunakan oleh aturan NAT.</li>
+        <li>Periksa apakah inside dan outside ditandai dengan benar.</li>
+        <li>Periksa tabel translasi setelah PC membuat koneksi.</li>
+    </ol>
+
+    <h3>Masalah 2: Tabel translasi NAT kosong</h3>
+
+    <p>
+        Tabel translasi dapat kosong jika belum ada trafik yang cocok
+        dengan aturan, access list tidak cocok, atau konfigurasi NAT
+        belum benar. Lakukan pengujian koneksi dari PC lalu periksa
+        kembali aturan NAT.
+    </p>
+
+    <h3>Masalah 3: Alamat inside dan outside tertukar</h3>
+
+    <p>
+        Periksa antarmuka yang mengarah ke LAN dan antarmuka yang
+        mengarah ke jaringan luar. Pada konfigurasi Cisco IOS klasik,
+        antarmuka LAN biasanya ditandai <code>ip nat inside</code>,
+        sedangkan antarmuka luar ditandai <code>ip nat outside</code>.
+    </p>
+
+    <h3>Masalah 4: PC dapat melakukan ping gateway tetapi tidak dapat mengakses internet</h3>
+
+    <ul>
+        <li>Periksa default route router.</li>
+        <li>Periksa alamat next-hop.</li>
+        <li>Periksa aturan NAT dan access list.</li>
+        <li>Periksa apakah jaringan luar menyediakan jalur balasan.</li>
+        <li>Uji akses menggunakan alamat IP sebelum memeriksa DNS.</li>
+        <li>Periksa kebijakan firewall pada router dan jaringan tujuan.</li>
+    </ul>
+
+    <h3>Masalah 5: Alamat IP dapat dijangkau tetapi nama domain gagal</h3>
+
+    <p>
+        Jika koneksi berbasis alamat IP berhasil tetapi nama domain
+        tidak dapat diakses, periksa konfigurasi DNS. NAT tidak
+        otomatis memperbaiki masalah resolusi nama domain.
+    </p>
+
+    <h3>Perintah pemeriksaan Cisco</h3>
+
+    <pre><code>show ip nat translations
+show ip nat statistics
+show access-lists
+show ip route
+show ip interface brief
+ping ALAMAT_TUJUAN
+traceroute ALAMAT_TUJUAN</code></pre>
+</section>
+
+<section class="lesson-card" id="rangkuman">
+    <div class="kicker">Bagian 11</div>
+    <h2>Rangkuman NAT</h2>
+
+    <ul>
+        <li>NAT adalah Network Address Translation.</li>
+        <li>NAT mengubah alamat IP sesuai aturan translasi.</li>
+        <li>PAT dapat menerjemahkan nomor port untuk membedakan sesi.</li>
+        <li>Alamat private banyak digunakan di jaringan internal.</li>
+        <li>Static NAT menggunakan pemetaan yang tetap.</li>
+        <li>Dynamic NAT menggunakan kumpulan alamat translasi.</li>
+        <li>NAT overload memungkinkan banyak sesi berbagi alamat translasi.</li>
+        <li>Gateway dan routing tetap diperlukan untuk komunikasi antarjaringan.</li>
+        <li>Firewall dan NAT mempunyai fungsi yang berbeda.</li>
+        <li>Tabel translasi dan routing membantu troubleshooting.</li>
+    </ul>
+</section>
+
+<section class="lesson-card" id="latihan">
+    <div class="kicker">Bagian 12</div>
+    <h2>Latihan Soal NAT</h2>
+
+    <p>
+        Pilih jawaban yang paling tepat untuk setiap soal.
+        Setelah selesai, tekan Periksa Jawaban untuk melihat nilai
+        dan pembahasan setiap nomor.
+    </p>
+
+    <div class="quiz-progress">
+        <span id="quizProgress"></span>
+    </div>
+
+    <form id="quizForm">
+
+        <div class="question" data-answer="b"
+        data-explanation="NAT adalah mekanisme untuk menerjemahkan alamat IP pada paket yang melewati perangkat NAT.">
+            <h3>1. Apa kepanjangan NAT?</h3>
+            <label class="option"><input type="radio" name="q1" value="a"> A. Network Access Transfer</label>
+            <label class="option"><input type="radio" name="q1" value="b"> B. Network Address Translation</label>
+            <label class="option"><input type="radio" name="q1" value="c"> C. Network Automatic Terminal</label>
+            <label class="option"><input type="radio" name="q1" value="d"> D. New Address Technology</label>
+            <div class="explanation"></div>
+        </div>
+
+        <div class="question" data-answer="c"
+        data-explanation="NAT menerjemahkan alamat IP sesuai konfigurasi dan jenis translasi yang digunakan.">
+            <h3>2. Fungsi utama NAT adalah ...</h3>
+            <label class="option"><input type="radio" name="q2" value="a"> A. Mengganti kabel jaringan</label>
+            <label class="option"><input type="radio" name="q2" value="b"> B. Menghapus semua routing</label>
+            <label class="option"><input type="radio" name="q2" value="c"> C. Menerjemahkan alamat IP</label>
+            <label class="option"><input type="radio" name="q2" value="d"> D. Membuat monitor menjadi server</label>
+            <div class="explanation"></div>
+        </div>
+
+        <div class="question" data-answer="a"
+        data-explanation="Alamat private digunakan pada jaringan internal dan tidak dirutekan langsung di internet publik.">
+            <h3>3. Manakah yang termasuk alamat IPv4 private?</h3>
+            <label class="option"><input type="radio" name="q3" value="a"> A. 192.168.1.10</label>
+            <label class="option"><input type="radio" name="q3" value="b"> B. 8.8.8.8</label>
+            <label class="option"><input type="radio" name="q3" value="c"> C. 1.1.1.1</label>
+            <label class="option"><input type="radio" name="q3" value="d"> D. 203.0.113.10 sebagai alamat dokumentasi publik</label>
+            <div class="explanation"></div>
+        </div>
+
+        <div class="question" data-answer="d"
+        data-explanation="Static NAT memakai pemetaan alamat yang tetap sampai konfigurasi diubah.">
+            <h3>4. Apa ciri Static NAT?</h3>
+            <label class="option"><input type="radio" name="q4" value="a"> A. Selalu mematikan router</label>
+            <label class="option"><input type="radio" name="q4" value="b"> B. Hanya digunakan pada switch Layer 2</label>
+            <label class="option"><input type="radio" name="q4" value="c"> C. Tidak melakukan translasi alamat</label>
+            <label class="option"><input type="radio" name="q4" value="d"> D. Menggunakan pemetaan alamat tetap</label>
+            <div class="explanation"></div>
+        </div>
+
+        <div class="question" data-answer="a"
+        data-explanation="Dynamic NAT memilih alamat translasi dari kumpulan alamat yang tersedia.">
+            <h3>5. Dynamic NAT menggunakan ...</h3>
+            <label class="option"><input type="radio" name="q5" value="a"> A. Kumpulan alamat translasi</label>
+            <label class="option"><input type="radio" name="q5" value="b"> B. Kabel serial saja</label>
+            <label class="option"><input type="radio" name="q5" value="c"> C. Alamat MAC sebagai pengganti semua IP</label>
+            <label class="option"><input type="radio" name="q5" value="d"> D. Hanya DNS</label>
+            <div class="explanation"></div>
+        </div>
+
+        <div class="question" data-answer="c"
+        data-explanation="PAT memungkinkan banyak sesi berbagi alamat translasi dengan membedakan koneksi melalui informasi port dan koneksi.">
+            <h3>6. Apa fungsi PAT atau NAT overload?</h3>
+            <label class="option"><input type="radio" name="q6" value="a"> A. Mengubah semua komputer menjadi router</label>
+            <label class="option"><input type="radio" name="q6" value="b"> B. Menghapus default gateway</label>
+            <label class="option"><input type="radio" name="q6" value="c"> C. Memungkinkan banyak sesi berbagi alamat translasi</label>
+            <label class="option"><input type="radio" name="q6" value="d"> D. Mengganti semua kabel LAN</label>
+            <div class="explanation"></div>
+        </div>
+
+        <div class="question" data-answer="b"
+        data-explanation="NAT overload umum digunakan untuk memungkinkan banyak perangkat internal berbagi satu alamat IPv4 public.">
+            <h3>7. NAT overload umum digunakan pada ...</h3>
+            <label class="option"><input type="radio" name="q7" value="a"> A. Monitor komputer</label>
+            <label class="option"><input type="radio" name="q7" value="b"> B. Jaringan rumah dan kantor yang berbagi alamat IPv4</label>
+            <label class="option"><input type="radio" name="q7" value="c"> C. Keyboard saja</label>
+            <label class="option"><input type="radio" name="q7" value="d"> D. Printer tanpa jaringan</label>
+            <div class="explanation"></div>
+        </div>
+
+        <div class="question" data-answer="d"
+        data-explanation="Inside local adalah alamat perangkat internal sebagaimana terlihat pada sisi internal.">
+            <h3>8. Apa arti inside local?</h3>
+            <label class="option"><input type="radio" name="q8" value="a"> A. Alamat DNS server internet</label>
+            <label class="option"><input type="radio" name="q8" value="b"> B. Alamat MAC router</label>
+            <label class="option"><input type="radio" name="q8" value="c"> C. Alamat broadcast jaringan luar</label>
+            <label class="option"><input type="radio" name="q8" value="d"> D. Alamat internal perangkat pada sisi internal</label>
+            <div class="explanation"></div>
+        </div>
+
+        <div class="question" data-answer="a"
+        data-explanation="Inside global adalah alamat yang mewakili perangkat internal pada sisi luar setelah translasi.">
+            <h3>9. Apa arti inside global?</h3>
+            <label class="option"><input type="radio" name="q9" value="a"> A. Alamat yang mewakili perangkat internal pada sisi luar</label>
+            <label class="option"><input type="radio" name="q9" value="b"> B. Alamat monitor</label>
+            <label class="option"><input type="radio" name="q9" value="c"> C. Nama host lokal saja</label>
+            <label class="option"><input type="radio" name="q9" value="d"> D. Alamat kabel jaringan</label>
+            <div class="explanation"></div>
+        </div>
+
+        <div class="question" data-answer="c"
+        data-explanation="Perangkat internal umumnya menggunakan default gateway untuk mengirim paket ke jaringan di luar subnet lokal.">
+            <h3>10. Apa fungsi default gateway pada PC?</h3>
+            <label class="option"><input type="radio" name="q10" value="a"> A. Menentukan resolusi layar</label>
+            <label class="option"><input type="radio" name="q10" value="b"> B. Mengganti nama file</label>
+            <label class="option"><input type="radio" name="q10" value="c"> C. Menjadi jalur ke jaringan di luar subnet lokal</label>
+            <label class="option"><input type="radio" name="q10" value="d"> D. Menyimpan semua kata sandi</label>
+            <div class="explanation"></div>
+        </div>
+
+        <div class="question" data-answer="b"
+        data-explanation="Pada konfigurasi Cisco IOS klasik, ip nat inside menandai antarmuka yang menghadap jaringan internal.">
+            <h3>11. Apa fungsi perintah ip nat inside?</h3>
+            <label class="option"><input type="radio" name="q11" value="a"> A. Menghapus alamat IP</label>
+            <label class="option"><input type="radio" name="q11" value="b"> B. Menandai antarmuka sisi internal NAT</label>
+            <label class="option"><input type="radio" name="q11" value="c"> C. Mematikan routing selamanya</label>
+            <label class="option"><input type="radio" name="q11" value="d"> D. Membuat VLAN secara otomatis</label>
+            <div class="explanation"></div>
+        </div>
+
+        <div class="question" data-answer="a"
+        data-explanation="ip nat outside menandai antarmuka yang menghadap jaringan luar pada konfigurasi NAT Cisco IOS klasik.">
+            <h3>12. Apa fungsi ip nat outside?</h3>
+            <label class="option"><input type="radio" name="q12" value="a"> A. Menandai antarmuka sisi luar NAT</label>
+            <label class="option"><input type="radio" name="q12" value="b"> B. Mengganti subnet mask semua PC</label>
+            <label class="option"><input type="radio" name="q12" value="c"> C. Membuat akun pengguna</label>
+            <label class="option"><input type="radio" name="q12" value="d"> D. Menonaktifkan semua alamat IP</label>
+            <div class="explanation"></div>
+        </div>
+
+        <div class="question" data-answer="d"
+        data-explanation="Access list pada contoh digunakan untuk menentukan alamat sumber yang boleh dicocokkan oleh aturan NAT.">
+            <h3>13. Mengapa access list digunakan dalam contoh NAT?</h3>
+            <label class="option"><input type="radio" name="q13" value="a"> A. Untuk mengganti perangkat keras</label>
+            <label class="option"><input type="radio" name="q13" value="b"> B. Untuk mengubah kabel serial</label>
+            <label class="option"><input type="radio" name="q13" value="c"> C. Untuk mengatur ukuran monitor</label>
+            <label class="option"><input type="radio" name="q13" value="d"> D. Untuk mencocokkan alamat sumber yang akan ditranslasi</label>
+            <div class="explanation"></div>
+        </div>
+
+        <div class="question" data-answer="c"
+        data-explanation="show ip nat translations menampilkan entri translasi NAT yang tersedia pada router.">
+            <h3>14. Perintah untuk melihat tabel translasi NAT adalah ...</h3>
+            <label class="option"><input type="radio" name="q14" value="a"> A. show vlan brief</label>
+            <label class="option"><input type="radio" name="q14" value="b"> B. show clock</label>
+            <label class="option"><input type="radio" name="q14" value="c"> C. show ip nat translations</label>
+            <label class="option"><input type="radio" name="q14" value="d"> D. show startup screen</label>
+            <div class="explanation"></div>
+        </div>
+
+        <div class="question" data-answer="b"
+        data-explanation="NAT tidak menyediakan enkripsi komunikasi dan tidak menggantikan firewall.">
+            <h3>15. Apakah NAT otomatis mengenkripsi komunikasi?</h3>
+            <label class="option"><input type="radio" name="q15" value="a"> A. Ya, semua paket otomatis dienkripsi</label>
+            <label class="option"><input type="radio" name="q15" value="b"> B. Tidak</label>
+            <label class="option"><input type="radio" name="q15" value="c"> C. Ya, hanya pada port 80</label>
+            <label class="option"><input type="radio" name="q15" value="d"> D. Ya, jika menggunakan switch</label>
+            <div class="explanation"></div>
+        </div>
+
+        <div class="question" data-answer="a"
+        data-explanation="NAT dan routing memiliki fungsi berbeda. NAT menerjemahkan alamat, sedangkan routing menentukan jalur paket.">
+            <h3>16. Apa hubungan NAT dan routing?</h3>
+            <label class="option"><input type="radio" name="q16" value="a"> A. Fungsinya berbeda dan dapat digunakan bersama</label>
+            <label class="option"><input type="radio" name="q16" value="b"> B. NAT selalu menggantikan routing</label>
+            <label class="option"><input type="radio" name="q16" value="c"> C. Routing hanya berlaku untuk printer</label>
+            <label class="option"><input type="radio" name="q16" value="d"> D. Keduanya tidak berhubungan dengan jaringan</label>
+            <div class="explanation"></div>
+        </div>
+
+        <div class="question" data-answer="d"
+        data-explanation="Default route digunakan sebagai jalur untuk tujuan yang tidak cocok dengan rute yang lebih spesifik.">
+            <h3>17. Apa fungsi default route?</h3>
+            <label class="option"><input type="radio" name="q17" value="a"> A. Mengubah warna perangkat</label>
+            <label class="option"><input type="radio" name="q17" value="b"> B. Menghapus access list</label>
+            <label class="option"><input type="radio" name="q17" value="c"> C. Mengatur kata sandi Wi-Fi secara otomatis</label>
+            <label class="option"><input type="radio" name="q17" value="d"> D. Menentukan jalur untuk tujuan yang tidak memiliki rute lebih spesifik</label>
+            <div class="explanation"></div>
+        </div>
+
+        <div class="question" data-answer="c"
+        data-explanation="Jika alamat IP dapat dijangkau tetapi nama domain gagal, periksa DNS karena masalahnya mungkin pada resolusi nama.">
+            <h3>18. IP tujuan bisa dijangkau, tetapi nama domain gagal. Apa yang perlu diperiksa?</h3>
+            <label class="option"><input type="radio" name="q18" value="a"> A. Warna kabel</label>
+            <label class="option"><input type="radio" name="q18" value="b"> B. Resolusi layar</label>
+            <label class="option"><input type="radio" name="q18" value="c"> C. Konfigurasi DNS</label>
+            <label class="option"><input type="radio" name="q18" value="d"> D. Ukuran keyboard</label>
+            <div class="explanation"></div>
+        </div>
+
+        <div class="question" data-answer="a"
+        data-explanation="Jika tabel NAT kosong, pastikan ada trafik yang cocok dan periksa access list, penandaan antarmuka, serta konfigurasi translasi.">
+            <h3>19. Apa yang dilakukan jika tabel translasi NAT kosong?</h3>
+            <label class="option"><input type="radio" name="q19" value="a"> A. Uji trafik dan periksa aturan NAT serta access list</label>
+            <label class="option"><input type="radio" name="q19" value="b"> B. Langsung mengganti semua kabel</label>
+            <label class="option"><input type="radio" name="q19" value="c"> C. Menghapus semua alamat IP</label>
+            <label class="option"><input type="radio" name="q19" value="d"> D. Mematikan semua komputer selamanya</label>
+            <div class="explanation"></div>
+        </div>
+
+        <div class="question" data-answer="b"
+        data-explanation="NAT dan firewall berbeda. NAT menerjemahkan alamat, sedangkan firewall menerapkan kebijakan lalu lintas.">
+            <h3>20. Pernyataan yang benar tentang NAT dan firewall adalah ...</h3>
+            <label class="option"><input type="radio" name="q20" value="a"> A. NAT selalu menggantikan seluruh fungsi firewall</label>
+            <label class="option"><input type="radio" name="q20" value="b"> B. NAT dan firewall memiliki fungsi berbeda</label>
+            <label class="option"><input type="radio" name="q20" value="c"> C. Firewall hanya digunakan untuk mengubah IP</label>
+            <label class="option"><input type="radio" name="q20" value="d"> D. Keduanya tidak digunakan dalam jaringan komputer</label>
+            <div class="explanation"></div>
+        </div>
+
+        <div class="actions">
+            <button class="button button-primary" type="submit">
+                Periksa Jawaban
+            </button>
+
+            <button class="button button-secondary" type="button" id="resetQuiz">
+                Ulangi Latihan
+            </button>
+        </div>
+    </form>
+
+    <div class="result" id="result" aria-live="polite">
+        <div class="kicker">Hasil Latihan</div>
+        <div class="score" id="score">0/20</div>
+        <p id="message"></p>
+        <p id="details"></p>
+    </div>
+</section>
+
+<nav class="lesson-nav" aria-label="Navigasi materi">
+    <a class="nav-link" href="firewall.html">
+        <span>
+            <small>← Materi Sebelumnya</small>
+            <strong>Firewall</strong>
+        </span>
+        <span class="nav-arrow">←</span>
+    </a>
+
+    <a class="nav-link next" href="vpn.html">
+        <span>
+            <small>Materi Selanjutnya →</small>
+            <strong>Virtual Private Network</strong>
+        </span>
+        <span class="nav-arrow">→</span>
+    </a>
+</nav>
+
+</div>
+</main>
+
+<footer>
+    <div class="container">
+        <strong>BZ Learning</strong>
+        <div>Belajar Jaringan Komputer dengan Terstruktur</div>
+    </div>
+</footer>
+
+<script>
+"use strict";
+
+/* =========================================
+   PROGRES MEMBACA
+========================================= */
+
+const readingProgress =
+    document.getElementById("readingProgress");
+
+function updateReadingProgress() {
+    const documentHeight =
+        document.documentElement.scrollHeight;
+
+    const viewportHeight =
+        window.innerHeight;
+
+    const maximumScroll =
+        documentHeight - viewportHeight;
+
+    const currentScroll =
+        window.scrollY ||
+        document.documentElement.scrollTop;
+
+    let percentage = 100;
+
+    if (maximumScroll > 0) {
+        percentage =
+            currentScroll / maximumScroll * 100;
+    }
+
+    percentage =
+        Math.min(100, Math.max(0, percentage));
+
+    readingProgress.style.width =
+        percentage + "%";
+}
+
+window.addEventListener(
+    "scroll",
+    updateReadingProgress,
+    { passive:true }
+);
+
+window.addEventListener(
+    "resize",
+    updateReadingProgress
+);
+
+updateReadingProgress();
+
+/* =========================================
+   PENGATURAN KUIS
+========================================= */
+
+const quizForm =
+    document.getElementById("quizForm");
+
+const questions =
+    Array.from(
+        document.querySelectorAll(".question")
+    );
+
+const quizProgress =
+    document.getElementById("quizProgress");
+
+const resultBox =
+    document.getElementById("result");
+
+const scoreElement =
+    document.getElementById("score");
+
+const messageElement =
+    document.getElementById("message");
+
+const detailsElement =
+    document.getElementById("details");
+
+const resetButton =
+    document.getElementById("resetQuiz");
+
+/* =========================================
+   PROGRES PENGERJAAN SOAL
+========================================= */
+
+function updateQuizProgress() {
+    let answeredCount = 0;
+
+    questions.forEach(function(question) {
+        const selected =
+            question.querySelector(
+                'input[type="radio"]:checked'
+            );
+
+        if (selected) {
+            answeredCount++;
+        }
+    });
+
+    const percentage =
+        answeredCount / questions.length * 100;
+
+    quizProgress.style.width =
+        percentage + "%";
+}
+
+quizForm.addEventListener(
+    "change",
+    updateQuizProgress
+);
+
+/* =========================================
+   MEMERIKSA JAWABAN
+========================================= */
+
+quizForm.addEventListener(
+    "submit",
+    function(event) {
+        event.preventDefault();
+
+        let correctCount = 0;
+        let answeredCount = 0;
+
+        questions.forEach(function(question) {
+            const correctAnswer =
+                question.dataset.answer;
+
+            const selected =
+                question.querySelector(
+                    'input[type="radio"]:checked'
+                );
+
+            const options =
+                question.querySelectorAll(".option");
+
+            const explanation =
+                question.querySelector(".explanation");
+
+            options.forEach(function(option) {
+                option.classList.remove(
+                    "correct",
+                    "incorrect"
+                );
+            });
+
+            if (selected) {
+                answeredCount++;
+
+                if (selected.value === correctAnswer) {
+                    correctCount++;
+                }
+            }
+
+            options.forEach(function(option) {
+                const input =
+                    option.querySelector("input");
+
+                if (input.value === correctAnswer) {
+                    option.classList.add("correct");
+                }
+
+                if (
+                    input.checked &&
+                    input.value !== correctAnswer
+                ) {
+                    option.classList.add("incorrect");
+                }
+            });
+
+            explanation.textContent =
+                "Pembahasan: " +
+                question.dataset.explanation;
+
+            explanation.classList.add("show");
+        });
+
+        const totalQuestions =
+            questions.length;
+
+        const percentage =
+            Math.round(
+                correctCount / totalQuestions * 100
+            );
+
+        scoreElement.textContent =
+            correctCount +
+            "/" +
+            totalQuestions +
+            " (" +
+            percentage +
+            "%)";
+
+        if (percentage >= 90) {
+            messageElement.textContent =
+                "Hebat! Kamu sudah memahami konsep NAT dengan sangat baik.";
+        } else if (percentage >= 75) {
+            messageElement.textContent =
+                "Bagus! Pelajari lagi bagian yang belum kamu kuasai.";
+        } else if (percentage >= 60) {
+            messageElement.textContent =
+                "Cukup baik. Baca kembali materi dan coba lagi.";
+        } else {
+            messageElement.textContent =
+                "Tetap semangat! Pelajari materi dari awal sebelum mengulang kuis.";
+        }
+
+        detailsElement.textContent =
+            "Terjawab: " +
+            answeredCount +
+            " dari " +
+            totalQuestions +
+            ". Benar: " +
+            correctCount +
+            ". Salah atau belum dijawab: " +
+            (totalQuestions - correctCount) +
+            ".";
+
+        resultBox.classList.add("show");
+
+        resultBox.scrollIntoView({
+            behavior:"smooth",
+            block:"center"
+        });
+    }
+);
+
+/* =========================================
+   RESET KUIS
+========================================= */
+
+resetButton.addEventListener(
+    "click",
+    function() {
+        quizForm.reset();
+
+        questions.forEach(function(question) {
+            const options =
+                question.querySelectorAll(".option");
+
+            const explanation =
+                question.querySelector(".explanation");
+
+            options.forEach(function(option) {
+                option.classList.remove(
+                    "correct",
+                    "incorrect"
+                );
+            });
+
+            explanation.textContent = "";
+
+            explanation.classList.remove("show");
+        });
+
+        resultBox.classList.remove("show");
+
+        scoreElement.textContent =
+            "0/" + questions.length;
+
+        messageElement.textContent = "";
+
+        detailsElement.textContent = "";
+
+        quizProgress.style.width = "0%";
+
+        document.getElementById("latihan").scrollIntoView({
+            behavior:"smooth",
+            block:"start"
+        });
+    }
+);
+</script>
+
+</body>
+
+</html>
