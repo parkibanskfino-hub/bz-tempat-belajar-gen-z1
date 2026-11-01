@@ -1,0 +1,2321 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Belajar IDS dan IPS, sistem deteksi dan pencegahan intrusi jaringan bersama BZ Learning.">
+<title>IDS/IPS - BZ Learning</title>
+
+<style>
+:root {
+    --primary: #2563eb;
+    --primary-dark: #1d4ed8;
+    --secondary: #0f172a;
+    --background: #f1f5f9;
+    --surface: #ffffff;
+    --text: #1e293b;
+    --muted: #64748b;
+    --border: #e2e8f0;
+    --success: #15803d;
+    --danger: #dc2626;
+    --warning: #c2410c;
+    --radius: 16px;
+    --shadow: 0 8px 30px rgba(15, 23, 42, 0.07);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--background);
+    color: var(--text);
+    line-height: 1.8;
+}
+
+a {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+button {
+    font: inherit;
+    cursor: pointer;
+}
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.96);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(12px);
+}
+
+.navbar {
+    max-width: 1200px;
+    min-height: 76px;
+    margin: auto;
+    padding: 12px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.brand-icon {
+    width: 46px;
+    height: 46px;
+    display: grid;
+    place-items: center;
+    background: var(--primary);
+    color: white;
+    border-radius: 14px;
+    font-weight: 900;
+    font-size: 20px;
+}
+
+.brand-name {
+    color: var(--secondary);
+    font-weight: 800;
+    font-size: 21px;
+    line-height: 1.3;
+}
+
+.brand-subtitle {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    background: white;
+    color: var(--secondary);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-weight: 700;
+    transition: 0.2s;
+}
+
+.back-button:hover {
+    background: #eff6ff;
+    border-color: var(--primary);
+}
+
+.hero {
+    background: linear-gradient(135deg, #0f172a, #1d4ed8);
+    color: white;
+    padding: 75px 24px;
+}
+
+.hero-content {
+    max-width: 1150px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1.5fr 0.8fr;
+    gap: 45px;
+    align-items: center;
+}
+
+.eyebrow {
+    display: inline-block;
+    background: rgba(255,255,255,0.13);
+    padding: 6px 13px;
+    border-radius: 30px;
+    font-size: 13px;
+    margin-bottom: 18px;
+}
+
+.hero h1 {
+    font-size: clamp(36px, 5vw, 58px);
+    line-height: 1.15;
+    margin-bottom: 22px;
+}
+
+.hero p {
+    color: #dbeafe;
+    max-width: 680px;
+    font-size: 17px;
+}
+
+.hero-illustration {
+    padding: 35px;
+    border: 1px solid rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.08);
+    border-radius: 28px;
+    text-align: center;
+}
+
+.hero-illustration .shield {
+    font-size: 95px;
+    line-height: 1.5;
+}
+
+.hero-illustration strong {
+    display: block;
+    font-size: 22px;
+}
+
+.hero-illustration span {
+    color: #bfdbfe;
+    font-size: 14px;
+}
+
+.page-layout {
+    max-width: 1200px;
+    margin: 35px auto;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: 250px minmax(0, 1fr);
+    gap: 25px;
+    align-items: start;
+}
+
+.sidebar {
+    position: sticky;
+    top: 100px;
+    padding: 22px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+}
+
+.sidebar h3 {
+    margin-bottom: 14px;
+    font-size: 16px;
+}
+
+.sidebar a {
+    display: block;
+    padding: 8px 10px;
+    color: var(--muted);
+    border-radius: 8px;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.sidebar a:hover {
+    color: var(--primary);
+    background: #eff6ff;
+}
+
+.sidebar-divider {
+    height: 1px;
+    background: var(--border);
+    margin: 18px 0;
+}
+
+.content {
+    min-width: 0;
+}
+
+.lesson-section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 30px;
+    margin-bottom: 25px;
+    box-shadow: var(--shadow);
+}
+
+.section-label {
+    color: var(--primary);
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    font-weight: 800;
+    margin-bottom: 7px;
+}
+
+.lesson-section h2 {
+    font-size: 27px;
+    line-height: 1.4;
+    margin-bottom: 17px;
+    color: var(--secondary);
+}
+
+.lesson-section h3 {
+    font-size: 19px;
+    margin: 23px 0 10px;
+    color: var(--secondary);
+}
+
+.lesson-section p {
+    margin-bottom: 14px;
+}
+
+.lesson-section ul,
+.lesson-section ol {
+    padding-left: 25px;
+    margin: 12px 0 18px;
+}
+
+.lesson-section li {
+    margin-bottom: 8px;
+}
+
+.info-box {
+    padding: 18px 20px;
+    margin: 18px 0;
+    background: #eff6ff;
+    border-left: 4px solid var(--primary);
+    border-radius: 8px;
+}
+
+.warning-box {
+    padding: 18px 20px;
+    margin: 18px 0;
+    background: #fff7ed;
+    border-left: 4px solid #f97316;
+    border-radius: 8px;
+}
+
+.success-box {
+    padding: 18px 20px;
+    margin: 18px 0;
+    background: #f0fdf4;
+    border-left: 4px solid #16a34a;
+    border-radius: 8px;
+}
+
+.grid-cards {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.mini-card {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    background: #fff;
+}
+
+.mini-card .card-icon {
+    font-size: 29px;
+    margin-bottom: 8px;
+}
+
+.mini-card h3 {
+    margin: 0 0 8px;
+}
+
+.mini-card p {
+    color: var(--muted);
+    font-size: 14px;
+    margin: 0;
+}
+
+.diagram {
+    padding: 25px 15px;
+    margin: 22px 0;
+    border: 1px dashed #93c5fd;
+    background: #f8fbff;
+    border-radius: 14px;
+    text-align: center;
+}
+
+.diagram-flow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 15px 0;
+}
+
+.diagram-node {
+    min-width: 120px;
+    padding: 15px 12px;
+    border-radius: 12px;
+    border: 1px solid #bfdbfe;
+    background: white;
+    font-weight: 700;
+}
+
+.diagram-node small {
+    display: block;
+    font-weight: 400;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.diagram-arrow {
+    color: var(--primary);
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.diagram-caption {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.table-wrap {
+    overflow-x: auto;
+    margin: 20px 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 450px;
+}
+
+th,
+td {
+    padding: 13px 15px;
+    border: 1px solid var(--border);
+    text-align: left;
+    vertical-align: top;
+}
+
+th {
+    background: #eff6ff;
+    color: var(--secondary);
+}
+
+tr:nth-child(even) td {
+    background: #f8fafc;
+}
+
+code {
+    background: #e2e8f0;
+    color: #1e40af;
+    padding: 2px 6px;
+    border-radius: 5px;
+    font-size: 0.92em;
+}
+
+pre {
+    overflow-x: auto;
+    background: #0f172a;
+    color: #e2e8f0;
+    padding: 20px;
+    border-radius: 12px;
+    margin: 15px 0;
+    line-height: 1.8;
+}
+
+pre code {
+    background: transparent;
+    color: inherit;
+    padding: 0;
+}
+
+.progress-container {
+    margin: 20px 0;
+}
+
+.progress-track {
+    height: 9px;
+    border-radius: 20px;
+    background: #e2e8f0;
+    overflow: hidden;
+}
+
+.progress-fill {
+    width: 0;
+    height: 100%;
+    background: var(--primary);
+    transition: width 0.3s;
+}
+
+.quiz-question {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    margin: 17px 0;
+}
+
+.quiz-question h3 {
+    margin: 0 0 12px;
+    font-size: 16px;
+}
+
+.quiz-option {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    padding: 10px;
+    margin: 6px 0;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.quiz-option:hover {
+    background: #f1f5f9;
+}
+
+.quiz-option input {
+    margin-top: 6px;
+    accent-color: var(--primary);
+}
+
+.quiz-question.correct {
+    border-color: #86efac;
+    background: #f0fdf4;
+}
+
+.quiz-question.incorrect {
+    border-color: #fca5a5;
+    background: #fef2f2;
+}
+
+.feedback {
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 18px;
+    font-weight: 700;
+    transition: 0.2s;
+}
+
+.button-primary {
+    background: var(--primary);
+    color: white;
+}
+
+.button-primary:hover {
+    background: var(--primary-dark);
+}
+
+.button-secondary {
+    background: #e2e8f0;
+    color: var(--secondary);
+}
+
+.button-secondary:hover {
+    background: #cbd5e1;
+}
+
+.quiz-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.result-box {
+    display: none;
+    padding: 25px;
+    margin-top: 22px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: #eff6ff;
+    text-align: center;
+}
+
+.result-score {
+    font-size: 42px;
+    font-weight: 900;
+    color: var(--primary);
+}
+
+.bottom-navigation {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 25px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-bottom: 25px;
+}
+
+.bottom-navigation a {
+    display: block;
+    padding: 13px 17px;
+    border-radius: 10px;
+    font-weight: 700;
+}
+
+.previous-link {
+    background: #e2e8f0;
+    color: var(--secondary);
+}
+
+.next-link {
+    background: var(--primary);
+    color: white;
+}
+
+footer {
+    background: #0f172a;
+    color: #cbd5e1;
+    padding: 35px 24px;
+    text-align: center;
+}
+
+footer strong {
+    display: block;
+    color: white;
+    font-size: 22px;
+    margin-bottom: 8px;
+}
+
+footer p {
+    font-size: 13px;
+}
+
+.back-to-top {
+    position: fixed;
+    bottom: 22px;
+    right: 22px;
+    width: 45px;
+    height: 45px;
+    border: none;
+    border-radius: 50%;
+    background: var(--primary);
+    color: white;
+    font-size: 21px;
+    box-shadow: var(--shadow);
+}
+
+@media (max-width: 900px) {
+    .hero-content {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-illustration {
+        max-width: 350px;
+    }
+
+    .page-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        position: static;
+    }
+
+    .sidebar-links {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    .navbar {
+        padding: 12px 16px;
+    }
+
+    .brand-name {
+        font-size: 18px;
+    }
+
+    .back-button {
+        padding: 9px 10px;
+        font-size: 13px;
+    }
+
+    .hero {
+        padding: 45px 18px;
+    }
+
+    .page-layout {
+        margin-top: 20px;
+        padding: 0 14px;
+    }
+
+    .lesson-section {
+        padding: 20px;
+    }
+
+    .lesson-section h2 {
+        font-size: 23px;
+    }
+
+    .grid-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .diagram-flow {
+        flex-direction: column;
+    }
+
+    .diagram-arrow {
+        transform: rotate(90deg);
+    }
+
+    .bottom-navigation {
+        flex-direction: column;
+    }
+
+    .bottom-navigation a {
+        text-align: center;
+    }
+}
+</style>
+</head>
+
+<body id="top">
+
+<header>
+    <nav class="navbar" aria-label="Navigasi utama">
+        <a class="brand" href="index.html" aria-label="BZ Learning beranda">
+            <div class="brand-icon">BZ</div>
+            <div>
+                <div class="brand-name">BZ Learning</div>
+                <div class="brand-subtitle">Belajar Jaringan Komputer</div>
+            </div>
+        </a>
+
+        <a class="back-button" href="index.html">
+            <span aria-hidden="true">←</span>
+            Kembali ke Materi
+        </a>
+    </nav>
+</header>
+
+<section class="hero">
+    <div class="hero-content">
+        <div>
+            <span class="eyebrow">MODUL PEMBELAJARAN KEAMANAN JARINGAN</span>
+            <h1>IDS dan IPS</h1>
+            <p>
+                Pelajari Intrusion Detection System dan Intrusion Prevention
+                System, cara mendeteksi aktivitas mencurigakan, mencegah
+                serangan, memahami jenis sistem, serta mempelajari contoh
+                penerapan keamanan jaringan.
+            </p>
+        </div>
+
+        <div class="hero-illustration">
+            <div class="shield" aria-hidden="true">🛡️</div>
+            <strong>Deteksi dan Pencegahan</strong>
+            <span>Memahami keamanan jaringan komputer</span>
+        </div>
+    </div>
+</section>
+
+<div class="page-layout">
+
+    <aside class="sidebar">
+        <h3>Daftar Materi IDS/IPS</h3>
+
+        <nav class="sidebar-links" aria-label="Daftar isi">
+            <a href="#pengertian">1. Pengertian IDS/IPS</a>
+            <a href="#perbedaan">2. Perbedaan IDS dan IPS</a>
+            <a href="#fungsi">3. Fungsi Utama</a>
+            <a href="#cara-kerja">4. Cara Kerja</a>
+            <a href="#jenis">5. Jenis IDS/IPS</a>
+            <a href="#metode">6. Metode Deteksi</a>
+            <a href="#ancaman">7. Ancaman Jaringan</a>
+            <a href="#penempatan">8. Penempatan Sistem</a>
+            <a href="#kelebihan">9. Kelebihan</a>
+            <a href="#kekurangan">10. Kekurangan</a>
+            <a href="#suricata">11. Contoh Suricata</a>
+            <a href="#keamanan">12. Praktik Keamanan</a>
+            <a href="#rangkuman">13. Rangkuman</a>
+            <a href="#quiz">14. Latihan Soal</a>
+        </nav>
+
+        <div class="sidebar-divider"></div>
+
+        <h3>Materi Lain</h3>
+        <a href="nat.html">NAT</a>
+        <a href="vpn.html">VPN</a>
+    </aside>
+
+    <main class="content">
+
+        <section class="lesson-section" id="pengertian">
+            <div class="section-label">Bagian 01</div>
+            <h2>Pengertian IDS dan IPS</h2>
+
+            <h3>Apa itu IDS?</h3>
+
+            <p>
+                IDS merupakan singkatan dari <strong>Intrusion Detection
+                System</strong>. IDS adalah sistem keamanan yang memantau
+                aktivitas pada jaringan atau perangkat untuk menemukan
+                indikasi serangan, pelanggaran kebijakan, dan perilaku
+                yang mencurigakan.
+            </p>
+
+            <p>
+                Ketika IDS menemukan aktivitas yang sesuai dengan aturan
+                atau pola tertentu, sistem dapat menghasilkan peringatan
+                atau mencatat kejadian agar administrator melakukan
+                pemeriksaan lebih lanjut.
+            </p>
+
+            <p>
+                Contohnya, IDS mendeteksi banyak percobaan koneksi ke
+                berbagai port pada sebuah server. Sistem kemudian
+                membuat peringatan agar administrator dapat memeriksa
+                apakah aktivitas tersebut merupakan pemindaian port
+                atau kegiatan lain yang sah.
+            </p>
+
+            <h3>Apa itu IPS?</h3>
+
+            <p>
+                IPS merupakan singkatan dari <strong>Intrusion Prevention
+                System</strong>. IPS adalah sistem keamanan yang memantau
+                lalu lintas atau aktivitas dan dapat mengambil tindakan
+                untuk menghentikan aktivitas yang dianggap berbahaya
+                sesuai aturan yang dikonfigurasi.
+            </p>
+
+            <p>
+                Tindakan IPS dapat berupa menjatuhkan paket, memblokir
+                koneksi, atau menjalankan tindakan lain yang didukung
+                sistem. Tindakan nyata bergantung pada perangkat,
+                mode operasi, serta kebijakan administrator.
+            </p>
+
+            <div class="info-box">
+                <strong>Ingat perbedaannya:</strong>
+                IDS berfokus pada deteksi dan pemberian peringatan,
+                sedangkan IPS dapat melakukan pencegahan secara aktif.
+                IDS tidak selalu hanya pasif dan IPS tidak selalu
+                otomatis memblokir semua aktivitas mencurigakan;
+                semuanya bergantung pada konfigurasi.
+            </div>
+
+            <h3>Mengapa IDS dan IPS dibutuhkan?</h3>
+
+            <p>
+                Jaringan komputer menghadapi berbagai risiko, misalnya
+                percobaan login berulang, pemindaian port, eksploitasi
+                celah keamanan, dan lalu lintas yang tidak sesuai
+                kebijakan. Firewall membantu membatasi komunikasi
+                berdasarkan aturan, sedangkan IDS/IPS dapat menambahkan
+                kemampuan untuk menganalisis pola aktivitas.
+            </p>
+
+            <p>
+                IDS/IPS bukan pengganti semua sistem keamanan lainnya.
+                Sistem ini biasanya digunakan bersama firewall,
+                pembaruan perangkat lunak, pengelolaan akun,
+                pencadangan, antivirus atau EDR, serta pemantauan log.
+            </p>
+        </section>
+
+        <section class="lesson-section" id="perbedaan">
+            <div class="section-label">Bagian 02</div>
+            <h2>Perbedaan IDS dan IPS</h2>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Aspek</th>
+                            <th>IDS</th>
+                            <th>IPS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Nama lengkap</td>
+                            <td>Intrusion Detection System</td>
+                            <td>Intrusion Prevention System</td>
+                        </tr>
+                        <tr>
+                            <td>Tujuan utama</td>
+                            <td>Mendeteksi aktivitas mencurigakan</td>
+                            <td>Mendeteksi dan mengambil tindakan pencegahan</td>
+                        </tr>
+                        <tr>
+                            <td>Respons umum</td>
+                            <td>Membuat peringatan dan log</td>
+                            <td>Dapat menjatuhkan paket atau memblokir koneksi</td>
+                        </tr>
+                        <tr>
+                            <td>Penempatan jaringan</td>
+                            <td>
+                                Dapat menerima salinan lalu lintas melalui
+                                TAP atau port mirror.
+                            </td>
+                            <td>
+                                Umumnya ditempatkan inline agar dapat
+                                memengaruhi lalu lintas yang melewatinya.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Dampak kesalahan deteksi</td>
+                            <td>
+                                Peringatan palsu dapat menambah beban
+                                pemeriksaan administrator.
+                            </td>
+                            <td>
+                                Pemblokiran yang salah dapat mengganggu
+                                komunikasi yang sebenarnya sah.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Contoh hasil</td>
+                            <td>Peringatan percobaan pemindaian port</td>
+                            <td>Memblokir lalu lintas yang cocok dengan aturan</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Ilustrasi IDS</h3>
+
+            <div class="diagram">
+                <strong>IDS memantau dan memberikan peringatan</strong>
+
+                <div class="diagram-flow">
+                    <div class="diagram-node">
+                        💻 Perangkat
+                        <small>Pengirim lalu lintas</small>
+                    </div>
+
+                    <div class="diagram-arrow">→</div>
+
+                    <div class="diagram-node">
+                        🌐 Jaringan
+                        <small>Lalu lintas berjalan</small>
+                    </div>
+
+                    <div class="diagram-arrow">→</div>
+
+                    <div class="diagram-node">
+                        🖥️ Server
+                        <small>Tujuan komunikasi</small>
+                    </div>
+                </div>
+
+                <div class="diagram-flow">
+                    <div class="diagram-node">
+                        🔎 IDS
+                        <small>Menganalisis salinan lalu lintas</small>
+                    </div>
+
+                    <div class="diagram-arrow">→</div>
+
+                    <div class="diagram-node">
+                        🔔 Peringatan
+                        <small>Log untuk administrator</small>
+                    </div>
+                </div>
+
+                <p class="diagram-caption">
+                    Pada contoh ini IDS menerima salinan lalu lintas.
+                    IDS tidak otomatis berada di jalur utama komunikasi.
+                </p>
+            </div>
+
+            <h3>Ilustrasi IPS</h3>
+
+            <div class="diagram">
+                <strong>IPS dapat menghentikan lalu lintas berbahaya</strong>
+
+                <div class="diagram-flow">
+                    <div class="diagram-node">
+                        💻 Perangkat
+                        <small>Pengirim paket</small>
+                    </div>
+
+                    <div class="diagram-arrow">→</div>
+
+                    <div class="diagram-node">
+                        🛡️ IPS
+                        <small>Memeriksa lalu lintas</small>
+                    </div>
+
+                    <div class="diagram-arrow">→</div>
+
+                    <div class="diagram-node">
+                        🖥️ Server
+                        <small>Tujuan komunikasi</small>
+                    </div>
+                </div>
+
+                <p class="diagram-caption">
+                    Paket yang diizinkan diteruskan. Paket yang cocok
+                    dengan aturan pemblokiran dapat dijatuhkan.
+                </p>
+            </div>
+
+            <div class="success-box">
+                <strong>Contoh sederhana:</strong>
+                IDS seperti alarm yang memberi tahu penjaga ketika
+                menemukan gerakan mencurigakan. IPS seperti sistem
+                pengamanan yang selain mendeteksi, juga dapat
+                mengambil tindakan untuk menghentikan aktivitas
+                sesuai aturan yang berlaku.
+            </div>
+        </section>
+
+        <section class="lesson-section" id="fungsi">
+            <div class="section-label">Bagian 03</div>
+            <h2>Fungsi Utama IDS/IPS</h2>
+
+            <div class="grid-cards">
+                <article class="mini-card">
+                    <div class="card-icon">🔍</div>
+                    <h3>Pemantauan Lalu Lintas</h3>
+                    <p>
+                        Memeriksa aktivitas jaringan untuk menemukan
+                        pola yang sesuai dengan aturan deteksi.
+                    </p>
+                </article>
+
+                <article class="mini-card">
+                    <div class="card-icon">🚨</div>
+                    <h3>Pemberian Peringatan</h3>
+                    <p>
+                        Mengirim peringatan atau mencatat kejadian
+                        agar administrator dapat menindaklanjutinya.
+                    </p>
+                </article>
+
+                <article class="mini-card">
+                    <div class="card-icon">⛔</div>
+                    <h3>Pemblokiran Aktivitas</h3>
+                    <p>
+                        IPS dapat menjatuhkan paket atau memutus
+                        koneksi yang melanggar kebijakan.
+                    </p>
+                </article>
+
+                <article class="mini-card">
+                    <div class="card-icon">📊</div>
+                    <h3>Analisis Keamanan</h3>
+                    <p>
+                        Membantu tim keamanan memahami pola kejadian
+                        dan menyelidiki aktivitas yang tidak biasa.
+                    </p>
+                </article>
+            </div>
+
+            <h3>Manfaat untuk jaringan sekolah</h3>
+
+            <p>
+                Misalnya, laboratorium komputer sekolah memiliki server
+                pembelajaran dan beberapa komputer siswa. IDS dapat
+                membantu mendeteksi pola koneksi yang mencurigakan
+                menuju server.
+            </p>
+
+            <p>
+                Jika sekolah menerapkan IPS, aturan yang sesuai dapat
+                digunakan untuk memblokir lalu lintas tertentu sebelum
+                mencapai sistem yang dilindungi. Administrator harus
+                memastikan aturan tersebut tidak mengganggu aktivitas
+                pembelajaran yang sah.
+            </p>
+
+            <h3>Fungsi yang tidak boleh disalahartikan</h3>
+
+            <ul>
+                <li>
+                    IDS/IPS tidak menjamin bahwa semua serangan
+                    akan terdeteksi.
+                </li>
+                <li>
+                    Peringatan IDS belum tentu berarti serangan
+                    benar-benar berhasil.
+                </li>
+                <li>
+                    Pemblokiran IPS tidak menggantikan kebutuhan
+                    untuk memperbaiki celah keamanan.
+                </li>
+                <li>
+                    Log yang tersimpan perlu dianalisis untuk
+                    menentukan tindakan lanjutan.
+                </li>
+            </ul>
+        </section>
+
+        <section class="lesson-section" id="cara-kerja">
+            <div class="section-label">Bagian 04</div>
+            <h2>Cara Kerja IDS dan IPS</h2>
+
+            <h3>Proses umum pendeteksian</h3>
+
+            <ol>
+                <li>
+                    <strong>Mengumpulkan data.</strong>
+                    Sistem memperoleh paket jaringan, metadata,
+                    atau aktivitas host sesuai jenis sensor.
+                </li>
+                <li>
+                    <strong>Menganalisis aktivitas.</strong>
+                    Data diperiksa berdasarkan aturan, pola serangan,
+                    atau model perilaku.
+                </li>
+                <li>
+                    <strong>Membandingkan dengan kebijakan.</strong>
+                    Sistem mencari kecocokan dengan tanda serangan
+                    atau aktivitas yang dianggap tidak normal.
+                </li>
+                <li>
+                    <strong>Menentukan hasil.</strong>
+                    Sistem menilai apakah aktivitas perlu dicatat,
+                    diberi peringatan, atau ditindaklanjuti.
+                </li>
+                <li>
+                    <strong>Membuat log atau tindakan.</strong>
+                    IDS biasanya mencatat dan memberi peringatan.
+                    IPS dapat memblokir lalu lintas sesuai aturan.
+                </li>
+                <li>
+                    <strong>Evaluasi oleh administrator.</strong>
+                    Peringatan diperiksa untuk menentukan apakah
+                    terjadi ancaman nyata atau kesalahan deteksi.
+                </li>
+            </ol>
+
+            <div class="diagram">
+                <strong>Alur kerja deteksi intrusi</strong>
+
+                <div class="diagram-flow">
+                    <div class="diagram-node">
+                        Data
+                        <small>Paket atau aktivitas</small>
+                    </div>
+
+                    <div class="diagram-arrow">→</div>
+
+                    <div class="diagram-node">
+                        Analisis
+                        <small>Aturan dan pola</small>
+                    </div>
+
+                    <div class="diagram-arrow">→</div>
+
+                    <div class="diagram-node">
+                        Deteksi
+                        <small>Evaluasi kejadian</small>
+                    </div>
+                </div>
+
+                <div class="diagram-flow">
+                    <div class="diagram-node">
+                        IDS
+                        <small>Log dan peringatan</small>
+                    </div>
+
+                    <div class="diagram-arrow">atau</div>
+
+                    <div class="diagram-node">
+                        IPS
+                        <small>Tindakan sesuai kebijakan</small>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Contoh proses deteksi</h3>
+
+            <p>
+                Sebuah komputer mengirim banyak permintaan koneksi
+                menuju sejumlah port pada server dalam waktu singkat.
+                Sensor IDS memeriksa pola tersebut dan menemukan
+                kecocokan dengan aturan pemindaian port.
+            </p>
+
+            <p>
+                IDS kemudian menghasilkan peringatan. Administrator
+                memeriksa alamat sumber, waktu kejadian, dan konteks
+                aktivitas untuk mengetahui apakah pemindaian tersebut
+                merupakan pengujian yang sah atau aktivitas yang tidak
+                diizinkan.
+            </p>
+
+            <p>
+                Pada sistem IPS yang dikonfigurasi untuk memblokir
+                aktivitas tersebut, lalu lintas yang cocok dengan
+                aturan dapat dijatuhkan. Namun, hasil akhirnya tetap
+                bergantung pada aturan, kualitas deteksi, dan mode operasi.
+            </p>
+        </section>
+
+        <section class="lesson-section" id="jenis">
+            <div class="section-label">Bagian 05</div>
+            <h2>Jenis-Jenis IDS dan IPS</h2>
+
+            <h3>1. NIDS — Network Intrusion Detection System</h3>
+
+            <p>
+                NIDS memantau lalu lintas jaringan untuk mencari
+                indikasi aktivitas mencurigakan. Sensor dapat
+                ditempatkan pada titik jaringan yang strategis
+                dan menerima salinan paket dari TAP atau port mirror.
+            </p>
+
+            <p>
+                Contoh: NIDS memantau lalu lintas menuju server
+                sekolah untuk mendeteksi pola pemindaian port
+                atau permintaan yang sesuai dengan aturan serangan.
+            </p>
+
+            <h3>2. HIDS — Host Intrusion Detection System</h3>
+
+            <p>
+                HIDS berjalan pada atau memantau sistem host tertentu.
+                Data yang dianalisis dapat mencakup log sistem,
+                perubahan berkas, aktivitas proses, atau indikator
+                lain sesuai kemampuan produknya.
+            </p>
+
+            <p>
+                Contoh: sistem mendeteksi perubahan tidak biasa
+                pada berkas konfigurasi server yang seharusnya
+                hanya dapat diubah oleh administrator.
+            </p>
+
+            <h3>3. NIPS — Network Intrusion Prevention System</h3>
+
+            <p>
+                NIPS bekerja pada jalur lalu lintas jaringan sehingga
+                dapat mengambil tindakan terhadap paket yang melanggar
+                aturan. Implementasinya sering ditempatkan secara inline.
+            </p>
+
+            <h3>4. HIPS — Host Intrusion Prevention System</h3>
+
+            <p>
+                HIPS berfokus pada pencegahan aktivitas berbahaya
+                di perangkat atau host. Bergantung pada produknya,
+                sistem dapat memblokir proses atau aktivitas yang
+                melanggar kebijakan keamanan lokal.
+            </p>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Jenis</th>
+                            <th>Area pemantauan</th>
+                            <th>Contoh penggunaan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>NIDS</td>
+                            <td>Lalu lintas jaringan</td>
+                            <td>Mendeteksi pemindaian port di jaringan</td>
+                        </tr>
+                        <tr>
+                            <td>HIDS</td>
+                            <td>Aktivitas host</td>
+                            <td>Memantau perubahan berkas sistem</td>
+                        </tr>
+                        <tr>
+                            <td>NIPS</td>
+                            <td>Lalu lintas jaringan secara inline</td>
+                            <td>Menjatuhkan paket yang melanggar aturan</td>
+                        </tr>
+                        <tr>
+                            <td>HIPS</td>
+                            <td>Aktivitas pada host</td>
+                            <td>Mencegah proses yang dilarang</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="lesson-section" id="metode">
+            <div class="section-label">Bagian 06</div>
+            <h2>Metode Deteksi IDS/IPS</h2>
+
+            <h3>1. Signature-based detection</h3>
+
+            <p>
+                Metode berbasis signature membandingkan aktivitas
+                dengan pola atau tanda ancaman yang telah diketahui.
+                Ketika data cocok dengan signature tertentu, sistem
+                dapat menghasilkan peringatan atau mengambil tindakan
+                sesuai konfigurasi.
+            </p>
+
+            <p>
+                Kelebihannya adalah efektif untuk pola ancaman
+                yang telah dikenal dan memiliki aturan yang sesuai.
+                Kekurangannya, ancaman baru atau pola yang belum
+                dikenali dapat tidak terdeteksi oleh signature tersebut.
+            </p>
+
+            <h3>2. Anomaly-based detection</h3>
+
+            <p>
+                Metode berbasis anomali membandingkan aktivitas
+                dengan gambaran perilaku normal atau model yang
+                telah dibangun. Aktivitas yang menyimpang dapat
+                ditandai untuk pemeriksaan.
+            </p>
+
+            <p>
+                Kelebihannya adalah dapat membantu menemukan
+                perilaku yang belum mempunyai signature khusus.
+                Kekurangannya, perubahan aktivitas yang sebenarnya
+                sah juga dapat memicu peringatan palsu.
+            </p>
+
+            <h3>3. Stateful protocol analysis</h3>
+
+            <p>
+                Metode ini memeriksa aktivitas berdasarkan
+                pemahaman tentang protokol dan keadaan komunikasinya.
+                Sistem membandingkan komunikasi yang diamati dengan
+                perilaku protokol yang diharapkan.
+            </p>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Metode</th>
+                            <th>Dasar pemeriksaan</th>
+                            <th>Tantangan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Signature-based</td>
+                            <td>Pola ancaman yang diketahui</td>
+                            <td>Perlu aturan atau signature yang sesuai</td>
+                        </tr>
+                        <tr>
+                            <td>Anomaly-based</td>
+                            <td>Penyimpangan dari perilaku normal</td>
+                            <td>Dapat menghasilkan peringatan palsu</td>
+                        </tr>
+                        <tr>
+                            <td>Stateful protocol analysis</td>
+                            <td>Keadaan dan perilaku protokol</td>
+                            <td>Memerlukan pemahaman protokol dan sumber daya</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="info-box">
+                Sistem modern dapat menggabungkan beberapa metode.
+                Kemampuan aktual bergantung pada produk, aturan,
+                konfigurasi, dan data yang dapat diamati oleh sensor.
+            </div>
+        </section>
+
+        <section class="lesson-section" id="ancaman">
+            <div class="section-label">Bagian 07</div>
+            <h2>Contoh Ancaman Jaringan</h2>
+
+            <h3>1. Port scanning</h3>
+
+            <p>
+                Port scanning adalah aktivitas memeriksa port pada
+                sebuah host untuk mengetahui layanan jaringan yang
+                dapat dijangkau. Aktivitas ini dapat digunakan untuk
+                administrasi yang sah, tetapi juga dapat menjadi
+                tahap awal pencarian target oleh penyerang.
+            </p>
+
+            <h3>2. Brute-force login</h3>
+
+            <p>
+                Brute-force adalah percobaan banyak kombinasi
+                kredensial untuk memperoleh akses. Sistem keamanan
+                dapat membantu mengidentifikasi pola percobaan
+                berulang, tetapi perlindungan juga membutuhkan
+                kata sandi kuat, pembatasan percobaan, dan autentikasi
+                multifaktor jika tersedia.
+            </p>
+
+            <h3>3. Eksploitasi kerentanan</h3>
+
+            <p>
+                Penyerang dapat mencoba memanfaatkan kelemahan
+                pada perangkat lunak atau layanan jaringan.
+                IDS/IPS dapat mendeteksi pola tertentu jika
+                tersedia aturan yang relevan, tetapi pembaruan
+                perangkat lunak tetap diperlukan.
+            </p>
+
+            <h3>4. Denial of Service</h3>
+
+            <p>
+                Serangan Denial of Service (DoS) bertujuan
+                mengganggu ketersediaan layanan. IDS/IPS dapat
+                membantu mendeteksi pola lalu lintas tertentu,
+                tetapi serangan berskala besar mungkin membutuhkan
+                perlindungan tambahan dari firewall, penyedia
+                jaringan, atau layanan mitigasi khusus.
+            </p>
+
+            <h3>5. Lalu lintas yang tidak sesuai kebijakan</h3>
+
+            <p>
+                Sistem dapat menandai komunikasi yang melanggar
+                aturan organisasi, misalnya akses ke layanan
+                yang tidak diizinkan atau pola protokol yang
+                tidak sesuai dengan kebijakan jaringan.
+            </p>
+
+            <div class="warning-box">
+                Tidak semua aktivitas yang mencurigakan adalah
+                serangan. Administrator perlu memeriksa konteks,
+                alamat sumber, waktu, aturan yang cocok, serta
+                kemungkinan aktivitas pengujian yang telah diizinkan.
+            </div>
+        </section>
+
+        <section class="lesson-section" id="penempatan">
+            <div class="section-label">Bagian 08</div>
+            <h2>Penempatan IDS/IPS di Jaringan</h2>
+
+            <h3>Penempatan IDS</h3>
+
+            <p>
+                IDS jaringan dapat ditempatkan pada titik yang
+                menerima salinan lalu lintas dari switch atau
+                TAP jaringan. Penempatan harus dipilih agar sensor
+                dapat melihat lalu lintas yang memang ingin dipantau.
+            </p>
+
+            <div class="diagram">
+                <strong>Contoh penempatan NIDS</strong>
+
+                <div class="diagram-flow">
+                    <div class="diagram-node">
+                        💻 Klien
+                        <small>Komputer</small>
+                    </div>
+
+                    <div class="diagram-arrow">→</div>
+
+                    <div class="diagram-node">
+                        🔀 Switch
+                        <small>Port mirror</small>
+                    </div>
+
+                    <div class="diagram-arrow">→</div>
+
+                    <div class="diagram-node">
+                        🖥️ Server
+                        <small>Tujuan</small>
+                    </div>
+                </div>
+
+                <div class="diagram-flow">
+                    <div class="diagram-node">
+                        🔎 Sensor IDS
+                        <small>Menerima salinan lalu lintas</small>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Penempatan IPS</h3>
+
+            <p>
+                IPS jaringan umumnya ditempatkan secara inline,
+                yaitu pada jalur komunikasi yang ingin dilindungi.
+                Paket melewati IPS sebelum diteruskan ke tujuan.
+            </p>
+
+            <div class="diagram">
+                <strong>Contoh penempatan NIPS</strong>
+
+                <div class="diagram-flow">
+                    <div class="diagram-node">
+                        🌐 Internet
+                        <small>Jaringan luar</small>
+                    </div>
+
+                    <div class="diagram-arrow">→</div>
+
+                    <div class="diagram-node">
+                        🛡️ IPS
+                        <small>Memeriksa paket</small>
+                    </div>
+
+                    <div class="diagram-arrow">→</div>
+
+                    <div class="diagram-node">
+                        🔀 Switch
+                        <small>Jaringan internal</small>
+                    </div>
+
+                    <div class="diagram-arrow">→</div>
+
+                    <div class="diagram-node">
+                        🖥️ Server
+                        <small>Sistem terlindungi</small>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Hal yang perlu dipertimbangkan</h3>
+
+            <ul>
+                <li>
+                    Kapasitas perangkat harus cukup untuk menangani
+                    volume lalu lintas yang dipantau.
+                </li>
+                <li>
+                    Sensor perlu ditempatkan pada jalur atau titik
+                    yang sesuai dengan tujuan pemantauan.
+                </li>
+                <li>
+                    Perlu ada prosedur ketika perangkat IPS gagal
+                    atau tidak tersedia.
+                </li>
+                <li>
+                    Aturan perlu diuji untuk mengurangi pemblokiran
+                    terhadap komunikasi yang sah.
+                </li>
+                <li>
+                    Waktu sistem, penyimpanan log, dan pengiriman
+                    peringatan harus dikelola dengan baik.
+                </li>
+            </ul>
+        </section>
+
+        <section class="lesson-section" id="kelebihan">
+            <div class="section-label">Bagian 09</div>
+            <h2>Kelebihan IDS/IPS</h2>
+
+            <h3>Kelebihan IDS</h3>
+
+            <ul>
+                <li>
+                    Membantu menemukan aktivitas yang mencurigakan
+                    berdasarkan aturan atau metode deteksi.
+                </li>
+                <li>
+                    Menyediakan log dan peringatan untuk membantu
+                    proses investigasi keamanan.
+                </li>
+                <li>
+                    Dalam penempatan pasif, IDS dapat memantau
+                    salinan lalu lintas tanpa harus menjadi
+                    perantara semua paket.
+                </li>
+                <li>
+                    Membantu administrator memahami pola
+                    aktivitas pada jaringan.
+                </li>
+            </ul>
+
+            <h3>Kelebihan IPS</h3>
+
+            <ul>
+                <li>
+                    Dapat mengambil tindakan terhadap lalu lintas
+                    yang cocok dengan aturan pemblokiran.
+                </li>
+                <li>
+                    Membantu mengurangi peluang paket berbahaya
+                    mencapai sistem yang dilindungi.
+                </li>
+                <li>
+                    Dapat memberikan respons otomatis tanpa
+                    menunggu administrator memblokir setiap
+                    kejadian secara manual.
+                </li>
+                <li>
+                    Membantu menerapkan kebijakan keamanan
+                    secara konsisten pada jalur jaringan.
+                </li>
+            </ul>
+        </section>
+
+        <section class="lesson-section" id="kekurangan">
+            <div class="section-label">Bagian 10</div>
+            <h2>Kekurangan IDS/IPS</h2>
+
+            <h3>1. False positive</h3>
+
+            <p>
+                False positive terjadi ketika aktivitas yang
+                sebenarnya sah ditandai sebagai ancaman.
+                Contohnya, pemindaian oleh administrator yang
+                telah mendapat izin dapat memicu peringatan.
+            </p>
+
+            <h3>2. False negative</h3>
+
+            <p>
+                False negative terjadi ketika aktivitas berbahaya
+                tidak terdeteksi. Hal ini dapat terjadi karena
+                aturan tidak tersedia, lalu lintas tidak terlihat
+                oleh sensor, atau teknik serangan tidak cocok
+                dengan kemampuan deteksi.
+            </p>
+
+            <h3>3. Kebutuhan sumber daya</h3>
+
+            <p>
+                Analisis paket dalam jumlah besar membutuhkan
+                kapasitas pemrosesan dan penyimpanan. Sistem
+                yang tidak memadai dapat mengalami kehilangan
+                paket atau keterlambatan analisis.
+            </p>
+
+            <h3>4. Kesalahan konfigurasi</h3>
+
+            <p>
+                Aturan yang terlalu ketat dapat mengganggu
+                layanan yang sah. Sebaliknya, aturan yang terlalu
+                longgar dapat melewatkan aktivitas yang seharusnya
+                diperiksa atau diblokir.
+            </p>
+
+            <h3>5. Tidak menggantikan keamanan menyeluruh</h3>
+
+            <p>
+                IDS/IPS tidak menggantikan pembaruan keamanan,
+                pengelolaan akun, pencadangan, segmentasi jaringan,
+                perlindungan endpoint, dan edukasi pengguna.
+            </p>
+
+            <div class="info-box">
+                Penggunaan yang baik memerlukan pemantauan,
+                pembaruan aturan, evaluasi peringatan, dan
+                pengujian berkala.
+            </div>
+        </section>
+
+        <section class="lesson-section" id="suricata">
+            <div class="section-label">Bagian 11</div>
+            <h2>Contoh IDS/IPS Menggunakan Suricata</h2>
+
+            <p>
+                Suricata adalah mesin analisis keamanan jaringan
+                yang dapat digunakan untuk mendeteksi ancaman.
+                Suricata mendukung pemantauan lalu lintas,
+                aturan deteksi, dan mode pencegahan inline
+                sesuai dukungan serta konfigurasi sistem.
+            </p>
+
+            <div class="warning-box">
+                Lakukan latihan hanya pada komputer dan jaringan
+                yang kamu miliki atau yang penggunaannya telah
+                mendapat izin. Contoh berikut merupakan dasar
+                pembelajaran dan belum menjadi konfigurasi produksi.
+            </div>
+
+            <h3>Langkah 1: Instalasi di Debian atau Ubuntu</h3>
+
+            <p>
+                Pada sistem yang menyediakan paket Suricata
+                melalui repositori yang digunakan, jalankan:
+            </p>
+
+            <pre><code>sudo apt update
+sudo apt install suricata</code></pre>
+
+            <p>
+                Nama paket, versi, dan sumber pembaruan dapat
+                berbeda menurut distribusi. Periksa dokumentasi
+                distribusi sebelum menerapkan pada server penting.
+            </p>
+
+            <h3>Langkah 2: Periksa versi dan status layanan</h3>
+
+            <pre><code>suricata --build-info
+sudo systemctl status suricata</code></pre>
+
+            <p>
+                Perintah pertama menampilkan informasi build.
+                Perintah kedua memeriksa status layanan jika
+                instalasi menyediakan unit systemd.
+            </p>
+
+            <h3>Langkah 3: Periksa nama antarmuka jaringan</h3>
+
+            <pre><code>ip address</code></pre>
+
+            <p>
+                Perintah tersebut menampilkan antarmuka jaringan
+                dan alamat IP. Pilih antarmuka yang benar untuk
+                lingkungan laboratorium.
+            </p>
+
+            <h3>Langkah 4: Jalankan pemeriksaan konfigurasi</h3>
+
+            <pre><code>sudo suricata -T -c /etc/suricata/suricata.yaml</code></pre>
+
+            <p>
+                Opsi <code>-T</code> digunakan untuk menguji
+                konfigurasi. Jika pemeriksaan gagal, baca pesan
+                kesalahan dan perbaiki konfigurasi sebelum
+                melanjutkan.
+            </p>
+
+            <h3>Langkah 5: Perbarui aturan</h3>
+
+            <pre><code>sudo suricata-update</code></pre>
+
+            <p>
+                Perintah tersebut digunakan untuk memperbarui
+                aturan melalui mekanisme yang didukung instalasi.
+                Pastikan sumber aturan yang digunakan tepercaya
+                dan sesuai kebutuhan.
+            </p>
+
+            <h3>Langkah 6: Amati log</h3>
+
+            <pre><code>sudo tail -f /var/log/suricata/fast.log</code></pre>
+
+            <p>
+                Jika jalur log dan format tersebut tersedia
+                pada konfigurasi, perintah ini menampilkan
+                baris log terbaru secara langsung. Lokasi dan
+                nama berkas log dapat berbeda menurut konfigurasi.
+            </p>
+
+            <h3>Langkah 7: Periksa log dalam format JSON</h3>
+
+            <pre><code>sudo tail -f /var/log/suricata/eve.json</code></pre>
+
+            <p>
+                Berkas EVE JSON dapat memuat berbagai jenis
+                peristiwa, misalnya alert dan informasi protokol,
+                sesuai konfigurasi. Periksa izin akses dan
+                jangan membagikan log yang mengandung data sensitif.
+            </p>
+
+            <h3>Langkah 8: Contoh aturan deteksi laboratorium</h3>
+
+            <p>
+                Contoh berikut membuat aturan sederhana untuk
+                menghasilkan alert ketika paket ICMP melewati
+                sensor. Aturan ini hanya untuk demonstrasi
+                dan bukan indikator serangan.
+            </p>
+
+            <pre><code>alert icmp any any -> any any (msg:"LAB ICMP terdeteksi"; sid:1000001; rev:1;)</code></pre>
+
+            <p>
+                Simpan aturan tersebut dalam berkas aturan lokal
+                yang digunakan konfigurasi Suricata. Pastikan
+                berkas aturan lokal dimuat oleh konfigurasi,
+                kemudian uji konfigurasi sebelum memulai ulang
+                atau menjalankan ulang Suricata.
+            </p>
+
+            <h3>Langkah 9: Uji aturan pada jaringan sendiri</h3>
+
+            <p>
+                Dari perangkat laboratorium yang berada pada
+                jalur pemantauan, kirim paket ICMP ke alamat
+                yang kamu kelola. Jika sensor dapat melihat
+                paket tersebut dan aturan telah dimuat,
+                alert laboratorium dapat muncul di log.
+            </p>
+
+            <pre><code>ping ALAMAT_IP_LABORATORIUM</code></pre>
+
+            <p>
+                Ganti <code>ALAMAT_IP_LABORATORIUM</code> dengan
+                alamat yang benar-benar digunakan pada lab.
+                Perlu diingat bahwa sensor yang tidak berada
+                pada jalur paket mungkin tidak melihat lalu
+                lintas unicast secara langsung.
+            </p>
+
+            <h3>Langkah 10: Memahami mode IDS dan IPS</h3>
+
+            <p>
+                Mode IDS dapat memantau lalu lintas dan menghasilkan
+                alert tanpa memblokir paket. Mode IPS memerlukan
+                jalur penerapan yang mampu menjatuhkan atau
+                memengaruhi paket, serta konfigurasi yang sesuai.
+            </p>
+
+            <p>
+                Mengaktifkan Suricata saja tidak otomatis menjadikan
+                komputer sebagai IPS inline. Integrasi jaringan,
+                aturan, hak akses, dan pengujian perlu dilakukan
+                secara khusus.
+            </p>
+
+            <div class="warning-box">
+                Jangan langsung menerapkan aturan pemblokiran
+                pada jaringan produksi. Uji terlebih dahulu
+                di laboratorium, amati false positive, dan
+                siapkan cara pemulihan jika koneksi terganggu.
+            </div>
+        </section>
+
+        <section class="lesson-section" id="keamanan">
+            <div class="section-label">Bagian 12</div>
+            <h2>Praktik Keamanan yang Baik</h2>
+
+            <h3>Untuk administrator jaringan</h3>
+
+            <ul>
+                <li>
+                    Perbarui sistem operasi, perangkat jaringan,
+                    mesin deteksi, dan aturan keamanan secara teratur.
+                </li>
+                <li>
+                    Gunakan sumber aturan yang tepercaya dan
+                    pahami fungsi setiap aturan sebelum mengaktifkannya.
+                </li>
+                <li>
+                    Tentukan titik pemantauan berdasarkan aset
+                    yang perlu dilindungi dan jalur lalu lintasnya.
+                </li>
+                <li>
+                    Batasi akses administratif dan lindungi
+                    berkas konfigurasi serta log.
+                </li>
+                <li>
+                    Sinkronkan waktu sistem agar korelasi
+                    peristiwa lebih mudah dilakukan.
+                </li>
+                <li>
+                    Tinjau peringatan dan dokumentasikan
+                    kejadian yang memerlukan tindak lanjut.
+                </li>
+                <li>
+                    Siapkan prosedur pemulihan apabila IPS
+                    memblokir lalu lintas yang sah.
+                </li>
+            </ul>
+
+            <h3>Langkah ketika menerima peringatan</h3>
+
+            <ol>
+                <li>
+                    Baca jenis alert, waktu, alamat sumber,
+                    alamat tujuan, dan aturan yang cocok.
+                </li>
+                <li>
+                    Periksa apakah aktivitas tersebut dikenal
+                    dan telah diizinkan oleh administrator.
+                </li>
+                <li>
+                    Korelasikan alert dengan log firewall,
+                    server, dan perangkat terkait.
+                </li>
+                <li>
+                    Tentukan apakah perlu tindakan lebih lanjut,
+                    seperti pembatasan akses atau investigasi.
+                </li>
+                <li>
+                    Dokumentasikan hasil pemeriksaan agar
+                    aturan dapat dievaluasi kembali.
+                </li>
+            </ol>
+
+            <div class="success-box">
+                <strong>Tujuan akhirnya:</strong>
+                bukan sekadar menghasilkan banyak peringatan,
+                melainkan membantu administrator mengenali
+                kejadian yang relevan dan meresponsnya secara tepat.
+            </div>
+        </section>
+
+        <section class="lesson-section" id="rangkuman">
+            <div class="section-label">Bagian 13</div>
+            <h2>Rangkuman Materi IDS/IPS</h2>
+
+            <ul>
+                <li>
+                    IDS adalah Intrusion Detection System,
+                    sistem untuk mendeteksi aktivitas mencurigakan.
+                </li>
+                <li>
+                    IPS adalah Intrusion Prevention System,
+                    sistem yang dapat mendeteksi dan mengambil
+                    tindakan pencegahan sesuai kebijakan.
+                </li>
+                <li>
+                    NIDS dan NIPS berfokus pada lalu lintas jaringan,
+                    sedangkan HIDS dan HIPS berfokus pada host.
+                </li>
+                <li>
+                    Metode deteksi dapat mencakup signature-based,
+                    anomaly-based, dan stateful protocol analysis.
+                </li>
+                <li>
+                    False positive adalah aktivitas sah yang
+                    salah ditandai sebagai ancaman.
+                </li>
+                <li>
+                    False negative adalah ancaman yang tidak
+                    terdeteksi oleh sistem.
+                </li>
+                <li>
+                    IDS/IPS sebaiknya digunakan bersama firewall,
+                    pembaruan perangkat lunak, pengelolaan akun,
+                    dan kebijakan keamanan lainnya.
+                </li>
+                <li>
+                    Suricata merupakan salah satu contoh mesin
+                    keamanan jaringan yang dapat digunakan
+                    untuk latihan deteksi dan pencegahan.
+                </li>
+            </ul>
+
+            <div class="success-box">
+                <strong>Target belajar:</strong>
+                Setelah mempelajari materi ini, kamu diharapkan
+                dapat menjelaskan IDS dan IPS, membedakan
+                keduanya, mengenali jenis serta metode deteksi,
+                dan memahami gambaran dasar penggunaan Suricata.
+            </div>
+        </section>
+
+        <section class="lesson-section" id="quiz">
+            <div class="section-label">Bagian 14</div>
+            <h2>Latihan Soal IDS/IPS</h2>
+
+            <p>
+                Jawablah 20 soal pilihan ganda berikut.
+                Pilih satu jawaban yang paling tepat pada setiap soal.
+                Setelah selesai, tekan tombol periksa jawaban
+                untuk melihat nilai dan pembahasannya.
+            </p>
+
+            <div class="progress-container">
+                <div id="progressText">0 dari 20 soal dijawab</div>
+                <div class="progress-track">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+            </div>
+
+            <form id="quizForm">
+
+                <div class="quiz-question" data-answer="b"
+                     data-explanation="IDS adalah Intrusion Detection System.">
+                    <h3>1. Apa kepanjangan IDS?</h3>
+                    <label class="quiz-option"><input type="radio" name="q1" value="a"> Internet Data Service</label>
+                    <label class="quiz-option"><input type="radio" name="q1" value="b"> Intrusion Detection System</label>
+                    <label class="quiz-option"><input type="radio" name="q1" value="c"> Internal Device Server</label>
+                    <label class="quiz-option"><input type="radio" name="q1" value="d"> Internet Distribution Software</label>
+                </div>
+
+                <div class="quiz-question" data-answer="c"
+                     data-explanation="IPS adalah Intrusion Prevention System.">
+                    <h3>2. Apa kepanjangan IPS?</h3>
+                    <label class="quiz-option"><input type="radio" name="q2" value="a"> Internal Protection Server</label>
+                    <label class="quiz-option"><input type="radio" name="q2" value="b"> Internet Packet Service</label>
+                    <label class="quiz-option"><input type="radio" name="q2" value="c"> Intrusion Prevention System</label>
+                    <label class="quiz-option"><input type="radio" name="q2" value="d"> Information Processing System</label>
+                </div>
+
+                <div class="quiz-question" data-answer="a"
+                     data-explanation="IDS berfokus pada deteksi serta pemberian peringatan dan pencatatan kejadian.">
+                    <h3>3. Apa fungsi utama IDS?</h3>
+                    <label class="quiz-option"><input type="radio" name="q3" value="a"> Mendeteksi aktivitas mencurigakan</label>
+                    <label class="quiz-option"><input type="radio" name="q3" value="b"> Menambah kapasitas RAM</label>
+                    <label class="quiz-option"><input type="radio" name="q3" value="c"> Mengganti sistem operasi</label>
+                    <label class="quiz-option"><input type="radio" name="q3" value="d"> Mempercepat monitor</label>
+                </div>
+
+                <div class="quiz-question" data-answer="d"
+                     data-explanation="IPS dapat memblokir paket atau koneksi sesuai aturan dan mode penerapannya.">
+                    <h3>4. Apa kemampuan penting IPS?</h3>
+                    <label class="quiz-option"><input type="radio" name="q4" value="a"> Mencetak dokumen</label>
+                    <label class="quiz-option"><input type="radio" name="q4" value="b"> Mengganti alamat MAC semua perangkat</label>
+                    <label class="quiz-option"><input type="radio" name="q4" value="c"> Menghapus semua malware secara otomatis</label>
+                    <label class="quiz-option"><input type="radio" name="q4" value="d"> Mengambil tindakan pencegahan terhadap lalu lintas tertentu</label>
+                </div>
+
+                <div class="quiz-question" data-answer="b"
+                     data-explanation="NIDS berfokus pada pemantauan lalu lintas jaringan.">
+                    <h3>5. Apa kepanjangan NIDS?</h3>
+                    <label class="quiz-option"><input type="radio" name="q5" value="a"> Network Internet Data Server</label>
+                    <label class="quiz-option"><input type="radio" name="q5" value="b"> Network Intrusion Detection System</label>
+                    <label class="quiz-option"><input type="radio" name="q5" value="c"> Network Internal Device Software</label>
+                    <label class="quiz-option"><input type="radio" name="q5" value="d"> Network Information Distribution Service</label>
+                </div>
+
+                <div class="quiz-question" data-answer="c"
+                     data-explanation="HIDS memantau aktivitas pada host, misalnya log atau perubahan berkas.">
+                    <h3>6. Sistem yang berfokus pada aktivitas host disebut...</h3>
+                    <label class="quiz-option"><input type="radio" name="q6" value="a"> NIDS</label>
+                    <label class="quiz-option"><input type="radio" name="q6" value="b"> NIPS</label>
+                    <label class="quiz-option"><input type="radio" name="q6" value="c"> HIDS</label>
+                    <label class="quiz-option"><input type="radio" name="q6" value="d"> VLAN</label>
+                </div>
+
+                <div class="quiz-question" data-answer="a"
+                     data-explanation="Signature-based detection mencari kecocokan dengan pola ancaman yang telah diketahui.">
+                    <h3>7. Metode yang menggunakan pola ancaman yang telah diketahui adalah...</h3>
+                    <label class="quiz-option"><input type="radio" name="q7" value="a"> Signature-based detection</label>
+                    <label class="quiz-option"><input type="radio" name="q7" value="b"> Penggantian perangkat</label>
+                    <label class="quiz-option"><input type="radio" name="q7" value="c"> Pengaturan wallpaper</label>
+                    <label class="quiz-option"><input type="radio" name="q7" value="d"> Pemformatan disk</label>
+                </div>
+
+                <div class="quiz-question" data-answer="d"
+                     data-explanation="Anomaly-based detection mencari penyimpangan dari perilaku normal atau model yang digunakan.">
+                    <h3>8. Apa yang dicari anomaly-based detection?</h3>
+                    <label class="quiz-option"><input type="radio" name="q8" value="a"> Ukuran monitor</label>
+                    <label class="quiz-option"><input type="radio" name="q8" value="b"> Jenis keyboard</label>
+                    <label class="quiz-option"><input type="radio" name="q8" value="c"> Nama folder pengguna</label>
+                    <label class="quiz-option"><input type="radio" name="q8" value="d"> Penyimpangan dari perilaku normal</label>
+                </div>
+
+                <div class="quiz-question" data-answer="b"
+                     data-explanation="False positive adalah aktivitas sah yang salah ditandai sebagai ancaman.">
+                    <h3>9. Apa arti false positive?</h3>
+                    <label class="quiz-option"><input type="radio" name="q9" value="a"> Ancaman selalu berhasil</label>
+                    <label class="quiz-option"><input type="radio" name="q9" value="b"> Aktivitas sah salah ditandai sebagai ancaman</label>
+                    <label class="quiz-option"><input type="radio" name="q9" value="c"> Sistem selalu mati</label>
+                    <label class="quiz-option"><input type="radio" name="q9" value="d"> Tidak ada data yang dikumpulkan</label>
+                </div>
+
+                <div class="quiz-question" data-answer="c"
+                     data-explanation="False negative adalah ancaman yang tidak berhasil dideteksi.">
+                    <h3>10. Apa arti false negative?</h3>
+                    <label class="quiz-option"><input type="radio" name="q10" value="a"> Komputer terlalu cepat</label>
+                    <label class="quiz-option"><input type="radio" name="q10" value="b"> Aktivitas sah selalu diblokir</label>
+                    <label class="quiz-option"><input type="radio" name="q10" value="c"> Ancaman tidak terdeteksi</label>
+                    <label class="quiz-option"><input type="radio" name="q10" value="d"> Log berhasil dicadangkan</label>
+                </div>
+
+                <div class="quiz-question" data-answer="a"
+                     data-explanation="IPS biasanya ditempatkan inline agar dapat memengaruhi paket yang melewatinya.">
+                    <h3>11. Di mana NIPS umumnya ditempatkan agar dapat memblokir paket?</h3>
+                    <label class="quiz-option"><input type="radio" name="q11" value="a"> Secara inline pada jalur lalu lintas</label>
+                    <label class="quiz-option"><input type="radio" name="q11" value="b"> Di dalam monitor</label>
+                    <label class="quiz-option"><input type="radio" name="q11" value="c"> Di dalam keyboard</label>
+                    <label class="quiz-option"><input type="radio" name="q11" value="d"> Hanya di folder dokumen</label>
+                </div>
+
+                <div class="quiz-question" data-answer="d"
+                     data-explanation="IDS dapat menerima salinan lalu lintas dari TAP atau port mirror untuk dianalisis.">
+                    <h3>12. Bagaimana IDS pasif dapat menerima lalu lintas untuk dianalisis?</h3>
+                    <label class="quiz-option"><input type="radio" name="q12" value="a"> Dengan mematikan switch</label>
+                    <label class="quiz-option"><input type="radio" name="q12" value="b"> Dengan menghapus alamat IP</label>
+                    <label class="quiz-option"><input type="radio" name="q12" value="c"> Dengan mengganti layar komputer</label>
+                    <label class="quiz-option"><input type="radio" name="q12" value="d"> Dengan menerima salinan paket melalui TAP atau port mirror</label>
+                </div>
+
+                <div class="quiz-question" data-answer="b"
+                     data-explanation="Port scanning memeriksa port untuk mengetahui layanan yang dapat dijangkau.">
+                    <h3>13. Apa yang dimaksud port scanning?</h3>
+                    <label class="quiz-option"><input type="radio" name="q13" value="a"> Mengganti kabel jaringan</label>
+                    <label class="quiz-option"><input type="radio" name="q13" value="b"> Memeriksa port pada host untuk mengetahui layanan yang dapat dijangkau</label>
+                    <label class="quiz-option"><input type="radio" name="q13" value="c"> Menambah kapasitas hard disk</label>
+                    <label class="quiz-option"><input type="radio" name="q13" value="d"> Memformat server</label>
+                </div>
+
+                <div class="quiz-question" data-answer="c"
+                     data-explanation="Suricata adalah mesin keamanan jaringan yang mendukung analisis dan deteksi lalu lintas.">
+                    <h3>14. Manakah contoh mesin keamanan jaringan untuk IDS/IPS?</h3>
+                    <label class="quiz-option"><input type="radio" name="q14" value="a"> HTML</label>
+                    <label class="quiz-option"><input type="radio" name="q14" value="b"> CSS</label>
+                    <label class="quiz-option"><input type="radio" name="q14" value="c"> Suricata</label>
+                    <label class="quiz-option"><input type="radio" name="q14" value="d"> JPEG</label>
+                </div>
+
+                <div class="quiz-question" data-answer="a"
+                     data-explanation="Perintah suricata -T dapat digunakan untuk menguji konfigurasi Suricata.">
+                    <h3>15. Apa fungsi opsi -T pada perintah Suricata dalam contoh materi?</h3>
+                    <label class="quiz-option"><input type="radio" name="q15" value="a"> Menguji konfigurasi</label>
+                    <label class="quiz-option"><input type="radio" name="q15" value="b"> Menghapus semua log</label>
+                    <label class="quiz-option"><input type="radio" name="q15" value="c"> Mengganti alamat MAC</label>
+                    <label class="quiz-option"><input type="radio" name="q15" value="d"> Mematikan semua antarmuka</label>
+                </div>
+
+                <div class="quiz-question" data-answer="d"
+                     data-explanation="suricata-update digunakan untuk memperbarui aturan melalui mekanisme yang didukung instalasi.">
+                    <h3>16. Perintah apa yang digunakan untuk memperbarui aturan Suricata pada contoh?</h3>
+                    <label class="quiz-option"><input type="radio" name="q16" value="a"> sudo mkdir</label>
+                    <label class="quiz-option"><input type="radio" name="q16" value="b"> sudo clear</label>
+                    <label class="quiz-option"><input type="radio" name="q16" value="c"> sudo nano</label>
+                    <label class="quiz-option"><input type="radio" name="q16" value="d"> sudo suricata-update</label>
+                </div>
+
+                <div class="quiz-question" data-answer="c"
+                     data-explanation="IPS perlu dikonfigurasi dengan benar agar tidak memblokir lalu lintas sah secara tidak sengaja.">
+                    <h3>17. Apa risiko aturan IPS yang terlalu ketat?</h3>
+                    <label class="quiz-option"><input type="radio" name="q17" value="a"> Monitor menjadi lebih besar</label>
+                    <label class="quiz-option"><input type="radio" name="q17" value="b"> Komputer tidak membutuhkan jaringan</label>
+                    <label class="quiz-option"><input type="radio" name="q17" value="c"> Komunikasi yang sah dapat ikut terblokir</label>
+                    <label class="quiz-option"><input type="radio" name="q17" value="d"> Semua serangan otomatis hilang</label>
+                </div>
+
+                <div class="quiz-question" data-answer="b"
+                     data-explanation="IDS/IPS sebaiknya menjadi bagian dari pertahanan berlapis bersama kontrol keamanan lainnya.">
+                    <h3>18. Apakah IDS/IPS menggantikan seluruh sistem keamanan lain?</h3>
+                    <label class="quiz-option"><input type="radio" name="q18" value="a"> Ya, selalu</label>
+                    <label class="quiz-option"><input type="radio" name="q18" value="b"> Tidak, IDS/IPS perlu digunakan bersama kontrol keamanan lain</label>
+                    <label class="quiz-option"><input type="radio" name="q18" value="c"> Ya, jika menggunakan switch</label>
+                    <label class="quiz-option"><input type="radio" name="q18" value="d"> Ya, jika memakai Wi-Fi</label>
+                </div>
+
+                <div class="quiz-question" data-answer="a"
+                     data-explanation="Administrator perlu memeriksa konteks alert untuk membedakan aktivitas sah dari ancaman.">
+                    <h3>19. Apa yang sebaiknya dilakukan ketika IDS menghasilkan alert?</h3>
+                    <label class="quiz-option"><input type="radio" name="q19" value="a"> Memeriksa detail alert dan konteks aktivitas</label>
+                    <label class="quiz-option"><input type="radio" name="q19" value="b"> Langsung menghapus seluruh server</label>
+                    <label class="quiz-option"><input type="radio" name="q19" value="c"> Mengabaikan semua log</label>
+                    <label class="quiz-option"><input type="radio" name="q19" value="d"> Membagikan kata sandi administrator</label>
+                </div>
+
+                <div class="quiz-question" data-answer="d"
+                     data-explanation="IDS/IPS perlu aturan yang sesuai, pemantauan, pembaruan, dan evaluasi untuk bekerja efektif.">
+                    <h3>20. Manakah praktik yang baik dalam mengelola IDS/IPS?</h3>
+                    <label class="quiz-option"><input type="radio" name="q20" value="a"> Tidak pernah memperbarui aturan</label>
+                    <label class="quiz-option"><input type="radio" name="q20" value="b"> Membagikan akses administrator kepada semua orang</label>
+                    <label class="quiz-option"><input type="radio" name="q20" value="c"> Mengaktifkan semua pemblokiran tanpa pengujian</label>
+                    <label class="quiz-option"><input type="radio" name="q20" value="d"> Memantau log, memperbarui aturan, dan menguji perubahan</label>
+                </div>
+
+                <div class="quiz-actions">
+                    <button class="button button-primary" type="submit">
+                        Periksa Jawaban
+                    </button>
+
+                    <button class="button button-secondary"
+                            type="button" id="resetQuiz">
+                        Ulangi Latihan
+                    </button>
+                </div>
+
+                <div class="result-box" id="quizResult" aria-live="polite">
+                    <div>Nilai Kamu</div>
+                    <div class="result-score" id="scoreValue">0/100</div>
+                    <p id="resultMessage"></p>
+                    <p id="correctCount"></p>
+                </div>
+
+            </form>
+        </section>
+
+        <nav class="bottom-navigation" aria-label="Navigasi materi">
+            <a class="previous-link" href="vpn.html">
+                ← Materi Sebelumnya: VPN
+            </a>
+
+            <a class="next-link" href="index.html">
+                Kembali ke Daftar Materi →
+            </a>
+        </nav>
+
+    </main>
+</div>
+
+<footer>
+    <strong>BZ Learning</strong>
+    <p>Belajar Jaringan Komputer dengan Mudah dan Terstruktur.</p>
+    <p>Materi Intrusion Detection System dan Intrusion Prevention System.</p>
+    <p>&copy; <span id="year"></span> BZ Learning.</p>
+</footer>
+
+<button class="back-to-top" id="backToTop"
+        aria-label="Kembali ke atas" title="Kembali ke atas">
+    ↑
+</button>
+
+<script>
+"use strict";
+
+/* Tahun otomatis pada footer */
+document.getElementById("year").textContent =
+    new Date().getFullYear();
+
+/* Tombol kembali ke atas */
+const backToTop = document.getElementById("backToTop");
+
+backToTop.addEventListener("click", function () {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+});
+
+/* Elemen kuis */
+const quizForm = document.getElementById("quizForm");
+
+const quizQuestions = Array.from(
+    document.querySelectorAll(".quiz-question")
+);
+
+const progressText = document.getElementById("progressText");
+const progressFill = document.getElementById("progressFill");
+const quizResult = document.getElementById("quizResult");
+const scoreValue = document.getElementById("scoreValue");
+const resultMessage = document.getElementById("resultMessage");
+const correctCount = document.getElementById("correctCount");
+const resetQuiz = document.getElementById("resetQuiz");
+
+/* Memperbarui kemajuan menjawab soal */
+function updateProgress() {
+    let answered = 0;
+
+    quizQuestions.forEach(function (question) {
+        const selected = question.querySelector(
+            'input[type="radio"]:checked'
+        );
+
+        if (selected) {
+            answered++;
+        }
+    });
+
+    progressText.textContent =
+        answered + " dari " + quizQuestions.length +
+        " soal dijawab";
+
+    const percentage =
+        (answered / quizQuestions.length) * 100;
+
+    progressFill.style.width = percentage + "%";
+}
+
+/* Memantau perubahan jawaban */
+quizForm.addEventListener("change", function (event) {
+    if (event.target.matches('input[type="radio"]')) {
+        updateProgress();
+    }
+});
+
+/* Menilai semua jawaban */
+quizForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    let correct = 0;
+    let answered = 0;
+
+    quizQuestions.forEach(function (question) {
+        const answer = question.dataset.answer;
+        const explanation = question.dataset.explanation;
+
+        const selected = question.querySelector(
+            'input[type="radio"]:checked'
+        );
+
+        question.classList.remove("correct", "incorrect");
+
+        const oldFeedback = question.querySelector(".feedback");
+
+        if (oldFeedback) {
+            oldFeedback.remove();
+        }
+
+        const feedback = document.createElement("p");
+        feedback.className = "feedback";
+
+        if (!selected) {
+            question.classList.add("incorrect");
+
+            feedback.textContent =
+                "Belum dijawab. " + explanation;
+
+            feedback.style.color = "#dc2626";
+        } else {
+            answered++;
+
+            if (selected.value === answer) {
+                correct++;
+
+                question.classList.add("correct");
+
+                feedback.textContent =
+                    "Benar! " + explanation;
+
+                feedback.style.color = "#15803d";
+            } else {
+                question.classList.add("incorrect");
+
+                feedback.textContent =
+                    "Belum tepat. " + explanation;
+
+                feedback.style.color = "#dc2626";
+            }
+        }
+
+        question.appendChild(feedback);
+    });
+
+    const total = quizQuestions.length;
+    const score = Math.round((correct / total) * 100);
+
+    scoreValue.textContent = score + "/100";
+
+    correctCount.textContent =
+        "Jawaban benar: " + correct + " dari " + total +
+        ". Soal terjawab: " + answered + ".";
+
+    if (score >= 90) {
+        resultMessage.textContent =
+            "Sangat baik! Kamu memahami materi IDS/IPS dengan sangat baik.";
+    } else if (score >= 75) {
+        resultMessage.textContent =
+            "Bagus! Pelajari kembali bagian yang masih keliru.";
+    } else if (score >= 60) {
+        resultMessage.textContent =
+            "Cukup baik. Baca kembali materi dan coba latihan lagi.";
+    } else {
+        resultMessage.textContent =
+            "Tetap semangat! Pelajari rangkuman, kemudian ulangi latihan.";
+    }
+
+    quizResult.style.display = "block";
+
+    quizResult.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+
+    updateProgress();
+});
+
+/* Mengulang kuis dari awal */
+resetQuiz.addEventListener("click", function () {
+    quizForm.reset();
+
+    quizQuestions.forEach(function (question) {
+        question.classList.remove("correct", "incorrect");
+
+        const feedback = question.querySelector(".feedback");
+
+        if (feedback) {
+            feedback.remove();
+        }
+    });
+
+    quizResult.style.display = "none";
+
+    scoreValue.textContent = "0/100";
+    resultMessage.textContent = "";
+    correctCount.textContent = "";
+
+    updateProgress();
+
+    document.getElementById("quiz").scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+});
+updateProgress();
+</script>
+
+</body>
+
+</html>
