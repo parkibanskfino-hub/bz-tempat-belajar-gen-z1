@@ -1,0 +1,110 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jenis dan Struktur Fiber — BZ</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:linear-gradient(120deg,#e1efff,#e0faf5);color:#173052;line-height:1.7;padding:25px}
+.container{max-width:1000px;margin:auto}
+.nav,.card{background:#fff;border-radius:20px;padding:22px;box-shadow:0 8px 25px #244d6810;margin-bottom:22px}
+.nav{display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:21px;font-weight:900;color:#087bdc}
+a,.btn{background:linear-gradient(120deg,#1678ed,#08b9ad);color:white;padding:10px 16px;border-radius:12px;text-decoration:none;font-weight:bold;border:0;cursor:pointer}
+.hero{background:linear-gradient(120deg,#0876e9,#5368ed,#08b6a9);padding:45px;color:white;border-radius:30px;margin-bottom:25px}
+.hero h1{font-size:36px}
+h2{color:#087bdc;margin-bottom:12px}
+h3{color:#078e9b;margin:12px 0 5px}
+p{margin-bottom:12px}
+ul,ol{padding-left:25px;margin:10px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px}
+.item{background:#eff8ff;padding:17px;border-radius:14px}
+.info{background:#e8f5ff;border-left:5px solid #1685e8;padding:15px;border-radius:10px;margin:15px 0}
+.layer{padding:15px;margin:8px 0;border-radius:10px;background:#eff8ff}
+.question{background:#f5f9ff;padding:15px;border-radius:12px;margin:15px 0}
+.question label{display:block;padding:5px}
+.result{padding:15px;margin-top:15px;border-radius:12px;font-weight:bold}
+.footer{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:25px 0}
+@media(max-width:600px){body{padding:12px}.hero{padding:25px}.hero h1{font-size:28px}.nav{gap:10px;flex-wrap:wrap}}
+</style>
+</head>
+<body>
+<div class="container">
+<nav class="nav"><div class="logo">BZ Learning</div><a href="index.html">← Kembali ke Materi</a></nav>
+<header class="hero">
+<h1>Jenis & Struktur Fiber Optic</h1>
+<p>Mempelajari jenis kabel fiber optic, bagian penyusun, dan fungsi setiap lapisannya.</p>
+</header>
+
+<section class="card">
+<h2>1. Jenis Fiber Optic Berdasarkan Mode</h2>
+<div class="grid">
+<div class="item"><h3>Single Mode</h3><p>Single mode memiliki inti (core) yang sangat kecil sehingga cahaya merambat melalui satu jalur utama.</p><ul><li>Cocok untuk jarak jauh.</li><li>Umumnya menggunakan sumber cahaya laser.</li><li>Banyak digunakan pada jaringan telekomunikasi dan FTTH.</li></ul></div>
+<div class="item"><h3>Multi Mode</h3><p>Multi mode memiliki inti lebih besar sehingga cahaya dapat merambat melalui beberapa jalur atau mode.</p><ul><li>Cocok untuk jarak relatif pendek.</li><li>Sering digunakan di dalam gedung.</li><li>Dapat menggunakan LED atau VCSEL.</li></ul></div>
+</div>
+<div class="info"><b>Perbedaan utama:</b> Single mode digunakan untuk kebutuhan jarak lebih jauh, sedangkan multi mode banyak digunakan untuk koneksi jarak pendek.</div>
+</section>
+
+<section class="card">
+<h2>2. Struktur Kabel Fiber Optic</h2>
+<p>Kabel fiber optic terdiri dari beberapa lapisan yang memiliki fungsi berbeda.</p>
+<div class="layer"><h3>Core (Inti)</h3><p>Bagian paling tengah tempat cahaya merambat membawa informasi.</p></div>
+<div class="layer"><h3>Cladding</h3><p>Lapisan yang mengelilingi core. Memiliki indeks bias lebih rendah agar cahaya dapat dipandu di dalam core.</p></div>
+<div class="layer"><h3>Coating</h3><p>Lapisan pelindung yang membantu menjaga serat kaca dari goresan dan kelembapan.</p></div>
+<div class="layer"><h3>Strength Member</h3><p>Bagian penguat yang membantu kabel menahan tarikan.</p></div>
+<div class="layer"><h3>Outer Jacket</h3><p>Lapisan paling luar yang melindungi bagian dalam kabel dari kondisi lingkungan.</p></div>
+</section>
+
+<section class="card">
+<h2>3. Perbedaan Single Mode dan Multi Mode</h2>
+<div style="overflow-x:auto">
+<table border="1" cellpadding="12" cellspacing="0" width="100%">
+<tr><th>Perbandingan</th><th>Single Mode</th><th>Multi Mode</th></tr>
+<tr><td>Ukuran core</td><td>Sangat kecil, umum sekitar 9 µm</td><td>Lebih besar, umum 50 atau 62,5 µm</td></tr>
+<tr><td>Jalur cahaya</td><td>Satu mode utama</td><td>Banyak mode</td></tr>
+<tr><td>Jarak</td><td>Lebih jauh</td><td>Relatif pendek</td></tr>
+<tr><td>Penggunaan</td><td>FTTH dan telekomunikasi</td><td>LAN dan data center</td></tr>
+</table>
+</div>
+<p><small>Catatan: Ukuran dan kemampuan sebenarnya bergantung pada standar serta spesifikasi kabel.</small></p>
+</section>
+
+<section class="card">
+<h2>4. Jenis Kabel Berdasarkan Lingkungan</h2>
+<ul>
+<li><b>Indoor:</b> dirancang untuk instalasi di dalam gedung.</li>
+<li><b>Outdoor:</b> dirancang untuk menghadapi kondisi lingkungan luar.</li>
+<li><b>Drop Cable:</b> kabel yang digunakan untuk menghubungkan jaringan distribusi ke pelanggan.</li>
+<li><b>Armored Cable:</b> memiliki perlindungan tambahan untuk kondisi instalasi tertentu.</li>
+<li><b>ADSS:</b> kabel fiber optik udara yang bersifat self-supporting dan tidak membutuhkan kawat penyangga logam.</li>
+</ul>
+</section>
+
+<section class="card">
+<h2>5. Latihan Soal</h2>
+<form id="quiz">
+<div class="question"><b>1. Bagian tempat cahaya merambat adalah...</b><label><input type="radio" name="q1" value="a"> Core</label><label><input type="radio" name="q1" value="b"> Jacket</label><label><input type="radio" name="q1" value="c"> Strength member</label></div>
+<div class="question"><b>2. Lapisan yang mengelilingi core adalah...</b><label><input type="radio" name="q2" value="a"> Coating</label><label><input type="radio" name="q2" value="b"> Cladding</label><label><input type="radio" name="q2" value="c"> Outer jacket</label></div>
+<div class="question"><b>3. Fiber yang cocok untuk jarak jauh adalah...</b><label><input type="radio" name="q3" value="a"> Multi mode</label><label><input type="radio" name="q3" value="b"> Kabel UTP</label><label><input type="radio" name="q3" value="c"> Single mode</label></div>
+<div class="question"><b>4. Multi mode memiliki...</b><label><input type="radio" name="q4" value="a"> Banyak mode perambatan cahaya</label><label><input type="radio" name="q4" value="b"> Tidak memiliki core</label><label><input type="radio" name="q4" value="c"> Tidak menggunakan cahaya</label></div>
+<div class="question"><b>5. Lapisan paling luar kabel disebut...</b><label><input type="radio" name="q5" value="a"> Core</label><label><input type="radio" name="q5" value="b"> Outer jacket</label><label><input type="radio" name="q5" value="c"> Cladding</label></div>
+<button class="btn" type="button" onclick="checkQuiz()">Periksa Jawaban</button>
+</form><div id="result"></div>
+</section>
+<div class="footer"><a href="fiber-basic.html">← Materi Sebelumnya</a><a href="splicing-otdr.html">Materi Berikutnya →</a></div>
+</div>
+<script>
+function checkQuiz(){
+let a={q1:"a",q2:"b",q3:"c",q4:"a",q5:"b"},s=0,n=0;
+for(let q in a){let x=document.querySelector('input[name="'+q+'"]:checked');if(x){n++;if(x.value===a[q])s++;}}
+let r=document.getElementById("result");
+if(n<5){r.style.background="#fff3cd";r.innerHTML="Jawab semua soal terlebih dahulu ("+n+"/5).";return;}
+r.style.background="#e5f8ef";r.innerHTML="Nilai: "+(s*20)+"/100. Benar: "+s+" dari 5 soal.";
+}
+</script>
+
+</body>
+
+</html>

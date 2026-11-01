@@ -1,0 +1,201 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Konfigurasi Wi-Fi & Access Point - BZ</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:linear-gradient(120deg,#eaf6ff,#fff);color:#173052;line-height:1.7;padding:22px}
+.container{max-width:900px;margin:auto}
+.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px}
+.back{background:white;color:#087bfa;padding:12px 17px;border-radius:13px;text-decoration:none;font-weight:bold;box-shadow:0 5px 18px #1d4b7010}
+.brand{display:flex;align-items:center;gap:10px}
+.brand-icon{background:linear-gradient(135deg,#087bfa,#08b9ae);color:white;padding:9px 12px;border-radius:12px;font-weight:bold}
+.brand small{display:block;color:#08a69f}
+.hero{background:linear-gradient(115deg,#0877ef,#168fdc,#0bb9aa);padding:42px;border-radius:26px;color:white;margin-bottom:22px;position:relative;overflow:hidden;box-shadow:0 18px 35px #168bd52b}
+.hero:after{content:"";position:absolute;width:180px;height:180px;border:1px solid #ffffff35;border-radius:50%;right:-55px;top:-70px}
+.hero h1{font-size:36px;margin:12px 0}
+.tag{display:inline-block;background:#ffffff2c;padding:6px 12px;border-radius:20px;font-size:12px;font-weight:bold}
+.card{background:#ffffffed;border:1px solid #d9edf8;border-radius:20px;padding:25px;margin-bottom:21px;box-shadow:0 9px 25px #194a6810}
+.objective{background:linear-gradient(120deg,#f4fbff,#edfcfa);display:flex;gap:18px}
+.objective-icon{font-size:25px;background:#e0f7f7;border-radius:14px;padding:12px;height:55px}
+h2{font-size:23px;margin-bottom:12px;color:#12375e}
+h3{font-size:17px;color:#087eaa;margin:15px 0 7px}
+p{margin-bottom:12px;color:#526d89}
+ul,ol{padding-left:23px;margin:10px 0;color:#526d89}
+li{margin:5px 0}
+.section-label{font-size:11px;color:#087bfa;font-weight:bold;letter-spacing:1px;margin-bottom:7px}
+.info{background:#eff9ff;border-left:4px solid #1688f5;border-radius:12px;padding:16px;margin:15px 0;color:#355b7e}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:13px}
+.mini{background:#f2faff;border:1px solid #e1f0fa;border-radius:14px;padding:16px}
+.quiz-question{background:#f5faff;border:1px solid #e4eff8;border-radius:13px;padding:16px;margin:14px 0}
+.quiz-question label{display:block;padding:5px 0;color:#526d89;cursor:pointer}
+button,.next{border:0;background:linear-gradient(110deg,#087bfa,#08b8ad);color:white;padding:12px 19px;border-radius:12px;font-weight:bold;cursor:pointer;text-decoration:none;display:inline-block}
+.result{padding:16px;border-radius:12px;margin-top:15px;font-weight:bold}
+.navigation{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:25px 0}
+@media(max-width:600px){body{padding:12px}.hero{padding:27px}.hero h1{font-size:28px}.card{padding:19px}.top{gap:10px;flex-wrap:wrap}.objective{flex-direction:column}}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="top">
+<a class="back" href="wireless.html">← Kembali ke Materi</a>
+<div class="brand"><div class="brand-icon">BZ</div><div><b>Tempat Belajar</b><small>Gen Z</small></div></div>
+</div>
+
+<header class="hero">
+<span class="tag">MATERI 02 • WIRELESS DEVICE</span>
+<div style="font-size:32px;margin-top:15px">📡</div>
+<h1>Konfigurasi Wi-Fi & Access Point</h1>
+<p style="color:white">Mempelajari fungsi access point, pengaturan SSID, password Wi-Fi, mode wireless, keamanan jaringan, dan koneksi client.</p>
+</header>
+
+<section class="card objective">
+<div class="objective-icon">🎯</div>
+<div>
+<h2>Tujuan Pembelajaran</h2>
+<p>Setelah mempelajari materi ini, kamu diharapkan dapat:</p>
+<ul>
+<li>Menjelaskan fungsi access point.</li>
+<li>Memahami mode kerja access point.</li>
+<li>Mengatur SSID dan password Wi-Fi.</li>
+<li>Memahami keamanan jaringan wireless.</li>
+<li>Menghubungkan client ke jaringan Wi-Fi.</li>
+</ul>
+</div>
+</section>
+
+<section class="card">
+<div class="section-label">01 — PERANGKAT</div>
+<h2>Apa Itu Access Point?</h2>
+<p>Access Point (AP) adalah perangkat jaringan yang menyediakan akses wireless agar perangkat seperti laptop dan smartphone dapat terhubung ke jaringan lokal.</p>
+<p>Access point biasanya terhubung ke switch atau router melalui kabel Ethernet, kemudian menyebarkan jaringan menggunakan gelombang radio.</p>
+<div class="info"><b>Contoh:</b> Access point di sekolah digunakan untuk menyediakan koneksi Wi-Fi bagi siswa dan guru.</div>
+</section>
+
+<section class="card">
+<div class="section-label">02 — FUNGSI</div>
+<h2>Fungsi Access Point</h2>
+<div class="grid">
+<div class="mini"><h3>Menyediakan Wi-Fi</h3><p>Menghubungkan perangkat tanpa kabel ke jaringan lokal.</p></div>
+<div class="mini"><h3>Memperluas Jangkauan</h3><p>Membantu menyediakan akses wireless di area yang lebih luas.</p></div>
+<div class="mini"><h3>Menghubungkan Client</h3><p>Melayani koneksi laptop, smartphone, dan perangkat wireless lainnya.</p></div>
+<div class="mini"><h3>Mengelola Akses</h3><p>Mendukung pengaturan nama jaringan dan keamanan koneksi.</p></div>
+</div>
+</section>
+
+<section class="card">
+<div class="section-label">03 — MODE KERJA</div>
+<h2>Mode Wireless</h2>
+<h3>Access Point Mode</h3>
+<p>Perangkat bekerja sebagai pemancar jaringan Wi-Fi untuk menghubungkan client ke jaringan kabel.</p>
+<h3>Repeater Mode</h3>
+<p>Perangkat menerima jaringan wireless dan meneruskannya kembali untuk membantu memperluas jangkauan.</p>
+<h3>Bridge Mode</h3>
+<p>Digunakan untuk menghubungkan dua segmen jaringan melalui koneksi wireless, sesuai dukungan perangkat.</p>
+<h3>Client Mode</h3>
+<p>Perangkat bertindak sebagai client wireless yang terhubung ke access point lain.</p>
+</section>
+
+<section class="card">
+<div class="section-label">04 — KONFIGURASI</div>
+<h2>Pengaturan Dasar Wi-Fi</h2>
+<p>Pengaturan dapat berbeda pada setiap merek access point. Secara umum, konfigurasi dilakukan melalui halaman administrasi perangkat.</p>
+<ol>
+<li>Hubungkan komputer ke access point menggunakan kabel jaringan atau koneksi yang tersedia.</li>
+<li>Buka browser dan akses alamat pengelolaan perangkat sesuai buku panduan.</li>
+<li>Masuk menggunakan akun administrator perangkat.</li>
+<li>Cari menu Wireless atau Wi-Fi Settings.</li>
+<li>Masukkan nama jaringan pada kolom SSID.</li>
+<li>Pilih pita frekuensi dan channel sesuai kebutuhan.</li>
+<li>Atur keamanan jaringan, misalnya WPA2-AES atau WPA3 jika didukung.</li>
+<li>Buat password Wi-Fi yang kuat.</li>
+<li>Simpan konfigurasi dan sambungkan client untuk pengujian.</li>
+</ol>
+<div class="info">Gunakan password administrator yang berbeda dari password Wi-Fi. Ganti kredensial bawaan jika masih digunakan.</div>
+</section>
+
+<section class="card">
+<div class="section-label">05 — KEAMANAN</div>
+<h2>Keamanan Wi-Fi</h2>
+<ul>
+<li>Gunakan WPA2-AES atau WPA3 jika perangkat mendukung.</li>
+<li>Gunakan password panjang dan tidak mudah ditebak.</li>
+<li>Perbarui firmware perangkat secara berkala.</li>
+<li>Nonaktifkan fitur yang tidak diperlukan.</li>
+<li>Batasi akses administrasi hanya untuk pihak yang berwenang.</li>
+<li>Gunakan jaringan tamu jika tersedia untuk pengunjung.</li>
+</ul>
+</section>
+
+<section class="card">
+<div class="section-label">06 — PENGUJIAN</div>
+<h2>Menghubungkan Client</h2>
+<ol>
+<li>Aktifkan Wi-Fi pada laptop atau smartphone.</li>
+<li>Pilih SSID yang sudah dibuat.</li>
+<li>Masukkan password jaringan.</li>
+<li>Tunggu hingga perangkat terhubung.</li>
+<li>Periksa apakah perangkat memperoleh alamat IP.</li>
+<li>Coba akses gateway atau layanan jaringan yang diizinkan.</li>
+</ol>
+<div class="info"><b>Catatan troubleshooting:</b> Jika client tidak dapat terhubung, periksa password, jangkauan sinyal, kapasitas client, pengaturan keamanan, dan layanan DHCP.</div>
+</section>
+
+<section class="card">
+<div class="section-label">07 — LATIHAN</div>
+<h2>Latihan Soal</h2>
+<form id="quiz">
+<div class="quiz-question"><b>1. Fungsi utama access point adalah...</b>
+<label><input type="radio" name="q1" value="a"> Menyediakan akses jaringan wireless</label>
+<label><input type="radio" name="q1" value="b"> Menyimpan file pengguna</label>
+<label><input type="radio" name="q1" value="c"> Mencetak dokumen</label></div>
+<div class="quiz-question"><b>2. Nama jaringan Wi-Fi disebut...</b>
+<label><input type="radio" name="q2" value="a"> Gateway</label>
+<label><input type="radio" name="q2" value="b"> SSID</label>
+<label><input type="radio" name="q2" value="c"> DNS</label></div>
+<div class="quiz-question"><b>3. Mode yang digunakan untuk memancarkan jaringan Wi-Fi adalah...</b>
+<label><input type="radio" name="q3" value="a"> Client Mode</label>
+<label><input type="radio" name="q3" value="b"> Bridge Mode</label>
+<label><input type="radio" name="q3" value="c"> Access Point Mode</label></div>
+<div class="quiz-question"><b>4. Salah satu standar keamanan Wi-Fi yang lebih baru adalah...</b>
+<label><input type="radio" name="q4" value="a"> WPA3</label>
+<label><input type="radio" name="q4" value="b"> FTP</label>
+<label><input type="radio" name="q4" value="c"> HTTP</label></div>
+<div class="quiz-question"><b>5. Setelah mengatur SSID dan password, langkah berikutnya adalah...</b>
+<label><input type="radio" name="q5" value="a"> Membongkar perangkat</label>
+<label><input type="radio" name="q5" value="b"> Menyimpan konfigurasi dan menguji koneksi</label>
+<label><input type="radio" name="q5" value="c"> Menghapus jaringan</label></div>
+<button type="button" onclick="checkQuiz()">Periksa Jawaban</button>
+</form>
+<div id="result"></div>
+</section>
+
+<div class="navigation">
+<a class="next" href="wireless-basic.html">← Materi Sebelumnya</a>
+<a class="next" href="mikrotik-vlan-hotspot.html">Materi Berikutnya →</a>
+</div>
+</div>
+<script>
+function checkQuiz(){
+const key={q1:"a",q2:"b",q3:"c",q4:"a",q5:"b"};
+let score=0,answered=0;
+for(let q in key){
+const selected=document.querySelector('input[name="'+q+'"]:checked');
+if(selected){answered++;if(selected.value===key[q])score++;}
+}
+const result=document.getElementById("result");
+if(answered!==5){
+result.className="result";result.style.background="#fff3cd";
+result.innerHTML="Kamu baru menjawab "+answered+" dari 5 soal. Lengkapi semua jawaban!";return;
+}
+result.className="result";result.style.background="#e4f8ed";
+result.innerHTML="Nilai kamu: "+(score*20)+"/100<br>Jawaban benar: "+score+" dari 5 soal.";
+}
+</script>
+
+</body>
+
+</html>

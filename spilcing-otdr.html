@@ -1,0 +1,134 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Splicing dan OTDR — BZ</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:linear-gradient(120deg,#e1efff,#e0faf5);color:#173052;line-height:1.7;padding:25px}
+.container{max-width:1000px;margin:auto}
+.nav,.card{background:white;border-radius:20px;padding:22px;box-shadow:0 8px 25px #244d6810;margin-bottom:22px}
+.nav{display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:21px;font-weight:900;color:#087bdc}
+a,.btn{background:linear-gradient(120deg,#1678ed,#08b9ad);color:white;padding:10px 16px;border-radius:12px;text-decoration:none;font-weight:bold;border:0;cursor:pointer}
+.hero{background:linear-gradient(120deg,#0876e9,#5368ed,#08b6a9);padding:45px;color:white;border-radius:30px;margin-bottom:25px}
+.hero h1{font-size:36px}
+h2{color:#087bdc;margin-bottom:12px}
+h3{color:#078e9b;margin:12px 0 5px}
+p{margin-bottom:12px}
+ul,ol{padding-left:25px;margin:10px 0}
+.info{background:#e8f5ff;border-left:5px solid #1685e8;padding:15px;border-radius:10px;margin:15px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px}
+.item{background:#eff8ff;padding:17px;border-radius:14px}
+.question{background:#f5f9ff;padding:15px;border-radius:12px;margin:15px 0}
+.question label{display:block;padding:5px}
+.result{padding:15px;margin-top:15px;border-radius:12px;font-weight:bold}
+.footer{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:25px 0}
+@media(max-width:600px){body{padding:12px}.hero{padding:25px}.hero h1{font-size:28px}.nav{gap:10px;flex-wrap:wrap}}
+</style>
+</head>
+<body>
+<div class="container">
+<nav class="nav"><div class="logo">BZ Learning</div><a href="index.html">← Kembali ke Materi</a></nav>
+<header class="hero">
+<h1>Splicing & OTDR</h1>
+<p>Mempelajari proses penyambungan kabel fiber optic dan pengujian kualitas jaringan menggunakan OTDR.</p>
+</header>
+
+<section class="card">
+<h2>1. Pengertian Splicing</h2>
+<p>Splicing fiber optic adalah proses menyambungkan dua ujung serat optik agar cahaya dapat melewati sambungan dengan kehilangan daya sekecil mungkin.</p>
+<p>Penyambungan biasanya dilakukan ketika kabel mengalami putus, saat instalasi jaringan baru, atau ketika perlu menghubungkan dua bagian kabel.</p>
+<div class="info"><b>Tujuan splicing:</b> menghasilkan sambungan yang rapi, kuat, dan memiliki redaman sekecil mungkin.</div>
+</section>
+
+<section class="card">
+<h2>2. Jenis Penyambungan Fiber Optic</h2>
+<div class="grid">
+<div class="item"><h3>Fusion Splicing</h3><p>Menggabungkan dua ujung serat menggunakan panas atau busur listrik dari mesin fusion splicer.</p><p>Jenis ini umum digunakan karena dapat menghasilkan redaman sambungan yang rendah.</p></div>
+<div class="item"><h3>Mechanical Splicing</h3><p>Menghubungkan dua ujung serat dengan alat penyelaras dan bahan penghubung khusus tanpa melebur serat menggunakan busur listrik.</p></div>
+</div>
+</section>
+
+<section class="card">
+<h2>3. Peralatan Splicing</h2>
+<ul>
+<li><b>Fusion splicer:</b> mesin untuk menyambungkan serat optik.</li>
+<li><b>Fiber cleaver:</b> alat untuk memotong ujung serat dengan rata.</li>
+<li><b>Stripper:</b> alat untuk mengupas lapisan pelindung serat.</li>
+<li><b>Alcohol dan tisu khusus:</b> untuk membersihkan serat dan peralatan.</li>
+<li><b>Protection sleeve:</b> pelindung bagian sambungan.</li>
+<li><b>Splice tray:</b> tempat menyimpan dan menata hasil sambungan.</li>
+</ul>
+<div class="info">Keselamatan: serpihan serat kaca sangat kecil dan dapat melukai. Gunakan perlengkapan keselamatan, jangan menyentuh atau meniup serpihan, dan buang sisa serat pada wadah khusus.</div>
+</section>
+
+<section class="card">
+<h2>4. Gambaran Tahapan Splicing</h2>
+<ol>
+<li>Memastikan area kerja aman dan menyiapkan peralatan.</li>
+<li>Menyiapkan kabel sesuai prosedur kerja.</li>
+<li>Membersihkan dan mempersiapkan ujung serat.</li>
+<li>Melakukan pemotongan presisi menggunakan cleaver.</li>
+<li>Menempatkan serat pada fusion splicer sesuai petunjuk alat.</li>
+<li>Memeriksa hasil sambungan dan nilai estimasi redaman.</li>
+<li>Memberikan perlindungan pada sambungan dan menatanya di splice tray.</li>
+</ol>
+<p>Pelaksanaan pekerjaan nyata harus mengikuti SOP, pelatihan, dan petunjuk keselamatan dari produsen alat.</p>
+</section>
+
+<section class="card">
+<h2>5. Pengertian OTDR</h2>
+<p>OTDR (Optical Time Domain Reflectometer) adalah alat untuk menguji dan menganalisis jalur fiber optic. Alat ini mengirimkan pulsa cahaya ke dalam serat dan membaca pantulan serta hamburan balik yang diterima.</p>
+<p>Hasil pengukuran ditampilkan dalam bentuk grafik yang disebut trace.</p>
+</section>
+
+<section class="card">
+<h2>6. Fungsi OTDR</h2>
+<div class="grid">
+<div class="item"><h3>Mengukur Jarak</h3><p>Memperkirakan panjang jalur fiber optic.</p></div>
+<div class="item"><h3>Mendeteksi Gangguan</h3><p>Membantu menemukan lokasi putus atau kejadian pada jalur.</p></div>
+<div class="item"><h3>Mengukur Redaman</h3><p>Menganalisis kehilangan daya optik pada jalur.</p></div>
+<div class="item"><h3>Mengevaluasi Sambungan</h3><p>Membantu memeriksa kualitas sambungan dan konektor.</p></div>
+</div>
+</section>
+
+<section class="card">
+<h2>7. Istilah Penting pada OTDR</h2>
+<ul>
+<li><b>Attenuation:</b> penurunan daya sinyal optik sepanjang serat.</li>
+<li><b>Event:</b> kejadian yang terdeteksi pada jalur, misalnya sambungan atau konektor.</li>
+<li><b>Reflection:</b> pantulan cahaya yang kembali ke alat.</li>
+<li><b>Dead zone:</b> area setelah kejadian reflektif ketika OTDR belum dapat mengukur kejadian berikutnya secara akurat.</li>
+<li><b>Trace:</b> grafik hasil pengukuran OTDR.</li>
+</ul>
+</section>
+
+<section class="card">
+<h2>8. Latihan Soal</h2>
+<form id="quiz">
+<div class="question"><b>1. Splicing adalah proses...</b><label><input type="radio" name="q1" value="a"> Menyambungkan serat optik</label><label><input type="radio" name="q1" value="b"> Mengganti IP address</label><label><input type="radio" name="q1" value="c"> Mengatur router</label></div>
+<div class="question"><b>2. Alat untuk fusion splicing adalah...</b><label><input type="radio" name="q2" value="a"> LAN tester</label><label><input type="radio" name="q2" value="b"> Fusion splicer</label><label><input type="radio" name="q2" value="c"> Crimping tool</label></div>
+<div class="question"><b>3. Fungsi fiber cleaver adalah...</b><label><input type="radio" name="q3" value="a"> Mengukur IP</label><label><input type="radio" name="q3" value="b"> Menguatkan sinyal Wi-Fi</label><label><input type="radio" name="q3" value="c"> Memotong ujung serat secara presisi</label></div>
+<div class="question"><b>4. Kepanjangan OTDR adalah...</b><label><input type="radio" name="q4" value="a"> Optical Time Domain Reflectometer</label><label><input type="radio" name="q4" value="b"> Optical Transfer Data Router</label><label><input type="radio" name="q4" value="c"> Online Transmission Data Receiver</label></div>
+<div class="question"><b>5. Hasil pengukuran OTDR berupa...</b><label><input type="radio" name="q5" value="a"> Tabel alamat IP</label><label><input type="radio" name="q5" value="b"> Grafik trace</label><label><input type="radio" name="q5" value="c"> Daftar pengguna Wi-Fi</label></div>
+<button class="btn" type="button" onclick="checkQuiz()">Periksa Jawaban</button>
+</form><div id="result"></div>
+</section>
+<div class="footer"><a href="fiber-structure.html">← Materi Sebelumnya</a><a href="olt-onu-ont.html">Materi Berikutnya →</a></div>
+</div>
+<script>
+function checkQuiz(){
+let a={q1:"a",q2:"b",q3:"c",q4:"a",q5:"b"},s=0,n=0;
+for(let q in a){let x=document.querySelector('input[name="'+q+'"]:checked');if(x){n++;if(x.value===a[q])s++;}}
+let r=document.getElementById("result");
+if(n<5){r.style.background="#fff3cd";r.innerHTML="Jawab semua soal terlebih dahulu ("+n+"/5).";return;}
+r.style.background="#e5f8ef";r.innerHTML="Nilai: "+(s*20)+"/100. Benar: "+s+" dari 5 soal.";
+}
+</script>
+
+</body>
+
+</html>

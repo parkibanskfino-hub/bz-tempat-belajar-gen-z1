@@ -1,0 +1,191 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wireless Network Dasar - BZ</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:linear-gradient(120deg,#eaf6ff,#fff);color:#173052;line-height:1.7;padding:22px}
+.container{max-width:900px;margin:auto}
+.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px}
+.back{background:white;color:#087bfa;padding:12px 17px;border-radius:13px;text-decoration:none;font-weight:bold;box-shadow:0 5px 18px #1d4b7010}
+.brand{display:flex;align-items:center;gap:10px}
+.brand-icon{background:linear-gradient(135deg,#087bfa,#08b9ae);color:white;padding:9px 12px;border-radius:12px;font-weight:bold}
+.brand small{display:block;color:#08a69f}
+.hero{background:linear-gradient(115deg,#0877ef,#168fdc,#0bb9aa);padding:42px;border-radius:26px;color:white;margin-bottom:22px;position:relative;overflow:hidden;box-shadow:0 18px 35px #168bd52b}
+.hero:after{content:"";position:absolute;width:180px;height:180px;border:1px solid #ffffff35;border-radius:50%;right:-55px;top:-70px}
+.hero h1{font-size:40px;margin:12px 0}
+.tag{display:inline-block;background:#ffffff2c;padding:6px 12px;border-radius:20px;font-size:12px;font-weight:bold}
+.card{background:#ffffffed;border:1px solid #d9edf8;border-radius:20px;padding:25px;margin-bottom:21px;box-shadow:0 9px 25px #194a6810}
+.objective{background:linear-gradient(120deg,#f4fbff,#edfcfa);display:flex;gap:18px}
+.objective-icon{font-size:25px;background:#e0f7f7;border-radius:14px;padding:12px;height:55px}
+h2{font-size:23px;margin-bottom:12px;color:#12375e}
+h3{font-size:17px;color:#087eaa;margin:15px 0 7px}
+p{margin-bottom:12px;color:#526d89}
+ul,ol{padding-left:23px;margin:10px 0;color:#526d89}
+li{margin:5px 0}
+.section-label{font-size:11px;color:#087bfa;font-weight:bold;letter-spacing:1px;margin-bottom:7px}
+.info{background:#eff9ff;border-left:4px solid #1688f5;border-radius:12px;padding:16px;margin:15px 0;color:#355b7e}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:13px}
+.mini{background:#f2faff;border:1px solid #e1f0fa;border-radius:14px;padding:16px}
+.quiz-question{background:#f5faff;border:1px solid #e4eff8;border-radius:13px;padding:16px;margin:14px 0}
+.quiz-question label{display:block;padding:5px 0;color:#526d89;cursor:pointer}
+button,.next{border:0;background:linear-gradient(110deg,#087bfa,#08b8ad);color:white;padding:12px 19px;border-radius:12px;font-weight:bold;cursor:pointer;text-decoration:none;display:inline-block}
+.result{padding:16px;border-radius:12px;margin-top:15px;font-weight:bold}
+.navigation{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:25px 0}
+@media(max-width:600px){body{padding:12px}.hero{padding:27px}.hero h1{font-size:30px}.card{padding:19px}.top{gap:10px;flex-wrap:wrap}.objective{flex-direction:column}}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="top">
+<a class="back" href="wireless.html">← Kembali ke Materi</a>
+<div class="brand"><div class="brand-icon">BZ</div><div><b>Tempat Belajar</b><small>Gen Z</small></div></div>
+</div>
+
+<header class="hero">
+<span class="tag">MATERI 01 • WIRELESS NETWORK</span>
+<div style="font-size:32px;margin-top:15px">📶</div>
+<h1>Wireless Network Dasar</h1>
+<p style="color:white">Mengenal konsep jaringan nirkabel, Wi-Fi, frekuensi, SSID, channel, serta cara perangkat terhubung melalui jaringan wireless.</p>
+</header>
+
+<section class="card objective">
+<div class="objective-icon">🎯</div>
+<div>
+<h2>Tujuan Pembelajaran</h2>
+<p>Setelah mempelajari materi ini, kamu diharapkan dapat:</p>
+<ul>
+<li>Menjelaskan pengertian wireless network.</li>
+<li>Memahami cara kerja jaringan Wi-Fi.</li>
+<li>Mengenali frekuensi 2,4 GHz dan 5 GHz.</li>
+<li>Menjelaskan fungsi SSID dan channel.</li>
+<li>Membedakan jaringan kabel dan nirkabel.</li>
+</ul>
+</div>
+</section>
+
+<section class="card">
+<div class="section-label">01 — DASAR</div>
+<h2>Apa Itu Wireless Network?</h2>
+<p>Wireless Network adalah jaringan komputer yang menghubungkan perangkat tanpa menggunakan kabel sebagai media komunikasi utama. Pengiriman data dilakukan menggunakan gelombang elektromagnetik, seperti gelombang radio.</p>
+<p>Teknologi wireless memungkinkan laptop, smartphone, tablet, dan perangkat lainnya terhubung ke jaringan dengan lebih fleksibel.</p>
+<div class="info"><b>Contoh:</b> Ketika HP terhubung ke Wi-Fi rumah, HP sedang menggunakan teknologi wireless untuk berkomunikasi dengan router atau access point.</div>
+</section>
+
+<section class="card">
+<div class="section-label">02 — TEKNOLOGI</div>
+<h2>Apa Itu Wi-Fi?</h2>
+<p>Wi-Fi merupakan teknologi jaringan nirkabel yang memungkinkan perangkat bertukar data melalui gelombang radio berdasarkan standar IEEE 802.11.</p>
+<h3>Fungsi Wi-Fi</h3>
+<ul>
+<li>Menghubungkan perangkat ke jaringan lokal.</li>
+<li>Memberikan akses internet tanpa kabel jaringan ke perangkat pengguna.</li>
+<li>Menghubungkan beberapa perangkat dalam satu jaringan.</li>
+<li>Mendukung mobilitas pengguna selama masih berada dalam jangkauan sinyal.</li>
+</ul>
+</section>
+
+<section class="card">
+<div class="section-label">03 — FREKUENSI</div>
+<h2>Frekuensi Wi-Fi</h2>
+<p>Wi-Fi dapat bekerja pada beberapa pita frekuensi. Dua pita yang sering dijumpai adalah 2,4 GHz dan 5 GHz.</p>
+<div class="grid">
+<div class="mini"><h3>2,4 GHz</h3><p>Memiliki jangkauan yang umumnya lebih luas dan lebih baik dalam melewati beberapa penghalang, tetapi dapat lebih ramai karena digunakan banyak perangkat.</p></div>
+<div class="mini"><h3>5 GHz</h3><p>Dapat menyediakan kecepatan lebih tinggi pada kondisi yang sesuai, tetapi jangkauannya umumnya lebih pendek dan lebih mudah terpengaruh penghalang.</p></div>
+</div>
+<div class="info">Pemilihan frekuensi bergantung pada kebutuhan, jarak perangkat, kondisi ruangan, dan kemampuan perangkat Wi-Fi.</div>
+</section>
+
+<section class="card">
+<div class="section-label">04 — IDENTITAS JARINGAN</div>
+<h2>SSID (Service Set Identifier)</h2>
+<p>SSID adalah nama yang digunakan untuk mengenali sebuah jaringan Wi-Fi. Saat membuka daftar jaringan Wi-Fi di HP atau laptop, nama jaringan yang muncul merupakan SSID.</p>
+<h3>Contoh SSID</h3>
+<ul>
+<li>BZ-Learning</li>
+<li>Laboratorium TKJ</li>
+<li>WiFi-Sekolah</li>
+<li>Ruang-Guru</li>
+</ul>
+<p>SSID dapat diatur melalui halaman pengelolaan access point atau router.</p>
+</section>
+
+<section class="card">
+<div class="section-label">05 — CHANNEL</div>
+<h2>Apa Itu Channel Wi-Fi?</h2>
+<p>Channel adalah bagian dari pita frekuensi yang digunakan untuk komunikasi wireless. Pengaturan channel membantu mengelola penggunaan frekuensi agar jaringan tidak terlalu terganggu oleh jaringan lain.</p>
+<h3>Contoh channel 2,4 GHz</h3>
+<p>Channel yang sering dipilih untuk mengurangi tumpang tindih pada lingkungan tertentu adalah 1, 6, dan 11. Namun, pilihan terbaik tetap bergantung pada kondisi radio di lokasi.</p>
+</section>
+
+<section class="card">
+<div class="section-label">06 — PERBANDINGAN</div>
+<h2>Wireless dan Wired Network</h2>
+<div class="grid">
+<div class="mini"><h3>Wireless Network</h3><ul><li>Menggunakan gelombang radio.</li><li>Lebih fleksibel.</li><li>Dapat mengalami gangguan sinyal.</li><li>Contoh: Wi-Fi.</li></ul></div>
+<div class="mini"><h3>Wired Network</h3><ul><li>Menggunakan media kabel.</li><li>Koneksi cenderung stabil.</li><li>Membutuhkan instalasi kabel.</li><li>Contoh: Ethernet UTP.</li></ul></div>
+</div>
+</section>
+
+<section class="card">
+<div class="section-label">07 — LATIHAN</div>
+<h2>Latihan Soal</h2>
+<p>Pilih jawaban yang benar. Nilai akan muncul setelah semua soal dijawab.</p>
+<form id="quiz">
+<div class="quiz-question"><b>1. Wireless network adalah jaringan yang menggunakan...</b>
+<label><input type="radio" name="q1" value="a"> Kabel fiber optic saja</label>
+<label><input type="radio" name="q1" value="b"> Gelombang elektromagnetik</label>
+<label><input type="radio" name="q1" value="c"> Konektor RJ45</label></div>
+<div class="quiz-question"><b>2. Standar teknologi Wi-Fi adalah...</b>
+<label><input type="radio" name="q2" value="a"> IEEE 802.11</label>
+<label><input type="radio" name="q2" value="b"> IEEE 802.3</label>
+<label><input type="radio" name="q2" value="c"> HTTP</label></div>
+<div class="quiz-question"><b>3. Nama jaringan Wi-Fi disebut...</b>
+<label><input type="radio" name="q3" value="a"> IP Address</label>
+<label><input type="radio" name="q3" value="b"> Gateway</label>
+<label><input type="radio" name="q3" value="c"> SSID</label></div>
+<div class="quiz-question"><b>4. Frekuensi yang umumnya memiliki jangkauan lebih luas adalah...</b>
+<label><input type="radio" name="q4" value="a"> 5 GHz</label>
+<label><input type="radio" name="q4" value="b"> 2,4 GHz</label>
+<label><input type="radio" name="q4" value="c"> 10 GHz</label></div>
+<div class="quiz-question"><b>5. Channel Wi-Fi berfungsi untuk...</b>
+<label><input type="radio" name="q5" value="a"> Mengelola penggunaan frekuensi radio</label>
+<label><input type="radio" name="q5" value="b"> Mengganti alamat MAC</label>
+<label><input type="radio" name="q5" value="c"> Menambah kapasitas RAM</label></div>
+<button type="button" onclick="checkQuiz()">Periksa Jawaban</button>
+</form>
+<div id="result"></div>
+</section>
+
+<div class="navigation">
+<a class="next" href="wireless.html">← Kembali ke Daftar Materi</a>
+<a class="next" href="wifi-access-point.html">Materi Berikutnya →</a>
+</div>
+</div>
+<script>
+function checkQuiz(){
+const key={q1:"b",q2:"a",q3:"c",q4:"b",q5:"a"};
+let score=0,answered=0;
+for(let q in key){
+const selected=document.querySelector('input[name="'+q+'"]:checked');
+if(selected){answered++;if(selected.value===key[q])score++;}
+}
+const result=document.getElementById("result");
+if(answered!==5){
+result.className="result";
+result.style.background="#fff3cd";
+result.innerHTML="Kamu baru menjawab "+answered+" dari 5 soal. Lengkapi semua jawaban!";
+return;
+}
+result.className="result";
+result.style.background="#e4f8ed";
+result.innerHTML="Nilai kamu: "+(score*20)+"/100<br>Jawaban benar: "+score+" dari 5 soal.";
+}
+</script>
+
+</body>
+
+</html>

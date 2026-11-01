@@ -1,0 +1,153 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OLT ONU ONT — BZ</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:linear-gradient(120deg,#e1efff,#e0faf5);color:#173052;line-height:1.7;padding:25px}
+.container{max-width:1000px;margin:auto}
+.nav,.card{background:white;border-radius:20px;padding:22px;box-shadow:0 8px 25px #244d6810;margin-bottom:22px}
+.nav{display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:21px;font-weight:900;color:#087bdc}
+a,.btn{background:linear-gradient(120deg,#1678ed,#08b9ad);color:white;padding:10px 16px;border-radius:12px;text-decoration:none;font-weight:bold;border:0;cursor:pointer}
+.hero{background:linear-gradient(120deg,#0876e9,#5368ed,#08b6a9);padding:45px;color:white;border-radius:30px;margin-bottom:25px}
+.hero h1{font-size:36px}
+h2{color:#087bdc;margin-bottom:12px}
+h3{color:#078e9b;margin:12px 0 5px}
+p{margin-bottom:12px}
+ul,ol{padding-left:25px;margin:10px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px}
+.item{background:#eff8ff;padding:17px;border-radius:14px}
+.info{background:#e8f5ff;border-left:5px solid #1685e8;padding:15px;border-radius:10px;margin:15px 0}
+.flow{background:#eff8ff;text-align:center;padding:15px;border-radius:12px;margin:8px 0;font-weight:bold}
+.question{background:#f5f9ff;padding:15px;border-radius:12px;margin:15px 0}
+.question label{display:block;padding:5px}
+.result{padding:15px;margin-top:15px;border-radius:12px;font-weight:bold}
+.footer{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:25px 0}
+@media(max-width:600px){body{padding:12px}.hero{padding:25px}.hero h1{font-size:28px}.nav{gap:10px;flex-wrap:wrap}}
+</style>
+</head>
+<body>
+<div class="container">
+<nav class="nav"><div class="logo">BZ Learning</div><a href="index.html">← Kembali ke Materi</a></nav>
+<header class="hero">
+<h1>OLT, ONU & ONT</h1>
+<p>Mengenal perangkat utama yang digunakan dalam jaringan fiber optic, khususnya jaringan FTTH dan GPON.</p>
+</header>
+
+<section class="card">
+<h2>1. Pengertian OLT</h2>
+<p>OLT (Optical Line Terminal) adalah perangkat yang berada di sisi pusat atau penyedia layanan. OLT mengelola komunikasi antara jaringan penyedia layanan dengan perangkat pelanggan melalui jaringan optik pasif.</p>
+<h3>Fungsi OLT</h3>
+<ul>
+<li>Mengirimkan dan menerima data melalui jaringan optik.</li>
+<li>Mengelola komunikasi dengan ONU atau ONT.</li>
+<li>Mengatur layanan pelanggan sesuai konfigurasi jaringan.</li>
+<li>Menghubungkan jaringan akses fiber dengan jaringan utama penyedia layanan.</li>
+</ul>
+</section>
+
+<section class="card">
+<h2>2. Pengertian ONU</h2>
+<p>ONU (Optical Network Unit) adalah perangkat pada sisi pengguna atau lokasi pelanggan yang mengubah sinyal optik menjadi sinyal yang dapat digunakan oleh perangkat jaringan lokal.</p>
+<h3>Fungsi ONU</h3>
+<ul>
+<li>Menerima sinyal optik dari jaringan distribusi.</li>
+<li>Mengubah sinyal optik menjadi sinyal elektrik.</li>
+<li>Mengirimkan data dari pelanggan menuju jaringan penyedia layanan.</li>
+<li>Menyediakan antarmuka jaringan sesuai jenis perangkat.</li>
+</ul>
+</section>
+
+<section class="card">
+<h2>3. Pengertian ONT</h2>
+<p>ONT (Optical Network Terminal) merupakan perangkat terminasi jaringan optik yang biasanya dipasang di lokasi pelanggan. ONT menjadi titik akhir jaringan fiber optik sebelum koneksi diteruskan ke perangkat pengguna.</p>
+<h3>Fungsi ONT</h3>
+<ul>
+<li>Menerima koneksi fiber optic dari jaringan penyedia layanan.</li>
+<li>Mengubah sinyal optik menjadi koneksi jaringan yang dapat digunakan pelanggan.</li>
+<li>Menyediakan port Ethernet dan pada model tertentu port telepon atau Wi-Fi.</li>
+<li>Menghubungkan komputer, router, telepon, dan perangkat lainnya.</li>
+</ul>
+</section>
+
+<section class="card">
+<h2>4. Perbedaan ONU dan ONT</h2>
+<p>Istilah ONU dan ONT terkadang digunakan secara bergantian. Secara umum, ONT dapat dipahami sebagai perangkat terminasi optik di sisi pelanggan, sedangkan ONU merupakan istilah yang lebih luas untuk unit jaringan optik.</p>
+<div style="overflow-x:auto">
+<table border="1" cellpadding="12" cellspacing="0" width="100%">
+<tr><th>Aspek</th><th>ONU</th><th>ONT</th></tr>
+<tr><td>Pengertian</td><td>Unit jaringan optik</td><td>Terminal jaringan optik</td></tr>
+<tr><td>Penggunaan</td><td>Istilah umum untuk perangkat sisi jaringan pelanggan</td><td>Umumnya digunakan untuk perangkat di lokasi pelanggan</td></tr>
+<tr><td>Fungsi</td><td>Menghubungkan jaringan optik ke jaringan pengguna</td><td>Mengakhiri koneksi optik dan menyediakan antarmuka pelanggan</td></tr>
+</table>
+</div>
+</section>
+
+<section class="card">
+<h2>5. Cara Kerja Jaringan FTTH</h2>
+<p>FTTH (Fiber To The Home) adalah teknologi yang menghubungkan jaringan fiber optic hingga ke rumah pelanggan.</p>
+<div class="flow">Jaringan Internet / ISP</div>
+<div class="flow">OLT — Perangkat di pusat penyedia layanan</div>
+<div class="flow">ODF dan ODC — Titik distribusi jaringan optik</div>
+<div class="flow">ODP — Titik distribusi menuju pelanggan</div>
+<div class="flow">Kabel Drop Fiber Optic</div>
+<div class="flow">ONT — Perangkat di rumah pelanggan</div>
+<div class="flow">Router / Komputer / Wi-Fi</div>
+<div class="info">Alur di atas merupakan gambaran umum. Susunan perangkat dan titik distribusi dapat berbeda sesuai desain jaringan penyedia layanan.</div>
+</section>
+
+<section class="card">
+<h2>6. Pengertian GPON</h2>
+<p>GPON (Gigabit-capable Passive Optical Network) adalah teknologi jaringan akses fiber optic yang menggunakan perangkat distribusi pasif, seperti splitter optik, untuk membagi sinyal ke beberapa pelanggan.</p>
+<h3>Komponen jaringan GPON</h3>
+<ul>
+<li><b>OLT:</b> perangkat pusat pengelola jaringan.</li>
+<li><b>Splitter:</b> membagi sinyal optik ke beberapa jalur tanpa membutuhkan daya listrik untuk proses pembagian.</li>
+<li><b>ODN:</b> jaringan distribusi optik yang menghubungkan OLT dengan ONU atau ONT.</li>
+<li><b>ONT/ONU:</b> perangkat pada sisi pelanggan.</li>
+</ul>
+</section>
+
+<section class="card">
+<h2>7. Contoh Penggunaan</h2>
+<div class="grid">
+<div class="item"><h3>Internet Rumah</h3><p>ONT dipasang di rumah untuk menyediakan koneksi internet melalui Ethernet atau Wi-Fi.</p></div>
+<div class="item"><h3>Perkantoran</h3><p>Jaringan fiber dapat menghubungkan perangkat dan gedung dengan kapasitas tinggi.</p></div>
+<div class="item"><h3>ISP</h3><p>OLT digunakan penyedia layanan untuk mengelola banyak pelanggan dalam jaringan akses optik.</p></div>
+</div>
+</section>
+
+<section class="card">
+<h2>8. Latihan Soal</h2>
+<form id="quiz">
+<div class="question"><b>1. Kepanjangan OLT adalah...</b><label><input type="radio" name="q1" value="a"> Optical Line Terminal</label><label><input type="radio" name="q1" value="b"> Online Local Transfer</label><label><input type="radio" name="q1" value="c"> Optical LAN Tool</label></div>
+<div class="question"><b>2. OLT biasanya berada di sisi...</b><label><input type="radio" name="q2" value="a"> Pelanggan</label><label><input type="radio" name="q2" value="b"> Pusat penyedia layanan</label><label><input type="radio" name="q2" value="c"> Komputer pengguna</label></div>
+<div class="question"><b>3. Perangkat yang biasanya dipasang di rumah pelanggan adalah...</b><label><input type="radio" name="q3" value="a"> OLT</label><label><input type="radio" name="q3" value="b"> ODF</label><label><input type="radio" name="q3" value="c"> ONT</label></div>
+<div class="question"><b>4. Fungsi splitter optik adalah...</b><label><input type="radio" name="q4" value="a"> Membagi sinyal optik ke beberapa jalur</label><label><input type="radio" name="q4" value="b"> Mengubah nama Wi-Fi</label><label><input type="radio" name="q4" value="c"> Menyimpan alamat IP</label></div>
+<div class="question"><b>5. Kepanjangan FTTH adalah...</b><label><input type="radio" name="q5" value="a"> Fiber Transfer To Hub</label><label><input type="radio" name="q5" value="b"> Fiber To The Home</label><label><input type="radio" name="q5" value="c"> Fast Technology To Host</label></div>
+<button class="btn" type="button" onclick="checkQuiz()">Periksa Jawaban</button>
+</form><div id="result"></div>
+</section>
+
+<div class="footer">
+<a href="splicing-otdr.html">← Materi Sebelumnya</a>
+<a href="index.html">Selesai Belajar ✓</a>
+</div>
+</div>
+<script>
+function checkQuiz(){
+let a={q1:"a",q2:"b",q3:"c",q4:"a",q5:"b"},s=0,n=0;
+for(let q in a){let x=document.querySelector('input[name="'+q+'"]:checked');if(x){n++;if(x.value===a[q])s++;}}
+let r=document.getElementById("result");
+if(n<5){r.style.background="#fff3cd";r.innerHTML="Jawab semua soal terlebih dahulu ("+n+"/5).";return;}
+r.style.background="#e5f8ef";r.innerHTML="Nilai: "+(s*20)+"/100. Benar: "+s+" dari 5 soal.";
+}
+</script>
+
+</body>
+
+</html>

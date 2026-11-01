@@ -1,0 +1,150 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pengenalan Fiber Optic — BZ</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:linear-gradient(120deg,#e1efff,#e0faf5);color:#173052;line-height:1.7;padding:25px}
+.container{max-width:1000px;margin:auto}
+.nav{background:white;padding:15px 22px;border-radius:18px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 5px 20px #163b5b12;margin-bottom:25px}
+.logo{font-weight:900;color:#087bdc;font-size:21px}
+.nav a,.btn{background:linear-gradient(120deg,#1678ed,#08b9ad);color:white;padding:10px 17px;border-radius:12px;text-decoration:none;font-weight:bold;border:0;cursor:pointer}
+.hero{background:linear-gradient(120deg,#0876e9,#5368ed,#08b6a9);padding:45px;color:white;border-radius:30px;margin-bottom:25px}
+.hero h1{font-size:38px;margin-bottom:10px}
+.tag{display:inline-block;background:#ffffff30;padding:6px 13px;border-radius:20px;margin-top:15px}
+.card{background:#ffffffed;border-radius:20px;padding:25px;margin-bottom:20px;box-shadow:0 8px 25px #244d6810}
+h2{color:#087bdc;margin-bottom:12px}
+h3{margin:15px 0 7px;color:#087e9b}
+p{margin-bottom:12px}
+ul,ol{padding-left:25px;margin:10px 0}
+.info{background:#e8f5ff;border-left:5px solid #1685e8;padding:15px;border-radius:10px;margin:15px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px}
+.item{background:#f0f8ff;padding:17px;border-radius:14px}
+.question{padding:15px;background:#f5f9ff;border-radius:12px;margin:15px 0}
+.question label{display:block;padding:5px;cursor:pointer}
+.result{font-weight:bold;margin-top:15px;padding:15px;border-radius:12px}
+.footer{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:25px 0}
+@media(max-width:600px){body{padding:12px}.hero{padding:25px}.hero h1{font-size:29px}.nav{gap:10px;flex-wrap:wrap}}
+</style>
+</head>
+<body>
+<div class="container">
+<nav class="nav">
+<div class="logo">BZ Learning</div>
+<a href="index.html">← Kembali ke Materi</a>
+</nav>
+
+<header class="hero">
+<h1>Fiber Optic</h1>
+<p>Mengenal teknologi jaringan yang menggunakan cahaya untuk mengirimkan data melalui serat optik.</p>
+<span class="tag">Materi 01 • Fiber Basic • Pemula</span>
+</header>
+
+<section class="card">
+<h2>1. Pengertian Fiber Optic</h2>
+<p>Fiber optic atau serat optik adalah media transmisi jaringan yang menggunakan cahaya untuk mengirimkan informasi dari satu perangkat ke perangkat lainnya.</p>
+<p>Berbeda dengan kabel tembaga yang mengirimkan data menggunakan sinyal listrik, fiber optic menggunakan cahaya yang merambat di dalam serat kaca atau plastik khusus.</p>
+<div class="info"><b>Intinya:</b> Fiber optic mengirimkan data menggunakan cahaya sehingga mampu menyediakan kecepatan tinggi dan jarak transmisi yang jauh.</div>
+</section>
+
+<section class="card">
+<h2>2. Prinsip Kerja Fiber Optic</h2>
+<p>Data dari perangkat jaringan diubah menjadi sinyal cahaya oleh perangkat pemancar optik. Cahaya tersebut kemudian merambat melalui inti serat optik menuju penerima.</p>
+<ol>
+<li>Perangkat pengirim menghasilkan data.</li>
+<li>Transmitter mengubah data menjadi sinyal cahaya.</li>
+<li>Cahaya merambat melalui kabel fiber optic.</li>
+<li>Receiver menerima sinyal cahaya.</li>
+<li>Sinyal diubah kembali menjadi data.</li>
+</ol>
+<div class="info">Cahaya dapat merambat di dalam serat optik karena adanya prinsip pemantulan internal total (total internal reflection).</div>
+</section>
+
+<section class="card">
+<h2>3. Kelebihan Fiber Optic</h2>
+<div class="grid">
+<div class="item"><h3>Kecepatan Tinggi</h3><p>Mendukung pengiriman data dengan kapasitas besar.</p></div>
+<div class="item"><h3>Jarak Jauh</h3><p>Dapat digunakan untuk komunikasi jarak jauh dengan redaman relatif rendah.</p></div>
+<div class="item"><h3>Tahan Gangguan</h3><p>Tidak mudah terpengaruh interferensi elektromagnetik.</p></div>
+<div class="item"><h3>Bandwidth Besar</h3><p>Mampu membawa banyak informasi dalam satu jalur.</p></div>
+</div>
+</section>
+
+<section class="card">
+<h2>4. Kekurangan Fiber Optic</h2>
+<ul>
+<li>Biaya perangkat dan instalasi dapat lebih mahal.</li>
+<li>Kabel membutuhkan penanganan yang hati-hati.</li>
+<li>Penyambungan memerlukan alat dan keterampilan khusus.</li>
+<li>Pemeriksaan kerusakan membutuhkan alat pengujian tertentu.</li>
+</ul>
+</section>
+
+<section class="card">
+<h2>5. Penggunaan Fiber Optic</h2>
+<ul>
+<li>Jaringan internet rumah berbasis FTTH.</li>
+<li>Jaringan antar gedung.</li>
+<li>Jaringan backbone perusahaan.</li>
+<li>Jaringan telekomunikasi jarak jauh.</li>
+<li>Infrastruktur pusat data.</li>
+</ul>
+</section>
+
+<section class="card">
+<h2>6. Latihan Soal</h2>
+<p>Pilih jawaban yang paling tepat, kemudian tekan tombol periksa.</p>
+<form id="quiz">
+<div class="question"><b>1. Fiber optic mengirimkan data menggunakan...</b>
+<label><input type="radio" name="q1" value="a"> Gelombang suara</label>
+<label><input type="radio" name="q1" value="b"> Cahaya</label>
+<label><input type="radio" name="q1" value="c"> Air</label></div>
+<div class="question"><b>2. Bahan inti fiber optic umumnya terbuat dari...</b>
+<label><input type="radio" name="q2" value="a"> Kaca atau plastik khusus</label>
+<label><input type="radio" name="q2" value="b"> Kayu</label>
+<label><input type="radio" name="q2" value="c"> Karet biasa</label></div>
+<div class="question"><b>3. Perangkat yang mengubah data menjadi cahaya disebut...</b>
+<label><input type="radio" name="q3" value="a"> Router</label>
+<label><input type="radio" name="q3" value="b"> Switch</label>
+<label><input type="radio" name="q3" value="c"> Transmitter optik</label></div>
+<div class="question"><b>4. Salah satu kelebihan fiber optic adalah...</b>
+<label><input type="radio" name="q4" value="a"> Mudah terkena interferensi listrik</label>
+<label><input type="radio" name="q4" value="b"> Bandwidth besar</label>
+<label><input type="radio" name="q4" value="c"> Tidak dapat mengirim data jarak jauh</label></div>
+<div class="question"><b>5. Prinsip perambatan cahaya dalam fiber optic disebut...</b>
+<label><input type="radio" name="q5" value="a"> Pemantulan internal total</label>
+<label><input type="radio" name="q5" value="b"> Induksi listrik</label>
+<label><input type="radio" name="q5" value="c"> Konduksi panas</label></div>
+<button class="btn" type="button" onclick="checkQuiz()">Periksa Jawaban</button>
+</form>
+<div id="result"></div>
+</section>
+
+<div class="footer">
+<a class="btn" href="index.html">← Daftar Materi</a>
+<a class="btn" href="fiber-structure.html">Materi Berikutnya →</a>
+</div>
+</div>
+<script>
+function checkQuiz(){
+const answers={q1:"b",q2:"a",q3:"c",q4:"b",q5:"a"};
+let score=0,answered=0;
+for(let q in answers){
+let selected=document.querySelector('input[name="'+q+'"]:checked');
+if(selected){answered++;if(selected.value===answers[q])score++;}
+}
+let result=document.getElementById("result");
+if(answered<5){result.className="result";result.style.background="#fff3cd";result.innerHTML="Jawab semua soal terlebih dahulu. ("+answered+"/5)";return;}
+let nilai=score*20;
+result.className="result";
+result.style.background="#e5f8ef";
+result.innerHTML="Nilai kamu: "+nilai+"/100<br>Jawaban benar: "+score+" dari 5 soal.";
+}
+</script>
+
+</body>
+
+</html>

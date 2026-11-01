@@ -1,0 +1,273 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MikroTik VLAN & Hotspot - BZ</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:linear-gradient(120deg,#eaf6ff,#fff);color:#173052;line-height:1.7;padding:22px}
+.container{max-width:900px;margin:auto}
+.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px}
+.back{background:white;color:#087bfa;padding:12px 17px;border-radius:13px;text-decoration:none;font-weight:bold;box-shadow:0 5px 18px #1d4b7010}
+.brand{display:flex;align-items:center;gap:10px}
+.brand-icon{background:linear-gradient(135deg,#087bfa,#08b9ae);color:white;padding:9px 12px;border-radius:12px;font-weight:bold}
+.brand small{display:block;color:#08a69f}
+.hero{background:linear-gradient(115deg,#0877ef,#168fdc,#0bb9aa);padding:42px;border-radius:26px;color:white;margin-bottom:22px;position:relative;overflow:hidden;box-shadow:0 18px 35px #168bd52b}
+.hero:after{content:"";position:absolute;width:180px;height:180px;border:1px solid #ffffff35;border-radius:50%;right:-55px;top:-70px}
+.hero h1{font-size:36px;margin:12px 0}
+.tag{display:inline-block;background:#ffffff2c;padding:6px 12px;border-radius:20px;font-size:12px;font-weight:bold}
+.card{background:#ffffffed;border:1px solid #d9edf8;border-radius:20px;padding:25px;margin-bottom:21px;box-shadow:0 9px 25px #194a6810}
+.objective{background:linear-gradient(120deg,#f4fbff,#edfcfa);display:flex;gap:18px}
+.objective-icon{font-size:25px;background:#e0f7f7;border-radius:14px;padding:12px;height:55px}
+h2{font-size:23px;margin-bottom:12px;color:#12375e}
+h3{font-size:17px;color:#087eaa;margin:15px 0 7px}
+p{margin-bottom:12px;color:#526d89}
+ul,ol{padding-left:23px;margin:10px 0;color:#526d89}
+li{margin:5px 0}
+.section-label{font-size:11px;color:#087bfa;font-weight:bold;letter-spacing:1px;margin-bottom:7px}
+.info{background:#eff9ff;border-left:4px solid #1688f5;border-radius:12px;padding:16px;margin:15px 0;color:#355b7e}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:13px}
+.mini{background:#f2faff;border:1px solid #e1f0fa;border-radius:14px;padding:16px}
+pre{background:#102b46;color:#d9f3ff;padding:17px;border-radius:12px;overflow-x:auto;margin:12px 0;font-size:13px;line-height:1.7}
+.quiz-question{background:#f5faff;border:1px solid #e4eff8;border-radius:13px;padding:16px;margin:14px 0}
+.quiz-question label{display:block;padding:5px 0;color:#526d89;cursor:pointer}
+button,.next{border:0;background:linear-gradient(110deg,#087bfa,#08b8ad);color:white;padding:12px 19px;border-radius:12px;font-weight:bold;cursor:pointer;text-decoration:none;display:inline-block}
+.result{padding:16px;border-radius:12px;margin-top:15px;font-weight:bold}
+.navigation{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:25px 0}
+@media(max-width:600px){body{padding:12px}.hero{padding:27px}.hero h1{font-size:28px}.card{padding:19px}.top{gap:10px;flex-wrap:wrap}.objective{flex-direction:column}}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="top">
+<a class="back" href="wireless.html">← Kembali ke Materi</a>
+<div class="brand"><div class="brand-icon">BZ</div><div><b>Tempat Belajar</b><small>Gen Z</small></div></div>
+</div>
+
+<header class="hero">
+<span class="tag">MATERI 03 • MIKROTIK NETWORK</span>
+<div style="font-size:32px;margin-top:15px">⚡</div>
+<h1>MikroTik, VLAN & Hotspot</h1>
+<p style="color:white">Mempelajari dasar MikroTik, konsep VLAN, pembagian jaringan, dan pengelolaan akses pengguna melalui fitur Hotspot.</p>
+</header>
+
+<section class="card objective">
+<div class="objective-icon">🎯</div>
+<div>
+<h2>Tujuan Pembelajaran</h2>
+<p>Setelah mempelajari materi ini, kamu diharapkan dapat:</p>
+<ul>
+<li>Menjelaskan pengertian MikroTik.</li>
+<li>Mengenali fungsi RouterOS dan Winbox.</li>
+<li>Memahami konsep VLAN dan manfaatnya.</li>
+<li>Menjelaskan fungsi Hotspot.</li>
+<li>Memahami dasar pengelolaan jaringan pengguna.</li>
+</ul>
+</div>
+</section>
+
+<section class="card">
+<div class="section-label">01 — PENGENALAN</div>
+<h2>Apa Itu MikroTik?</h2>
+<p>MikroTik adalah perusahaan yang mengembangkan perangkat jaringan dan sistem operasi untuk kebutuhan pengelolaan jaringan komputer.</p>
+<p>Salah satu produk yang dikenal adalah RouterBOARD, sedangkan sistem operasi routernya disebut RouterOS.</p>
+<h3>Fungsi MikroTik</h3>
+<ul>
+<li>Mengatur lalu lintas jaringan.</li>
+<li>Menghubungkan jaringan yang berbeda.</li>
+<li>Mengatur alamat IP dan DHCP Server.</li>
+<li>Mengelola bandwidth.</li>
+<li>Menerapkan firewall.</li>
+<li>Menyediakan layanan Hotspot.</li>
+<li>Mengatur VLAN.</li>
+</ul>
+</section>
+
+<section class="card">
+<div class="section-label">02 — PERANGKAT LUNAK</div>
+<h2>RouterOS dan Winbox</h2>
+<div class="grid">
+<div class="mini"><h3>RouterOS</h3><p>Sistem operasi berbasis Linux yang digunakan pada perangkat MikroTik untuk mengelola fungsi router dan layanan jaringan.</p></div>
+<div class="mini"><h3>Winbox</h3><p>Aplikasi berbasis tampilan grafis (GUI) untuk mengakses dan mengelola konfigurasi RouterOS.</p></div>
+<div class="mini"><h3>WebFig</h3><p>Antarmuka berbasis web yang dapat digunakan untuk mengelola perangkat MikroTik melalui browser.</p></div>
+<div class="mini"><h3>Terminal</h3><p>Antarmuka berbasis command line untuk menjalankan perintah konfigurasi RouterOS.</p></div>
+</div>
+</section>
+
+<section class="card">
+<div class="section-label">03 — VLAN</div>
+<h2>Apa Itu VLAN?</h2>
+<p>VLAN (Virtual Local Area Network) adalah teknologi yang memungkinkan satu jaringan fisik dibagi menjadi beberapa jaringan logis yang terpisah.</p>
+<p>Dengan VLAN, perangkat yang terhubung melalui infrastruktur switch yang sama dapat dikelompokkan ke jaringan berbeda berdasarkan kebutuhan.</p>
+<div class="info"><b>Contoh:</b> Jaringan sekolah dapat dibagi menjadi VLAN Guru, VLAN Siswa, dan VLAN Administrasi agar masing-masing kelompok memiliki segmentasi jaringan sendiri.</div>
+<h3>Manfaat VLAN</h3>
+<ul>
+<li>Membagi jaringan berdasarkan kelompok pengguna.</li>
+<li>Membantu meningkatkan keamanan dan pemisahan jaringan.</li>
+<li>Mengurangi broadcast domain pada jaringan yang disegmentasi.</li>
+<li>Mempermudah pengelolaan jaringan.</li>
+</ul>
+</section>
+
+<section class="card">
+<div class="section-label">04 — JENIS VLAN</div>
+<h2>Jenis dan Identitas VLAN</h2>
+<p>Setiap VLAN memiliki VLAN ID yang digunakan untuk membedakan satu VLAN dengan VLAN lainnya.</p>
+<div class="grid">
+<div class="mini"><h3>VLAN 10</h3><p>Contoh VLAN untuk jaringan guru.</p></div>
+<div class="mini"><h3>VLAN 20</h3><p>Contoh VLAN untuk jaringan siswa.</p></div>
+<div class="mini"><h3>VLAN 30</h3><p>Contoh VLAN untuk jaringan administrasi.</p></div>
+</div>
+<p>Nomor tersebut hanyalah contoh. Administrator jaringan dapat menentukan VLAN ID sesuai rancangan jaringan.</p>
+</section>
+
+<section class="card">
+<div class="section-label">05 — ACCESS DAN TRUNK</div>
+<h2>Port Access dan Trunk</h2>
+<h3>Access Port</h3>
+<p>Port access umumnya digunakan untuk menghubungkan perangkat akhir ke satu VLAN tertentu. Perangkat pengguna biasanya tidak perlu mengatur tag VLAN secara langsung.</p>
+<h3>Trunk Port</h3>
+<p>Port trunk digunakan untuk membawa lalu lintas dari beberapa VLAN melalui satu koneksi antarperangkat jaringan. VLAN biasanya dibedakan menggunakan tag IEEE 802.1Q.</p>
+<div class="info">Contoh penggunaan: koneksi antara switch dan router dapat menggunakan trunk untuk membawa beberapa VLAN sekaligus.</div>
+</section>
+
+<section class="card">
+<div class="section-label">06 — HOTSPOT</div>
+<h2>Apa Itu Hotspot MikroTik?</h2>
+<p>Hotspot MikroTik adalah fitur RouterOS yang dapat digunakan untuk mengelola akses pengguna ke jaringan melalui proses autentikasi.</p>
+<p>Pengguna biasanya diarahkan ke halaman login sebelum dapat menggunakan layanan jaringan yang disediakan.</p>
+<h3>Fungsi Hotspot</h3>
+<ul>
+<li>Mengatur autentikasi pengguna.</li>
+<li>Membuat akun pengguna.</li>
+<li>Membatasi waktu akses sesuai kebijakan.</li>
+<li>Mengelola profil pengguna.</li>
+<li>Mencatat informasi sesi pengguna.</li>
+</ul>
+</section>
+
+<section class="card">
+<div class="section-label">07 — KOMPONEN HOTSPOT</div>
+<h2>Komponen Hotspot</h2>
+<div class="grid">
+<div class="mini"><h3>User</h3><p>Akun yang digunakan pengguna untuk masuk ke jaringan.</p></div>
+<div class="mini"><h3>User Profile</h3><p>Pengaturan kelompok akun, seperti batas sesi dan kebijakan akses.</p></div>
+<div class="mini"><h3>Login Page</h3><p>Halaman autentikasi yang digunakan untuk memasukkan username dan password.</p></div>
+<div class="mini"><h3>Active Users</h3><p>Daftar pengguna yang sedang memiliki sesi aktif.</p></div>
+</div>
+</section>
+
+<section class="card">
+<div class="section-label">08 — ALUR KERJA</div>
+<h2>Alur Kerja Hotspot</h2>
+<ol>
+<li>Pengguna menghubungkan perangkat ke jaringan Wi-Fi.</li>
+<li>Perangkat memperoleh konfigurasi jaringan, misalnya alamat IP.</li>
+<li>Pengguna mencoba mengakses layanan jaringan.</li>
+<li>Router mengarahkan pengguna ke halaman login jika autentikasi diperlukan.</li>
+<li>Pengguna memasukkan akun yang telah diberikan administrator.</li>
+<li>Router memeriksa data autentikasi.</li>
+<li>Jika berhasil, pengguna memperoleh akses sesuai kebijakan jaringan.</li>
+</ol>
+</section>
+
+<section class="card">
+<div class="section-label">09 — CONTOH KONSEP KONFIGURASI</div>
+<h2>Contoh Pembagian Jaringan</h2>
+<p>Berikut contoh rancangan sederhana untuk jaringan sekolah:</p>
+<pre>
+VLAN 10 = Guru
+VLAN 20 = Siswa
+VLAN 30 = Administrasi
+
+Jaringan Guru:
+192.168.10.0/24
+
+Jaringan Siswa:
+192.168.20.0/24
+
+Jaringan Administrasi:
+192.168.30.0/24
+</pre>
+<p>Setiap VLAN dapat memiliki subnet dan kebijakan akses yang berbeda. Komunikasi antar-VLAN membutuhkan konfigurasi routing dan aturan keamanan yang sesuai.</p>
+<div class="info">Contoh di atas merupakan rancangan pembelajaran, bukan konfigurasi siap pakai. Implementasi perlu disesuaikan dengan topologi dan perangkat yang digunakan.</div>
+</section>
+
+<section class="card">
+<div class="section-label">10 — LATIHAN</div>
+<h2>Latihan Soal</h2>
+<p>Pilih jawaban yang benar untuk menguji pemahamanmu.</p>
+<form id="quiz">
+<div class="quiz-question"><b>1. Sistem operasi yang digunakan pada perangkat MikroTik adalah...</b>
+<label><input type="radio" name="q1" value="a"> Windows Server</label>
+<label><input type="radio" name="q1" value="b"> RouterOS</label>
+<label><input type="radio" name="q1" value="c"> Android</label></div>
+<div class="quiz-question"><b>2. Aplikasi GUI untuk mengelola MikroTik adalah...</b>
+<label><input type="radio" name="q2" value="a"> Winbox</label>
+<label><input type="radio" name="q2" value="b"> Notepad</label>
+<label><input type="radio" name="q2" value="c"> Paint</label></div>
+<div class="quiz-question"><b>3. VLAN digunakan untuk...</b>
+<label><input type="radio" name="q3" value="a"> Memperbesar ukuran hard disk</label>
+<label><input type="radio" name="q3" value="b"> Menghapus jaringan</label>
+<label><input type="radio" name="q3" value="c"> Membagi jaringan fisik menjadi jaringan logis</label></div>
+<div class="quiz-question"><b>4. Standar tagging VLAN yang umum digunakan adalah...</b>
+<label><input type="radio" name="q4" value="a"> IEEE 802.1Q</label>
+<label><input type="radio" name="q4" value="b"> HTTP</label>
+<label><input type="radio" name="q4" value="c"> FTP</label></div>
+<div class="quiz-question"><b>5. Fungsi utama Hotspot MikroTik adalah...</b>
+<label><input type="radio" name="q5" value="a"> Mengedit gambar</label>
+<label><input type="radio" name="q5" value="b"> Mengelola autentikasi akses pengguna</label>
+<label><input type="radio" name="q5" value="c"> Menghapus sistem operasi</label></div>
+<div class="quiz-question"><b>6. Port trunk digunakan untuk...</b>
+<label><input type="radio" name="q6" value="a"> Membawa beberapa VLAN melalui satu koneksi</label>
+<label><input type="radio" name="q6" value="b"> Menghubungkan monitor</label>
+<label><input type="radio" name="q6" value="c"> Mengisi daya perangkat</label></div>
+<div class="quiz-question"><b>7. VLAN ID berfungsi untuk...</b>
+<label><input type="radio" name="q7" value="a"> Mengganti password komputer</label>
+<label><input type="radio" name="q7" value="b"> Membedakan VLAN</label>
+<label><input type="radio" name="q7" value="c"> Mengukur panjang kabel</label></div>
+<div class="quiz-question"><b>8. Halaman login Hotspot digunakan untuk...</b>
+<label><input type="radio" name="q8" value="a"> Menggambar topologi</label>
+<label><input type="radio" name="q8" value="b"> Mengatur resolusi layar</label>
+<label><input type="radio" name="q8" value="c"> Melakukan autentikasi pengguna</label></div>
+<button type="button" onclick="checkQuiz()">Periksa Jawaban</button>
+</form>
+<div id="result"></div>
+</section>
+
+<div class="navigation">
+<a class="next" href="wifi-access-point.html">← Materi Sebelumnya</a>
+<a class="next" href="wireless.html">Selesai Belajar ✓</a>
+</div>
+</div>
+
+<script>
+function checkQuiz(){
+const key={
+q1:"b",q2:"a",q3:"c",q4:"a",
+q5:"b",q6:"a",q7:"b",q8:"c"
+};
+let score=0,answered=0;
+for(let q in key){
+const selected=document.querySelector('input[name="'+q+'"]:checked');
+if(selected){answered++;if(selected.value===key[q])score++;}
+}
+const result=document.getElementById("result");
+if(answered!==8){
+result.className="result";
+result.style.background="#fff3cd";
+result.innerHTML="Kamu baru menjawab "+answered+" dari 8 soal. Lengkapi semua jawaban!";
+return;
+}
+let nilai=Math.round(score/key && score/8*100);
+result.className="result";
+result.style.background="#e4f8ed";
+result.innerHTML="Nilai kamu: "+nilai+"/100<br>Jawaban benar: "+score+" dari 8 soal.";
+}
+</script>
+
+</body>
+
+</html>
